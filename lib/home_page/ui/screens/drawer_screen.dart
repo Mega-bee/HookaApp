@@ -5,7 +5,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooka/Helpers/colors.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
-import 'package:hooka/home_page/ui/menu%20screens/MyAccount.dart';
+
 import 'package:hooka/home_page/ui/menu%20screens/MyCart.dart';
 import 'package:hooka/home_page/ui/menu%20screens/contactus.dart';
 import 'package:hooka/home_page/ui/menu%20screens/invitations.dart';
@@ -14,6 +14,7 @@ import 'package:hooka/home_page/ui/menu%20screens/settings.dart';
 import '../../../Custom_page_route.dart';
 import '../menu screens/myorders.dart';
 import '../menu screens/notifications.dart';
+import '../menu screens/profile/profile.dart';
 import '../widget/menu_widget.dart';
 import 'main_screen.dart';
 import 'main_screen.dart';
@@ -62,8 +63,7 @@ Widget?  getScreen() {
       return MainScreen();
     case  MenuItems.settings:
       return Settings();
-    case  MenuItems.myaccount:
-      return MyAccount();
+
     case  MenuItems.mycart:
       return MyCart();
     case  MenuItems.myorder:

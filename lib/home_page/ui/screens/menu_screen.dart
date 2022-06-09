@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../../Custom_page_route.dart';
 import '../../../Helpers/colors.dart';
+import '../../../Helpers/tools/CustomAlert.dart';
+import '../../../auth/ui/screens/login_screen.dart';
 import '../menu screens/profile/profile.dart';
 import 'main_screen.dart';
 
@@ -14,7 +16,7 @@ class  MenuItem {
 }
 class MenuItems  {
   static const MainScreen = MenuItem(Icons.home, 'MainScreen');
-  static const myaccount = MenuItem(Icons.person, 'My Account');
+
   static const mycart = MenuItem(Icons.shopping_basket, 'My Cart');
   static const myorder = MenuItem(Icons.star_border, 'My Orders');
   static const invitations = MenuItem(Icons.calendar_today, 'Invitations');
@@ -25,7 +27,7 @@ class MenuItems  {
 
   static final all=<MenuItem>[
     MainScreen,
-    myaccount,
+
     mycart,
     myorder,
     invitations,
@@ -79,9 +81,38 @@ class _MenupageState extends State<Menupage> {
                   Text("Christian Zakhour",style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)
                   ]),
                 ),
+                SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+
+                GestureDetector(onTap: (){
+    showDialog(
+    context: context,
+    builder: (context) => CustomLogOutDialog(
+    title: "Are You Sure Do You Want To logout",
+    content: "",
+    yesBtn:() {
+
+    Navigator.of(context).pushAndRemoveUntil(
+    MaterialPageRoute(builder: (context) => loginScreen()),
+    (route) => false);
+    },
+    noBtn: () {
+    Navigator.pop(context);
+    },
+    ),
+    );},
+                  child: Row(children:[ CircleAvatar(
+                      backgroundColor: YellowColor,
+                      child: Icon(Icons.logout,color: Colors.black,)),
+                    SizedBox(width: MediaQuery.of(context).size.width*0.02,),
+                    Text("Logout",style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)
+                  ]),
+                ),
                 Spacer(),
+
                 ...MenuItems.all.map(buildMenuItems).toList(),
-                Spacer(flex: 2,),
+                Spacer(flex: 1,),
+
+
               ],),
           )
       );

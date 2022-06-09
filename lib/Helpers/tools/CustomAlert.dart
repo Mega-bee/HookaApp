@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 
 import '../../Helpers/colors.dart';
+import '../../auth/ui/screens/login_screen.dart';
 
 
 
@@ -59,6 +60,8 @@ class _CustomLogOutDialog extends State<CustomLogOutDialog> {
               TextButton(
                   onPressed: () {
 
+
+    widget.yesBtn();
                   },
                   child: Text(
                     "Yes",

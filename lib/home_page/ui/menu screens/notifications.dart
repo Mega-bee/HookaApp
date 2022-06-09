@@ -20,7 +20,7 @@ class _NotificationsState extends State<Notifications> {
         title: Text("Notifications",style: TextStyle(color: Colors.black),),
 
       ),
-      body: Center(child: Text("hello")),
+      body: Center(child: Text("No notifications found !")),
     );
   }
 }
