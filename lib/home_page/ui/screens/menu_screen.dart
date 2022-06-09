@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../Custom_page_route.dart';
 import '../../../Helpers/colors.dart';
-import '../menu screens/profile.dart';
+import '../menu screens/profile/profile.dart';
 import 'main_screen.dart';
 
 class  MenuItem {

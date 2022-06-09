@@ -72,14 +72,14 @@ elevation: 0,
                   color: AmberColor,
                   child: Column(
                       children:[ Image.asset(
-                        "assets/images/Hooka 1.png",
-                        fit: BoxFit.cover,
+                        "assets/images/Group 7.png",
+                        fit: BoxFit.scaleDown,
                         height: 120,
                         width: 170,
                       ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 30,),
-                          child: Text("OFFERS",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15)),
+                          child: Text("HOOKA ACCESSORIES",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 14)),
                         )
                       ]),
                 ),
