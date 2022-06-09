@@ -81,36 +81,42 @@ class _MenupageState extends State<Menupage> {
                   Text("Christian Zakhour",style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)
                   ]),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+
+
+
+
+                ...MenuItems.all.map(buildMenuItems).toList(),
+                SizedBox(height: MediaQuery.of(context).size.height*0.03,),
 
                 GestureDetector(onTap: (){
-    showDialog(
-    context: context,
-    builder: (context) => CustomLogOutDialog(
-    title: "Are You Sure Do You Want To logout",
-    content: "",
-    yesBtn:() {
+                  showDialog(
+                    context: context,
+                    builder: (context) => CustomLogOutDialog(
+                      title: "Are You Sure Do You Want To logout",
+                      content: "",
+                      yesBtn:() {
 
-    Navigator.of(context).pushAndRemoveUntil(
-    MaterialPageRoute(builder: (context) => loginScreen()),
-    (route) => false);
-    },
-    noBtn: () {
-    Navigator.pop(context);
-    },
-    ),
-    );},
-                  child: Row(children:[ CircleAvatar(
-                      backgroundColor: YellowColor,
-                      child: Icon(Icons.logout,color: Colors.black,)),
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (context) => loginScreen()),
+                                (route) => false);
+                      },
+                      noBtn: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  );},
+                  child: Row(children:[
+                    SizedBox(width: MediaQuery.of(context).size.width*0.02,),
+                    CircleAvatar(
+                      backgroundColor: Colors.black,
+                      child: Icon(Icons.logout,color: YellowColor,)),
                     SizedBox(width: MediaQuery.of(context).size.width*0.02,),
                     Text("Logout",style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)
                   ]),
                 ),
-                Spacer(),
 
-                ...MenuItems.all.map(buildMenuItems).toList(),
-                Spacer(flex: 1,),
+                Spacer(flex: 1,)
 
 
               ],),
