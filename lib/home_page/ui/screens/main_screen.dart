@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:hooka/home_page/Card/ui/hooka_places.dart';
 import 'package:hooka/home_page/Card/ui/hooka_product.dart';
 import 'package:hooka/home_page/ui/screens/drawer_screen.dart';
 
@@ -37,24 +38,30 @@ appBar: AppBar(
               mainAxisAlignment: MainAxisAlignment.center,
 
               children: [
+                SizedBox(height: MediaQuery.of(context).size.height*0.1,),
                 Image.asset("assets/images/hooka logo.png",height: 250,width: 500,fit: BoxFit.cover,),
 
                 Row( mainAxisAlignment: MainAxisAlignment.center,
                     children:[
-                      Card(
-                        color: AmberColor,
-                        child: Column(
-                            children:[ Image.asset(
-                              "assets/images/hooka 2.png",
-                              fit: BoxFit.cover,
-                              height: 120,
-                              width: 170,
-                            ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 30,),
-                                child: Text("HOOKA PLACES",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15),),
-                              )
-                            ] ),
+                      InkWell(
+                        onTap:   (){Navigator.push(
+                            context,
+                            CustomPageRoute(child:HookaPlaces())); },
+                        child: Card(
+                          color: AmberColor,
+                          child: Column(
+                              children:[ Image.asset(
+                                "assets/images/hooka 2.png",
+                                fit: BoxFit.cover,
+                                height: 120,
+                                width: 170,
+                              ),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 30,),
+                                  child: Text("HOOKA PLACES",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15),),
+                                )
+                              ] ),
+                        ),
                       ),
                       Card(
                         color: AmberColor,
