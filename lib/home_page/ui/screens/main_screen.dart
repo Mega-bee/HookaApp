@@ -53,8 +53,8 @@ appBar: AppBar(
                               children:[ Image.asset(
                                 "assets/images/hooka 2.png",
                                 fit: BoxFit.cover,
-                                height: 120,
-                                width: 170,
+                                height: 100,
+                                width: 150,
                               ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 30,),
@@ -69,8 +69,8 @@ appBar: AppBar(
                             children:[ Image.asset(
                               "assets/images/hooka 4.png",
                               fit: BoxFit.cover,
-                              height: 120,
-                              width: 170,
+                              height: 100,
+                              width: 150,
                             ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 30,),
@@ -88,8 +88,8 @@ appBar: AppBar(
                             children:[ Image.asset(
                               "assets/images/Hooka 1.png",
                               fit: BoxFit.cover,
-                              height: 120,
-                              width: 170,
+                              height: 100,
+                              width: 150,
                             ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 30,),
@@ -107,8 +107,8 @@ appBar: AppBar(
                               children:[ Image.asset(
                                 "assets/images/hooka 3.png",
                                 fit: BoxFit.cover,
-                                height: 120,
-                                width: 170,
+                                height: 100,
+                                width: 150,
                               ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 30,),

@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 import '../../../../Helpers/colors.dart';
 
@@ -35,13 +37,19 @@ class _DetailsState extends State<Details> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            PlayAnimation<double>(
+
+                duration: Duration(milliseconds: 1200),
+               // delay: Duration(milliseconds: 400),
+                tween: Tween(begin: 0.0,end: 250),
+        builder:( context,child,value){return
             Container(
 
-              height: MediaQuery.of(context).size.height*0.4,
-           child: Center(child: Image.asset("assets/images/hooka logo.png",fit: BoxFit.cover,
+              height:value,
+           child: Center(child: Image.asset("assets/images/Unknown.jpeg",fit: BoxFit.cover,
            height: 600,
            )),
-            ),
+            );}),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
             
             Row(
@@ -92,8 +100,14 @@ class _DetailsState extends State<Details> {
               padding: const EdgeInsets.only(left: 75,right: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Opening hours [09:30Am -07:00Pm]",
-                    style: TextStyle(fontSize: 14,fontWeight: FontWeight.w300)),
+                child: Row(
+                  children:[
+                    Icon(FontAwesomeIcons.clock,color: Colors.grey,size: 15,),
+                    SizedBox(width: MediaQuery.of(context).size.width*0.01,),
+
+                    Text("Opening hours [09:30Am -07:00Pm]",
+                      style: TextStyle(fontSize: 14,fontWeight: FontWeight.w300)),
+                ]),
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.02,),

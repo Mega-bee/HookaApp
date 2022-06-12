@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
+import 'package:hooka/splash%20screen/ui/screen_Splash.dart';
 
 import 'Helpers/colors.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch:Primarycolor,
         backgroundColor: Primarycolor,
       ),
-      home: const loginScreen(),
+      home: const SplashScreen(),
     );
   }
 }

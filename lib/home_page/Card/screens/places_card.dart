@@ -36,7 +36,7 @@ class _PlacesCardState extends State<PlacesCard> {
     borderRadius: BorderRadius.only(
     bottomRight: Radius.circular(12),)),
 
-                          child: Image.asset("assets/images/hooka logo.png",
+                          child: Image.asset("assets/images/Unknown.jpeg",
                             width: 100, height: 100, fit: BoxFit.cover,),
                         ),
 
