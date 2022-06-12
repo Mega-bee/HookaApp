@@ -5,7 +5,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:hooka/auth/ui/widget/email_field.dart';
 import 'package:hooka/auth/ui/widget/password_field.dart';
 
-import '../../../Helpers/colors.dart';
+import '../../../utils/style/colors.dart';
 
 
 
