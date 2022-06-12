@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
-import 'package:hooka/splash%20screen/ui/screen_Splash.dart';
+import 'package:hooka/splash_screen/ui/splash_screen.dart';
+//import 'package:hooka/splash%20screen/ui/splash_screen.dart';
 
-import 'Helpers/colors.dart';
+import 'utils/style/colors.dart';
 
 void main() {
   runApp(const MyApp());
