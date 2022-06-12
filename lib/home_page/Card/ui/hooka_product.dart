@@ -15,6 +15,7 @@ class _HookaProductState extends State<HookaProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text("Hooka Products",style: TextStyle(color: Colors.black),),
         backgroundColor: Colors.white,
         leading: IconButton(
@@ -40,8 +41,8 @@ elevation: 0,
                       children:[ Image.asset(
                         "assets/images/Hookawitty.png",
                         fit: BoxFit.scaleDown,
-                        height: 120,
-                        width: 170,
+                        height: 100,
+                        width: 150,
                       ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 30,),
@@ -55,8 +56,8 @@ elevation: 0,
                       children:[ Image.asset(
                         "assets/images/HookaCapsules.png",
                         fit: BoxFit.scaleDown,
-                        height: 120,
-                        width: 170,
+                        height: 100,
+                        width: 150,
                       ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 30,),
@@ -74,8 +75,8 @@ elevation: 0,
                       children:[ Image.asset(
                         "assets/images/Group 7.png",
                         fit: BoxFit.scaleDown,
-                        height: 120,
-                        width: 170,
+                        height: 100,
+                        width: 150,
                       ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 30,),

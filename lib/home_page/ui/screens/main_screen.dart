@@ -24,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 appBar: AppBar(
-  elevation: 1,
+  elevation: 0,
   title: Text("Hookapp",style: TextStyle(color: Colors.black),),
   backgroundColor: Colors.white,
   leading: MenuWidget(),

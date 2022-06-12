@@ -144,7 +144,7 @@ class _loginScreenState extends State<loginScreen> {
                                 ),
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.push(
+                                    Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(builder: (context) => const DrawerScreen()),
                                     );
