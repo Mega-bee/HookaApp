@@ -77,6 +77,46 @@ innerSize: 40,
 
 
           ],),
+          SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+
+          Row(children: [
+            SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+
+            Icon(Icons.settings,color: Colors.grey,),
+            SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+            Text("Available      ",style: TextStyle(fontSize: 17),),
+            SizedBox(width: MediaQuery.of(context).size.width*0.4,),
+
+            Container(height: 35,width: 60,
+              child: RollingSwitch.icon(
+                innerSize: 40,
+                height: 60,
+                width: 60,
+                circularColor: Colors.white,
+                onChanged: (bool state) {
+                  print('turned ${(state) ? 'on' : 'off'}');
+                },
+                rollingInfoRight:  RollingIconInfo(
+
+
+
+                  backgroundColor: YellowColor,
+
+
+                ),
+                rollingInfoLeft:  RollingIconInfo(
+
+                  icon: Icons.close,
+
+                  backgroundColor: Colors.grey,
+
+                ),
+
+              ),
+            ),
+
+
+          ],),
           SizedBox(height: MediaQuery.of(context).size.height*0.04,),
           Align(alignment: Alignment.centerLeft,
             child: Padding(
@@ -117,7 +157,9 @@ innerSize: 40,
 
             Icon(Icons.flag,color: Colors.grey,),
             SizedBox(width: MediaQuery.of(context).size.width*0.05,),
-            Text("Report an abuse",style: TextStyle(fontSize: 17),),]),
+            InkWell(
+                onTap: (){},
+                child: Text("Report an abuse",style: TextStyle(fontSize: 17),)),]),
           SizedBox(height: MediaQuery.of(context).size.height*0.04,),
           Align(alignment: Alignment.centerLeft,
             child: Padding(

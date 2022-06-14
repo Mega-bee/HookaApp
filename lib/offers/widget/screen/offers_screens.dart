@@ -1,22 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hooka/profile/ui/profile.dart';
-import 'package:hooka/utils/images/images.dart';
-import 'package:simple_animations/simple_animations.dart';
+import 'package:simple_animations/stateless_animation/play_animation.dart';
 
-import '../../../hooka_product/ui/screen/hooka_product.dart';
-import '../../../utils/effect/custom_page_route.dart';
+import '../../../utils/images/images.dart';
 import '../../../utils/style/colors.dart';
 
-class PlacesDetails extends StatefulWidget {
-  const PlacesDetails({Key? key}) : super(key: key);
+class OffersScreen extends StatefulWidget {
+  const OffersScreen({Key? key}) : super(key: key);
 
   @override
-  State<PlacesDetails> createState() => _PlacesDetailsState();
+  State<OffersScreen> createState() => _OffersScreenState();
 }
 
-class _PlacesDetailsState extends State<PlacesDetails> {
+class _OffersScreenState extends State<OffersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,9 +36,9 @@ class _PlacesDetailsState extends State<PlacesDetails> {
         actions: [
           IconButton(
             icon: Icon(
-              Icons.location_on,
+              Icons.share,
               color: Primarycolor,
-              size: 30,
+              size: 25,
             ),
             onPressed: () {},
           ),
@@ -60,10 +56,10 @@ class _PlacesDetailsState extends State<PlacesDetails> {
                     height: value,
                     child: Center(
                         child: Image.asset(
-                      "assets/images/Unknown.jpeg",
-                      fit: BoxFit.cover,
-                      height: 600,
-                    )),
+                          "assets/images/Unknown.jpeg",
+                          fit: BoxFit.cover,
+                          height: 600,
+                        )),
                   );
                 }),
             SizedBox(
@@ -76,7 +72,7 @@ class _PlacesDetailsState extends State<PlacesDetails> {
                 children: [
                   Text("King of Grill",
                       style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                      TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                   Container(
                     height: 30,
                     width: 70,
@@ -86,7 +82,7 @@ class _PlacesDetailsState extends State<PlacesDetails> {
                         child: Center(
                             child: Text("2.78",
                                 style: TextStyle(
-                                    fontSize: 18, color: Colors.white)))),
+                                    fontSize:18, color: Colors.white)))),
                   ),
                 ],
               ),
@@ -100,7 +96,7 @@ class _PlacesDetailsState extends State<PlacesDetails> {
                 alignment: Alignment.centerLeft,
                 child: Text("Bcharry",
                     style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                    TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
               ),
             ),
             SizedBox(
@@ -142,7 +138,7 @@ class _PlacesDetailsState extends State<PlacesDetails> {
                   ),
                   Text("Opening hours [09:30Am -07:00Pm]",
                       style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w300)),
+                      TextStyle(fontSize: 14, fontWeight: FontWeight.w300)),
                 ]),
               ),
             ),
@@ -166,7 +162,7 @@ class _PlacesDetailsState extends State<PlacesDetails> {
                 alignment: Alignment.centerLeft,
                 child: Text("Description",
                     style:
-                        TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+                    TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
               ),
             ),
             SizedBox(
@@ -178,7 +174,7 @@ class _PlacesDetailsState extends State<PlacesDetails> {
                 alignment: Alignment.centerLeft,
                 child: Text("King of Grill",
                     style:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
+                    TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
               ),
             ),
             SizedBox(
@@ -188,74 +184,90 @@ class _PlacesDetailsState extends State<PlacesDetails> {
               padding: const EdgeInsets.only(left: 35, right: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Favorite To",
+                child: Text("Offer",
                     style:
-                        TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+                    TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
               ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 45, right: 10),
-              child: Row(children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.04,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 50,
-                    width: 50,
-                    child: Card(
-                      color: YellowColor,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      child: Center(
-                          child: Icon(
-                        FontAwesomeIcons.plus,
-                        size: 25,
-                        color: Colors.white,
-                      )),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.01,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 50,
-                    width: 50,
-                    child: Card(
-                      color: Colors.red,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      child: Center(
-                          child: Icon(
-                        FontAwesomeIcons.c,
-                        size: 25,
-                        color: Colors.white,
-                      )),
-                    ),
-                  ),
-                ),
-              ]),
+            Container(
+              height: MediaQuery.of(context).size.height*0.095,
+              width: MediaQuery.of(context).size.width*0.8,
+              child: Card(
+                elevation: 4,
+shadowColor: Colors.red[100],
+child: Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [  Column(children: [
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text("type"),
+    ),
+    SizedBox(
+      height: MediaQuery.of(context).size.height * 0.01,
+    ),
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text("Hooka",style: TextStyle(fontWeight: FontWeight.bold),),
+    ),
+  ],),
+     Padding(
+        padding: EdgeInsets.only(right: 2, left: 24),
+        child: Container(
+          color: Colors.black,
+          height: 50,
+          width: 1,
+        ),
+      ),
+
+    Column(children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text("Discount"),
+      ),
+      SizedBox(
+        height: MediaQuery.of(context).size.height * 0.01,
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text("35%",style: TextStyle(fontWeight: FontWeight.bold),),
+      ),
+    ],),
+    Padding(
+      padding: EdgeInsets.only(right: 2, left: 24),
+      child: Container(
+        color: Colors.black,
+        height: 50,
+        width: 1,
+      ),
+    ),
+    Column(children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text("Expiry Date"),
+      ),
+      SizedBox(
+        height: MediaQuery.of(context).size.height * 0.01,
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text("25 June 2022",style: TextStyle(fontWeight: FontWeight.bold),),
+      ),
+    ],),
+]),
+              ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
+              height: MediaQuery.of(context).size.height * 0.04,
             ),
             ElevatedButton(
               onPressed: () {},
 //
 
               child: const Text(
-                'INVITE BUDDY ',
+                'BOOK ',
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,
@@ -275,33 +287,9 @@ class _PlacesDetailsState extends State<PlacesDetails> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 35, right: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text("Album",
-                    style:
-                        TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            Row(children: [
-              Image.asset(
-                ImageAsset.LOGO,
-                height: 200,
-                width: 200,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.04,
-              ),
-              Image.asset(
-                ImageAsset.LOGO,
-                height: 200,
-                width: 200,
-              )
-            ])
+
+
+
           ],
         ),
       ),

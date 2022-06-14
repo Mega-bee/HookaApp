@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hooka/buddies/ui/screens/buddies.dart';
 import '../../../hooka_places/ui/screen/hooka_places.dart';
 import '../../../hooka_product/ui/screen/hooka_product.dart';
 import 'package:hooka/home_page/ui/widget/hooka_card.dart';
 import 'package:hooka/utils/images/images.dart';
 
+import '../../../offers/widget/ui/offers.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../widget/menu_widget.dart';
 
@@ -28,7 +30,9 @@ class _MainScreenState extends State<MainScreen> {
           leading: MenuWidget(),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+
+                },
                 icon: Icon(
                   Icons.notifications,
                   color: Colors.black,
@@ -62,12 +66,18 @@ class _MainScreenState extends State<MainScreen> {
                   text: "HOOKA PLACES"),
               HookaCard(
                   image: ImageAsset.BUDDIES,
-                  onCardTap: () {},
+                  onCardTap: () {
+                    Navigator.push(
+                        context, CustomPageRoute(child: Buddies()));
+                  },
                   text: "HOOKA BUDDIES"),
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               HookaCard(
-                  image: ImageAsset.OFFER, onCardTap: () {}, text: "OFFERS"),
+                  image: ImageAsset.OFFER, onCardTap: () {
+                Navigator.push(
+                    context, CustomPageRoute(child: Offers()));
+              }, text: "OFFERS"),
               HookaCard(
                   image: ImageAsset.PRODUCT,
                   onCardTap: () {

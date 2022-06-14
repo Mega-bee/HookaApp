@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../home_page/ui/widget/menu_widget.dart';
+import '../../../utils/style/colors.dart';
 import 'package:hooka/profile/ui/edit_profile.dart';
 import 'package:rolling_switch/rolling_switch.dart';
 
-import '../../utils/style/colors.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+class ViewProfile extends StatefulWidget {
+  const ViewProfile({Key? key}) : super(key: key);
 
   @override
-  State<Profile> createState() => _ProfileState();
+  State<ViewProfile> createState() => _ViewProfileState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ViewProfileState extends State<ViewProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,65 +24,58 @@ class _ProfileState extends State<Profile> {
           icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
           onPressed: (){Navigator.of(context).pop();},
         ),
-        title: Text("My Account",style: TextStyle(color: Primarycolor),),
-        actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.notifications,color: Primarycolor)),
-          TextButton(onPressed: (){}, child:TextButton(
-              onPressed:(){  Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) =>  EditProfile()),
-              );},
-              child: Text("Edit",style: TextStyle(color: Primarycolor),)),)
+        title: Text("Christian Zakhour",style: TextStyle(color: Primarycolor),),
 
-        ],
+
+
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+      body: Column(
+        children: [
+          SizedBox(height: MediaQuery.of(context).size.height*0.02,),
 
 
-            Row(
-                children:[
-                  Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
+          Row(
+              children:[
+                Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
                       height: MediaQuery.of(context).size.height*0.1,width:MediaQuery.of(context).size.width*0.20,
 
                       child: CircleAvatar(
-    foregroundImage: AssetImage("assets/images/IMG_0095.JPG"),
-    radius:120,
-    backgroundColor: Colors.red,
+                        foregroundImage: AssetImage("assets/images/IMG_0095.JPG"),
+                        radius:120,
+                        backgroundColor: Colors.red,
                       ),
-    // Text("C",style: TextStyle(fontSize: 50,color: Colors.white),),)
+                      // Text("C",style: TextStyle(fontSize: 50,color: Colors.white),),)
                     )),
-                      SizedBox(width: MediaQuery.of(context).size.width*0.02,),
-                      Text("Christian Zakhour",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                  ]),
-            SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                SizedBox(width: MediaQuery.of(context).size.width*0.02,),
+                Text("Christian Zakhour",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              ]),
+          SizedBox(height: MediaQuery.of(context).size.height*0.02,),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 22,right: 20),
+          Padding(
+            padding: const EdgeInsets.only(left: 22,right: 20),
 
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: const Text("About Me",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+            child: Align(
+                alignment: Alignment.centerLeft,
+                child: const Text("About Me",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)),
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height*0.01,),
 
-Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child: Card(color: Colors.black,),),
-            SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-            Padding(
+          Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child: Card(color: Colors.black,),),
+          SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+          Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("- Professional mobile developer . \n"
-    "- Familiarity using version control tools like Git . \n"
+                      "- Familiarity using version control tools like Git . \n"
                       "- Knowledge of Dart programming language . \n"
-                    "- Experience in development of Android/iOS applications .",          )
-    )),
-            SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-
+                      "- Experience in development of Android/iOS applications .",          )
+              )),
+          SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+SingleChildScrollView(
+  child:   Column(children:[
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -91,11 +83,11 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Date of birth :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
             Card(color: Colors.black,elevation: 0),),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -103,11 +95,11 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Gender :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
             Card(color: Colors.black,elevation: 0),),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -115,11 +107,11 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Martial Status :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
             Card(color: Colors.black,elevation: 0),),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -127,11 +119,11 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Height :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
             Card(color: Colors.black,elevation: 0),),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -139,11 +131,11 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Weight :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
             Card(color: Colors.black,elevation: 0),),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -151,10 +143,10 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Body Type :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
             Card(color: Colors.black,elevation: 0),), SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-
+  
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -162,11 +154,11 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Eyes :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
             Card(color: Colors.black,elevation: 0),),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -174,11 +166,11 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Hair :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
             Card(color: Colors.black,elevation: 0),),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -186,11 +178,11 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Education :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
             Card(color: Colors.black,elevation: 0),),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -198,11 +190,11 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Profession :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
             Card(color: Colors.black,elevation: 0),),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -210,11 +202,11 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Interests :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
             Card(color: Colors.black,elevation: 0),),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Padding(
               padding: const EdgeInsets.only(left: 22,right: 20),
               child: Align(
@@ -222,13 +214,13 @@ Container(height: 2,width: MediaQuery.of(context).size.width*0.9,color:Colors.gr
                   child: Text("Hobbies :",style: TextStyle(fontStyle: FontStyle.italic),)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
+  
             Container(height: 1,width: MediaQuery.of(context).size.width*0.9,color:Colors.grey,child:
-            Card(color: Colors.black,elevation: 0),),
+            Card(color: Colors.black,elevation: 0),),]),
+)
 
 
-          ],
-        ),
+        ],
       ),
     );
   }
