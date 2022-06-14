@@ -16,7 +16,8 @@ class _BuddiesState extends State<Buddies> {
     final _searchController =TextEditingController();
     return  Scaffold(
       appBar:AppBar(
-        elevation: 0,
+
+        elevation: 1,
         backgroundColor: Colors.white,
         title: Text('Buddies',style: TextStyle(color: Primarycolor),),
         leading: IconButton(

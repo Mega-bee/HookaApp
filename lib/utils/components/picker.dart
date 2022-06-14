@@ -49,7 +49,7 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
 
   @override
   void dispose() {
-    // ui.controller.dispose();
+    // widget.controller.dispose();
 
     super.dispose();
   }

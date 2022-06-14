@@ -15,13 +15,15 @@ class _OffersState extends State<Offers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
+
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
           onPressed: (){Navigator.of(context).pop();},
         ),
         title: Text("Offers",style: TextStyle(color: Primarycolor)),
-        elevation: 0,
+        elevation: 1,
 backgroundColor: Colors.white,
       ),
       body:

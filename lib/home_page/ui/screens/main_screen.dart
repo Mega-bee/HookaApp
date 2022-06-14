@@ -20,8 +20,10 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          elevation: 0,
+          elevation: 1,
+
           title: Text(
             "Hookapp",
             style: TextStyle(color: Colors.black),

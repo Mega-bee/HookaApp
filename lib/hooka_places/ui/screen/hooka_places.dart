@@ -18,8 +18,9 @@ class _HookaPlacesState extends State<HookaPlaces> {
   Widget build(BuildContext context) {
     final _textEditingController =TextEditingController();
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar:AppBar(
-        elevation: 0,
+        elevation: 1,
         backgroundColor: Colors.white,
         title: Text('Places',style: TextStyle(color: Primarycolor),),
         leading: IconButton(
@@ -75,36 +76,8 @@ class _HookaPlacesState extends State<HookaPlaces> {
                   color: YellowColor,
                 ),
                 onPressed: () {}
-                //   showModalBottomSheet(
-                //
-                //     backgroundColor: Colors.white,
-                //     elevation: 3,
-                //     shape: const RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.vertical(
-                //         top: Radius.circular(25),
-                //       ),
-                //     ),
-                    // context: context,
-                    // builder: (context) {
-                    //   return ShowFilter(
-                    //     filtersValue: selectedFilter,
-                    //     filtersValueTitle: selectedFilterTitle,
-                    //     onDonTap: (filterListID ,filterListTitle) {
-                    //       selectedFilter  = List.from(filterListID) ;
-                    //       selectedFilterTitle  = List.from(filterListTitle) ;
-                    //       setState(() {
-                    //
-                    //       });
-                    //       patientListBloc
-                    //         ..add(FetchData(
-                    //             Urls.GET_ALL_PATIENTS_Priority,
-                    //             query: WebParam.FilterParams(selectedFilter),
-                    //             requestType: RequestType.get));
-                    //     },
-                    //   );
-                    // },
-                //   );
-                // },
+
+
               ),
               prefixIcon: const Icon(
                 Icons.search_rounded,

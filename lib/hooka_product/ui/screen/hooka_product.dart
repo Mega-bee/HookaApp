@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hooka/hooka_product/ui/screen_cards/ui/hooka_witty.dart';
 import '../../../home_page/ui/widget/menu_widget.dart';
 import 'package:hooka/utils/images/images.dart';
 
+import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
 
 class HookaProduct extends StatefulWidget {
@@ -35,21 +37,25 @@ class _HookaProductState extends State<HookaProduct> {
 
           Row( mainAxisAlignment: MainAxisAlignment.center,
               children:[
-                Card(
+                InkWell(
+                  onTap: (){Navigator.push(context,
+                      CustomPageRoute(child: HookaWitty()));},
+                  child: Card(
 elevation: 0,
-                  color: AmberColor,
-                  child: Column(
-                      children:[ Image.asset(
-                        "assets/images/Hookawitty.png",
-                        fit: BoxFit.scaleDown,
-                        height: 100,
-                        width: 150,
-                      ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 30,),
-                          child: Text("HOOKA WITTY",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15),),
-                        )
-                      ] ),
+                    color: AmberColor,
+                    child: Column(
+                        children:[ Image.asset(
+                          "assets/images/Hookawitty.png",
+                          fit: BoxFit.scaleDown,
+                          height: 100,
+                          width: 150,
+                        ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 30,),
+                            child: Text("HOOKA WITTY",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15),),
+                          )
+                        ] ),
+                  ),
                 ),
                 Card(
                   color: AmberColor,

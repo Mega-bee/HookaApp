@@ -38,7 +38,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
     bool _isObscure = true;
     return Scaffold(
-      
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.black,
       ),
@@ -112,40 +112,42 @@ class _SignupScreenState extends State<SignupScreen> {
                                 ),
                               ),
                               SizedBox(height: mediaQueryHeight*0.05,),
-                              Form(
-                                key: _formKey,
-                                child: Column(
+                               Column(
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.symmetric(
                                           horizontal: mediaQueryWidth * 0.05),
-                                      child: TextFormField(
-                                      cursorColor: YellowColor,
-                                      style: const TextStyle(fontSize: 18),
-                                      controller:firstname,
-                                      decoration: InputDecoration(
+                                      child: Form(
+                                        key: _formKey,
 
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        hintText: " First name",
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.all(Radius.circular(10)),
-                                            borderSide: BorderSide(
-                                                width: 0, color: Colors.black12)),
-                                        border: OutlineInputBorder(
-                                          borderSide:
-                                          const BorderSide(color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(10.0),
+                                        child: TextFormField(
+                                        cursorColor: YellowColor,
+                                        style: const TextStyle(fontSize: 18),
+                                        controller:firstname,
+                                        decoration: InputDecoration(
+
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          hintText: " First name",
+                                          enabledBorder: const OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.all(Radius.circular(10)),
+                                              borderSide: BorderSide(
+                                                  width: 0, color: Colors.black12)),
+                                          border: OutlineInputBorder(
+                                            borderSide:
+                                            const BorderSide(color: Colors.grey),
+                                            borderRadius: BorderRadius.circular(10.0),
+                                          ),
                                         ),
+                                            validator: MultiValidator([
+                                              RequiredValidator(errorText: 'First name Required *'),
+                                              EmailValidator(errorText: 'Not a valid name'),
+                                            ]),
+                                        autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                        keyboardType: TextInputType.emailAddress),
                                       ),
-                                          validator: MultiValidator([
-                                            RequiredValidator(errorText: 'First name Required *'),
-                                            EmailValidator(errorText: 'Not a valid name'),
-                                          ]),
-                                      autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                      keyboardType: TextInputType.emailAddress),
                                     ),
                                     SizedBox(
                                       height: MediaQuery.of(context).size.height * 0.03,
@@ -355,7 +357,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                     SizedBox(height: mediaQueryHeight*0.04,),
                                   ],
                                 ),
-                              ),
+
                             ]),
                       ),
                     ),
