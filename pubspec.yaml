@@ -36,6 +36,7 @@ dependencies:
   custom_cupertino_picker:
   simple_animations:
   flutter_launcher_icons:
+  flutter_offline:
 
 
   # The following adds the Cupertino Icons font to your application.
