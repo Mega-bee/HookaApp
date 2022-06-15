@@ -10,6 +10,7 @@ import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
 import '../../../home_page/ui/screens/drawer_screen.dart';
 import '../../../home_page/ui/screens/main_screen.dart';
+import '../../../otp/ui/screen/otp.dart';
 
 class loginScreen extends StatefulWidget {
   const loginScreen({Key? key}) : super(key: key);
@@ -147,10 +148,10 @@ class _loginScreenState extends State<loginScreen> {
                           ),
                           ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const DrawerScreen()),
+                                    builder: (context) => const PinCodeVerificationScreen()),
                               );
                               // if (password.text.isEmpty ||
                               //     email.text.isEmpty ||
