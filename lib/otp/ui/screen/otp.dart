@@ -121,7 +121,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                   key: formKey,
                   child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 18.0, horizontal: 30),
+                          vertical: 18.0, horizontal: 50),
                       child: PinCodeTextField(
                         appContext: context,
                         pastedTextStyle: TextStyle(
@@ -224,7 +224,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 ),
                 Container(
                   margin:
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30),
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 60),
                   child: ButtonTheme(
 
                     height: 20,

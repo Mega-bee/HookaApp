@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../../utils/style/colors.dart';
-
+import 'dart:io' as i;
 import '../../../../utils/components/picker.dart';
 import '../../../../auth/ui/widget/email_field.dart';
 
@@ -18,7 +20,7 @@ class _EditProfileState extends State<EditProfile> {
   var _selectedDate2;
   var _selectedDate3;
   var _selectedDate4;
-
+  i.File? _pickImage;
   void _presentDatePickerTO() {
     showDatePicker(
 
@@ -109,6 +111,18 @@ class _EditProfileState extends State<EditProfile> {
 
     print('...');
   }
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      final imageTemporary = i.File(image.path);
+      setState(() {
+        this._pickImage = imageTemporary;
+      });
+    } on PlatformException catch (e) {
+      print("Failed to pick image $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,14 +164,129 @@ elevation: 1,
                   children:[
                     SizedBox(height: mediaQueryHeight*0.02,),
 
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                          height: MediaQuery.of(context).size.height*0.1,width:MediaQuery.of(context).size.width*0.20,
-                          child: CircleAvatar(
-                            backgroundColor: YellowColor,
-                            child:Text("Edit Photo",style: TextStyle(fontSize: 12,color: Colors.black,fontWeight: FontWeight.bold),),))
-                      ,),
+                    Center(
+                      child: Stack(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+                              child: CircleAvatar(
+                                radius: 66,
+                                backgroundColor: Colors.black,
+                                child: CircleAvatar(
+                                    radius: 65,
+                                    backgroundColor: Colors.white,
+                                    child:
+                                    _pickImage == null ?
+                                    Text("Edit Photo",style: TextStyle(color:Primarycolor),):
+                                        Container(),
+                                    backgroundImage:
+
+                                    _pickImage == null ? null : FileImage(_pickImage!)),
+                              ),
+                            ),
+                            Positioned(
+                                top: 110,
+                                left: 95,
+                                child: RawMaterialButton(
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            backgroundColor: Colors.black,
+                                            title: Text("Choose option",style: TextStyle(color: YellowColor),),
+                                            content: SingleChildScrollView(
+                                              child: ListBody(
+                                                children: [
+                                                  InkWell(
+                                                    onTap: () {
+                                                      pickImage(ImageSource.camera);
+                                                    },
+                                                    splashColor: YellowColor,
+                                                    child: Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding: const EdgeInsets.all(8.0),
+                                                          child: Icon(
+                                                            Icons.camera_alt_outlined,
+                                                            color: YellowColor,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "Camera",
+                                                          style: TextStyle(color: Colors.white,
+                                                            fontSize: 20,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      pickImage(ImageSource.gallery);
+                                                    },
+                                                    splashColor: YellowColor,
+                                                    child: Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding: const EdgeInsets.all(8.0),
+                                                          child: Icon(
+                                                            Icons.image,
+                                                            color: YellowColor,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "Gallery",
+                                                          style: TextStyle(color: Colors.white,
+                                                            fontSize: 20,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        _pickImage  = null;
+                                                      });
+
+                                                    },
+                                                    splashColor: YellowColor,
+                                                    child: Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding: const EdgeInsets.all(8.0),
+                                                          child: Icon(
+                                                            Icons.delete,
+                                                            color: Colors.red,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "Delete",
+                                                          style: TextStyle(color: Colors.white,
+                                                            fontSize: 20,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        });
+                                  },
+                                  elevation: 10,
+                                  fillColor: Primarycolor,
+                                  child: Icon(
+                                    Icons.camera_alt_outlined,
+                                    color: YellowColor,
+                                  ),
+                                  padding: EdgeInsets.all(15.0),
+                                  shape: CircleBorder(),
+                                ))
+                          ]),
+                    ),
                     SizedBox(height: mediaQueryHeight*0.02,),
                     Card(
                       color: Colors.white,

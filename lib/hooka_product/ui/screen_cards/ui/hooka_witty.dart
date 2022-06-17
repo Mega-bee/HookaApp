@@ -161,7 +161,7 @@ class _HookaWittyState extends State<HookaWitty> {
 
     itemCount: 6,
     itemBuilder: (BuildContext context,int index) {
-      return Container(
+        return Container(
 
 color: Colors.transparent,
         child: Column(
@@ -185,7 +185,7 @@ color: Colors.transparent,
           style: TextStyle(color: Colors.black),):
         Text(widget.title[index],style: TextStyle(color: Colors.red),),
           ]),
-      );
+        );
     }, separatorBuilder: (BuildContext context, int index) { return const Divider(
                 color: Colors.grey,
               ); },),
@@ -226,6 +226,9 @@ color: Colors.transparent,
                     style:
                     TextStyle(fontSize: 15, fontWeight: FontWeight.w300)),
               ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
             ),
 
 

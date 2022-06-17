@@ -38,6 +38,8 @@ dependencies:
   flutter_launcher_icons:
   flutter_offline:
   pin_code_fields:
+  image_picker:
+
 
 
   # The following adds the Cupertino Icons font to your application.

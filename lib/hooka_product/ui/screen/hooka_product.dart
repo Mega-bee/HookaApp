@@ -29,71 +29,76 @@ class _HookaProductState extends State<HookaProduct> {
           IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart,color: Colors.black,)),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
 
-        children: [
-          Image.asset(ImageAsset.LOGO,height: 250,width: 500,fit: BoxFit.cover,),
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+            Image.asset(ImageAsset.LOGO,height: 250,width: 500,fit: BoxFit.cover,),
 
-          Row( mainAxisAlignment: MainAxisAlignment.center,
-              children:[
-                InkWell(
-                  onTap: (){Navigator.push(context,
-                      CustomPageRoute(child: HookaWitty()));},
-                  child: Card(
+            Row( mainAxisAlignment: MainAxisAlignment.center,
+                children:[
+                  InkWell(
+                    onTap: (){Navigator.push(context,
+                        CustomPageRoute(child: HookaWitty()));},
+                    child: Card(
 elevation: 0,
+                      color: AmberColor,
+                      child: Column(
+                          children:[ Image.asset(
+                            "assets/images/Hookawitty.png",
+                            fit: BoxFit.scaleDown,
+                            height: 100,
+                            width: 150,
+                          ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 30,),
+                              child: Text("HOOKA WITTY",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15),),
+                            )
+                          ] ),
+                    ),
+                  ),
+                  Card(
                     color: AmberColor,
                     child: Column(
                         children:[ Image.asset(
-                          "assets/images/Hookawitty.png",
+                          "assets/images/HookaCapsules.png",
                           fit: BoxFit.scaleDown,
                           height: 100,
                           width: 150,
                         ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 30,),
-                            child: Text("HOOKA WITTY",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15),),
+                            child: Text("HOOKA CAPSULES",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15)),
                           )
-                        ] ),
+                        ]),
+
                   ),
-                ),
-                Card(
-                  color: AmberColor,
-                  child: Column(
-                      children:[ Image.asset(
-                        "assets/images/HookaCapsules.png",
-                        fit: BoxFit.scaleDown,
-                        height: 100,
-                        width: 150,
-                      ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 30,),
-                          child: Text("HOOKA CAPSULES",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15)),
-                        )
-                      ]),
+                ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center,
+                children:[
+                  Card(
+                    color: AmberColor,
+                    child: Column(
+                        children:[ Image.asset(
+                          "assets/images/Group 7.png",
+                          fit: BoxFit.scaleDown,
+                          height: 100,
+                          width: 150,
+                        ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 30,),
+                            child: Text("HOOKA ACCESSORIES",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 14)),
+                          )
+                        ]),
+                  ),
 
-                ),
-              ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center,
-              children:[
-                Card(
-                  color: AmberColor,
-                  child: Column(
-                      children:[ Image.asset(
-                        "assets/images/Group 7.png",
-                        fit: BoxFit.scaleDown,
-                        height: 100,
-                        width: 150,
-                      ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 30,),
-                          child: Text("HOOKA ACCESSORIES",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 14)),
-                        )
-                      ]),
-                ),
+                ]),
+            SizedBox(height: MediaQuery.of(context).size.height*0.2,),
 
-              ]),
-        ]),
+          ]),
+      ),
     );
   }
 }

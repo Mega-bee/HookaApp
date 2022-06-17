@@ -197,7 +197,7 @@ class _PlacesDetailsState extends State<PlacesDetails> {
               height: MediaQuery.of(context).size.height * 0.02,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 45, right: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10),
               child: Row(children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.04,

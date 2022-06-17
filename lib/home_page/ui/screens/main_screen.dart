@@ -126,7 +126,9 @@ class _MainScreenState extends State<MainScreen> {
                       context, CustomPageRoute(child: HookaProduct()));
                 },
                 text: "Hooka product"),
+
           ]),
+          SizedBox(height: MediaQuery.of(context).size.height*0.2,),
         ]),
       ),
     );

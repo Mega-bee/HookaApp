@@ -17,7 +17,7 @@ class _ReceivedTabState extends State<ReceivedTab> {
           child: Card(
 
               child: ListView.builder(
-                  itemCount: 1,
+                  itemCount: 5,
                   itemBuilder: (context, index) {
                     return ReceivedCard();
                   })))]

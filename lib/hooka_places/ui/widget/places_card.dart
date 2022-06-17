@@ -2,10 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../utils/style/colors.dart';
 
+import '../model/places_card_model.dart';
 import '../screen/places_details.dart';
 
 class PlacesCard extends StatefulWidget {
-  const PlacesCard({Key? key}) : super(key: key);
+  String? title;
+
+  String? foodType;
+
+  String? location;
+
+  String? image;
+PlacesCard({this.image,this.location,this.foodType,this.title});
+
+
+
 
   @override
   State<PlacesCard> createState() => _PlacesCardState();

@@ -26,7 +26,7 @@ class _BuddiesState extends State<Buddies> {
 
         ),
         actions: [
-          TextButton(onPressed: (){}, child: Text("Map",style: TextStyle(fontSize: 14),))
+          TextButton(onPressed: (){}, child: Text("Map",style: TextStyle(fontSize: 18),))
         ],
       ) ,
       body:  Column(

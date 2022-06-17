@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:hooka/hooka_places/ui/widget/places_card.dart';
 
 import '../../../utils/style/colors.dart';
+import '../model/places_card_model.dart';
 
 class HookaPlaces extends StatefulWidget {
-   HookaPlaces({Key? key}) : super(key: key);
+  List<p>? placecard=[
+
+  ];
+
+   HookaPlaces({Key? key,this.placecard}) : super(key: key);
 
 
-   final PlaceList =['gril'
-    'hooka'];
+
   @override
   State<HookaPlaces> createState() => _HookaPlacesState();
 }
@@ -29,7 +33,7 @@ class _HookaPlacesState extends State<HookaPlaces> {
 
         ),
         actions: [
-          TextButton(onPressed: (){}, child: Text("Map",style: TextStyle(fontSize: 14),))
+          TextButton(onPressed: (){}, child: Text("Map",style: TextStyle(fontSize: 18),))
         ],
       ) ,
       body:  Column(
@@ -96,9 +100,11 @@ class _HookaPlacesState extends State<HookaPlaces> {
             child: Card(
 
                     child: ListView.builder(
-itemCount: 2,
+itemCount:5 ,
     itemBuilder: (context, index) {
-      return PlacesCard();
+      return PlacesCard(
+
+      );
 
 
 
@@ -119,7 +125,5 @@ itemCount: 2,
   }
 }
 
-class PlaceList {
-  final Place =['gril'
-      'hooka'];
-}
+
+

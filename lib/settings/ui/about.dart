@@ -28,7 +28,7 @@ class _AboutState extends State<About> {
         Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: const EdgeInsets.only(left:20,right: 2),
+              padding: const EdgeInsets.only(left:50,right: 2),
               child: Text("About Us",style: TextStyle(fontSize: 30,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold),),
             )),
         SizedBox(height: MediaQuery.of(context).size.height*0.04,),

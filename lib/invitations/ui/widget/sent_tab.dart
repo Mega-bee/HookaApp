@@ -16,7 +16,7 @@ class _SentTabState extends State<SentTab> {
     child: Card(
 
     child: ListView.builder(
-    itemCount: 1,
+    itemCount: 4,
     itemBuilder: (context, index) {
       return SentCard();
     })))]
