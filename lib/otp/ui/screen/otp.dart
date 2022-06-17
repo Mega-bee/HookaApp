@@ -78,15 +78,15 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
             width: MediaQuery.of(context).size.width,
             child: ListView(
               children: <Widget>[
-                const SizedBox(height: 30),
+                 SizedBox(height: MediaQuery.of(context).size.height*0.02),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 6,
+                  height: MediaQuery.of(context).size.height / 5,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
                     child: Image.asset('assets/images/hooka_logo.png',fit: BoxFit.cover),
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: MediaQuery.of(context).size.height*0.02),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
@@ -103,20 +103,20 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                         text: "Enter the code sent to ",
                         children: [
                           TextSpan(
-                              text: "70717091",
+                              text: "Your Mobile Number",
                               style: const TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.red,
+
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 15)),
+                                  fontSize: 12)),
                         ],
                         style:
                         const TextStyle(color: Colors.black54, fontSize: 15)),
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: MediaQuery.of(context).size.height*0.02),
+
                 Form(
                   key: formKey,
                   child: Padding(
@@ -197,9 +197,8 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: MediaQuery.of(context).size.height*0.02),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -219,9 +218,9 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 14,
-                ),
+
+                  SizedBox(height: MediaQuery.of(context).size.height*0.02),
+
                 Container(
                   margin:
                   const EdgeInsets.symmetric(vertical: 16.0, horizontal: 60),
@@ -277,9 +276,8 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                             blurRadius: 1)
                       ]),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+                SizedBox(height: MediaQuery.of(context).size.height*0.02),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -300,7 +298,8 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                           },
                         )),
                   ],
-                )
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height*0.2,)
               ],
             ),
           ),

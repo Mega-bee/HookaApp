@@ -62,14 +62,15 @@ class _loginScreenState extends State<loginScreen> {
                     ),
                   )),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
+                height: MediaQuery.of(context).size.height * 0.01,
               ),
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15),
                   child: Text(
-                      "Please enter your email and password to login HookApp.",
+                      "Please enter your email and password to \n"
+                          "login HookApp.",
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                 ),
               ),
@@ -85,7 +86,7 @@ class _loginScreenState extends State<loginScreen> {
           Center(
             child: Container(
               height: MediaQuery.of(context).size.height * 0.7,
-              width: MediaQuery.of(context).size.height * 0.40,
+              width: MediaQuery.of(context).size.height * 0.42,
               child: SingleChildScrollView(
                 child: Card(
                   shape: RoundedRectangleBorder(
@@ -120,7 +121,7 @@ class _loginScreenState extends State<loginScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: mediaQueryHeight * 0.05,
+                        height: mediaQueryHeight * 0.03,
                       ),
                       Form(
                         key: _formKey,
@@ -132,7 +133,7 @@ class _loginScreenState extends State<loginScreen> {
                               child: EmailField(email: email),
                             ),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.04,
+                              height: MediaQuery.of(context).size.height * 0.02,
                             ),
                             Padding(
                                 padding: EdgeInsets.symmetric(
@@ -144,7 +145,7 @@ class _loginScreenState extends State<loginScreen> {
                               height: MediaQuery.of(context).size.height * 0.01,
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                              padding: const EdgeInsets.fromLTRB(20, 0, 15, 0),
                               child: Align(
                                   alignment: Alignment.centerRight,
                                   child: TextButton(
@@ -201,7 +202,7 @@ class _loginScreenState extends State<loginScreen> {
                               ),
                             ),
                             SizedBox(
-                              height: mediaQueryHeight * 0.04,
+                              height: mediaQueryHeight * 0.03,
                             ),
                             Center(
                               child: Text(
@@ -210,7 +211,7 @@ class _loginScreenState extends State<loginScreen> {
                               ),
                             ),
                             SizedBox(
-                              height: mediaQueryHeight * 0.04,
+                              height: mediaQueryHeight * 0.02,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,

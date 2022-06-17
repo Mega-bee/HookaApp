@@ -100,6 +100,7 @@ class _MainScreenState extends State<MainScreen> {
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             HookaCard(
                 image: ImageAsset.PLACES,
+
                 onCardTap: () {
                   Navigator.push(
                       context, CustomPageRoute(child: HookaPlaces()));
