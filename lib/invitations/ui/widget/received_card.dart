@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hooka/invitations/model/received_model.dart';
 
 import '../../../buddies/ui/screens/view_profile.dart';
 import '../../../utils/effect/custom_page_route.dart';
@@ -6,8 +7,10 @@ import '../../../utils/style/colors.dart';
 
 
 class ReceivedCard extends StatefulWidget {
-  const ReceivedCard({Key? key}) : super(key: key);
-
+final ReceivedModel? receivedModel;
+ReceivedCard({
+  this.receivedModel
+});
   @override
   State<ReceivedCard> createState() => _ReceivedCardState();
 }
@@ -35,9 +38,9 @@ class _ReceivedCardState extends State<ReceivedCard> {
 
                       child: CircleAvatar(
                         foregroundImage: AssetImage(
-                            "assets/images/IMG_0095.JPG"),
+                           "${widget.receivedModel!.image}", ),
                         radius: 120,
-                        backgroundColor: Colors.red,
+                        backgroundColor: Colors.green,
 
                       ),
                     ),
@@ -57,7 +60,7 @@ class _ReceivedCardState extends State<ReceivedCard> {
                         .height * 0.02,),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 100),
-                      child: Text("Christian Zakhour",
+                      child: Text(widget.receivedModel!.title.toString(),
                           style: TextStyle(fontSize: 17,
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.italic)),
@@ -88,17 +91,22 @@ class _ReceivedCardState extends State<ReceivedCard> {
                             .of(context)
                             .size
                             .width * 0.03,),
-                        Container(
-                          color: Colors.red,
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 0.03,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width * 0.15,
-                          child: Center(child: Text("Deny",style: TextStyle(color: Colors.white),)),
+                        InkWell(
+                          onTap: (){
+
+                          },
+                          child: Container(
+                            color: Colors.red,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .height * 0.03,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width * 0.15,
+                            child: Center(child: Text("Deny",style: TextStyle(color: Colors.white),)),
+                          ),
                         ),
                         SizedBox(width: MediaQuery
                             .of(context)

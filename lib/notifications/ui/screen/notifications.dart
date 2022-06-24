@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
+import 'package:hooka/notifications/ui/widget/notificationsCard.dart';
+import 'package:hooka/utils/style/colors.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);
@@ -19,7 +21,21 @@ class _NotificationsState extends State<Notifications> {
         title: Text("Notifications",style: TextStyle(color: Colors.black),),
 
       ),
-      body: Center(child: Text("No notifications found !")),
+      body:Container(
+        child: Column(children: [
+          Expanded(
+              flex: 100,
+              child: Card(
+
+                  child: ListView.builder(
+                      itemCount:3 ,
+                      itemBuilder: (context, index) {
+                        return Notificationscard();
+                      })))]
+
+        ),
+      ),
+
     );
   }
 }

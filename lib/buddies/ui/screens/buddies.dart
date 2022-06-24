@@ -121,7 +121,7 @@ class _BuddiesState extends State<Buddies> {
               child: Card(
 
                   child: ListView.builder(
-                      itemCount: 2,
+                      itemCount: 8,
                       itemBuilder: (context, index) {
                         return BuddiesCard();
 

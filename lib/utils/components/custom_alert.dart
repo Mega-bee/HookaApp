@@ -61,23 +61,24 @@ class _CustomLogOutDialog extends State<CustomLogOutDialog> {
                   onPressed: () {
 
 
-    widget.yesBtn();
+                    Navigator.pop(context);
                   },
                   child: Text(
-                    "Yes",
+                    "No",
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                         fontFamily: "BerlinSansFB",
-                        color: YellowColor),
+                        color: Colors.black),
                   )),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  widget.yesBtn();
+
                 },
-                child: Text("No",
+                child: Text("Yes",
                     style: TextStyle(
-                      color: Colors.black,
+                      color: YellowColor,
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
 

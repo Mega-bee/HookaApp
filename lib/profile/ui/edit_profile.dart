@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:photofilters/widgets/photo_filter.dart';
 import '../../../../utils/style/colors.dart';
 import 'dart:io' as i;
 import '../../../../utils/components/picker.dart';
 import '../../../../auth/ui/widget/email_field.dart';
+import '../../filter/filter.dart';
+import '../../utils/effect/custom_page_route.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -224,6 +227,7 @@ elevation: 1,
                                                   InkWell(
                                                     onTap: () {
                                                       pickImage(ImageSource.gallery);
+
                                                     },
                                                     splashColor: YellowColor,
                                                     child: Row(

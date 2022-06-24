@@ -122,7 +122,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                                         child: TextFormField(
                                         cursorColor: YellowColor,
-                                        style: const TextStyle(fontSize: 18),
+                                        style: const TextStyle(fontSize: 14),
                                         controller:firstname,
                                         decoration: InputDecoration(
 
@@ -157,7 +157,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                           horizontal: mediaQueryWidth * 0.05),
                                       child: TextFormField(
                                           cursorColor: YellowColor,
-                                          style: const TextStyle(fontSize: 18),
+                                          style: const TextStyle(fontSize: 14),
                                           controller:lastname,
                                           decoration: InputDecoration(
 
@@ -200,7 +200,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                           horizontal: mediaQueryWidth * 0.05),
                                       child: TextFormField(
                                           cursorColor: YellowColor,
-                                          style: const TextStyle(fontSize: 18),
+                                          style: const TextStyle(fontSize: 14),
                                           controller:Mobile,
                                           decoration: InputDecoration(
 
@@ -234,7 +234,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                             horizontal: mediaQueryWidth * 0.05),
                                         child: TextFormField(
                                           cursorColor: YellowColor,
-                                          style: const TextStyle(fontSize: 18),
+                                          style: const TextStyle(fontSize: 14),
                                           obscureText: _isObscure,
                                           controller: newpass,
                                           // autovalidateMode:
@@ -271,7 +271,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                             horizontal: mediaQueryWidth * 0.05),
                                         child: TextFormField(
                                           cursorColor: YellowColor,
-                                          style: const TextStyle(fontSize: 18),
+                                          style: const TextStyle(fontSize: 14),
                                           obscureText: _isObscure,
                                           controller: confirmpass,
                                           // autovalidateMode:
@@ -328,7 +328,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                         'SIGN UP',
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 18,
+                                            fontSize: 14,
                                             fontWeight: FontWeight.w500,
                                             fontFamily: 'Roboto-Bold'),
                                       ),

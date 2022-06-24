@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../hooka_places/ui/screen/places_details.dart';
 import '../../../utils/style/colors.dart';
+import '../../model/sent_model.dart';
+import '../../model/sent_model.dart';
 
 class SentCard extends StatefulWidget {
-  const SentCard({Key? key}) : super(key: key);
 
+  final SentModel? sentModel;
+  SentCard({
+    this.sentModel
+  });
   @override
   State<SentCard> createState() => _SentCardState();
 }
@@ -35,7 +40,7 @@ class _SentCardState extends State<SentCard> {
                                 borderRadius: BorderRadius.only(
                                   bottomRight: Radius.circular(12),)),
 
-                            child: Image.asset("assets/images/Unknown.jpeg",
+                            child: Image.asset(widget.sentModel!.image.toString(),
                               width: 100, height: 100, fit: BoxFit.cover,),
                           ),
 
@@ -46,7 +51,7 @@ class _SentCardState extends State<SentCard> {
                             height: 200,
                             width: 200,
                             color: Colors.transparent,
-                            child: Card(color: Colors.green,child: Center(child: Text("2.78",
+                            child: Card(color: Colors.green,child: Center(child: Text(widget.sentModel!.rate.toString(),
                               style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.white),)),
                               elevation: 2,shadowColor: YellowColor,
                               shape: RoundedRectangleBorder(
@@ -67,14 +72,14 @@ class _SentCardState extends State<SentCard> {
 
                   child:
                   Column(
-                      children: [ Text("King of Grill",
+                      children: [ Text(widget.sentModel!.title.toString(),
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
                         SizedBox(height: MediaQuery.of(context).size.height*0.02,),
                         Container(
                           height: 20,width: 70,
                           child: Center(
-                            child: Text("1 Buddies",
+                            child: Text(widget.sentModel!.buddies.toString(),
                                 style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,fontStyle: FontStyle.italic)),
                           ),
                         ),

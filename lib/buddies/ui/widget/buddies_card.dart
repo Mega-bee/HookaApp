@@ -24,25 +24,43 @@ class _BuddiesCardState extends State<BuddiesCard> {
         },
         child: Row(
             children: [
-              Container(
-                  width: 80,
-                  height: 80,
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Center(
-                    child: Card(elevation:10,
-                      shadowColor: YellowColor,
+              Stack(
+                children:[
+
+
+                  Container(
+                    width: 80,
+                    height: 80,
+                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    child: Center(
+                      child: Card(elevation:10,
+                        shadowColor: YellowColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(60)),
+
+                        child: CircleAvatar(
+                          foregroundImage: AssetImage("assets/images/IMG_0095.JPG"),
+                          radius:120,
+                          backgroundColor: Colors.red,
+
+                        ),
+                      ),
+
+                    )),
+
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10,top: 60,left: 20),
+                    child: Card(color: YellowColor,child: Center(child: Text("  5  ",
+                      style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black),)),
+                      elevation: 2,shadowColor: YellowColor,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(60)),
-
-                      child: CircleAvatar(
-                        foregroundImage: AssetImage("assets/images/IMG_0095.JPG"),
-                        radius:120,
-                        backgroundColor: Colors.red,
-
+                        borderRadius: BorderRadius.circular(
+                            10
+                        ),
                       ),
                     ),
-
-                  )),
+                  ),
+              ]),
 
               Column(
 

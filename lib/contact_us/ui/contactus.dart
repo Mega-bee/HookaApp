@@ -38,23 +38,26 @@ class _ContactusState extends State<Contactus> {
           Align(
             alignment: Alignment.center,
             child: Card(
-elevation: 20,borderOnForeground: true,
+elevation: 0,borderOnForeground: true,
                 shape: RoundedRectangleBorder(
                   side: BorderSide(color: Colors.white70, width: 3),
                   borderRadius: BorderRadius.circular(150),
                 ),
 
 
-              child:Image.asset(ImageAsset.LOGO,height: 180,width: 180,fit: BoxFit.cover,)
+              child:Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children:[
+                Image.asset(ImageAsset.LOGO,height: 170,width: 170,fit: BoxFit.fill,)])
             ),),
           SizedBox(height: mediaQueryHeight*0.02,),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("We are committed to your Experience ",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),),
+            padding: const EdgeInsets.only(right: 105.0),
+            child: Text("We are committed to your Experience ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),),
           SizedBox(height: mediaQueryHeight*0.02,),
-Align(alignment: Alignment.center,
-  child:
-  Text('Recognizing the value of memorable\n'
+Padding(
+  padding: const EdgeInsets.only(right: 90.0),    child: Text('Recognizing the value of memorable\n'
         'experiences, we are deeply committed\n'
         'to delivering consistent and reliable \n'
         'service across our business to guarantee\n'
@@ -69,7 +72,9 @@ Align(alignment: Alignment.center,
         'experience, we’d love to hear from you.\n'
   '\n'
   'Please send an email to info@hookatimes.com \n'
-        'for further information about our brand.\n',style: TextStyle(color: Colors.grey[600]),
+        'for further information about our brand.\n',style: TextStyle(
+    fontSize: 14,
+    color: Colors.grey[600]),
               ),
 ),
           SizedBox(
@@ -80,7 +85,7 @@ Align(alignment: Alignment.center,
                 horizontal: mediaQueryWidth * 0.05),
             child: TextFormField(
                 cursorColor: YellowColor,
-                style: const TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 12),
                 controller:name,
                 decoration: InputDecoration(
 
@@ -113,7 +118,7 @@ Align(alignment: Alignment.center,
                 horizontal: mediaQueryWidth * 0.05),
             child: TextFormField(
                 cursorColor: YellowColor,
-                style: const TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 12),
                 controller:Mobile,
                 decoration: InputDecoration(
 
@@ -145,7 +150,7 @@ Align(alignment: Alignment.center,
                 horizontal: mediaQueryWidth * 0.05),
             child: TextFormField(
                 cursorColor: YellowColor,
-                style: const TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 12),
                 controller:email,
                 decoration: InputDecoration(
 
@@ -177,7 +182,7 @@ Align(alignment: Alignment.center,
                 horizontal: mediaQueryWidth * 0.05),
             child: TextFormField(
                 cursorColor: YellowColor,
-                style: const TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 12),
                 controller:message,
                 decoration: InputDecoration(
 

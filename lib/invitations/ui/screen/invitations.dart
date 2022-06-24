@@ -85,23 +85,24 @@ class _InvitationsState extends State<Invitations>with TickerProviderStateMixin 
 
             ),
           ),
-    Container(
-      height: MediaQuery.of(context).size.height*0.8,
-      child: Flexible(
-      flex: 10,
-      child: SizedBox(
-      height: (MediaQuery.of(context).size.height -
-      MediaQuery.of(context).padding.top -
-      MediaQuery.of(context).padding.bottom) *
-      0.9,
-      width: double.maxFinite,
-      child: TabBarView(
-      controller: _tabController,
-      children: [
-        ReceivedTab(),
-        SentTab(),
+    Flexible(
 
-          ]))),
+      child: Container(
+        height: MediaQuery.of(context).size.height*0.8,
+        child: SizedBox(
+        height: (MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        MediaQuery.of(context).padding.bottom) *
+        0.9,
+
+        child: TabBarView(
+        controller: _tabController,
+        children: [
+          ReceivedTab(),
+          SentTab(),
+
+            ])),
+      ),
     )])
 
     );

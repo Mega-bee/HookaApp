@@ -64,10 +64,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
-          onPressed: (){Navigator.of(context).pop();},
-        ),
+
         title: Text("Otp Verification",style: TextStyle(color: Colors.black),),
       ),
       body: SingleChildScrollView(
@@ -131,7 +128,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                         length: 4,
                         obscureText: true,
                         obscuringCharacter: '*',
-                        obscuringWidget: Image.asset("assets/images/star1-removebg-preview.png"),
+                        obscuringWidget: Image.asset("assets/images/shisha.png",width: 20),
 
                         blinkWhenObscuring: true,
                         animationType: AnimationType.fade,
@@ -222,6 +219,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                   SizedBox(height: MediaQuery.of(context).size.height*0.02),
 
                 Container(
+
                   margin:
                   const EdgeInsets.symmetric(vertical: 16.0, horizontal: 60),
                   child: ButtonTheme(
@@ -243,7 +241,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                               hasError = false;
 
                               snackBar("OTP Verified!!",);
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const DrawerScreen()),
@@ -257,18 +255,20 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                             "VERIFY".toUpperCase(),
                             style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 18,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold),
                           )),
                     ),
                   ),
                   decoration: BoxDecoration(
+
                       color: YellowColor,
                       borderRadius: BorderRadius.circular(5),
                       boxShadow: [
                         BoxShadow(
+
                             color: YellowColor,
-                            offset: const Offset(1, -2),
+                            offset: const Offset(1, -1),
                             blurRadius: 1),
                         BoxShadow(
                             color:YellowColor,

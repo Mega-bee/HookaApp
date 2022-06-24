@@ -339,7 +339,7 @@ class _AddressState extends State<Address> {
               'SAVE ',
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 18,
+                  fontSize: 14,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Roboto-Bold'),
             ),

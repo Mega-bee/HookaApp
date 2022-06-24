@@ -158,7 +158,7 @@ class _PlacesDetailsState extends State<PlacesDetails> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 35, right: 10),
@@ -182,7 +182,7 @@ class _PlacesDetailsState extends State<PlacesDetails> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
+              height: MediaQuery.of(context).size.height * 0.1,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 35, right: 10),
@@ -258,14 +258,14 @@ class _PlacesDetailsState extends State<PlacesDetails> {
                 'INVITE BUDDY ',
                 style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 14,
                     fontWeight: FontWeight.w500,
                     fontFamily: 'Roboto-Bold'),
               ),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.15,
-                    vertical: MediaQuery.of(context).size.height * 0.018),
+                    horizontal: MediaQuery.of(context).size.width * 0.12,
+                    vertical: MediaQuery.of(context).size.height * 0.013),
                 primary: YellowColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),

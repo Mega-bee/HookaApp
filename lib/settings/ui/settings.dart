@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../utils/style/colors.dart';
+import '../../utils/style/colors.dart';
 import 'about.dart';
 
 import 'package:rolling_switch/rolling_switch.dart';
@@ -16,8 +17,11 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  bool value =false;
+  bool value1 =false;
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -38,86 +42,75 @@ class _SettingsState extends State<Settings> {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+            SizedBox(height: MediaQuery.of(context).size.height*0.04,),
 
-            Row(children: [
-              SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
 
-              Icon(Icons.notifications,color: Colors.grey,),
-              SizedBox(width: MediaQuery.of(context).size.width*0.05,),
-              Text("Notifications",style: TextStyle(fontSize: 17),),
-              SizedBox(width: MediaQuery.of(context).size.width*0.4,),
+                SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                Icon(Icons.notifications,color: value==false?
+                Colors.grey:YellowColor),
+                SizedBox(width: MediaQuery.of(context).size.width*0.03,),
 
-              Container(height: 35,width: 60,
-                child: RollingSwitch.icon(
-innerSize: 40,
-                  height: 60,
-                  width: 60,
-                  circularColor: Colors.white,
-                  onChanged: (bool state) {
-                    print('turned ${(state) ? 'on' : 'off'}');
-                  },
-                  rollingInfoRight:  RollingIconInfo(
+                Text("Notifications ",style: TextStyle(fontSize: 17),),
+                SizedBox(width: MediaQuery.of(context).size.width*0.40,),
 
+                Container(height: 29,width: 55,
+                    child: Transform.scale(
+                      scale: 0.9,
+                      child: Switch.adaptive(
+                          activeColor: YellowColor,
+                          inactiveTrackColor: Colors.grey,
+                          value: value,
+                          onChanged: (value) {
+                            this.value = value;
 
-
-                    backgroundColor: YellowColor,
-
-
-                  ),
-                  rollingInfoLeft:  RollingIconInfo(
-
-                    icon: Icons.close,
-
-                    backgroundColor: Colors.grey,
-
-                  ),
-
+                            setState(
+                                  () {},
+                            );
+                          }),
+                    )
                 ),
-              ),
+                SizedBox(width: MediaQuery.of(context).size.width*0.01,),
 
 
-            ],),
-            SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+              ],),
+            SizedBox(height: MediaQuery.of(context).size.height*0.03,),
 
-            Row(children: [
-              SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
 
-              Icon(Icons.settings,color: Colors.grey,),
-              SizedBox(width: MediaQuery.of(context).size.width*0.05,),
-              Text("Available      ",style: TextStyle(fontSize: 17),),
-              SizedBox(width: MediaQuery.of(context).size.width*0.4,),
+                SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                Icon(Icons.settings,
+                  color: value1==false?
+                  Colors.grey:YellowColor),
+                SizedBox(width: MediaQuery.of(context).size.width*0.03,),
 
-              Container(height: 35,width: 60,
-                child: RollingSwitch.icon(
-                  innerSize: 40,
-                  height: 60,
-                  width: 60,
-                  circularColor: Colors.white,
-                  onChanged: (bool state) {
-                    print('turned ${(state) ? 'on' : 'off'}');
-                  },
-                  rollingInfoRight:  RollingIconInfo(
+                Text("Available     ",style: TextStyle(fontSize: 17),),
+                SizedBox(width: MediaQuery.of(context).size.width*0.42,),
 
+                Container(height: 29,width: 55,
+                    child: Transform.scale(
+                      scale: 0.9,
+                      child: Switch.adaptive(
+                          activeColor: YellowColor,
+                          inactiveTrackColor: Colors.grey,
+                          value: value1,
+                          onChanged: (value) {
+                            this.value1 = value;
 
-
-                    backgroundColor: YellowColor,
-
-
-                  ),
-                  rollingInfoLeft:  RollingIconInfo(
-
-                    icon: Icons.close,
-
-                    backgroundColor: Colors.grey,
-
-                  ),
-
+                            setState(
+                                  () {},
+                            );
+                          }),
+                    )
                 ),
-              ),
+                SizedBox(width: MediaQuery.of(context).size.width*0.01,),
 
 
-            ],),
+              ],),
             SizedBox(height: MediaQuery.of(context).size.height*0.04,),
             Align(alignment: Alignment.centerLeft,
               child: Padding(
@@ -127,7 +120,7 @@ innerSize: 40,
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+            SizedBox(height: MediaQuery.of(context).size.height*0.05,),
     GestureDetector(
         onTap: (){Navigator.push(
             context,
@@ -170,7 +163,7 @@ innerSize: 40,
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+            SizedBox(height: MediaQuery.of(context).size.height*0.04,),
             Row(
 
               children:[
@@ -190,7 +183,7 @@ innerSize: 40,
                   ),
                 ),
               ),
-                SizedBox(width: MediaQuery.of(context).size.width*0.02,),
+                // SizedBox(width: MediaQuery.of(context).size.width*0.01,),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -206,7 +199,7 @@ innerSize: 40,
                     ),
                   ),
                 ),
-                SizedBox(width: MediaQuery.of(context).size.width*0.02,),
+                // SizedBox(width: MediaQuery.of(context).size.width*0.01,),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(

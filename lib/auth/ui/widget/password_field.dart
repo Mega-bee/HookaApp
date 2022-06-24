@@ -26,7 +26,7 @@ class _PasswordFieldState extends State<PasswordField> {
 
     return TextFormField(
       cursorColor: YellowColor,
-      style: const TextStyle(fontSize: 18),
+      style: const TextStyle(fontSize: 14),
       obscureText: _isObscure,
       controller: widget.password,
       // autovalidateMode:

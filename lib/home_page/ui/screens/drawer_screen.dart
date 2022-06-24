@@ -6,7 +6,7 @@ import '../../../contact_us/ui/contactus.dart';
 import '../../../invitations/ui/screen/invitations.dart';
 import '../../../my_cart/widget/screen/MyCart.dart';
 import '../../../my_orders/myorders.dart';
-import '../../../notifications/ui/notifications.dart';
+import '../../../notifications/ui/screen/notifications.dart';
 import '../../../settings/ui/settings.dart';
 import 'main_screen.dart';
 import 'menu_screen.dart';
@@ -27,6 +27,7 @@ MenuItem currentItem = MenuItems.MainScreen;
 
 
       style: DrawerStyle.defaultStyle,
+
 
 
       mainScreen: getScreen()!,

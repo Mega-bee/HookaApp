@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:hooka/Hooka%20Basket/ui/screen/basket_screen.dart';
 import 'package:hooka/buddies/ui/screens/buddies.dart';
 import 'package:hooka/utils/style/colors.dart';
+import '../../../filter/filter.dart';
 import '../../../hooka_places/ui/screen/hooka_places.dart';
 import '../../../hooka_product/ui/screen/hooka_product.dart';
 import 'package:hooka/home_page/ui/widget/hooka_card.dart';
@@ -35,14 +37,15 @@ class _MainScreenState extends State<MainScreen> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.push(context, CustomPageRoute(child: PinCodeVerificationScreen()));
-                },
+    },
                 icon: Icon(
                   Icons.notifications,
                   color: Colors.black,
                 )),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, CustomPageRoute(child: BasketScreen()));
+                },
                 icon: Icon(
                   Icons.shopping_cart,
                   color: Colors.black,

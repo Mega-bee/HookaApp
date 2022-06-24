@@ -18,7 +18,7 @@ class _EmailFieldState extends State<EmailField> {
   Widget build(BuildContext context) {
     return TextFormField(
         cursorColor: YellowColor,
-        style: const TextStyle(fontSize: 18),
+        style: const TextStyle(fontSize: 14),
         controller: widget.email,
         decoration: InputDecoration(
 

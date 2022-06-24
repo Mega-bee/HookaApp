@@ -18,6 +18,7 @@ class _MyOrdersState extends State<MyOrders>with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
+
         leading: MenuWidget(),
         backgroundColor: Colors.white,
         title: Text("MyOrders",style: TextStyle(color: Colors.black),),

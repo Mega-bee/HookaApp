@@ -29,16 +29,16 @@ backgroundColor: Colors.white,
       body:
       SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(20.0),
           child: GridView.builder(
             physics: NeverScrollableScrollPhysics(),
     shrinkWrap: true,
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 2,
     childAspectRatio: (4 / 4),
-    crossAxisSpacing: 20,
-    mainAxisSpacing: 10),
-    itemCount: 2,
+    crossAxisSpacing: 50,
+    mainAxisSpacing: 30),
+    itemCount: 9,
     itemBuilder: (context, index) {
           return
             InkWell(
@@ -51,7 +51,7 @@ backgroundColor: Colors.white,
                   color: Colors.black,
                   child: Column(children: [
 
-                    Image.asset("assets/images/Unknown.jpeg", height: 100),
+                    Image.asset("assets/images/Unknown.jpeg", height: 70),
                     SizedBox(height: MediaQuery
                         .of(context)
                         .size
