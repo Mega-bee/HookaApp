@@ -41,6 +41,7 @@ class _BasketCardState extends State<BasketCard> {
                   widget.basketm.bcp =widget.basketm.increment * widget.basketm.incprice;
 
 
+
                   setState(() {
 
                   });
