@@ -40,6 +40,7 @@ PlaceModel(
     ),
     PlaceModel(
         id: 5,
+
         title: "Malik TAwouk",
         image:"assets/images/malik tawouk.png",
         foodType: "Fast Food",
