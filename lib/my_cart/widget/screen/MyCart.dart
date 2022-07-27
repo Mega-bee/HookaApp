@@ -39,8 +39,7 @@ class _MyCartState extends State<MyCart> {
                 Icon(Icons.shopping_cart,),
                 SizedBox(width: MediaQuery.of(context).size.width*0.03,),
                 Text("Your Basket",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                SizedBox(width: MediaQuery.of(context).size.width*0.4,),
-
+                Spacer(),
                 Container(
                   height: MediaQuery.of(context).size.height*0.035,
                   width: MediaQuery.of(context).size.width*0.15,

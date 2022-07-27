@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:hooka/utils/images/images.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';
-
 import '../../auth/ui/screens/login_screen.dart';
 
 
@@ -26,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
 
 
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       print("Splash delay");
       Future.delayed(Duration(seconds: 2));
       Timer(

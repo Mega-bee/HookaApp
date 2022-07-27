@@ -4,16 +4,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../profile/ui/profile.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
+import '../../Model/BuddiesModel.dart';
 import '../screens/view_profile.dart';
 
-class BuddiesCard extends StatefulWidget {
-  const BuddiesCard({Key? key}) : super(key: key);
+class BuddiesCard extends StatelessWidget {
+  final BuddiesModel buddiesModel;
 
-  @override
-  State<BuddiesCard> createState() => _BuddiesCardState();
-}
-
-class _BuddiesCardState extends State<BuddiesCard> {
+  const BuddiesCard(this.buddiesModel);
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -39,7 +36,7 @@ class _BuddiesCardState extends State<BuddiesCard> {
                             borderRadius: BorderRadius.circular(60)),
 
                         child: CircleAvatar(
-                          foregroundImage: AssetImage("assets/images/IMG_0095.JPG"),
+                          foregroundImage: AssetImage("${buddiesModel.BuddiesImage}"),
                           radius:120,
                           backgroundColor: Colors.red,
 
@@ -50,7 +47,8 @@ class _BuddiesCardState extends State<BuddiesCard> {
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10,top: 60,left: 20),
-                    child: Card(color: YellowColor,child: Center(child: Text("  5  ",
+                    child: Card(color: YellowColor,child: Center(child: Text(
+                     " ${buddiesModel.rank}",
                       style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black),)),
                       elevation: 2,shadowColor: YellowColor,
                       shape: RoundedRectangleBorder(
@@ -66,21 +64,19 @@ class _BuddiesCardState extends State<BuddiesCard> {
 
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 200,right: 20),
+                      padding: const EdgeInsets.only(right: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
 
                       children:[
-                        SizedBox(height: MediaQuery.of(context).size.height*0.04,),
-
+                        SizedBox(width: MediaQuery.of(context).size.width*0.43,),
                         Icon(
                           Icons.circle,
                           color: Colors.green,
                           size: 12,
                         ),
-                        SizedBox(width: MediaQuery.of(context).size.width*0.02,),
 
-                        Text("Available",
+                        Text("${buddiesModel.available}",
                           style: TextStyle(color: Colors.grey[600],
                               fontSize: 12, fontWeight: FontWeight.bold)),
                   ]),
@@ -88,7 +84,7 @@ class _BuddiesCardState extends State<BuddiesCard> {
                     SizedBox(height: MediaQuery.of(context).size.height*0.02,),
                      Padding(
                        padding: const EdgeInsets.only(left: 20,right:100),
-                       child: Text("Christian Zakhour",
+                       child: Text("${buddiesModel.name}",
                               style: TextStyle(fontSize: 17,fontWeight: FontWeight.w500,fontStyle: FontStyle.italic)),
                      ),
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hooka/buddies/Model/BuddiesData.dart';
 
 import '../../../utils/style/colors.dart';
+import '../../Model/BuddiesModel.dart';
+import '../widget/SearchWidgetBuddies.dart';
 import '../widget/buddies_card.dart';
 
 class Buddies extends StatefulWidget {
@@ -11,9 +14,17 @@ class Buddies extends StatefulWidget {
 }
 
 class _BuddiesState extends State<Buddies> {
+  late List<BuddiesModel> buddiesModel;
+  String query = '';
+
+  @override
+  void initState() {
+    super.initState();
+
+    buddiesModel = BuddiesList;
+  }
   @override
   Widget build(BuildContext context) {
-    final _searchController =TextEditingController();
     return  Scaffold(
       appBar:AppBar(
 
@@ -35,98 +46,21 @@ class _BuddiesState extends State<Buddies> {
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.05),
-              child: TextField(
-                controller: _searchController,
-                autofocus: false,
-                onChanged: (searchText) {
-                  // searchText = searchText.toLowerCase();
-                  // print(searchText);
-                  // print("search test");
-                  //
-                  // pat = patient
-                  //     .where(
-                  //       (string) =>
-                  //       (string.firstName! + string.middleName! + string.lastName!).toLowerCase().contains(
-                  //         searchText.toLowerCase(),
-                  //       ),
-                  // )
-                  //     .toList();
-                  // setState(() {});
-                },
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(
-                      vertical:
-                      MediaQuery.of(context).size.height * 0.01),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(50)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).primaryColor)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  focusColor: const Color.fromRGBO(18, 108, 242, 1),
-                  hintText: 'Search ',
-                  suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.filter_alt_rounded,
-                        color: YellowColor,
-                      ),
-                      onPressed: () {}
-                    //   showModalBottomSheet(
-                    //
-                    //     backgroundColor: Colors.white,
-                    //     elevation: 3,
-                    //     shape: const RoundedRectangleBorder(
-                    //       borderRadius: BorderRadius.vertical(
-                    //         top: Radius.circular(25),
-                    //       ),
-                    //     ),
-                    // context: context,
-                    // builder: (context) {
-                    //   return ShowFilter(
-                    //     filtersValue: selectedFilter,
-                    //     filtersValueTitle: selectedFilterTitle,
-                    //     onDonTap: (filterListID ,filterListTitle) {
-                    //       selectedFilter  = List.from(filterListID) ;
-                    //       selectedFilterTitle  = List.from(filterListTitle) ;
-                    //       setState(() {
-                    //
-                    //       });
-                    //       patientListBloc
-                    //         ..add(FetchData(
-                    //             Urls.GET_ALL_PATIENTS_Priority,
-                    //             query: WebParam.FilterParams(selectedFilter),
-                    //             requestType: RequestType.get));
-                    //     },
-                    //   );
-                    // },
-                    //   );
-                    // },
-                  ),
-                  prefixIcon: const Icon(
-                    Icons.search_rounded,
-                  ),
-                  prefixIconColor: const Color.fromRGBO(157, 157, 157, 1),
-                  hintStyle: const TextStyle(
-                      color: Color.fromRGBO(157, 157, 157, 1),
-                      fontSize: 15,
-                      fontFamily: 'Roboto-Regular'),
-                ),
-              ),
-            ),
+              child: SearchWidgetBuddies(
+                hintText: "Search",
+                onChanged: searchBuddies,
+                  text: query,
+              ) ),
             SizedBox(height:MediaQuery.of(context).size.height*0.01 ,),
 
             Expanded(
               child: Card(
 
                   child: ListView.builder(
-                      itemCount: 8,
+                      itemCount: buddiesModel.length,
                       itemBuilder: (context, index) {
-                        return BuddiesCard();
-
-
-
+                        final BuddiesList = buddiesModel[index];
+                        return BuddiesCard(BuddiesList);
                       })),
 
 
@@ -141,5 +75,18 @@ class _BuddiesState extends State<Buddies> {
 
           ]),
     );
+  }
+  void searchBuddies(String query) {
+    final Buddies = BuddiesList.where((BuddiesModel) {
+      final nameLower = BuddiesModel.name!.toLowerCase();
+      final searchLower = query.toLowerCase();
+
+      return nameLower.contains(searchLower);
+    }).toList();
+
+    setState(() {
+      this.query = query;
+      this.buddiesModel = Buddies;
+    });
   }
 }

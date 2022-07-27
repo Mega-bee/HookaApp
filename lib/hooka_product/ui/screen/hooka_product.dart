@@ -5,6 +5,8 @@ import 'package:hooka/utils/images/images.dart';
 
 import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
+import '../screen_cards/ui/hooka_accessories.dart';
+import '../screen_cards/ui/hooka_capsules.dart';
 
 class HookaProduct extends StatefulWidget {
   const HookaProduct({Key? key}) : super(key: key);
@@ -59,7 +61,10 @@ elevation: 0,
                           ] ),
                     ),
                   ),
-                  Card(
+                  InkWell(
+                      onTap: (){Navigator.push(context,
+                          CustomPageRoute(child: HookaCapsules()));},
+                      child:Card(
                     color: AmberColor,
                     child: Column(
                         children:[ Image.asset(
@@ -72,13 +77,16 @@ elevation: 0,
                             padding: const EdgeInsets.only(bottom: 30,),
                             child: Text("HOOKA CAPSULES",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15)),
                           )
-                        ]),
-
+                        ] ),
+                      ),
                   ),
-                ]),
+            ]),
             Row(mainAxisAlignment: MainAxisAlignment.center,
                 children:[
-                  Card(
+                  InkWell(
+                      onTap: (){Navigator.push(context,
+                          CustomPageRoute(child: HookaAccessories()));},
+                      child:Card(
                     color: AmberColor,
                     child: Column(
                         children:[ Image.asset(
@@ -91,14 +99,13 @@ elevation: 0,
                             padding: const EdgeInsets.only(bottom: 30,),
                             child: Text("HOOKA ACCESSORIES",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 14)),
                           )
-                        ]),
+                        ] ),
+                      ),
                   ),
-
-                ]),
             SizedBox(height: MediaQuery.of(context).size.height*0.2,),
 
           ]),
-      ),
-    );
+      ]),
+    ));
   }
 }

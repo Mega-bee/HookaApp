@@ -21,7 +21,6 @@ class _EmailFieldState extends State<EmailField> {
         style: const TextStyle(fontSize: 14),
         controller: widget.email,
         decoration: InputDecoration(
-
           filled: true,
           fillColor: Colors.white,
           hintText: " Email",

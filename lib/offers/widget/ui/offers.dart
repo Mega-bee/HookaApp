@@ -61,7 +61,7 @@ backgroundColor: Colors.white,
                     SizedBox(height: MediaQuery
                         .of(context)
                         .size
-                        .height * 0.02,),
+                        .height * 0.015,),
 
                     Text("Discount 35%", style: TextStyle(
                         color: Colors.grey[500], fontStyle: FontStyle.italic),),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hooka/Hive/Hive.dart';
 import 'package:hooka/Hooka%20Basket/model/basket.dart';
 import 'package:hooka/Hooka%20Basket/ui/widget/basket_card.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';
@@ -19,27 +21,27 @@ class BasketScreen extends StatefulWidget {
 
 class _BasketScreenState extends State<BasketScreen> {
   List<BasketModel> basketmodel=[
-    BasketModel(
-      id: 1,
-      increment: 0,
-      incprice: 10,
-      bcp: 0,
-      image: "assets/images/shisha.png",
-    ),
-    BasketModel(
-      id: 2,
-      increment: 0,
-      incprice: 5,
-      bcp: 0,
-      image: "assets/images/shisha.png",
-    ),
-    BasketModel(
-      id: 3,
-      increment: 0,
-      incprice: 20,
-      bcp: 0,
-      image: "assets/images/coal.png",
-    ),
+    // BasketModel(
+    //   id: 1,
+    //   increment: 0,
+    //   incprice: Product().getPrice() ,
+    //   bcp: 0,
+    //   image: Product().getImage(),
+    // ),
+    // BasketModel(
+    //   id: 2,
+    //   increment: 0,
+    //   incprice: Product().getPrice(),
+    //   bcp: 0,
+    //   image: Product().getImage(),
+    // ),
+    // BasketModel(
+    //   id: 3,
+    //   increment: 0,
+    //   incprice: Product().getPrice(),
+    //   bcp: 0,
+    //   image: Product().getImage(),
+    // ),
 
   ];
   num Total1 =0;

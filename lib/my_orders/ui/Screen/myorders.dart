@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:hive/hive.dart';
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
+import 'package:hooka/my_orders/ui/Widget/OrderWidget.dart';
 import 'package:hooka/utils/style/colors.dart';
+
+import '../../../hooka_product/ui/Model/HookaAccessorieModel.dart';
 
 class MyOrders extends StatefulWidget {
   const MyOrders({Key? key}) : super(key: key);
@@ -68,10 +71,21 @@ class _MyOrdersState extends State<MyOrders>with TickerProviderStateMixin {
                         child: Center(child: Text('Current',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)),
                       ),
 
-                      Container(
-                        width: MediaQuery.of(context).size.width*0.4,
-                        child: Center(child: Text('Previous',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold))),
-                      ),
+                      // Container(
+                      //   child: Expanded(
+                      //     child: ListView.builder(
+                      //       itemCount: 5,
+                      //         itemBuilder: (context, index) {
+                      //           return ValueListenableBuilder<Box<ShopModel>>(
+                      //             valueListenable: Boxes.addToCart().listenable(),
+                      //             builder: (context, box, _) {
+                      //               final shopModel = box.values.toList().cast<ShopModel>();
+                      //               return OrderWidget(context, shopModel);
+                      //             },
+                      //           ),
+                      //         }) ,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

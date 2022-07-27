@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hooka/Hive/Hive.dart';
 import 'package:hooka/Hooka%20Basket/model/basket.dart';
 
 class BasketCard extends StatefulWidget {
@@ -36,21 +37,26 @@ class _BasketCardState extends State<BasketCard> {
               height: 40,
               child: InkWell(
                 onTap: () {
-                  if (widget.basketm.increment > 0){
-                    widget.basketm.increment --;
-                  widget.basketm.bcp =widget.basketm.increment * widget.basketm.incprice;
-
-
-
-                  setState(() {
-
-                  });
-                  widget.total();
-                }
-                  else{
-                    widget.basketm.increment  = 0;}
-
-
+                //   if (widget.basketm.increment > 0){
+                //     widget.basketm.increment --;
+                //   widget.basketm.bcp =widget.basketm.increment * widget.basketm.incprice;
+                //
+                //
+                //
+                //   setState(() {
+                //
+                //   });
+                //   widget.total();
+                // }
+                //   else{
+                //     widget.basketm.increment  = 0;}
+                //
+                //   Order().setOrder(
+                //       widget.basketm.id.toString(),
+                //       widget.total(),
+                //       widget.basketm.image.toString(),
+                //       widget.basketm.bcp.toInt()
+                //   );
                 },
                 child: Card(
                     color: Colors.grey[200],

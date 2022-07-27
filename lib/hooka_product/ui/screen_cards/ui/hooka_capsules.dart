@@ -1,40 +1,38 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hooka/hooka_product/ui/screen_cards/widget/flavor.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';
 
-import '../../../../utils/images/images.dart';
 import '../../../../utils/style/colors.dart';
+import '../widget/flavor.dart';
+class HookaCapsules extends StatefulWidget {
+  List title=[
+    "Apple",
+    "Bubble Gum",
+    "Grape Mint",
+    "Lemon Mint",
+    "Mint",
+    "Peach",
 
-class HookaWitty extends StatefulWidget {
-
-List title=[
-  "Apple",
-  "Bubble Gum",
-  "Grape Mint",
-  "Lemon Mint",
-  "Mint",
-  "Peach",
-
-];
+  ];
   List Image  =[
     'assets/images/apple.png',
     'assets/images/bubble gum.png',
     'assets/images/grape mint.png',
     'assets/images/lemon mint.png',
     'assets/images/mint.png',
-   'assets/images/peach.png'];
+    'assets/images/peach.png'];
 
   @override
-  State<HookaWitty> createState() => _HookaWittyState();
+  State<HookaCapsules> createState() => _HookaCapsulesState();
 }
 
-class _HookaWittyState extends State<HookaWitty> {
-  bool _selected= false;
-  List <Flavor> SelectedFilter1Cards = [];
+class _HookaCapsulesState extends State<HookaCapsules> {
+
   @override
   Widget build(BuildContext context) {
-
+    bool _selected= false;
+    List <Flavor> SelectedFilter1Cards = [];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -51,7 +49,7 @@ class _HookaWittyState extends State<HookaWitty> {
           },
         ),
         title: Text(
-          "My Witty",
+          "My Capsules",
           style: TextStyle(color: Primarycolor),
         ),
         actions: [
@@ -94,7 +92,7 @@ class _HookaWittyState extends State<HookaWitty> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Hooka Witty",
+                  Text("Hooka Capsules",
                       style:
                       TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
 
@@ -157,45 +155,45 @@ class _HookaWittyState extends State<HookaWitty> {
               color: Colors.transparent,
               child: ListView.separated(
                 scrollDirection:Axis.horizontal ,
-    shrinkWrap: true,
+                shrinkWrap: true,
 
 
-    itemCount: 6,
-    itemBuilder: (BuildContext context,int index) {
-        return Container(
+                itemCount: 6,
+                itemBuilder: (BuildContext context,int index) {
+                  return Container(
 
-color: Colors.transparent,
-        child: Column(
-          children:[
+                    color: Colors.transparent,
+                    child: Column(
+                        children:[
 
-         InkWell(
-              onTap:(){
-                setState(() {
-                  if(Flavors[index].isSelected==true){
-                    SelectedFilter1Cards.add(
-                        Flavor(
-                            isSelected:true )
-                    );}
-                  else if(Flavors[index].isSelected==false){
-                    SelectedFilter1Cards.removeWhere((element) => element.title == Flavors[index].Type);
-                  }
-                });
+                          InkWell(
+                            onTap:(){
+                              setState(() {
+                                if(Flavors[index].isSelected==true){
+                                  SelectedFilter1Cards.add(
+                                      Flavor(
+                                          isSelected:true )
+                                  );}
+                                else if(Flavors[index].isSelected==false){
+                                  SelectedFilter1Cards.removeWhere((element) => element.title == Flavors[index].Type);
+                                }
+                              });
 
-              },
-              child: Card(
-                color: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  child: Image.asset("${widget.Image[index]}",width: 90,height: 50,)),
-            ),
+                            },
+                            child: Card(
+                                color: Colors.transparent,
+                                shadowColor: Colors.transparent,
+                                child: Image.asset("${widget.Image[index]}",width: 90,height: 50,)),
+                          ),
 
 
-        Text(widget.title[index],
-          style: TextStyle(color: !_selected
-                  ? Colors.red
-          : Colors.black,
-      ))]),
-        );
-    }, separatorBuilder: (BuildContext context, int index) { return const Divider(
+                          Text(widget.title[index],
+                              style: TextStyle(color: !_selected
+                                  ? Colors.red
+                                  : Colors.black,
+                              ))]),
+                  );
+                }, separatorBuilder: (BuildContext context, int index) { return const Divider(
                 color: Colors.grey,
               ); },),
             ),
@@ -229,7 +227,7 @@ color: Colors.transparent,
               padding: const EdgeInsets.only(left: 35, right: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("The Hooka Times Witty is a smart convenient solution\n"
+                child: Text("The Hooka Times Capsules is a smart convenient solution\n"
                     "for those who wish to enjoy our high-quality product\n"
                     "in the comfort of their own homes or with friends. ",
                     style:
@@ -249,3 +247,4 @@ color: Colors.transparent,
   }
 
 }
+

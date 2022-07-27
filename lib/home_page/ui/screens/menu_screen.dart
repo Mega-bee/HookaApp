@@ -15,7 +15,6 @@ class MenuItem {
 
 class MenuItems {
   static const MainScreen = MenuItem(Icons.home, 'MainScreen');
-
   static const mycart = MenuItem(Icons.shopping_basket, 'My Cart');
   static const myorder = MenuItem(Icons.star_border, 'My Orders');
   static const invitations = MenuItem(Icons.calendar_today, 'Invitations');
