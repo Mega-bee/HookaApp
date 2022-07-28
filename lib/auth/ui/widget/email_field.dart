@@ -24,6 +24,7 @@ class _EmailFieldState extends State<EmailField> {
           filled: true,
           fillColor: Colors.white,
           hintText: " Email",
+          labelText: "Email",
           enabledBorder: const OutlineInputBorder(
               borderRadius:
               BorderRadius.all(Radius.circular(10)),

@@ -102,7 +102,7 @@ class _SignupScreenState extends State<SignupScreen> {
           height: MediaQuery
               .of(context)
               .size
-              .height * 0.70,
+              .height * 0.68,
           width: MediaQuery
               .of(context)
               .size
@@ -144,15 +144,12 @@ class _SignupScreenState extends State<SignupScreen> {
                           Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: mediaQueryWidth * 0.05),
-                            child: Form(
-                              key: _formKey,
-
                               child: TextFormField(
                                   cursorColor: YellowColor,
                                   style: const TextStyle(fontSize: 14),
                                   controller: firstname,
                                   decoration: InputDecoration(
-
+                                    labelText: "First Name",
                                     filled: true,
                                     fillColor: Colors.white,
                                     hintText: " First name",
@@ -171,14 +168,11 @@ class _SignupScreenState extends State<SignupScreen> {
                                   validator: MultiValidator([
                                     RequiredValidator(
                                         errorText: 'First name Required *'),
-                                    EmailValidator(
-                                        errorText: 'Not a valid name'),
                                   ]),
                                   autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
                                   keyboardType: TextInputType.emailAddress),
                             ),
-                          ),
                           SizedBox(
                             height: MediaQuery
                                 .of(context)
@@ -193,7 +187,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 style: const TextStyle(fontSize: 14),
                                 controller: lastname,
                                 decoration: InputDecoration(
-
+                                labelText: "Last name",
                                   filled: true,
                                   fillColor: Colors.white,
                                   hintText: " Last name",
@@ -211,8 +205,6 @@ class _SignupScreenState extends State<SignupScreen> {
                                 validator: MultiValidator([
                                   RequiredValidator(
                                       errorText: 'Last name Required *'),
-                                  EmailValidator(
-                                      errorText: 'Not a valid Last name'),
                                 ]),
                                 autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
@@ -244,7 +236,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 style: const TextStyle(fontSize: 14),
                                 controller: Mobile,
                                 decoration: InputDecoration(
-
+                                  labelText: "Mobile",
                                   filled: true,
                                   fillColor: Colors.white,
                                   hintText: " Mobile",
@@ -262,8 +254,6 @@ class _SignupScreenState extends State<SignupScreen> {
                                 validator: MultiValidator([
                                   RequiredValidator(
                                       errorText: 'Mobile number Required *'),
-                                  EmailValidator(
-                                      errorText: 'Not a valid number'),
                                 ]),
                                 autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
@@ -286,6 +276,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               decoration: InputDecoration(
 
                                 hintText: " Password",
+                                labelText: "Password",
                                 enabledBorder: const OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
@@ -326,6 +317,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 decoration: InputDecoration(
 
                                   hintText: " Confirm Password",
+                                  labelText: "Confirm password",
                                   enabledBorder: const OutlineInputBorder(
                                     borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
@@ -400,15 +392,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 }
                                 BlocProvider.of<DataLoaderBloc>(context).add(
                                 FetchData(Urls.SIGNUP,
-                                body: WebParam.SignUpParams
-                                  (
-                                  email.text,
-                                  newpass.text,
-                                  confirmpass.text,
-                                  firstname.text,
-                                  lastname.text,
-                                  Mobile.text,
-                                ),
+                                body: WebParam.SignUpParams(email.text, newpass.text, firstname.text, lastname.text, Mobile.text, confirmpass.text),
                                 requestType: RequestType.post));
                               },
                               child: Center(
@@ -463,15 +447,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                       }
                                       BlocProvider.of<DataLoaderBloc>(context).add(
                                           FetchData(Urls.SIGNUP,
-                                              body: WebParam.SignUpParams
-                                                (
-                                                email.text,
-                                                newpass.text,
-                                                confirmpass.text,
-                                                firstname.text,
-                                                lastname.text,
-                                                Mobile.text,
-                                              ),
+                                              body: WebParam.SignUpParams(
+                                                  email.text, newpass.text, firstname.text, lastname.text, Mobile.text, confirmpass.text),
                                               requestType: RequestType.post));
                                     },
                                     child: Center(
