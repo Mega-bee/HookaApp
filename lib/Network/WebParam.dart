@@ -29,7 +29,7 @@ class WebParam {
   }
   static Map <String, dynamic> GenerateOTp(
       String phone) {
-    var map = new Map<String, String>();
+    var map = new Map<String, dynamic>();
     map[MOBILE] = phone;
     print(map);
     return map;

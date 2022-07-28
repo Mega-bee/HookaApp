@@ -7,7 +7,7 @@ class GenerateOtpModel {
   }
 }
 class VerifyOtpModel {
-  String? Phone;
+  String? Phone = "71817030";
   String? Otp;
   VerifyOtpModel(this.Phone);
 

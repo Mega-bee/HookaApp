@@ -9,7 +9,7 @@ class Urls {
   static const LOGIN = BASE_API_ACCOUNT + '/SignIn';
   static const SIGNUP = BASE_API_ACCOUNT + '/SignUp';
   static const FORGET_PASS = BASE_API_ACCOUNT + '/ForgetPassword';
-  static const GENERATE_OTP = BASE_API_ACCOUNT + '/GenerateOtp';
+  static const GENERATE_OTP = 'https://hookatimes.azurewebsites.net/webapi/api/Accounts/GenerateOtp';
   static const VERIFY_OTP = BASE_API_ACCOUNT + '/ConfirmOtp';
 /*--------home-------------------*/
 /*--------DEVICE-------------------*/

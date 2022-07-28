@@ -14,10 +14,11 @@ import '../../../home_page/ui/screens/main_screen.dart';
 
 class PinCodeVerificationScreen extends StatefulWidget {
   final String? phoneNumber;
-
+  // final VerifyOtpModel? verifyOtpModel;
   const PinCodeVerificationScreen({
     Key? key,
     required this.phoneNumber,
+    // this.verifyOtpModel,
   }) : super(key: key);
 
   @override
@@ -27,7 +28,6 @@ class PinCodeVerificationScreen extends StatefulWidget {
 
 class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
   TextEditingController textEditingController = TextEditingController();
-  late final VerifyOtpModel verifyOtpModel;
   // ..text = "123456";
 
   // ignore: close_sinks
@@ -209,28 +209,96 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        "Didn't receive the code? ",
-                        style: TextStyle(color: Colors.black54, fontSize: 15),
-                      ),
-                      TextButton(
-                        onPressed: () =>
-                        BlocProvider.of<DataLoaderBloc>(context)
-                                .add(FetchData(Urls.VERIFY_OTP,
-                                body: WebParam.GenerateOTp(
-                                  widget.phoneNumber.toString(),
+                          const Text(
+                            "Didn't receive the code? ",
+                            style: TextStyle(color: Colors.black54, fontSize: 15),
+                          ),
+                      Container(
+                        child:
+                          BlocConsumer<DataLoaderBloc, GlobalState>(
+                              listener: (context, state) {
+                                if (state is Error) {
+                                  Fluttertoast.showToast(msg: state.errorMessage);
+                                }
+                                else if (state is ConnectionError) {
+                                  MotionToast.error(
+                                      title: Text(
+                                        "Hookah",
+                                        style: TextStyle(fontWeight: FontWeight.bold),
+                                      ),
+                                      description: Text("Connection error")
+                                    //  animationType: ANIMATION.FROM_LEFT,
+                                  )
+                                      .show(context);
+                                }
+                                else if (state is Successfully) {
+                                  print(state.data);
+                                  print("christiannnnnnnnnn:  helloooooo");
+                                }
+                              },
+                              builder: (context, state) {
+                            if (state is Default) {
+                              print("default");
+                              return   TextButton(
+                                onPressed: () =>
+                                    BlocProvider.of<DataLoaderBloc>(context)
+                                        .add(FetchData(Urls.GENERATE_OTP,
+                                        body: WebParam.GenerateOTp(
+                                          "71817030",
+                                        ),
+                                        requestType: RequestType.post)),
+                                child: Text(
+                                  "RESEND",
+                                  style: TextStyle(
+                                      color: YellowColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
                                 ),
-                                requestType: RequestType.post)),
-                        child: Text(
-                          "RESEND",
-                          style: TextStyle(
-                              color: YellowColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                      )
-                    ],
-                  ),
+                              );
+                            } else if (state is Loading) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: MediaQuery.of(context).size.height * 0.03,
+                                ),
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  child: CircularProgressIndicator(
+                                      valueColor:
+                                      AlwaysStoppedAnimation<Color>(Colors.black)),
+                                  style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal:
+                                        MediaQuery.of(context).size.width * 0.005,
+                                        vertical:
+                                        MediaQuery.of(context).size.height * 0.05),
+                                    primary: YellowColor,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(40.0),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            } else {
+                              return   TextButton(
+                                onPressed: () =>
+                                    BlocProvider.of<DataLoaderBloc>(context)
+                                        .add(FetchData(Urls.GENERATE_OTP,
+                                        body: WebParam.GenerateOTp(
+                                          "71817030",
+                                        ),
+                                        requestType: RequestType.post)),
+                                child: Text(
+                                  "RESEND",
+                                  style: TextStyle(
+                                      color: YellowColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
+                              );
+                            }
+                          })),
+                        ],
+                      ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                   BlocConsumer<DataLoaderBloc, GlobalState>(
                       listener: (context, state) {
@@ -270,7 +338,9 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                               formKey.currentState!.validate();
                               // conditions for validating
                               if (currentText.length != 4 ||
-                                  currentText != "") {
+                                  currentText != ""
+                                      // "${verifyOtpModel.Otp}"
+                                      "") {
                                 errorController!
                                     .add(ErrorAnimationType.shake); // Trigg
 
@@ -280,7 +350,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                                 BlocProvider.of<DataLoaderBloc>(context)
                                     .add(FetchData(Urls.VERIFY_OTP,
                                         body: WebParam.VerifyOTp(
-                                          widget.phoneNumber.toString(),
+                                          "71817030",
                                           textEditingController.text,
                                         ),
                                         requestType: RequestType.get));
@@ -359,7 +429,9 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                               formKey.currentState!.validate();
                               // conditions for validating
                               if (currentText.length != 4 ||
-                                  currentText != "${verifyOtpModel.Otp}") {
+                                  currentText !=
+                                      // "${verifyOtpModel.Otp}"
+                                      "") {
                                 errorController!
                                     .add(ErrorAnimationType.shake); // Trigg
 

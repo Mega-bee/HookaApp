@@ -7,6 +7,7 @@ import 'package:hooka/Model/SignUpModel.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/widget/email_field.dart';
 import 'package:motion_toast/motion_toast.dart';
+import '../../../Model/OtpModel.dart';
 import '../../../Network/DataLoaderBlock.dart';
 import '../../../Network/WebParam.dart';
 import '../../../Network/WebUrl.dart';
@@ -14,8 +15,6 @@ import '../../../otp/ui/screen/otp.dart';
 import '../../../utils/style/colors.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key? key}) : super(key: key);
-
   @override
   State<SignupScreen> createState() => _SignupScreenState();
 }
@@ -377,7 +376,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                       builder: (BuildContext context) {
-                                        return PinCodeVerificationScreen(phoneNumber: Mobile.text,);
+                                        return PinCodeVerificationScreen(phoneNumber: "71817030");
                                       },),);
                                 }
                               },
