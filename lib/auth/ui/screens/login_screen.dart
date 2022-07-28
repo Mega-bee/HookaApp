@@ -169,7 +169,7 @@ class _loginScreenState extends State<loginScreen> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const PinCodeVerificationScreen()));
+                                                    const PinCodeVerificationScreen(phoneNumber: "",)));
                                       },
                                     )),
                               ),
@@ -205,7 +205,8 @@ class _loginScreenState extends State<loginScreen> {
                                               MaterialPageRoute(
                                                   builder: (BuildContext context) {
                                         return MainScreen();
-                                      },),);}},
+                                      },),);}
+                                        },
                                       builder: (context, state) {
                                         if (state is Default) {
                                           print("default");
@@ -320,8 +321,7 @@ class _loginScreenState extends State<loginScreen> {
                                                     mediaQueryWidth * 0.35,
                                                 vertical:
                                                     mediaQueryHeight * 0.025),
-                                            primary: const Color.fromRGBO(
-                                                205, 8, 27, 1),
+                                            primary: YellowColor,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(40.0),

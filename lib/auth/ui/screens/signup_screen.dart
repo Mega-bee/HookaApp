@@ -10,6 +10,7 @@ import 'package:motion_toast/motion_toast.dart';
 import '../../../Network/DataLoaderBlock.dart';
 import '../../../Network/WebParam.dart';
 import '../../../Network/WebUrl.dart';
+import '../../../otp/ui/screen/otp.dart';
 import '../../../utils/style/colors.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -376,7 +377,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                       builder: (BuildContext context) {
-                                        return loginScreen();
+                                        return PinCodeVerificationScreen(phoneNumber: Mobile.text,);
                                       },),);
                                 }
                               },

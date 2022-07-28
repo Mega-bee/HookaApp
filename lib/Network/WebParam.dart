@@ -5,6 +5,8 @@ class WebParam {
   static String LASTNAME = "LastName";
   static String FIRSTNAME = "FirstName";
   static String MOBILE = "PhoneNumber";
+  static String MOBILEOTP = "phone";
+  static String OTP = "otp";
   static Map <String, dynamic> LoginParams(
       String email, String pass) {
     var map = new Map<String, String>();
@@ -22,6 +24,21 @@ class WebParam {
     map[LASTNAME] = lastName;
     map[FIRSTNAME] = name;
     map[MOBILE] = mobile;
+    print(map);
+    return map;
+  }
+  static Map <String, dynamic> GenerateOTp(
+      String phone) {
+    var map = new Map<String, String>();
+    map[MOBILE] = phone;
+    print(map);
+    return map;
+  }
+  static Map <String, dynamic> VerifyOTp(
+      String phone, String otp) {
+    var map = new Map<String, String>();
+    map[MOBILEOTP] = phone;
+    map[OTP] = otp;
     print(map);
     return map;
   }
