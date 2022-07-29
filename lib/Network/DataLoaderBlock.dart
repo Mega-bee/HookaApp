@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
 import '../Hive/Hive.dart';
+import '../auth/model/WebServiceResponse.dart';
 import 'WebParam.dart';
 
 enum RequestType { get, post,put }

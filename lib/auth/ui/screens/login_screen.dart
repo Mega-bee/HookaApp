@@ -173,164 +173,159 @@ class _loginScreenState extends State<loginScreen> {
                                       },
                                     )),
                               ),
-                              Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: mediaQueryHeight * 0.03,
-                                  ),
-                                  child:
-                                  BlocConsumer<DataLoaderBloc, GlobalState>(
-                                      listener: (context, state) {
-                                        if (state is Error) {
-                                          Fluttertoast.showToast(msg: state.errorMessage);
-                                        }
-                                        else if (state is ConnectionError) {
-                                          MotionToast.error(
-                                              title: Text("Hookah",
-                                                  style:  TextStyle(fontWeight: FontWeight.bold),),
-                                              description: Text("Connection error")
-                                            //  animationType: ANIMATION.FROM_LEFT,
-                                          )
-                                              .show(context);
-                                        }
-                                        else if (state is Successfully) {
-                                          print(state.data);
-                                          print("christiannnnnnnnnn:  helloooooo");
-                                          logInModel login = logInModel.fromJson(state.data);
-                                          print('-------------------------------------------');
-                                          AuthPrefsHelper().setToken(login.token ?? '');
-
-                                          //store token inside sharedPref
-                                          //  login.gettoken;
-                                          Navigator.of(context).pushReplacement(
-                                              MaterialPageRoute(
-                                                  builder: (BuildContext context) {
-                                        return MainScreen();
-                                      },),);}
-                                        },
-                                      builder: (context, state) {
-                                        if (state is Default) {
-                                          print("default");
-                                          return Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              vertical: mediaQueryHeight * 0.03,
-                                            ),
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                if (password.text.isEmpty ||
-                                                    email.text.isEmpty ||
-                                                    password.text.length < 6) {
-                                                  _formKey.currentState!.validate();
-                                                }
-                                                 else {
-                                             BlocProvider.of<DataLoaderBloc>(context).add(
-                                                 FetchData(
-                                                   Urls.LOGIN,
-                                                   body: WebParam.LoginParams(
-                                                       email.text,
-                                                       password.text,
-                                                   ),
-                                                     requestType: RequestType.post));
-
-                                                 }
-                                            // Navigator.pushReplacement(context,
-                                            //     MaterialPageRoute(
-                                            //   builder: (context) {
-                                            //     return const PinCodeVerificationScreen();
-                                            //   },
-                                            // ));
-                                          },
-                                          child: Center(
-                                            child: Text('LOGIN',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontFamily: 'Roboto-Bold'),
-                                                textAlign: TextAlign.left),
-                                          ),
-                                          style: ElevatedButton.styleFrom(
-                                            // padding: EdgeInsets.symmetric(
-                                            //     horizontal: mediaQueryWidth * 0.23,
-                                            //     vertical: mediaQueryHeight * 0.018),
-                                            primary: YellowColor,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
-                                          ),
-                                        ),
-                                      );
+                              BlocConsumer<DataLoaderBloc, GlobalState>(
+                                  listener: (context, state) {
+                                    if (state is Error) {
+                                      Fluttertoast.showToast(msg: state.errorMessage);
                                     }
-                                        else if (state is Loading)
-                                          return Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              vertical: mediaQueryHeight * 0.03,
-                                            ),
-                                            child: ElevatedButton(
-                                              onPressed: () {},
-                                              child: CircularProgressIndicator(
-                                                  valueColor:
-                                                  AlwaysStoppedAnimation<Color>(Colors.white)),
-                                              style: ElevatedButton.styleFrom(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: mediaQueryWidth * 0.35,
-                                                    vertical: mediaQueryHeight * 0.025),
-                                                primary: const Color.fromRGBO(205, 8, 27, 1),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(40.0),
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        else {
-                                          return Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              vertical: mediaQueryHeight * 0.03,
-                                            ),
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                if (password.text.isEmpty ||
-                                                    email.text.isEmpty ||
-                                                    password.text.length < 6) {
-                                                  _formKey.currentState!.validate();
-                                                }
-                                                // Fluttertoast.showToast(
-                                                //     msg: getTranslate(context, 'fillField'),
-                                                //     toastLength: Toast.LENGTH_SHORT,
-                                                //     gravity: ToastGravity.BOTTOM,
-                                                //     timeInSecForIosWeb: 1);
-                                                else {
-                                                  BlocProvider.of<DataLoaderBloc>(context).add(
-                                                      FetchData(Urls.LOGIN,
-                                                          body: WebParam.LoginParams(
-                                                              email.text, password.text,),
-                                                          requestType: RequestType.post));
-                                                }
-                                              },
-                                          child: const Text(
-                                            'Log In',
+                                    else if (state is ConnectionError) {
+                                      MotionToast.error(
+                                          title: Text("Hookah",
+                                              style:  TextStyle(fontWeight: FontWeight.bold),),
+                                          description: Text("Connection error")
+                                        //  animationType: ANIMATION.FROM_LEFT,
+                                      )
+                                          .show(context);
+                                    }
+                                    else if (state is Successfully) {
+                                      print(state.data);
+                                      print("christiannnnnnnnnn:  helloooooo");
+                                      // var login = logInModel.fromJson(state.data);
+                                      print('-------------------------------------------');
+                                      // AuthPrefsHelper().setToken(login.token ?? '');
+
+                                      //store token inside sharedPref
+                                      //  login.gettoken;
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) {
+                                    return MainScreen();
+                                  },),);}
+                                    },
+                                  builder: (context, state) {
+                                    if (state is Default) {
+                                      print("default");
+                                      return Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: mediaQueryHeight * 0.03,
+                                        ),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            if (password.text.isEmpty ||
+                                                email.text.isEmpty ||
+                                                password.text.length < 6) {
+                                              _formKey.currentState!.validate();
+                                            }
+                                             else {
+                                         BlocProvider.of<DataLoaderBloc>(context).add(
+                                             FetchData(
+                                               Urls.LOGIN,
+                                               body: WebParam.LoginParams(
+                                                   email.text,
+                                                   password.text,
+                                               ),
+                                                 requestType: RequestType.post));
+
+                                             }
+                                        // Navigator.pushReplacement(context,
+                                        //     MaterialPageRoute(
+                                        //   builder: (context) {
+                                        //     return const PinCodeVerificationScreen();
+                                        //   },
+                                        // ));
+                                      },
+                                      child: Center(
+                                        child: Text('LOGIN',
                                             style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
                                                 fontFamily: 'Roboto-Bold'),
-                                          ),
+                                            textAlign: TextAlign.left),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        // padding: EdgeInsets.symmetric(
+                                        //     horizontal: mediaQueryWidth * 0.23,
+                                        //     vertical: mediaQueryHeight * 0.018),
+                                        primary: YellowColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                    else if (state is Loading)
+                                      return Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: mediaQueryHeight * 0.03,
+                                        ),
+                                        child: ElevatedButton(
+                                          onPressed: () {},
+                                          child: CircularProgressIndicator(
+                                              valueColor:
+                                              AlwaysStoppedAnimation<Color>(Colors.white)),
                                           style: ElevatedButton.styleFrom(
                                             padding: EdgeInsets.symmetric(
-                                                horizontal:
-                                                    mediaQueryWidth * 0.35,
-                                                vertical:
-                                                    mediaQueryHeight * 0.025),
-                                            primary: YellowColor,
+                                                horizontal: mediaQueryWidth * 0.35,
+                                                vertical: mediaQueryHeight * 0.025),
+                                            primary: const Color.fromRGBO(205, 8, 27, 1),
                                             shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(40.0),
+                                              borderRadius: BorderRadius.circular(40.0),
                                             ),
                                           ),
                                         ),
                                       );
-                                    }
-                                  })),
+                                    else {
+                                      return Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: mediaQueryHeight * 0.03,
+                                        ),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            if (password.text.isEmpty ||
+                                                email.text.isEmpty ||
+                                                password.text.length < 6) {
+                                              _formKey.currentState!.validate();
+                                            }
+                                            // Fluttertoast.showToast(
+                                            //     msg: getTranslate(context, 'fillField'),
+                                            //     toastLength: Toast.LENGTH_SHORT,
+                                            //     gravity: ToastGravity.BOTTOM,
+                                            //     timeInSecForIosWeb: 1);
+                                            else {
+                                              BlocProvider.of<DataLoaderBloc>(context).add(
+                                                  FetchData(Urls.LOGIN,
+                                                      body: WebParam.LoginParams(
+                                                          email.text, password.text,),
+                                                      requestType: RequestType.post));
+                                            }
+                                          },
+                                      child: const Text(
+                                        'Log In',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'Roboto-Bold'),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal:
+                                                mediaQueryWidth * 0.35,
+                                            vertical:
+                                                mediaQueryHeight * 0.025),
+                                        primary: YellowColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(40.0),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                              }),
                               SizedBox(
                                 height: mediaQueryHeight * 0.03,
                               ),

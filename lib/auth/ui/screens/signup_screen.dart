@@ -369,8 +369,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 else if (state is Successfully) {
                                   print(state.data);
                                   print("christiannnnnnnnnn:  helloooooo");
-                                  SignUpModel Signup = SignUpModel.toJson(
-                                      state.data);
+
                                   print(
                                       '-------------------------------------------');
                                   Navigator.of(context).pushReplacement(
