@@ -7,6 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:hooka/auth/ui/screens/signup_screen.dart';
 import 'package:hooka/auth/ui/widget/email_field.dart';
 import 'package:hooka/auth/ui/widget/password_field.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:motion_toast/motion_toast.dart';
 import '../../../Hive/Hive.dart';
 import '../../../Model/LoginPageModel.dart';
@@ -40,7 +41,7 @@ class _loginScreenState extends State<loginScreen> {
   Widget build(BuildContext context) {
     var mediaQueryHeight = MediaQuery.of(context).size.height;
     var mediaQueryWidth = MediaQuery.of(context).size.width;
-    final password = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -261,19 +262,21 @@ class _loginScreenState extends State<loginScreen> {
                                         padding: EdgeInsets.symmetric(
                                           vertical: mediaQueryHeight * 0.03,
                                         ),
-                                        child: ElevatedButton(
-                                          onPressed: () {},
-                                          child: CircularProgressIndicator(
-                                              valueColor:
-                                              AlwaysStoppedAnimation<Color>(Colors.white)),
-                                          style: ElevatedButton.styleFrom(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: mediaQueryWidth * 0.35,
-                                                vertical: mediaQueryHeight * 0.025),
-                                            primary: const Color.fromRGBO(205, 8, 27, 1),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(40.0),
-                                            ),
+                                        child: Container(
+                                          width: 120,
+                                          child: MaterialButton(
+                                            onPressed: () {},
+                                            child: LoadingAnimationWidget.twistingDots(leftDotColor: Colors.black, rightDotColor: Colors.yellow, size: 42)
+                                            // style: ElevatedButton.styleFrom(
+                                            //   padding: EdgeInsets.symmetric(
+                                            //       horizontal: mediaQueryWidth * 0.23,
+                                            //       vertical: mediaQueryHeight * 0.018),
+                                            //   primary: YellowColor,
+                                            //   shape: RoundedRectangleBorder(
+                                            //     borderRadius:
+                                            //     BorderRadius.circular(10.0),
+                                            //   ),
+                                            // ),
                                           ),
                                         ),
                                       );

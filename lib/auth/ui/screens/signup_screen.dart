@@ -6,6 +6,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:hooka/Model/SignUpModel.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/widget/email_field.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:motion_toast/motion_toast.dart';
 import '../../../Model/OtpModel.dart';
 import '../../../Network/DataLoaderBlock.dart';
@@ -375,7 +376,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                       builder: (BuildContext context) {
-                                        return PinCodeVerificationScreen(phoneNumber: "71817030");
+                                        return PinCodeVerificationScreen(phoneNumber:Mobile.text);
                                       },),);
                                 }
                               },
@@ -393,6 +394,14 @@ class _SignupScreenState extends State<SignupScreen> {
                                 FetchData(Urls.SIGNUP,
                                 body: WebParam.SignUpParams(email.text, newpass.text, firstname.text, lastname.text, Mobile.text, confirmpass.text),
                                 requestType: RequestType.post));
+                                BlocProvider.of<DataLoaderBloc>(context).add(
+                                    FetchData(
+                                        Urls.GENERATE_OTP,
+                                        body: WebParam.GenerateOTp(Mobile.text
+
+                                        ),
+                                        requestType: RequestType.post));
+
                               },
                               child: Center(
                                 child: Text(
@@ -419,20 +428,11 @@ class _SignupScreenState extends State<SignupScreen> {
                                     padding: EdgeInsets.symmetric(
                                       vertical: mediaQueryHeight * 0.03,
                                     ),
-                                    child: ElevatedButton(
+                                    child: MaterialButton(
                                       onPressed: () {},
-                                      child: CircularProgressIndicator(
-                                          valueColor:
-                                          AlwaysStoppedAnimation<Color>(Colors.black)),
-                                      style: ElevatedButton.styleFrom(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: mediaQueryWidth * 0.35,
-                                            vertical: mediaQueryHeight * 0.025),
-                                        primary: YellowColor,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(40.0),
-                                        ),
-                                      ),
+                                      child:LoadingAnimationWidget.twistingDots(leftDotColor: Colors.black, rightDotColor: Colors.yellow, size: 32),
+
+
                                     ),
                                   );
                                 }
@@ -448,6 +448,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                           FetchData(Urls.SIGNUP,
                                               body: WebParam.SignUpParams(
                                                   email.text, newpass.text, firstname.text, lastname.text, Mobile.text, confirmpass.text),
+                                              requestType: RequestType.post));
+                                      BlocProvider.of<DataLoaderBloc>(context).add(
+                                          FetchData(
+                                              Urls.GENERATE_OTP,
+                                              body: WebParam.GenerateOTp(Mobile.text
+
+                                              ),
                                               requestType: RequestType.post));
                                     },
                                     child: Center(
