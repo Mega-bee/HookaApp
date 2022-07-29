@@ -433,6 +433,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                       child:LoadingAnimationWidget.twistingDots(leftDotColor: Colors.black, rightDotColor: Colors.yellow, size: 32),
 
 
+
                                     ),
                                   );
                                 }
