@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooka/home_page/ui/screens/drawer_screen.dart';
 import 'package:hooka/utils/style/colors.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../Model/OtpModel.dart';
@@ -27,7 +28,7 @@ class PinCodeVerificationScreen extends StatefulWidget {
 }
 
 class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
-  TextEditingController textEditingController = TextEditingController();
+  TextEditingController otptext = TextEditingController();
   // ..text = "123456";
 
   // ignore: close_sinks
@@ -166,7 +167,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                           animationDuration: const Duration(milliseconds: 300),
                           enableActiveFill: true,
                           errorAnimationController: errorController,
-                          controller: textEditingController,
+                          controller: otptext,
                           keyboardType: TextInputType.number,
                           boxShadows: const [
                             BoxShadow(
@@ -320,7 +321,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return MainScreen();
+                            return DrawerScreen();
                           },
                         ),
                       );
@@ -350,10 +351,10 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                                 BlocProvider.of<DataLoaderBloc>(context)
                                     .add(FetchData(Urls.VERIFY_OTP,
                                         body: WebParam.VerifyOTp(
-                                          "71817030",
-                                          textEditingController.text,
+                                          widget.phoneNumber.toString(),
+                                          otptext.text,
                                         ),
-                                        requestType: RequestType.get));
+                                        requestType: RequestType.post));
                                 setState(
                                   () {
                                     hasError = false;
@@ -402,9 +403,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                         ),
                         child: ElevatedButton(
                           onPressed: () {},
-                          child: CircularProgressIndicator(
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.black)),
+                          child: LoadingAnimationWidget.twistingDots(leftDotColor: Colors.black, rightDotColor: Colors.yellow, size: 32),
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.symmetric(
                                 horizontal:
@@ -442,7 +441,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                                     .add(FetchData(Urls.VERIFY_OTP,
                                         body: WebParam.VerifyOTp(
                                           widget.phoneNumber.toString(),
-                                          textEditingController.text,
+                                          otptext.text,
                                         ),
                                         requestType: RequestType.post));
                                 setState(
@@ -496,18 +495,18 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                           child: TextButton(
                         child: const Text("Clear"),
                         onPressed: () {
-                          textEditingController.clear();
+                          otptext.clear();
                         },
                       )),
-                      Flexible(
-                          child: TextButton(
-                        child: const Text("Set Text"),
-                        onPressed: () {
-                          setState(() {
-                            textEditingController.text = "1234";
-                          });
-                        },
-                      )),
+                      // Flexible(
+                      //     child: TextButton(
+                      //   child: const Text("Set Text"),
+                      //   onPressed: () {
+                      //     setState(() {
+                      //       textEditingController.text = "1234";
+                      //     });
+                      //   },
+                      // )),
                     ],
                   ),
                   SizedBox(
