@@ -7,6 +7,7 @@ class WebServiceResponse {
     return WebServiceResponse(
       item['statusCode'],
       item['errorMessage'],
+      ///first data
       Data.fromJson(item['data'])  ,
     );
   }
@@ -15,12 +16,12 @@ class WebServiceResponse {
   int get code => _code;
 }
 class Data {
- dynamic data;
+ dynamic insideData;
  Data(
-      { this.data,
+      { this.insideData,
       });
-
+  ///inside data
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    data: json["data"],
+    insideData: json["data"],
   );
 }

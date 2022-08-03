@@ -10,7 +10,7 @@ import 'package:hooka/home_page/ui/widget/hooka_card.dart';
 import 'package:hooka/utils/images/images.dart';
 
 import '../../../offers/widget/ui/offers.dart';
-import '../../../otp/ui/screen/otp.dart';
+import '../../../auth/ui/screens/otp_screen.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../widget/menu_widget.dart';
 

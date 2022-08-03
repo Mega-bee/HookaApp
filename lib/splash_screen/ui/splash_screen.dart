@@ -1,14 +1,16 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:hooka/auth/auth_routes.dart';
 import 'package:hooka/utils/images/images.dart';
+import 'package:injectable/injectable.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';
 import '../../auth/ui/screens/login_screen.dart';
 
 
 
-
+@injectable
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen() ;
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -29,9 +31,8 @@ class _SplashScreenState extends State<SplashScreen>
       Future.delayed(Duration(seconds: 2));
       Timer(
           Duration(milliseconds: 1500),
-              () => Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => loginScreen()),
-                  (route) => false));
+              () =>Navigator.pushNamedAndRemoveUntil(context,  AuthRoutes.LOGIN_SCREEN, (route) => false)
+      );
 
 
     });

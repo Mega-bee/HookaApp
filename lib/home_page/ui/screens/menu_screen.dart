@@ -94,10 +94,10 @@ class _MenupageState extends State<Menupage> {
                       title: "Are You Sure Do You Want To logout",
                       content: "",
                       yesBtn: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (context) => loginScreen()),
-                            (route) => false);
+//                        Navigator.of(context).pushAndRemoveUntil(
+//                            MaterialPageRoute(
+//                                builder: (context) => loginScreen()),
+//                            (route) => false);
                       },
                       noBtn: () {
                         Navigator.pop(context);
