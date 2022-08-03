@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hooka/abstracts/states/state.dart';
+import 'package:hooka/auth/request/login_request.dart';
 import 'package:hooka/auth/state_manager/login_state_manager.dart';
 import 'package:hooka/auth/ui/states/login_init_state.dart';
 import 'package:injectable/injectable.dart';
@@ -11,17 +12,20 @@ class loginScreen extends StatefulWidget {
   loginScreen({required this.cubit});
 
   @override
-  State<loginScreen> createState() => _loginScreenState();
+  State<loginScreen> createState() => loginScreenState();
 }
 
-class _loginScreenState extends State<loginScreen> {
+class loginScreenState extends State<loginScreen> {
 
+  void loginRequest(LoginRequest request){
+    widget.cubit.login(request);
+  }
 
   @override
   void initState() {
     super.initState();
-    widget.cubit.emit(LoginInitState());
-  }
+    widget.cubit.emit(LoginInitState(this));
+   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

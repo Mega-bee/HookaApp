@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooka/abstracts/states/state.dart';
+import 'package:hooka/auth/request/login_request.dart';
+import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/widget/email_field.dart';
 import 'package:hooka/auth/ui/widget/password_field.dart';
 import 'package:hooka/utils/style/colors.dart';
 
 class LoginInitState extends States{
+  final loginScreenState _screenState;
+
+
+  LoginInitState(this._screenState);
 
   final _formKey = GlobalKey<FormState>();
   final email = TextEditingController();
@@ -153,7 +159,7 @@ return  SingleChildScrollView(
                                   password.text.length < 6) {
                                 _formKey.currentState!.validate();
                               }
-
+                              _screenState.loginRequest(LoginRequest(email.text, password.text));
                               // Navigator.pushReplacement(context,
                               //     MaterialPageRoute(
                               //   builder: (context) {
