@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooka/utils/style/colors.dart';
-
+import 'package:injectable/injectable.dart';
 class HookaCard extends StatelessWidget {
   final Function onCardTap;
   final String image;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:injectable/injectable.dart';
 import '../../../contact_us/ui/contactus.dart';
 import '../../../invitations/ui/screen/invitations.dart';
 import '../../../my_cart/widget/screen/MyCart.dart';

@@ -17,14 +17,15 @@ class loginScreen extends StatefulWidget {
 
 class loginScreenState extends State<loginScreen> {
 
-  void loginRequest(LoginRequest request){
-    widget.cubit.login(request);
+  void loginRequest(LogRequest request){
+    widget.cubit.login(request,this);
   }
 
   @override
   void initState() {
     super.initState();
-    widget.cubit.emit(LoginInitState(this));
+
+    widget.cubit.emit(LoginInitState(this,""));
    }
   @override
   Widget build(BuildContext context) {

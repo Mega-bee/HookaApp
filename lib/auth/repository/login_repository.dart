@@ -1,6 +1,7 @@
 import 'package:hooka/abstracts/WebUrl.dart';
 import 'package:hooka/abstracts/model/WebServiceResponse.dart';
 import 'package:hooka/auth/request/login_request.dart';
+import 'package:hooka/auth/request/signup_request.dart';
 import 'package:hooka/auth/service/auth_service.dart';
 import 'package:hooka/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
@@ -13,10 +14,20 @@ class LoginRepository {
   LoginRepository(this._apiClient, this._authService,);
 
 
-  Future<WebServiceResponse?> loginRequest(LoginRequest request) async {
+  Future<WebServiceResponse?> loginRequest(LogRequest request) async {
     var token =   _authService.getToken();
     WebServiceResponse? response = await _apiClient.post(
-      Urls.GET_LIKED_POSTS ,request.toJson(),
+      Urls.LOGIN ,request.toJson(),
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+
+  Future<WebServiceResponse?> SignUpRequest(SignRequest request) async {
+    var token =   _authService.getToken();
+    WebServiceResponse? response = await _apiClient.post(
+      Urls.SIGNUP ,request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;

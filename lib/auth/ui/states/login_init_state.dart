@@ -9,13 +9,15 @@ import 'package:hooka/utils/style/colors.dart';
 
 class LoginInitState extends States{
   final loginScreenState _screenState;
+  String? errorMessage;
 
 
-  LoginInitState(this._screenState);
+  LoginInitState(this._screenState,this.errorMessage);
 
   final _formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final password = TextEditingController();
+
 
   @override
   Widget getUI(BuildContext context) {
@@ -159,7 +161,7 @@ return  SingleChildScrollView(
                                   password.text.length < 6) {
                                 _formKey.currentState!.validate();
                               }
-                              _screenState.loginRequest(LoginRequest(email.text, password.text));
+                              _screenState.loginRequest(LogRequest(email.text, password.text));
                               // Navigator.pushReplacement(context,
                               //     MaterialPageRoute(
                               //   builder: (context) {
@@ -187,6 +189,16 @@ return  SingleChildScrollView(
                               ),
                             ),
                           ),
+                        ),
+
+                        SizedBox(
+                          height: mediaQueryHeight * 0.02,
+                        ),
+                        errorMessage==null?
+                        Container():
+                        Text("${errorMessage}",style: TextStyle(color: Colors.red),),
+                        SizedBox(
+                          height: 30,
                         ),
                         SizedBox(
                           height: mediaQueryHeight * 0.03,

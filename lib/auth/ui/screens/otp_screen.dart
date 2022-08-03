@@ -2,16 +2,18 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hooka/home_page/ui/screens/drawer_screen.dart';
 import 'package:hooka/utils/style/colors.dart';
+import 'package:injectable/injectable.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+@injectable
 class PinCodeVerificationScreen extends StatefulWidget {
   final String? phoneNumber;
   // final VerifyOtpModel? verifyOtpModel;
-  const PinCodeVerificationScreen({
-    Key? key,
+   PinCodeVerificationScreen({
+
     required this.phoneNumber,
     // this.verifyOtpModel,
-  }) : super(key: key);
+  });
 
   @override
   _PinCodeVerificationScreenState createState() =>
