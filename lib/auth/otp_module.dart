@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooka/abstracts/module/rout_module.dart';
-import 'package:hooka/auth/auth_routes.dart';
-import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/screens/otp_screen.dart';
 import 'package:injectable/injectable.dart';
 import 'otp_routes.dart';

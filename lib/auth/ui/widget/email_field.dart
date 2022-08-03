@@ -21,18 +21,32 @@ class _EmailFieldState extends State<EmailField> {
         style: const TextStyle(fontSize: 14),
         controller: widget.email,
         decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color:Colors.black)),
+
+
+          hoverColor: Colors.black,
+          focusColor: Colors.black,
+
           filled: true,
           fillColor: Colors.white,
           hintText: " Email",
           labelText: "Email",
+          labelStyle: TextStyle(color: Colors.black),
           enabledBorder: const OutlineInputBorder(
               borderRadius:
               BorderRadius.all(Radius.circular(10)),
               borderSide: BorderSide(
                   width: 0, color: Colors.black12)),
           border: OutlineInputBorder(
+
+
             borderSide:
-            const BorderSide(color: Colors.grey),
+            const BorderSide(color: Colors.grey,
+
+            ),
+
             borderRadius: BorderRadius.circular(10.0),
           ),
         ),

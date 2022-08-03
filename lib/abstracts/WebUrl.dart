@@ -11,6 +11,8 @@ class Urls {
 //  /*--------Auth-------------------*/
    static const LOGIN = BASE_ACCOUNTS + 'SignIn';
    static const SIGNUP = BASE_ACCOUNTS + 'SignUp';
+   static const GENERATE_OTP = BASE_ACCOUNTS + 'GenerateOtp';
+   static const CONFIRM_OTP = BASE_ACCOUNTS + 'ConfirmOtp';
    // static const VERIFY_OTP = BSE_API_SETTINGS + 'VerifyOtp';
 
 

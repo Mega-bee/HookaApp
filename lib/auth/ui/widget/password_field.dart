@@ -31,8 +31,12 @@ class _PasswordFieldState extends State<PasswordField> {
       // autovalidateMode:
       //     AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+                color:Colors.black)),
+        labelText: "Password",
         hintText: " Password",
+        labelStyle: TextStyle(color: Colors.black),
         enabledBorder: const OutlineInputBorder(
           borderRadius:
           BorderRadius.all(Radius.circular(10)),

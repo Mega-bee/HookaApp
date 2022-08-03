@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hooka/auth/request/gen_otp_request.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 
@@ -20,12 +21,15 @@ class SignupScreenState extends State<SignupScreen> {
   void SignupRequest(SignRequest request){
     widget.cubit.Signup(request,this);
   }
+  void GenerateOtpRequest(GenOtpRequest request){
+    widget.cubit.OtpGen(request,this);
+  }
 
   @override
   void initState() {
     super.initState();
 
-    widget.cubit.emit(SignupInitState(this,""));
+    widget.cubit.emit(SignupInitState(this,"",));
   }
   @override
   Widget build(BuildContext context) {

@@ -91,7 +91,8 @@ class _MyAppState extends State<MyApp> {
       title: 'Hooka',
       routes: fullRoutesList,
       theme: ThemeData(
-        primaryColor: Colors.yellow
+        primaryColor: Colors.yellow,
+
       ),
       initialRoute: SplashRoutes.SPLASH_SCREEN,
     );

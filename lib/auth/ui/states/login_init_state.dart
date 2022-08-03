@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooka/abstracts/states/state.dart';
+import 'package:hooka/auth/auth_routes.dart';
 import 'package:hooka/auth/request/login_request.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/widget/email_field.dart';
 import 'package:hooka/auth/ui/widget/password_field.dart';
 import 'package:hooka/utils/style/colors.dart';
+
+import '../../otp_routes.dart';
 
 class LoginInitState extends States{
   final loginScreenState _screenState;
@@ -267,9 +270,13 @@ return  SingleChildScrollView(
                                 child: Text(
                                   "SIGN UP",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                    decoration: TextDecoration.underline
+                                  ),
                                 ),
                                 onPressed: () {
+                                  Navigator.pushNamed(context, AuthRoutes.SIGNUP_SCREEN);
 //                                  Navigator.push(
 //                                      context,
 //                                      CustomPageRoute(

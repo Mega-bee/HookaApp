@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:hooka/abstracts/states/state.dart';
+import 'package:hooka/auth/request/gen_otp_request.dart';
 import 'package:hooka/auth/request/signup_request.dart';
 import 'package:hooka/auth/ui/screens/signup_screen.dart';
 
@@ -10,6 +11,7 @@ import '../widget/email_field.dart';
 
 class SignupInitState extends States{
   final SignupScreenState screenState;
+
   String? errorMessage;
   SignupInitState(this.screenState,this.errorMessage);
 
@@ -116,7 +118,11 @@ class SignupInitState extends States{
                               style: const TextStyle(fontSize: 14),
                               controller: firstname,
                               decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color:Colors.black)),
                                 labelText: "First Name",
+                                labelStyle: TextStyle(color: Colors.black),
                                 filled: true,
                                 fillColor: Colors.white,
                                 hintText: " First name",
@@ -150,10 +156,14 @@ class SignupInitState extends States{
                               style: const TextStyle(fontSize: 14),
                               controller: lastname,
                               decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color:Colors.black)),
                                 labelText: "Last name",
                                 filled: true,
                                 fillColor: Colors.white,
                                 hintText: " Last name",
+                                labelStyle: TextStyle(color: Colors.black),
                                 enabledBorder: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10)),
@@ -193,9 +203,13 @@ class SignupInitState extends States{
                               controller: Mobile,
                               decoration: InputDecoration(
                                 labelText: "Mobile",
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color:Colors.black)),
                                 filled: true,
                                 fillColor: Colors.white,
                                 hintText: " Mobile",
+                                labelStyle: TextStyle(color: Colors.black),
                                 enabledBorder: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10)),
@@ -227,8 +241,12 @@ class SignupInitState extends States{
                             obscureText: _isObscure,
                             controller: newpass,
                             decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color:Colors.black)),
                               hintText: " Password",
                               labelText: "Password",
+                              labelStyle: TextStyle(color: Colors.black),
                               enabledBorder: const OutlineInputBorder(
                                 borderRadius:
                                 BorderRadius.all(Radius.circular(10)),
@@ -261,8 +279,12 @@ class SignupInitState extends States{
                               // autovalidateMode:
                               //     AutovalidateMode.onUserInteraction,
                               decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color:Colors.black)),
                                 hintText: " Confirm Password",
                                 labelText: "Confirm password",
+                                labelStyle: TextStyle(color: Colors.black),
                                 enabledBorder: const OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
@@ -300,6 +322,8 @@ class SignupInitState extends States{
                                 firstname.text,
                                 confirmpass.text,
                                 lastname.text));
+                            screenState.GenerateOtpRequest(GenOtpRequest(Mobile.text));
+
                           },
                           child: Center(
                             child: Text(
