@@ -17,6 +17,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class SignupScreenState extends State<SignupScreen> {
+  late AsyncSnapshot loadingSnapshot;
 
   void SignupRequest(SignRequest request){
     widget.cubit.Signup(request,this);
@@ -28,7 +29,14 @@ class SignupScreenState extends State<SignupScreen> {
   @override
   void initState() {
     super.initState();
-
+    loadingSnapshot = AsyncSnapshot.nothing();
+    widget.cubit.loadingStream.listen((event) {
+      if (this.mounted) {
+        setState(() {
+          loadingSnapshot = event;
+        });
+      }
+    });
     widget.cubit.emit(SignupInitState(this,"",));
   }
   @override

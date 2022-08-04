@@ -13,8 +13,8 @@ import '../states/otp_init_state.dart';
 
 @injectable
 class PinCodeVerificationScreen extends StatefulWidget {
-// final OtpCubit cubit ;
-final SignUpCubit cubit ;
+final OtpCubit cubit ;
+// final SignUpCubit cubit ;
 PinCodeVerificationScreen(this.cubit,);
   @override
   PinCodeVerificationScreenState createState() =>
@@ -76,7 +76,7 @@ bool flags = true;
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: BlocBuilder<SignUpCubit, States>(
+      body: BlocBuilder<OtpCubit, States>(
         bloc: widget.cubit,
         builder: (context, state) {
           return state.getUI(context);
