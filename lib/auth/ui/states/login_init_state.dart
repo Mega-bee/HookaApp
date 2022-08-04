@@ -8,9 +8,6 @@ import 'package:hooka/auth/ui/widget/email_field.dart';
 import 'package:hooka/auth/ui/widget/password_field.dart';
 import 'package:hooka/generated/l10n.dart';
 import 'package:hooka/utils/style/colors.dart';
-
-
-import '../../otp_routes.dart';
 import '../widget/custem_button.dart';
 
 class LoginInitState extends States{

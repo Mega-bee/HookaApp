@@ -10,14 +10,16 @@ import 'package:injectable/injectable.dart';
 class AuthModule extends RoutModule {
   final loginScreen _loginScreen;
   final SignupScreen _signupScreen;
+  final PinCodeVerificationScreen _pinCodeVerificationScreen;
 
-  AuthModule(this._loginScreen,this._signupScreen) {
+  AuthModule(this._loginScreen,this._signupScreen, this._pinCodeVerificationScreen) {
     RoutModule.RoutesMap.addAll(getRoutes());
   }
   Map<String, WidgetBuilder> getRoutes() {
     return {
       AuthRoutes.LOGIN_SCREEN: (context) => _loginScreen,
       AuthRoutes.SIGNUP_SCREEN: (context) => _signupScreen,
+      AuthRoutes.OTP_SCREEN: (context) => _pinCodeVerificationScreen,
     };
   }
 }

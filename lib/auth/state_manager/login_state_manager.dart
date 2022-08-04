@@ -13,10 +13,7 @@ import 'package:hooka/auth/ui/states/login_init_state.dart';
 import 'package:hooka/home_page/home_routes.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
-
-import '../../home_page/home_module.dart';
-import '../auth_routes.dart';
-import '../response/response.dart';
+import '../response/login_response.dart';
 
 @injectable
 class LoginCubit extends Cubit<States> {

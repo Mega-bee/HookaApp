@@ -15,8 +15,6 @@ import 'package:hooka/utils/logger/logger.dart';
 import 'package:hooka/utils/service/theme_serrvice/theme_service.dart';
 import 'package:injectable/injectable.dart';
 
-import 'auth/otp_module.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +47,6 @@ class MyApp extends StatefulWidget {
   final SplashModule _splashModule;
   final AuthModule _authModule;
   final HomeModule _homeModule;
-  final OtpModule _otpModule;
 
   MyApp(
 //    this._themeDataService,
@@ -57,7 +54,6 @@ class MyApp extends StatefulWidget {
       this._authModule,
       this._splashModule,
       this._homeModule,
-      this._otpModule
   );
 
   @override

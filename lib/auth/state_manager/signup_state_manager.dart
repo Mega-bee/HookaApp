@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hooka/abstracts/states/error_state.dart';
 import 'package:hooka/abstracts/states/loading_state.dart';
 import 'package:hooka/abstracts/states/state.dart';
-import 'package:hooka/auth/otp_routes.dart';
+import 'package:hooka/auth/auth_routes.dart';
 import 'package:hooka/auth/repository/login_repository.dart';
 
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
-
-import '../../home_page/home_routes.dart';
-import '../request/confirm_otp_request.dart';
 import '../request/gen_otp_request.dart';
 import '../request/signup_request.dart';
-import '../ui/screens/otp_screen.dart';
 import '../ui/screens/signup_screen.dart';
-import '../ui/states/signup_init_state.dart';
 
 @injectable
 class SignUpCubit extends Cubit<States> {
@@ -51,7 +45,7 @@ class SignUpCubit extends Cubit<States> {
         Fluttertoast.showToast(msg: value.errorMessage);
         Navigator.pushNamed(
           screenState.context,
-          OtpRoutes.OTP_SCREEN,
+            AuthRoutes.OTP_SCREEN,
           arguments: number
         );
       }
