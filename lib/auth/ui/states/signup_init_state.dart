@@ -322,7 +322,7 @@ class SignupInitState extends States{
                                 firstname.text,
                                 confirmpass.text,
                                 lastname.text));
-                            screenState.GenerateOtpRequest(GenOtpRequest(Mobile.text));
+//                            screenState.GenerateOtpRequest(GenOtpRequest(Mobile.text));
 
                           },
                           child: Center(

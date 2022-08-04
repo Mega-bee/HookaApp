@@ -22,31 +22,33 @@ class SignUpCubit extends Cubit<States> {
 
   SignUpCubit(this._loginRepository) : super(LoadingState());
 
-  Signup(SignRequest request,SignupScreenState screenState) {
+  Signup(SignRequest request, SignupScreenState screenState) {
     emit(LoadingState());
     _loginRepository.SignUpRequest(request).then((value) {
       if (value == null) {
         emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
       } else if (value.code == 200) {
-        // Navigator.pushNamed(screenState.context, OtpRoutes.OTP_SCREEN);
+        OtpGen(GenOtpRequest(request.phonenumber), screenState , request.phonenumber ?? '');
+//         Navigator.pushNamed(screenState.context, OtpRoutes.OTP_SCREEN ,arguments: );
       }
     });
   }
-    OtpGen(GenOtpRequest request,SignupScreenState screenState) {
 
-      _loginRepository.GenerateOtpRequest(request).then((value) {
-        if (value == null) {
-          emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
-        } else if (value.code == 200) {
-          
-          Navigator.pushNamed(screenState.context, OtpRoutes.OTP_SCREEN,);
+  OtpGen(GenOtpRequest request, SignupScreenState screenState , String number) {
+    _loginRepository.GenerateOtpRequest(request).then((value) {
+      if (value == null) {
+        emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
+      } else if (value.code == 200) {
+        Navigator.pushNamed(
+          screenState.context,
+          OtpRoutes.OTP_SCREEN,
+          arguments: number
+        );
+      }
+    });
+  }
 
-
-        }
-      });
-    }
-  OtpConf(ConfOtpRequest request,PinCodeVerificationScreenState screenState) {
-
+  OtpConf(ConfOtpRequest request, PinCodeVerificationScreenState screenState) {
     _loginRepository.ConfirmOtpRequest(request).then((value) {
       if (value == null) {
         emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
@@ -55,5 +57,4 @@ class SignUpCubit extends Cubit<States> {
       }
     });
   }
-  }
-
+}
