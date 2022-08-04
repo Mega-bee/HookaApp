@@ -2,7 +2,7 @@ class SignRequest {
   String? email;
   String? phonenumber;
   String? password;
-  String? confirmpassword;
+
   String? firstname;
   String? LastName;
 
@@ -11,7 +11,6 @@ class SignRequest {
       this.password,
       this.phonenumber,
       this.firstname,
-      this.confirmpassword,
       this.LastName
 
 
@@ -22,7 +21,6 @@ class SignRequest {
     data['Email'] = email;
     data['Password'] = password;
     data['PhoneNumber'] = phonenumber;
-    data['ConfirmPassword'] = confirmpassword;
     data['FirstName'] = firstname;
     data['LastName'] = LastName;
     return data;

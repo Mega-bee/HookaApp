@@ -13,8 +13,8 @@ import '../states/otp_init_state.dart';
 
 @injectable
 class PinCodeVerificationScreen extends StatefulWidget {
-// final OtpCubit cubit ;
-final SignUpCubit cubit ;
+final OtpCubit cubit ;
+// final SignUpCubit cubit ;
 PinCodeVerificationScreen(this.cubit,);
   @override
   PinCodeVerificationScreenState createState() =>
@@ -22,6 +22,7 @@ PinCodeVerificationScreen(this.cubit,);
 }
 
 class PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
+  late AsyncSnapshot loadingSnapshot;
 bool flags = true;
   void ConfirmOtpRequest(ConfOtpRequest request){
     widget.cubit.OtpConf(request,this);
@@ -38,6 +39,15 @@ bool flags = true;
   @override
   void initState() {
     super.initState();
+    loadingSnapshot = AsyncSnapshot.nothing();
+    widget.cubit.loadingStream.listen((event) {
+      if (this.mounted) {
+        setState(() {
+          loadingSnapshot = event;
+        });
+      }
+    });
+    // widget.cubit.emit(OtpInitState(this,""));
   }
 
   @override
@@ -76,7 +86,7 @@ bool flags = true;
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: BlocBuilder<SignUpCubit, States>(
+      body: BlocBuilder<OtpCubit, States>(
         bloc: widget.cubit,
         builder: (context, state) {
           return state.getUI(context);

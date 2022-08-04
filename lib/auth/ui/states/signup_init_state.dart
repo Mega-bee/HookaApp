@@ -7,6 +7,7 @@ import 'package:hooka/auth/request/signup_request.dart';
 import 'package:hooka/auth/ui/screens/signup_screen.dart';
 
 import '../../../utils/style/colors.dart';
+import '../widget/custem_button.dart';
 import '../widget/email_field.dart';
 
 class SignupInitState extends States{
@@ -268,83 +269,110 @@ class SignupInitState extends States{
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03,
                         ),
-                        Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: mediaQueryWidth * 0.05),
-                            child: TextFormField(
-                              cursorColor: YellowColor,
-                              style: const TextStyle(fontSize: 14),
-                              obscureText: _isObscure,
-                              controller: confirmpass,
-                              // autovalidateMode:
-                              //     AutovalidateMode.onUserInteraction,
-                              decoration: InputDecoration(
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color:Colors.black)),
-                                hintText: " Confirm Password",
-                                labelText: "Confirm password",
-                                labelStyle: TextStyle(color: Colors.black),
-                                enabledBorder: const OutlineInputBorder(
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                                  borderSide: BorderSide(
-                                    width: 0,
-                                    color: Colors.black12,
-                                  ),
-                                ),
-                                filled: false,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderSide: const BorderSide(),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                              ),
-                              validator: MultiValidator([
-                                RequiredValidator(
-                                    errorText: 'Password Required *'),
-                              ]),
-                            )),
+                        // Padding(
+                        //     padding: EdgeInsets.symmetric(
+                        //         horizontal: mediaQueryWidth * 0.05),
+                        //     child: TextFormField(
+                        //       cursorColor: YellowColor,
+                        //       style: const TextStyle(fontSize: 14),
+                        //       obscureText: _isObscure,
+                        //       controller: confirmpass,
+                        //       // autovalidateMode:
+                        //       //     AutovalidateMode.onUserInteraction,
+                        //       decoration: InputDecoration(
+                        //         focusedBorder: OutlineInputBorder(
+                        //             borderSide: BorderSide(
+                        //                 color:Colors.black)),
+                        //         hintText: " Confirm Password",
+                        //         labelText: "Confirm password",
+                        //         labelStyle: TextStyle(color: Colors.black),
+                        //         enabledBorder: const OutlineInputBorder(
+                        //           borderRadius:
+                        //           BorderRadius.all(Radius.circular(10)),
+                        //           borderSide: BorderSide(
+                        //             width: 0,
+                        //             color: Colors.black12,
+                        //           ),
+                        //         ),
+                        //         filled: false,
+                        //         fillColor: Colors.white,
+                        //         border: OutlineInputBorder(
+                        //           borderSide: const BorderSide(),
+                        //           borderRadius: BorderRadius.circular(10.0),
+                        //         ),
+                        //       ),
+                        //       validator: MultiValidator([
+                        //         RequiredValidator(
+                        //             errorText: 'Password Required *'),
+                        //       ]),
+                        //     )),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03,
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            if (newpass.text.isEmpty ||newpass.text ==confirmpass.text ||
-                                email.text.isEmpty ||
-                                newpass.text.length < 6) {
-                              _formKey.currentState!.validate();
-                            }
-                            screenState.SignupRequest(SignRequest(
-                                email.text,
-                                newpass.text,
-                                Mobile.text,
-                                firstname.text,
-                                confirmpass.text,
-                                lastname.text));
-//                            screenState.GenerateOtpRequest(GenOtpRequest(Mobile.text));
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CustomButton(
+                            buttonTab: () {
+                              if (newpass.text.isEmpty ||newpass.text ==confirmpass.text ||
+                                  email.text.isEmpty ||
+                                  newpass.text.length < 6) {
+                                _formKey.currentState!.validate();
+                              }
+                              screenState.SignupRequest(SignRequest(
+                                  email.text,
+                                  newpass.text,
+                                  Mobile.text,
+                                  firstname.text,
 
-                          },
-                          child: Center(
-                            child: Text(
-                              'SIGN UP',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'Roboto-Bold'),
-                            ),
+                                  lastname.text));
+                            },
+                            loading: screenState.loadingSnapshot.connectionState ==
+                                ConnectionState.waiting,
+                            text: 'SIGN UP',
+                            bgColor: YellowColor,
+                            textColor: Colors.black,
                           ),
-                          style: ElevatedButton.styleFrom(
-                            // padding: EdgeInsets.symmetric(
-                            //     horizontal: mediaQueryWidth * 0.23,
-                            //     vertical: mediaQueryHeight * 0.018),
-                            primary: YellowColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                        )
+                        ),
+//                         Container(
+//                           width: 300,
+//                           child: ElevatedButton(
+//                             onPressed: () {
+//                               if (newpass.text.isEmpty ||newpass.text ==confirmpass.text ||
+//                                   email.text.isEmpty ||
+//                                   newpass.text.length < 6) {
+//                                 _formKey.currentState!.validate();
+//                               }
+//                               screenState.SignupRequest(SignRequest(
+//                                   email.text,
+//                                   newpass.text,
+//                                   Mobile.text,
+//                                   firstname.text,
+//                                   confirmpass.text,
+//                                   lastname.text));
+// //                            screenState.GenerateOtpRequest(GenOtpRequest(Mobile.text));
+//
+//                             },
+//                             child: Center(
+//                               child: Text(
+//                                 'SIGN UP',
+//                                 style: TextStyle(
+//                                     color: Colors.black,
+//                                     fontSize: 14,
+//                                     fontWeight: FontWeight.w500,
+//                                     fontFamily: 'Roboto-Bold'),
+//                               ),
+//                             ),
+//                             style: ElevatedButton.styleFrom(
+//                               // padding: EdgeInsets.symmetric(
+//                               //     horizontal: mediaQueryWidth * 0.23,
+//                               //     vertical: mediaQueryHeight * 0.018),
+//                               primary: YellowColor,
+//                               shape: RoundedRectangleBorder(
+//                                 borderRadius: BorderRadius.circular(10.0),
+//                               ),
+//                             ),
+//                           ),
+//                         )
                       ]),
                       SizedBox(
                         height: mediaQueryHeight * 0.04,
@@ -359,6 +387,9 @@ class SignupInitState extends States{
                             TextButton(
                               child: Text("SIGN IN",
                                   style: TextStyle(
+                                      color: Colors.black,
+                                      decoration: TextDecoration.underline,
+
                                       fontWeight: FontWeight.bold)),
                               onPressed: () => Navigator.pop(context),
                             ),

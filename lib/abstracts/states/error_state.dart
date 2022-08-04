@@ -16,25 +16,28 @@ class ErrorState extends States {
           const SizedBox(
             height: 90,
           ),
-          Center(child: Image.asset("assets/images/cerror-removebg.png",height: 250,color: Theme.of(context).primaryColor,)),
+          Center(child: Image.asset("assets/images/images-removebg-preview.png",height: 300,fit: BoxFit.cover,
+
+          )),
           const SizedBox(
             height: 10,
           ),
 
             Text(
               errorMessage,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
             ),
           const   SizedBox(
             height: 30,
           ),
           MaterialButton(
+            color: Theme.of(context).primaryColor,
               onPressed: () {
                retry();
               },
               child:const Text(
                 'Retry',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.black,),
               ),
               // color: AppColors.greenBasic,
               elevation: 5.0,
