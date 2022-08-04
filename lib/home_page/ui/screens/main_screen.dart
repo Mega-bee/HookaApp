@@ -3,6 +3,7 @@ import 'package:flutter_offline/flutter_offline.dart';
 import 'package:hooka/Hooka%20Basket/ui/screen/basket_screen.dart';
 import 'package:hooka/buddies/ui/screens/buddies.dart';
 import 'package:hooka/utils/style/colors.dart';
+import 'package:injectable/injectable.dart';
 import '../../../filter/filter.dart';
 import '../../../hooka_places/ui/screen/hooka_places.dart';
 import '../../../hooka_product/ui/screen/hooka_product.dart';
@@ -14,8 +15,8 @@ import '../../../auth/ui/screens/otp_screen.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../widget/menu_widget.dart';
 
+@injectable
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();

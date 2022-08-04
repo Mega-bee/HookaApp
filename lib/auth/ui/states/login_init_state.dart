@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooka/abstracts/states/state.dart';
+import 'package:hooka/auth/auth_routes.dart';
 import 'package:hooka/auth/request/login_request.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/widget/email_field.dart';
 import 'package:hooka/auth/ui/widget/password_field.dart';
 import 'package:hooka/utils/style/colors.dart';
 
+import '../../otp_routes.dart';
+
 class LoginInitState extends States{
   final loginScreenState _screenState;
+  String? errorMessage;
 
 
-  LoginInitState(this._screenState);
+  LoginInitState(this._screenState,this.errorMessage);
 
   final _formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final password = TextEditingController();
+
 
   @override
   Widget getUI(BuildContext context) {
@@ -159,7 +164,7 @@ return  SingleChildScrollView(
                                   password.text.length < 6) {
                                 _formKey.currentState!.validate();
                               }
-                              _screenState.loginRequest(LoginRequest(email.text, password.text));
+                              _screenState.loginRequest(LogRequest(email.text, password.text));
                               // Navigator.pushReplacement(context,
                               //     MaterialPageRoute(
                               //   builder: (context) {
@@ -187,6 +192,16 @@ return  SingleChildScrollView(
                               ),
                             ),
                           ),
+                        ),
+
+                        SizedBox(
+                          height: mediaQueryHeight * 0.02,
+                        ),
+                        errorMessage==null?
+                        Container():
+                        Text("${errorMessage}",style: TextStyle(color: Colors.red),),
+                        SizedBox(
+                          height: 30,
                         ),
                         SizedBox(
                           height: mediaQueryHeight * 0.03,
@@ -255,9 +270,13 @@ return  SingleChildScrollView(
                                 child: Text(
                                   "SIGN UP",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                    decoration: TextDecoration.underline
+                                  ),
                                 ),
                                 onPressed: () {
+                                  Navigator.pushNamed(context, AuthRoutes.SIGNUP_SCREEN);
 //                                  Navigator.push(
 //                                      context,
 //                                      CustomPageRoute(

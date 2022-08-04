@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:hooka/Hive/Hive.dart';
 import 'package:hooka/Hooka%20Basket/model/basket.dart';
 import 'package:hooka/Hooka%20Basket/ui/widget/basket_card.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';

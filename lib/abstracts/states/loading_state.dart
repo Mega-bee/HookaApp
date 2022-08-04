@@ -7,7 +7,7 @@ class LoadingState extends States {
   @override
   Widget getUI(BuildContext context) {
     return Center(
-      child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
+      child: LoadingAnimationWidget.inkDrop(color: Theme.of(context).primaryColor, size: 30)
     );
   }
 

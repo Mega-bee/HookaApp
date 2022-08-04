@@ -7,12 +7,15 @@ import 'package:hooka/auth/HiveSetUp.dart';
 import 'package:hooka/auth/auth_module.dart';
 import 'package:hooka/di/di_config.dart';
 import 'package:hooka/generated/l10n.dart';
+import 'package:hooka/home_page/home_module.dart';
 import 'package:hooka/localization_service/localizationSservice.dart';
 import 'package:hooka/splash_screen/splash_module.dart';
 import 'package:hooka/splash_screen/splash_routes.dart';
 import 'package:hooka/utils/logger/logger.dart';
 import 'package:hooka/utils/service/theme_serrvice/theme_service.dart';
 import 'package:injectable/injectable.dart';
+
+import 'auth/otp_module.dart';
 
 
 void main() async {
@@ -45,12 +48,16 @@ class MyApp extends StatefulWidget {
   final LocalizationService _localizationService;
   final SplashModule _splashModule;
   final AuthModule _authModule;
+  final HomeModule _homeModule;
+  final OtpModule _otpModule;
 
   MyApp(
 //    this._themeDataService,
     this._localizationService,
       this._authModule,
-      this._splashModule
+      this._splashModule,
+      this._homeModule,
+      this._otpModule
   );
 
   @override
@@ -70,6 +77,7 @@ class _MyAppState extends State<MyApp> {
     Map<String, WidgetBuilder> fullRoutesList,
   ) {
     return MaterialApp(
+
       debugShowCheckedModeBanner: false,
 //      theme: activeThem,
 
@@ -80,8 +88,12 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      title: 'BrandSome',
+      title: 'Hooka',
       routes: fullRoutesList,
+      theme: ThemeData(
+        primaryColor: Colors.yellow,
+
+      ),
       initialRoute: SplashRoutes.SPLASH_SCREEN,
     );
   }

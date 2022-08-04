@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hooka/Hive/Hive.dart';
 import 'package:hooka/Hooka%20Basket/model/basket.dart';
 
 class BasketCard extends StatefulWidget {
