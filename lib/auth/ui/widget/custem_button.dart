@@ -31,13 +31,16 @@ class CustomButton extends StatelessWidget {
               child: Padding(
                   padding: const EdgeInsets.all(14.0),
                   child: SizedBox(
-                    height: 30,
+                    height: 20,
+
                     child: loading
                         ? Center(
                         child: LoadingIndicator(
+
                           indicatorType:
                           Indicator.ballBeat,
-                          colors: [Colors.white],
+
+                          colors: [Colors.black],
                         ))
                         : Center(
                       child: Text(

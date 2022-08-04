@@ -22,6 +22,7 @@ PinCodeVerificationScreen(this.cubit,);
 }
 
 class PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
+  late AsyncSnapshot loadingSnapshot;
 bool flags = true;
   void ConfirmOtpRequest(ConfOtpRequest request){
     widget.cubit.OtpConf(request,this);
@@ -38,6 +39,15 @@ bool flags = true;
   @override
   void initState() {
     super.initState();
+    loadingSnapshot = AsyncSnapshot.nothing();
+    widget.cubit.loadingStream.listen((event) {
+      if (this.mounted) {
+        setState(() {
+          loadingSnapshot = event;
+        });
+      }
+    });
+    // widget.cubit.emit(OtpInitState(this,""));
   }
 
   @override

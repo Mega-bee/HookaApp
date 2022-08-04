@@ -7,6 +7,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/style/colors.dart';
 import '../screens/otp_screen.dart';
+import '../widget/custem_button.dart';
 
 
 class OtpInitState extends States{
@@ -187,67 +188,88 @@ class OtpInitState extends States{
                  ],
                ),
                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-               Container(
-                 margin:
-                 const EdgeInsets.symmetric(vertical: 16.0, horizontal: 60),
-                 child: ButtonTheme(
-                   height: 20,
-                   child: TextButton(
-                     onPressed: () {
-                       formKey.currentState!.validate();
-                       // conditions for validating
-                       if (currentText.length != 4 ||
-                           currentText !=
-                               ""
-                               // "${verifyOtpModel.Otp}"
-                                   "") {
-                         errorController!.add(ErrorAnimationType.shake); //
-                         screenState.ConfirmOtpRequest(ConfOtpRequest(otptext.text, phoneNumber));
-                         // Trigg
-
-                         // ering error shake animation
-                       //   setState(() => hasError = true);
-                       // } else {
-                       //   setState(
-                       //         () {
-                       //       hasError = false;
-                       //
-                       //       snackBar(
-                       //         "OTP Verified!!",
-                       //       );
-                       //       // Navigator.pushReplacement(
-                       //       //   context,
-                       //       //   MaterialPageRoute(
-                       //       //       builder: (context) => const ()),
-                       //       // );
-                       //     },
-                       //   );
-                       }
-                     },
-                     child: Center(
-                         child: Text(
-                           "VERIFY".toUpperCase(),
-                           style: const TextStyle(
-                               color: Colors.white,
-                               fontSize: 14,
-                               fontWeight: FontWeight.bold),
-                         )),
-                   ),
+               Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: CustomButton(
+                   buttonTab: () {
+    formKey.currentState!.validate();
+    // conditions for validating
+    if (currentText.length != 4 ||
+    currentText !=
+    ""
+    // "${verifyOtpModel.Otp}"
+    "") {
+    errorController!.add(ErrorAnimationType.shake); //
+    screenState.ConfirmOtpRequest(ConfOtpRequest(otptext.text, phoneNumber));
+                   };},
+                   loading: screenState.loadingSnapshot.connectionState ==
+                       ConnectionState.waiting,
+                   text: 'VERIFY',
+                   bgColor: YellowColor,
+                   textColor: Colors.black,
                  ),
-                 decoration: BoxDecoration(
-                     color: YellowColor,
-                     borderRadius: BorderRadius.circular(5),
-                     boxShadow: [
-                       BoxShadow(
-                           color: YellowColor,
-                           offset: const Offset(1, -1),
-                           blurRadius: 1),
-                       BoxShadow(
-                           color: YellowColor,
-                           offset: const Offset(-1, 2),
-                           blurRadius: 1)
-                     ]),
                ),
+               // Container(
+               //   margin:
+               //   const EdgeInsets.symmetric(vertical: 16.0, horizontal: 60),
+               //   child: ButtonTheme(
+               //     height: 20,
+               //     child: TextButton(
+               //       onPressed: () {
+               //         formKey.currentState!.validate();
+               //         // conditions for validating
+               //         if (currentText.length != 4 ||
+               //             currentText !=
+               //                 ""
+               //                 // "${verifyOtpModel.Otp}"
+               //                     "") {
+               //           errorController!.add(ErrorAnimationType.shake); //
+               //           screenState.ConfirmOtpRequest(ConfOtpRequest(otptext.text, phoneNumber));
+               //           // Trigg
+               //
+               //           // ering error shake animation
+               //         //   setState(() => hasError = true);
+               //         // } else {
+               //         //   setState(
+               //         //         () {
+               //         //       hasError = false;
+               //         //
+               //         //       snackBar(
+               //         //         "OTP Verified!!",
+               //         //       );
+               //         //       // Navigator.pushReplacement(
+               //         //       //   context,
+               //         //       //   MaterialPageRoute(
+               //         //       //       builder: (context) => const ()),
+               //         //       // );
+               //         //     },
+               //         //   );
+               //         }
+               //       },
+               //       child: Center(
+               //           child: Text(
+               //             "VERIFY".toUpperCase(),
+               //             style: const TextStyle(
+               //                 color: Colors.white,
+               //                 fontSize: 14,
+               //                 fontWeight: FontWeight.bold),
+               //           )),
+               //     ),
+               //   ),
+               //   decoration: BoxDecoration(
+               //       color: YellowColor,
+               //       borderRadius: BorderRadius.circular(5),
+               //       boxShadow: [
+               //         BoxShadow(
+               //             color: YellowColor,
+               //             offset: const Offset(1, -1),
+               //             blurRadius: 1),
+               //         BoxShadow(
+               //             color: YellowColor,
+               //             offset: const Offset(-1, 2),
+               //             blurRadius: 1)
+               //       ]),
+               // ),
                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                Row(
                  mainAxisAlignment: MainAxisAlignment.center,
