@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hooka/abstracts/states/state.dart';
@@ -16,6 +18,7 @@ class loginScreen extends StatefulWidget {
 }
 
 class loginScreenState extends State<loginScreen> {
+  late AsyncSnapshot loadingSnapshot;
 
   void loginRequest(LogRequest request){
     widget.cubit.login(request,this);
@@ -24,7 +27,14 @@ class loginScreenState extends State<loginScreen> {
   @override
   void initState() {
     super.initState();
-
+    loadingSnapshot = AsyncSnapshot.nothing();
+    widget.cubit.loadingStream.listen((event) {
+      if (this.mounted) {
+        setState(() {
+          loadingSnapshot = event;
+        });
+      }
+    });
     widget.cubit.emit(LoginInitState(this,""));
    }
   @override
