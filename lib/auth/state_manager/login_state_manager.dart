@@ -14,12 +14,13 @@ import 'package:injectable/injectable.dart';
 
 import '../../home_page/home_module.dart';
 import '../auth_routes.dart';
+import '../response/response.dart';
 
 @injectable
 class LoginCubit extends Cubit<States> {
   final LoginRepository _loginRepository;
-
-  LoginCubit(this._loginRepository) : super(LoadingState());
+  final AuthService _authService;
+  LoginCubit(this._loginRepository,this._authService) : super(LoadingState());
 
   login(LogRequest request,loginScreenState screenState) {
     emit(LoadingState());
@@ -27,6 +28,8 @@ class LoginCubit extends Cubit<States> {
       if (value == null) {
         emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
       } else if (value.code == 200) {
+        logInModel TT = logInModel.fromJson(value.data);
+        _authService.setToken(TT.token  ?? "");
       Navigator.pushNamed(screenState.context, HomeRoutes.HOME_SCREEN);
       }else if (value.code != 200){
         emit(LoginInitState(screenState,value.errorMessage ));

@@ -53,8 +53,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i15.SignupScreen(cubit: get<_i14.SignUpCubit>()));
   gh.factory<_i16.SplashModule>(
       () => _i16.SplashModule(get<_i9.SplashScreen>()));
-  gh.factory<_i17.LoginCubit>(
-      () => _i17.LoginCubit(get<_i12.LoginRepository>()));
+  gh.factory<_i17.LoginCubit>(() =>
+      _i17.LoginCubit(get<_i12.LoginRepository>(), get<_i5.AuthService>()));
   gh.factory<_i18.PinCodeVerificationScreen>(
       () => _i18.PinCodeVerificationScreen(get<_i14.SignUpCubit>()));
   gh.factory<_i19.loginScreen>(
