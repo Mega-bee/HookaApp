@@ -21,9 +21,9 @@ class SignupScreenState extends State<SignupScreen> {
   void SignupRequest(SignRequest request){
     widget.cubit.Signup(request,this);
   }
-  void GenerateOtpRequest(GenOtpRequest request){
-    widget.cubit.OtpGen(request,this);
-  }
+//  void GenerateOtpRequest(GenOtpRequest request){
+//    widget.cubit.OtpGen(request,this);
+//  }
 
   @override
   void initState() {

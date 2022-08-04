@@ -79,7 +79,7 @@ return  SingleChildScrollView(
               elevation: 15,
               child: SingleChildScrollView(
                 child: Column(children: [
-                  Align(
+                 const Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),

@@ -22,15 +22,13 @@ PinCodeVerificationScreen(this.cubit,);
 }
 
 class PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
-
+bool flags = true;
   void ConfirmOtpRequest(ConfOtpRequest request){
     widget.cubit.OtpConf(request,this);
   }
 
-  TextEditingController otptext = TextEditingController();
-  // ..text = "123456";
 
-  // ignore: close_sinks
+
   StreamController<ErrorAnimationType>? errorController;
 
   bool hasError = false;
@@ -39,7 +37,6 @@ class PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
 
   @override
   void initState() {
-    widget.cubit.emit(OtpInitState(otptext.text,this,""));
     super.initState();
   }
 
@@ -62,6 +59,13 @@ class PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if(flags){
+      var  args = ModalRoute.of(context)?.settings.arguments;
+      if (args != null && args is String) {
+        widget.cubit.emit(OtpInitState(args,this,''));
+      }
+      flags = false;
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
