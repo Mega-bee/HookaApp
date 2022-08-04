@@ -30,5 +30,7 @@ class LoginCubit extends Cubit<States> {
         emit(LoginInitState(screenState,value.errorMessage ));
       }
     });
+
   }
+
 }

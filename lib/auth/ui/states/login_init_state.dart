@@ -138,7 +138,7 @@ return  SingleChildScrollView(
                               alignment: Alignment.centerRight,
                               child: TextButton(
                                 child: Text("Forgot Password?",
-                                    style: TextStyle(
+                                    style: TextStyle(decoration: TextDecoration.underline,
                                         fontSize: 13,
                                         fontWeight: FontWeight.w300,
                                         color: Colors.grey)),
@@ -157,38 +157,41 @@ return  SingleChildScrollView(
                           padding: EdgeInsets.symmetric(
                             vertical: mediaQueryHeight * 0.03,
                           ),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (password.text.isEmpty ||
-                                  email.text.isEmpty ||
-                                  password.text.length < 6) {
-                                _formKey.currentState!.validate();
-                              }
-                              _screenState.loginRequest(LogRequest(email.text, password.text));
-                              // Navigator.pushReplacement(context,
-                              //     MaterialPageRoute(
-                              //   builder: (context) {
-                              //     return const PinCodeVerificationScreen();
-                              //   },
-                              // ));
-                            },
-                            child: Center(
-                              child: Text('LOGIN',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: 'Roboto-Bold'),
-                                  textAlign: TextAlign.left),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              // padding: EdgeInsets.symmetric(
-                              //     horizontal: mediaQueryWidth * 0.23,
-                              //     vertical: mediaQueryHeight * 0.018),
-                              primary: YellowColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(10.0),
+                          child: Container(
+                            width: 300,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (password.text.isEmpty ||
+                                    email.text.isEmpty ||
+                                    password.text.length < 6) {
+                                  _formKey.currentState!.validate();
+                                }
+                                _screenState.loginRequest(LogRequest(email.text, password.text));
+                                // Navigator.pushReplacement(context,
+                                //     MaterialPageRoute(
+                                //   builder: (context) {
+                                //     return const PinCodeVerificationScreen();
+                                //   },
+                                // ));
+                              },
+                              child: Center(
+                                child: Text('LOGIN',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: 'Roboto-Bold'),
+                                    textAlign: TextAlign.left),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                // padding: EdgeInsets.symmetric(
+                                //     horizontal: mediaQueryWidth * 0.23,
+                                //     vertical: mediaQueryHeight * 0.018),
+                                primary: YellowColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10.0),
+                                ),
                               ),
                             ),
                           ),

@@ -308,40 +308,43 @@ class SignupInitState extends States{
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03,
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            if (newpass.text.isEmpty ||newpass.text ==confirmpass.text ||
-                                email.text.isEmpty ||
-                                newpass.text.length < 6) {
-                              _formKey.currentState!.validate();
-                            }
-                            screenState.SignupRequest(SignRequest(
-                                email.text,
-                                newpass.text,
-                                Mobile.text,
-                                firstname.text,
-                                confirmpass.text,
-                                lastname.text));
-                            screenState.GenerateOtpRequest(GenOtpRequest(Mobile.text));
+                        Container(
+                          width: 300,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (newpass.text.isEmpty ||newpass.text ==confirmpass.text ||
+                                  email.text.isEmpty ||
+                                  newpass.text.length < 6) {
+                                _formKey.currentState!.validate();
+                              }
+                              screenState.SignupRequest(SignRequest(
+                                  email.text,
+                                  newpass.text,
+                                  Mobile.text,
+                                  firstname.text,
+                                  confirmpass.text,
+                                  lastname.text));
+                              screenState.GenerateOtpRequest(GenOtpRequest(Mobile.text));
 
-                          },
-                          child: Center(
-                            child: Text(
-                              'SIGN UP',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'Roboto-Bold'),
+                            },
+                            child: Center(
+                              child: Text(
+                                'SIGN UP',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'Roboto-Bold'),
+                              ),
                             ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            // padding: EdgeInsets.symmetric(
-                            //     horizontal: mediaQueryWidth * 0.23,
-                            //     vertical: mediaQueryHeight * 0.018),
-                            primary: YellowColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                            style: ElevatedButton.styleFrom(
+                              // padding: EdgeInsets.symmetric(
+                              //     horizontal: mediaQueryWidth * 0.23,
+                              //     vertical: mediaQueryHeight * 0.018),
+                              primary: YellowColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
                             ),
                           ),
                         )
@@ -358,7 +361,7 @@ class SignupInitState extends States{
                             ),
                             TextButton(
                               child: Text("SIGN IN",
-                                  style: TextStyle(
+                                  style: TextStyle(decoration: TextDecoration.underline,color: Colors.black,
                                       fontWeight: FontWeight.bold)),
                               onPressed: () => Navigator.pop(context),
                             ),

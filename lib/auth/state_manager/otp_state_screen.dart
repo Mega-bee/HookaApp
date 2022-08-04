@@ -20,15 +20,15 @@ class OtpCubit extends Cubit<States> {
 
   OtpCubit(this._loginRepository) : super(LoadingState());
 
-  // OtpConf(ConfOtpRequest request,PinCodeVerificationScreenState screenState) {
-  //
-  //   _loginRepository.ConfirmOtpRequest(request).then((value) {
-  //     if (value == null) {
-  //       emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
-  //     } else if (value.code == 200) {
-  //       Navigator.pushNamed(screenState.context, HomeRoutes.HOME_SCREEN);
-  //     }
-  //   });
-  // }
+  OtpConf(ConfOtpRequest request,PinCodeVerificationScreenState screenState) {
+
+    _loginRepository.ConfirmOtpRequest(request).then((value) {
+      if (value == null) {
+        emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
+      } else if (value.code == 200) {
+        Navigator.pushNamed(screenState.context, HomeRoutes.HOME_SCREEN);
+      }
+    });
+  }
 
 }
