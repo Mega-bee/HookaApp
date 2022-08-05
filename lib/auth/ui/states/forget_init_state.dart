@@ -1,306 +1,305 @@
+// import 'dart:async';
+//
 // import 'package:flutter/material.dart';
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:hooka/abstracts/states/state.dart';
-// import 'package:hooka/auth/auth_routes.dart';
-// import 'package:hooka/auth/request/login_request.dart';
-// import 'package:hooka/auth/ui/screens/login_screen.dart';
-// import 'package:hooka/auth/ui/widget/email_field.dart';
-// import 'package:hooka/auth/ui/widget/password_field.dart';
-// import 'package:hooka/utils/style/colors.dart';
+// import 'package:hooka/auth/request/confirm_otp_request.dart';
+// import 'package:pin_code_fields/pin_code_fields.dart';
+//
+// import '../../../abstracts/states/state.dart';
+// import '../../../utils/style/colors.dart';
+// import '../screens/otp_screen.dart';
+// import '../widget/custem_button.dart';
 //
 //
 // class ForgetInitState extends States{
-//   final loginScreenState _screenState;
+//   final String? phoneNumber;
+//   final String? email;
+//   final PinCodeVerificationScreenState screenState;
 //   String? errorMessage;
+//   ForgetInitState(this.email,this.phoneNumber,this.screenState,this.errorMessage);
+//   TextEditingController otptext = TextEditingController();
+//   // ..text = "123456";
+//
+//   // ignore: close_sinks
+//   StreamController<ErrorAnimationType>? errorController;
 //
 //
-//   ForgetInitState(this._screenState,this.errorMessage);
-//
-//   final _formKey = GlobalKey<FormState>();
-//   final email = TextEditingController();
-//   final password = TextEditingController();
-//
+//   bool hasError = false;
+//   String currentText = "";
+//   final formKey = GlobalKey<FormState>();
+//   // snackBar(String? message) {
+//   //   return ScaffoldMessenger.of(context).showSnackBar(
+//   //     SnackBar(
+//   //       content: Text(message!),
+//   //       duration: const Duration(seconds: 2),
+//   //     ),
+//   //   );
+//   // }
 //
 //   @override
-//   Widget getUI(BuildContext context) {
-//     var mediaQueryHeight = MediaQuery.of(context).size.height;
-//     var mediaQueryWidth = MediaQuery.of(context).size.width;
+//   Widget getUI(BuildContext context){
 //     return  SingleChildScrollView(
-//       child: Column(children: [
-//         Container(
-//           color: Colors.black,
-//           height: MediaQuery.of(context).size.height * 0.162,
-//           child: Column(
-//             children: [
-//               Align(
-//                   alignment: Alignment.topLeft,
-//                   child: Padding(
-//                     padding: const EdgeInsets.only(left: 15),
-//                     child: Text(
-//                       "Welcome",
-//                       style: TextStyle(
-//                           color: Colors.white,
-//                           fontSize: 34,
-//                           fontWeight: FontWeight.bold),
-//                     ),
-//                   )),
-//               SizedBox(
-//                 height: MediaQuery.of(context).size.height * 0.01,
-//               ),
-//               Align(
-//                 alignment: Alignment.topLeft,
-//                 child: Padding(
-//                   padding: const EdgeInsets.only(left: 15),
+//         child: GestureDetector(
+//           onTap: () {},
+//           child: SizedBox(
+//             height: MediaQuery.of(context).size.height,
+//             width: MediaQuery.of(context).size.width,
+//             child: ListView(
+//               children: <Widget>[
+//                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+//                 SizedBox(
+//                   height: MediaQuery.of(context).size.height / 5,
+//                   child: ClipRRect(
+//                     borderRadius: BorderRadius.circular(30),
+//                     child: Image.asset('assets/images/hooka_logo.png',
+//                         fit: BoxFit.cover),
+//                   ),
+//                 ),
+//                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+//                 const Padding(
+//                   padding: EdgeInsets.symmetric(vertical: 8.0),
 //                   child: Text(
-//                       "Please enter your email to \n"
-//                           "Reset your password",
-//                       style: TextStyle(color: Colors.white, fontSize: 17)),
-//                 ),
-//               ),
-//               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-//             ],
-//           ),
-//         ),
-//         Stack(children: [
-//           Container(
-//             height: MediaQuery.of(context).size.height * 0.10,
-//             color: Colors.black,
-//           ),
-//           Center(
-//             child: Container(
-//               height: MediaQuery.of(context).size.height * 0.7,
-//               width: MediaQuery.of(context).size.height * 0.42,
-//               child: SingleChildScrollView(
-//                 child: Card(
-//                   shape: RoundedRectangleBorder(
-//                     borderRadius: BorderRadius.circular(10),
+//                     'Email Address Verification',
+//                     style: TextStyle(
+//                         color: Colors.white,
+//                         fontWeight: FontWeight.bold,
+//                         fontSize: 22),
+//                     textAlign: TextAlign.center,
 //                   ),
-//                   elevation: 15,
-//                   child: SingleChildScrollView(
-//                     child: Column(children: [
-//                       Align(
-//                         alignment: Alignment.topLeft,
-//                         child: Padding(
-//                           padding: const EdgeInsets.all(20.0),
-//                           child: Text(
-//                             "Forgot Password",
-//                             style: TextStyle(
-//                               fontSize: 26,
-//                               fontWeight: FontWeight.w600,
-//                             ),
-//                             textAlign: TextAlign.left,
-//                           ),
+//                 ),
+//                 Padding(
+//                   padding:
+//                   const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),
+//                   child: RichText(
+//                     text: TextSpan(
+//                         text: "Enter the code sent to ",
+//                         children: [
+//                           TextSpan(
+//                               text: "${email}",
+//                               style: const TextStyle(
+//                                   color: Colors.red,
+//                                   fontWeight: FontWeight.bold,
+//                                   fontSize: 12)),
+//                         ],
+//                         style:
+//                         const TextStyle(color: Colors.black54, fontSize: 15)),
+//                     textAlign: TextAlign.center,
+//                   ),
+//                 ),
+//                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+//                 Form(
+//                   key: formKey,
+//                   child: Padding(
+//                       padding: const EdgeInsets.symmetric(
+//                           vertical: 18.0, horizontal: 50),
+//                       child: PinCodeTextField(
+//                         appContext: context,
+//                         pastedTextStyle: TextStyle(
+//                           color: YellowColor,
+//                           fontWeight: FontWeight.bold,
 //                         ),
-//                       ),
-//                       Align(
-//                         alignment: Alignment.topLeft,
-//                         child: Padding(
-//                           padding: EdgeInsets.only(right: 2, left: 24),
-//                           child: Container(
-//                             color: Colors.black,
-//                             height: 4,
-//                             width: 35,
-//                           ),
-//                         ),
-//                       ),
-//                       SizedBox(
-//                         height: mediaQueryHeight * 0.03,
-//                       ),
-//                       Form(
-//                         key: _formKey,
-//                         child: Column(
-//                           children: [
-//                             Padding(
-//                               padding: EdgeInsets.symmetric(
-//                                   horizontal: mediaQueryWidth * 0.05),
-//                               child: EmailField(email: email),
-//                             ),
-//                             SizedBox(
-//                               height:
-//                               MediaQuery.of(context).size.height * 0.02,
-//                             ),
-//                             // Padding(
-//                             //     padding: EdgeInsets.symmetric(
-//                             //       horizontal: mediaQueryWidth * 0.05,
-//                             //     ),
-//                             //     child: PasswordField(
-//                             //       password: password,
-//                             //     )),
-//                             SizedBox(
-//                               height:
-//                               MediaQuery.of(context).size.height * 0.01,
-//                             ),
-// //                             Padding(
-// //                               padding:
-// //                               const EdgeInsets.fromLTRB(20, 0, 15, 0),
-// //                               child: Align(
-// //                                   alignment: Alignment.centerRight,
-// //                                   child: TextButton(
-// //                                     child: Text("Forgot Password?",
-// //                                         style: TextStyle(decoration: TextDecoration.underline,
-// //                                             fontSize: 13,
-// //                                             fontWeight: FontWeight.w300,
-// //                                             color: Colors.grey)),
-// //                                     onPressed: () {
-// // //                                  Navigator.push(
-// // //                                      context,
-// // //                                      MaterialPageRoute(
-// // //                                          builder: (context) =>
-// // //                                          const PinCodeVerificationScreen(
-// // //                                            phoneNumber: "",
-// // //                                          )));
-// //                                     },
-// //                                   )),
-// //                             ),
-//                             Padding(
-//                               padding: EdgeInsets.symmetric(
-//                                 vertical: mediaQueryHeight * 0.03,
-//                               ),
-//                               child: Container(
-//                                 width: 300,
-//                                 child: ElevatedButton(
-//                                   onPressed: () {
-//                                     if (password.text.isEmpty ||
-//                                         email.text.isEmpty ||
-//                                         password.text.length < 6) {
-//                                       _formKey.currentState!.validate();
-//                                     }
-//                                     _screenState.loginRequest(LogRequest(email.text, password.text));
-//                                     // Navigator.pushReplacement(context,
-//                                     //     MaterialPageRoute(
-//                                     //   builder: (context) {
-//                                     //     return const PinCodeVerificationScreen();
-//                                     //   },
-//                                     // ));
-//                                   },
-//                                   child: Center(
-//                                     child: Text('SUBMIT',
-//                                         style: TextStyle(
-//                                             color: Colors.black,
-//                                             fontSize: 14,
-//                                             fontWeight: FontWeight.w500,
-//                                             fontFamily: 'Roboto-Bold'),
-//                                         textAlign: TextAlign.left),
-//                                   ),
-//                                   style: ElevatedButton.styleFrom(
-//                                     // padding: EdgeInsets.symmetric(
-//                                     //     horizontal: mediaQueryWidth * 0.23,
-//                                     //     vertical: mediaQueryHeight * 0.018),
-//                                     primary: YellowColor,
-//                                     shape: RoundedRectangleBorder(
-//                                       borderRadius:
-//                                       BorderRadius.circular(10.0),
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ),
-//                             ),
+//                         length: 4,
+//                         obscureText: true,
+//                         obscuringCharacter: '*',
+//                         obscuringWidget:
+//                         Image.asset("assets/images/shisha.png", width: 20),
 //
-//                             SizedBox(
-//                               height: mediaQueryHeight * 0.02,
-//                             ),
-//                             errorMessage==null?
-//                             Container():
-//                             Text("${errorMessage}",style: TextStyle(color: Colors.red),),
-//                             SizedBox(
-//                               height: 30,
-//                             ),
-//                             SizedBox(
-//                               height: mediaQueryHeight * 0.03,
-//                             ),
-//                             Center(
-//                               child: Text(
-//                                 "or login with",
-//                                 style: TextStyle(color: Colors.grey[500]),
-//                               ),
-//                             ),
-//                             SizedBox(
-//                               height: mediaQueryHeight * 0.02,
-//                             ),
-//                             // Row(
-//                             //   mainAxisAlignment: MainAxisAlignment.center,
-//                             //   children: [
-//                             //     Container(
-//                             //       height: 60,
-//                             //       width: 60,
-//                             //       child: Card(
-//                             //         elevation: 7,
-//                             //         shape: RoundedRectangleBorder(
-//                             //           borderRadius:
-//                             //           BorderRadius.circular(30.0),
-//                             //         ),
-//                             //         child: Center(
-//                             //             child: Image.asset(
-//                             //               "assets/images/1534129544.png",
-//                             //               width: 25,
-//                             //             )),
-//                             //       ),
-//                             //     ),
-//                             //     SizedBox(
-//                             //       width: mediaQueryWidth * 0.03,
-//                             //     ),
-//                             //     Container(
-//                             //       height: 60,
-//                             //       width: 60,
-//                             //       child: Card(
-//                             //         elevation: 7,
-//                             //         shape: RoundedRectangleBorder(
-//                             //           borderRadius:
-//                             //           BorderRadius.circular(30.0),
-//                             //         ),
-//                             //         child: Center(
-//                             //             child: Icon(
-//                             //               FontAwesomeIcons.facebookF,
-//                             //               size: 25,
-//                             //               color: Colors.blue[900],
-//                             //             )),
-//                             //       ),
-//                             //     ),
-//                             //   ],
-//                             // ),
-//                             SizedBox(
-//                               height: mediaQueryHeight * 0.02,
-//                             ),
-//                             Row(
-//                                 mainAxisAlignment: MainAxisAlignment.center,
-//                                 children: [
-//                                   Text(
-//                                     "Don't have an account? ",
-//                                     style: TextStyle(color: Colors.grey),
-//                                   ),
-//                                   TextButton(
-//                                     child: Text(
-//                                       "SIGN UP",
-//                                       style: TextStyle(
-//                                           fontWeight: FontWeight.bold,
-//                                           color: Colors.black,
-//                                           decoration: TextDecoration.underline
-//                                       ),
-//                                     ),
-//                                     onPressed: () {
-//                                       Navigator.pushNamed(context, AuthRoutes.SIGNUP_SCREEN);
-// //                                  Navigator.push(
-// //                                      context,
-// //                                      CustomPageRoute(
-// //                                          child: SignupScreen()));
-//                                     },
-//                                   ),
-//                                 ]),
-//                             SizedBox(
-//                               height:
-//                               MediaQuery.of(context).size.height * 0.1,
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ]),
+//                         blinkWhenObscuring: true,
+//                         animationType: AnimationType.fade,
+//                         validator: (v) {
+//                           if (v!.length < 3) {
+//                             return "I'm from validator";
+//                           } else {
+//                             return null;
+//                           }
+//                         },
+//                         pinTheme: PinTheme(
+//                             shape: PinCodeFieldShape.box,
+//                             borderRadius: BorderRadius.circular(5),
+//                             fieldHeight: 40,
+//                             fieldWidth: 60,
+//                             activeFillColor: Colors.white,
+//                             activeColor: Colors.black,
+//                             selectedColor: Colors.black,
+//                             selectedFillColor: Colors.white,
+//                             inactiveColor: YellowColor,
+//                             disabledColor: Colors.black,
+//                             inactiveFillColor: Colors.black),
+//                         cursorColor: YellowColor,
+//                         animationDuration: const Duration(milliseconds: 300),
+//                         enableActiveFill: true,
+//                         errorAnimationController: errorController,
+//                         controller: otptext,
+//                         keyboardType: TextInputType.number,
+//                         boxShadows: const [
+//                           BoxShadow(
+//                             offset: Offset(0, 1),
+//                             color: Colors.black12,
+//                             blurRadius: 10,
+//                           )
+//                         ],
+//                         onCompleted: (v) {
+//                           debugPrint("Completed");
+//                         },
+//                         // onTap: () {
+//                         //   print("Pressed");
+//                         // },
+//                         onChanged: (value) {
+//                           debugPrint(value);
+//                           // setState(() {
+//                           //   currentText = value;
+//                           // });
+//                         },
+//                         beforeTextPaste: (text) {
+//                           debugPrint("Allowing to paste $text");
+//                           //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+//                           //but you can show anything you want here, like your pop up saying wrong paste format or etc
+//                           return true;
+//                         },
+//                       )),
+//                 ),
+//                 Padding(
+//                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
+//                   child: Text(
+//                     hasError ? "*Please fill up all the cells properly" : "",
+//                     style: const TextStyle(
+//                         color: Colors.black,
+//                         fontSize: 12,
+//                         fontWeight: FontWeight.w400),
 //                   ),
 //                 ),
-//               ),
+//                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     const Text(
+//                       "Didn't receive the code? ",
+//                       style: TextStyle(color: Colors.black54, fontSize: 15),
+//                     ),
+//                     Container(
+//                         child: TextButton(
+//                           onPressed: () => {},
+//                           child: Text(
+//                             "RESEND",
+//                             style: TextStyle(
+//                                 color: YellowColor,
+//                                 fontWeight: FontWeight.bold,
+//                                 fontSize: 16),
+//                           ),
+//                         )),
+//                   ],
+//                 ),
+//                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+//                 Padding(
+//                   padding: const EdgeInsets.all(8.0),
+//                   child: CustomButton(
+//                     buttonTab: () {
+//                       formKey.currentState!.validate();
+//                       // conditions for validating
+//                       if (currentText.length != 4 ||
+//                           currentText !=
+//                               ""
+//                               // "${verifyOtpModel.Otp}"
+//                                   "") {
+//                         errorController!.add(ErrorAnimationType.shake); //
+//                         screenState.ConfirmOtpRequest(ConfOtpRequest(otptext.text, phoneNumber));
+//                       };},
+//                     loading: screenState.loadingSnapshot.connectionState ==
+//                         ConnectionState.waiting,
+//                     text: 'CONFIRM',
+//                     bgColor: YellowColor,
+//                     textColor: Colors.black,
+//                   ),
+//                 ),
+//                 // Container(
+//                 //   margin:
+//                 //   const EdgeInsets.symmetric(vertical: 16.0, horizontal: 60),
+//                 //   child: ButtonTheme(
+//                 //     height: 20,
+//                 //     child: TextButton(
+//                 //       onPressed: () {
+//                 //         formKey.currentState!.validate();
+//                 //         // conditions for validating
+//                 //         if (currentText.length != 4 ||
+//                 //             currentText !=
+//                 //                 ""
+//                 //                 // "${verifyOtpModel.Otp}"
+//                 //                     "") {
+//                 //           errorController!.add(ErrorAnimationType.shake); //
+//                 //           screenState.ConfirmOtpRequest(ConfOtpRequest(otptext.text, phoneNumber));
+//                 //           // Trigg
+//                 //
+//                 //           // ering error shake animation
+//                 //         //   setState(() => hasError = true);
+//                 //         // } else {
+//                 //         //   setState(
+//                 //         //         () {
+//                 //         //       hasError = false;
+//                 //         //
+//                 //         //       snackBar(
+//                 //         //         "OTP Verified!!",
+//                 //         //       );
+//                 //         //       // Navigator.pushReplacement(
+//                 //         //       //   context,
+//                 //         //       //   MaterialPageRoute(
+//                 //         //       //       builder: (context) => const ()),
+//                 //         //       // );
+//                 //         //     },
+//                 //         //   );
+//                 //         }
+//                 //       },
+//                 //       child: Center(
+//                 //           child: Text(
+//                 //             "VERIFY".toUpperCase(),
+//                 //             style: const TextStyle(
+//                 //                 color: Colors.white,
+//                 //                 fontSize: 14,
+//                 //                 fontWeight: FontWeight.bold),
+//                 //           )),
+//                 //     ),
+//                 //   ),
+//                 //   decoration: BoxDecoration(
+//                 //       color: YellowColor,
+//                 //       borderRadius: BorderRadius.circular(5),
+//                 //       boxShadow: [
+//                 //         BoxShadow(
+//                 //             color: YellowColor,
+//                 //             offset: const Offset(1, -1),
+//                 //             blurRadius: 1),
+//                 //         BoxShadow(
+//                 //             color: YellowColor,
+//                 //             offset: const Offset(-1, 2),
+//                 //             blurRadius: 1)
+//                 //       ]),
+//                 // ),
+//                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: <Widget>[
+//                     Flexible(
+//                         child: TextButton(
+//                           child: const Text("Clear"),
+//                           onPressed: () {
+//                             otptext.clear();
+//                           },
+//                         )),
+//                     // Flexible(
+//                     //     child: TextButton(
+//                     //   child: const Text("Set Text"),
+//                     //   onPressed: () {
+//                     //     setState(() {
+//                     //       textEditingController.text = "1234";
+//                     //     });
+//                     //   },
+//                     // )),
+//                   ],
+//                 ),
+//                 SizedBox(
+//                   height: MediaQuery.of(context).size.height * 0.2,
+//                 )
+//               ],
 //             ),
 //           ),
-//         ]),
-//       ]),
-//     );
+//         ));
 //   }
+//
 // }

@@ -6,6 +6,7 @@ import 'package:hooka/abstracts/states/error_state.dart';
 import 'package:hooka/abstracts/states/loading_state.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/repository/login_repository.dart';
+import 'package:hooka/auth/request/forget_pass_request.dart';
 import 'package:hooka/auth/request/login_request.dart';
 import 'package:hooka/auth/service/auth_service.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
@@ -32,8 +33,8 @@ class LoginCubit extends Cubit<States> {
         Fluttertoast.showToast(msg: 'Connection error');
 //        emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
       } else if (value.code == 200) {
-        logInModel TT = logInModel.fromJson(value.data);
-        _authService.setToken(TT.token  ?? "");
+        // logInModel TT = logInModel.fromJson(value.data.insideData);
+        _authService.setToken(value.data.insideData ?? "");
       Navigator.pushNamed(screenState.context, HomeRoutes.HOME_SCREEN);
       }else if (value.code != 200){
         _loadingStateSubject.add(AsyncSnapshot.nothing());
@@ -43,5 +44,21 @@ class LoginCubit extends Cubit<States> {
     });
 
   }
+  // ForgetPass(ForgRequest request, SignupScreenState screenState , String number) {
+  //   _loginRepository.GenerateOtpRequest(request).then((value) {
+  //     if (value == null) {
+  //       _loadingStateSubject.add(AsyncSnapshot.nothing());
+  //       Fluttertoast.showToast(msg: 'Connection error');
+  //     } else if (value.code == 200) {
+  //       _loadingStateSubject.add(AsyncSnapshot.nothing());
+  //       Fluttertoast.showToast(msg: value.errorMessage);
+  //       Navigator.pushNamed(
+  //           screenState.context,
+  //           AuthRoutes.OTP_SCREEN,
+  //           arguments: number
+  //       );
+  //     }
+  //   });
+  // }
 
 }

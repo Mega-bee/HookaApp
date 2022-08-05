@@ -15,6 +15,8 @@ import 'package:hooka/utils/logger/logger.dart';
 import 'package:hooka/utils/service/theme_serrvice/theme_service.dart';
 import 'package:injectable/injectable.dart';
 
+import 'hooka_places/places_module.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,6 +49,8 @@ class MyApp extends StatefulWidget {
   final SplashModule _splashModule;
   final AuthModule _authModule;
   final HomeModule _homeModule;
+  final PlacesModule _placesModule;
+
 
   MyApp(
 //    this._themeDataService,
@@ -54,6 +58,7 @@ class MyApp extends StatefulWidget {
       this._authModule,
       this._splashModule,
       this._homeModule,
+      this._placesModule
   );
 
   @override

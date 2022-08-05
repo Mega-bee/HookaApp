@@ -89,10 +89,11 @@ class _SentCardState extends State<SentCard> {
                         SizedBox(height: MediaQuery.of(context).size.height*0.02,),
 
                         InkWell(
-                          onTap: (){Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const PlacesDetails()),
-                          );},
+                          // onTap: (){Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) => const PlacesDetails()),
+                          // );
+                      // },
                           child: Container(height: 30,width: 120,
                             color: YellowColor,
                             child: Center(

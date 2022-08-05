@@ -52,13 +52,5 @@ class SignUpCubit extends Cubit<States> {
     });
   }
 
-  // OtpConf(ConfOtpRequest request, PinCodeVerificationScreenState screenState) {
-  //   _loginRepository.ConfirmOtpRequest(request).then((value) {
-  //     if (value == null) {
-  //       emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
-  //     } else if (value.code == 200) {
-  //       Navigator.pushNamed(screenState.context, HomeRoutes.HOME_SCREEN);
-  //     }
-  //   });
-  // }
+
 }

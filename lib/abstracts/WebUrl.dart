@@ -6,6 +6,8 @@ class Urls {
 
   /*--------BASE-------------------*/
   static const String BASE_ACCOUNTS = DOMAIN + '/webapi/api/Accounts/';
+  static const String BASE_Places = DOMAIN + '/webapi/api/Places/';
+
 
 
 //  /*--------Auth-------------------*/
@@ -15,6 +17,10 @@ class Urls {
    static const CONFIRM_OTP = BASE_ACCOUNTS + 'ConfirmOtp';
    static const FORGET_PASS = BASE_ACCOUNTS + 'ForgetPassword';
    // static const VERIFY_OTP = BSE_API_SETTINGS + 'VerifyOtp';
+
+//  /*--------Places-------------------*/
+  static const GETALLPLACES = BASE_Places + 'GetAllPlaces';
+  static const Details = BASE_Places + 'GetPlace/';
 
 
 

@@ -194,14 +194,10 @@ class OtpInitState extends States{
                    buttonTab: () {
     formKey.currentState!.validate();
     // conditions for validating
-    if (currentText.length != 4 ||
-    currentText !=
-    ""
-    // "${verifyOtpModel.Otp}"
-    "") {
-    errorController!.add(ErrorAnimationType.shake); //
+
+    // errorController!.add(ErrorAnimationType.shake); //
     screenState.ConfirmOtpRequest(ConfOtpRequest(otptext.text, phoneNumber));
-                   };},
+                   },
                    loading: screenState.loadingSnapshot.connectionState ==
                        ConnectionState.waiting,
                    text: 'VERIFY',

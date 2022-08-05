@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:hooka/Hooka%20Basket/ui/screen/basket_screen.dart';
 import 'package:hooka/buddies/ui/screens/buddies.dart';
+import 'package:hooka/hooka_places/places_routes.dart';
+import 'package:hooka/hooka_places/response/places_response.dart';
 import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
 import '../../../filter/filter.dart';
@@ -17,7 +19,8 @@ import '../widget/menu_widget.dart';
 
 @injectable
 class MainScreen extends StatefulWidget {
-
+  // final HookaPlacesState hookaPlacesStatee;
+  // MainScreen(this.hookaPlacesStatee)
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
@@ -106,8 +109,8 @@ class _MainScreenState extends State<MainScreen> {
                 image: ImageAsset.PLACES,
 
                 onCardTap: () {
-                  Navigator.push(
-                      context, CustomPageRoute(child: HookaPlaces()));
+                  Navigator.pushNamed(context, PlacesRoutes.Places);
+
                 },
                 text: "HOOKA PLACES"),
             HookaCard(

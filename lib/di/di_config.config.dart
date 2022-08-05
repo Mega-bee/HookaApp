@@ -7,22 +7,28 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../auth/auth_module.dart' as _i20;
+import '../auth/auth_module.dart' as _i24;
 import '../auth/HiveSetUp.dart' as _i4;
 import '../auth/repository/login_repository.dart' as _i12;
 import '../auth/service/auth_service.dart' as _i5;
-import '../auth/state_manager/login_state_manager.dart' as _i18;
+import '../auth/state_manager/login_state_manager.dart' as _i20;
 import '../auth/state_manager/otp_state_screen.dart' as _i13;
-import '../auth/state_manager/signup_state_manager.dart' as _i15;
-import '../auth/ui/screens/login_screen.dart' as _i19;
+import '../auth/state_manager/signup_state_manager.dart' as _i16;
+import '../auth/ui/screens/login_screen.dart' as _i23;
 import '../auth/ui/screens/otp_screen.dart' as _i14;
-import '../auth/ui/screens/signup_screen.dart' as _i16;
+import '../auth/ui/screens/signup_screen.dart' as _i17;
 import '../home_page/home_module.dart' as _i11;
 import '../home_page/ui/screens/main_screen.dart' as _i8;
+import '../hooka_places/places_module.dart' as _i26;
+import '../hooka_places/repository/places_repository.dart' as _i15;
+import '../hooka_places/state_manager/details_state_manager.dart' as _i19;
+import '../hooka_places/state_manager/places_state_manager.dart' as _i21;
+import '../hooka_places/ui/screen/hooka_places.dart' as _i25;
+import '../hooka_places/ui/screen/places_details.dart' as _i22;
 import '../localization_service/localizationSservice.dart' as _i6;
-import '../main.dart' as _i21;
+import '../main.dart' as _i27;
 import '../module_network/http_client/http_client.dart' as _i10;
-import '../splash_screen/splash_module.dart' as _i17;
+import '../splash_screen/splash_module.dart' as _i18;
 import '../splash_screen/ui/splash_screen.dart' as _i9;
 import '../utils/logger/logger.dart' as _i7;
 import '../utils/service/theme_serrvice/theme_service.dart'
@@ -48,22 +54,34 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i13.OtpCubit>(() => _i13.OtpCubit(get<_i12.LoginRepository>()));
   gh.factory<_i14.PinCodeVerificationScreen>(
       () => _i14.PinCodeVerificationScreen(get<_i13.OtpCubit>()));
-  gh.factory<_i15.SignUpCubit>(
-      () => _i15.SignUpCubit(get<_i12.LoginRepository>()));
-  gh.factory<_i16.SignupScreen>(
-      () => _i16.SignupScreen(cubit: get<_i15.SignUpCubit>()));
-  gh.factory<_i17.SplashModule>(
-      () => _i17.SplashModule(get<_i9.SplashScreen>()));
-  gh.factory<_i18.LoginCubit>(() =>
-      _i18.LoginCubit(get<_i12.LoginRepository>(), get<_i5.AuthService>()));
-  gh.factory<_i19.loginScreen>(
-      () => _i19.loginScreen(cubit: get<_i18.LoginCubit>()));
-  gh.factory<_i20.AuthModule>(() => _i20.AuthModule(get<_i19.loginScreen>(),
-      get<_i16.SignupScreen>(), get<_i14.PinCodeVerificationScreen>()));
-  gh.factory<_i21.MyApp>(() => _i21.MyApp(
+  gh.factory<_i15.PlacesRepository>(() =>
+      _i15.PlacesRepository(get<_i10.ApiClient>(), get<_i5.AuthService>()));
+  gh.factory<_i16.SignUpCubit>(
+      () => _i16.SignUpCubit(get<_i12.LoginRepository>()));
+  gh.factory<_i17.SignupScreen>(
+      () => _i17.SignupScreen(cubit: get<_i16.SignUpCubit>()));
+  gh.factory<_i18.SplashModule>(
+      () => _i18.SplashModule(get<_i9.SplashScreen>()));
+  gh.factory<_i19.DetailsCubit>(() =>
+      _i19.DetailsCubit(get<_i15.PlacesRepository>(), get<_i5.AuthService>()));
+  gh.factory<_i20.LoginCubit>(() =>
+      _i20.LoginCubit(get<_i12.LoginRepository>(), get<_i5.AuthService>()));
+  gh.factory<_i21.PlacesCubit>(() =>
+      _i21.PlacesCubit(get<_i15.PlacesRepository>(), get<_i5.AuthService>()));
+  gh.factory<_i22.PlacesDetails>(
+      () => _i22.PlacesDetails(get<_i19.DetailsCubit>()));
+  gh.factory<_i23.loginScreen>(
+      () => _i23.loginScreen(cubit: get<_i20.LoginCubit>()));
+  gh.factory<_i24.AuthModule>(() => _i24.AuthModule(get<_i23.loginScreen>(),
+      get<_i17.SignupScreen>(), get<_i14.PinCodeVerificationScreen>()));
+  gh.factory<_i25.HookaPlaces>(() => _i25.HookaPlaces(get<_i21.PlacesCubit>()));
+  gh.factory<_i26.PlacesModule>(() =>
+      _i26.PlacesModule(get<_i25.HookaPlaces>(), get<_i22.PlacesDetails>()));
+  gh.factory<_i27.MyApp>(() => _i27.MyApp(
       get<_i6.LocalizationService>(),
-      get<_i20.AuthModule>(),
-      get<_i17.SplashModule>(),
-      get<_i11.HomeModule>()));
+      get<_i24.AuthModule>(),
+      get<_i18.SplashModule>(),
+      get<_i11.HomeModule>(),
+      get<_i26.PlacesModule>()));
   return get;
 }
