@@ -4,6 +4,7 @@ import 'package:hooka/auth/request/gen_otp_request.dart';
 import 'package:hooka/auth/request/login_request.dart';
 import 'package:hooka/auth/request/signup_request.dart';
 import 'package:hooka/auth/service/auth_service.dart';
+import 'package:hooka/hooka_places/request/isfav_request.dart';
 import 'package:hooka/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
 
@@ -31,6 +32,18 @@ class PlacesRepository {
 
     WebServiceResponse? response = await _apiClient.get(
       Urls.Details +"$id",
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+  Future<WebServiceResponse?> IsFav(String? id,IsFavorite request) async {
+    var token =   _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.put(
+      Urls.FAVORITE + "$id",
+      request.toJson()
+      ,
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;

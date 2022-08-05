@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hooka/hooka_places/request/isfav_request.dart';
 import 'package:hooka/profile/ui/profile.dart';
 import 'package:hooka/utils/images/images.dart';
 import 'package:injectable/injectable.dart';
@@ -16,7 +17,9 @@ import '../state/details_init_state.dart';
 @injectable
 class PlacesDetails extends StatefulWidget {
   final DetailsCubit  cubit;
-  PlacesDetails(this.cubit);
+
+  PlacesDetails(this.cubit,);
+
 
 
   @override
@@ -25,6 +28,16 @@ class PlacesDetails extends StatefulWidget {
 
 class PlacesDetailsState extends State<PlacesDetails> {
   bool flags = true;
+  void refresh() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  isFav(IsFavorite request,String id){
+    widget.cubit.IsFavo(this, request,id);
+  }
+
   @override
   Widget build(BuildContext context) {
     if(flags){

@@ -21,6 +21,8 @@ class Urls {
 //  /*--------Places-------------------*/
   static const GETALLPLACES = BASE_Places + 'GetAllPlaces';
   static const Details = BASE_Places + 'GetPlace/';
+  static const FAVORITE = BASE_Places + 'ToggleFavorite/';
+
 
 
 

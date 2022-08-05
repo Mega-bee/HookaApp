@@ -7,13 +7,17 @@ import 'package:simple_animations/stateless_animation/play_animation.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/images/images.dart';
 import '../../../utils/style/colors.dart';
+import '../../request/isfav_request.dart';
 import '../../response/details_response.dart';
 import '../screen/places_details.dart';
 
 class DetailsInitState extends States {
   final PlacesDetailsState placesDetailsState;
   final DetailsRep detailsModell;
+
   DetailsInitState(this.placesDetailsState,this.detailsModell);
+
+  bool isFavvvv=false;
   @override
   Widget getUI(BuildContext context) {
     return SingleChildScrollView(
@@ -24,36 +28,63 @@ class DetailsInitState extends States {
               // delay: Duration(milliseconds: 400),
               tween: Tween(begin: 0.0, end: 250),
               builder: (context, child, value) {
-                return Container(
-                  height: value,
-                  child: Center(
-                      child:
-                      CachedNetworkImage(
-                        imageUrl: detailsModell.image.toString(),height: 600,fit: BoxFit.cover,
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(80),
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.contain,
+                return
+                  Stack(
+                    children:[
+                      Container(
+                    height: value,
+                    child: Center(
+                        child:
+                        CachedNetworkImage(
+                          imageUrl: detailsModell.image.toString(),height: 600,fit: BoxFit.cover,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(80),
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
+                          placeholder: (context, url) => Padding(
+                            padding: const EdgeInsets.all(95.0),
+                            child: LoadingIndicator(
+
+                              indicatorType:
+                              Indicator.ballBeat,
+
+
+                              colors: [Colors.black],
+                            ),),
+                          errorWidget: (context, url, error) => Icon(Icons.error),
                         ),
-                        placeholder: (context, url) => Padding(
-                          padding: const EdgeInsets.all(95.0),
-                          child: LoadingIndicator(
 
-                            indicatorType:
-                            Indicator.ballBeat,
+                    ),
+                ),
+                      Positioned(
+                          left:375,
+                          top:198,
+                          child: Card(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(color: Colors.black, width: 1),
+                                borderRadius: BorderRadius.circular(10),
+                          ),
 
+                              child: IconButton(onPressed: (){
+                                isFavvvv=!isFavvvv;
+                                placesDetailsState.refresh();
+                                placesDetailsState.isFav(
+                                    IsFavorite(isFav: isFavvvv, ),detailsModell.id.toString() );
 
-                            colors: [Colors.black],
-                          ),),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                      ),
+                              },
 
-                  ),
-                );
+                                  icon:
+                isFavvvv?
+                                  Icon(Icons.favorite,size: 35,color:Colors.red):
+                Icon(Icons.favorite_border,size: 30,))
+
+                          ))
+                  ]);
               }),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
@@ -231,7 +262,8 @@ class DetailsInitState extends States {
 
                   )
                   ,
-                  child: Padding(
+                  child:
+                  Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       height: 100,

@@ -12,6 +12,7 @@ import 'package:hooka/auth/service/auth_service.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/states/login_init_state.dart';
 import 'package:hooka/home_page/home_routes.dart';
+import 'package:hooka/hooka_places/request/isfav_request.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -46,6 +47,16 @@ class DetailsCubit extends Cubit<States> {
         DetailsRep.fromJson(value.data.insideData);
 
         emit(DetailsInitState(screenState,det));
+      }
+    });
+  }
+  IsFavo(
+      PlacesDetailsState screenState, IsFavorite request, String? id) {
+    _placesRepository.IsFav(id, request).then((value) {
+      if (value!.code == 200) {
+        request.isFav
+            ? Fluttertoast.showToast(msg: "Place added to favorites")
+            : Fluttertoast.showToast(msg: "Place removed from favorites");
       }
     });
   }
