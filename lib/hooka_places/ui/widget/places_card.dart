@@ -52,7 +52,7 @@ class _PlacesCardState extends State<PlacesCard> {
 
                           child:
                           CachedNetworkImage(
-                            imageUrl:widget.modelp!.image.toString(),
+                            imageUrl:widget.modelp!.image.toString(),height: 150,fit: BoxFit.cover,
                             imageBuilder: (context, imageProvider) => Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(80),
@@ -89,8 +89,8 @@ class _PlacesCardState extends State<PlacesCard> {
                           child: Card(color: Colors.green,child: Center(child:
 
 
-                          Neon(text: widget.modelp!.rating.toString(), color: Colors.green, fontSize: 15,font: NeonFont.Monoton,
-textStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w300),blurRadius: 15,glowingDuration: Duration(seconds: 40),
+                          Neon(text: widget.modelp!.rating.toString(), color: Colors.green, fontSize: 15,font: NeonFont.Cyberpunk,
+textStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w300),blurRadius: 15,glowingDuration: Duration(seconds: 4),
                           ),),
 elevation: 2,shadowColor: YellowColor,
                             shape: RoundedRectangleBorder(

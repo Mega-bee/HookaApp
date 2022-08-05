@@ -210,22 +210,32 @@ class DetailsInitState extends States {
         itemBuilder: (context, index) {
         return
             Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
+              padding: const EdgeInsets.only(left: 10, right: 270),
               child: Row(children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.04,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 100,
-                    width: 100,
-                    child: Card(
 
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
+                Container(
+
+                  decoration:
+                  detailsModell.favorites![index].isAvailable==true?
+                  BoxDecoration(
+          borderRadius:BorderRadius.circular(80),
+                    color:Colors.green,
+
+          ):
+                  BoxDecoration(
+                    borderRadius:BorderRadius.circular(80),
+                    color:Colors.red,
+
+                  )
+                  ,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
                       child: Center(
 
                           child:
@@ -306,7 +316,7 @@ class DetailsInitState extends States {
             height: MediaQuery.of(context).size.height * 0.02,
           ),
           Container(
-            height: 130,
+            height: 150,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
@@ -314,7 +324,7 @@ class DetailsInitState extends States {
                 itemBuilder: (context, index) {
                   return
                     Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        padding: const EdgeInsets.only(left: 10, right: 240),
                         child: Row(children: [
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.04,
@@ -322,48 +332,44 @@ class DetailsInitState extends States {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              height: 100,
-                              width: 100,
-                              child: Card(
+                              height: 130,
+                              width: 130,
+                              child: Center(
 
-                                elevation: 2,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                child: Center(
-
-                                    child:
-                                    CachedNetworkImage(
-                                      imageUrl:detailsModell.albums![index].image.toString(),fit: BoxFit.cover,
-                                      imageBuilder: (context, imageProvider) => Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(80),
-                                          image: DecorationImage(
-                                            image: imageProvider,
-                                            fit: BoxFit.contain,
-                                          ),
+                                  child:
+                                  CachedNetworkImage(
+                                    imageUrl:detailsModell.albums![index].image.toString(),height: 120,fit: BoxFit.cover,
+                                    imageBuilder: (context, imageProvider) => Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(0),
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.contain,
                                         ),
                                       ),
-                                      placeholder: (context, url) => Padding(
-                                        padding: const EdgeInsets.all(15.0),
-                                        child: LoadingIndicator(
+                                    ),
+                                    placeholder: (context, url) => Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: LoadingIndicator(
 
-                                          indicatorType:
-                                          Indicator.ballBeat,
-
-
-                                          colors: [Colors.black],
-                                        ),),
-                                      errorWidget: (context, url, error) => Icon(Icons.error),
+                                        indicatorType:
+                                        Indicator.ballBeat,
 
 
+                                        colors: [Colors.black],
+                                      ),),
+                                    errorWidget: (context, url, error) => Icon(Icons.error),
 
 
 
-                                    )),
-                              ),
+
+
+                                  )),
                             ),
                           ),]));}),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.04,
           ),
         ],
       ),
