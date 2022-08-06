@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hooka/hooka_buddies/response/buddies_response.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../../profile/ui/profile.dart';
 import '../../../utils/effect/custom_page_route.dart';
@@ -8,9 +11,9 @@ import '../../Model/BuddiesModel.dart';
 import '../screens/view_profile.dart';
 
 class BuddiesCard extends StatelessWidget {
-  final BuddiesModel buddiesModel;
+  final BuddiesResp buddiesModel;
 
-  const BuddiesCard(this.buddiesModel);
+   BuddiesCard(this.buddiesModel);
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -35,12 +38,36 @@ class BuddiesCard extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(60)),
 
-                        child: CircleAvatar(
-                          foregroundImage: AssetImage("${buddiesModel.BuddiesImage}"),
-                          radius:120,
-                          backgroundColor: Colors.red,
+                        child:
+                        CachedNetworkImage(
+                          imageUrl:buddiesModel.image.toString(),height: 120,fit: BoxFit.cover,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(80),
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+                          placeholder: (context, url) => Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: LoadingIndicator(
 
+                              indicatorType:
+                              Indicator.ballBeat,
+
+
+                              colors: [Colors.black],
+                            ),),
+                          errorWidget: (context, url, error) => Icon(Icons.error),
                         ),
+                        // CircleAvatar(
+                        //   foregroundImage: AssetImage("${buddiesModel.image}"),
+                        //   radius:120,
+                        //   backgroundColor: Colors.red,
+                        //
+                        // ),
                       ),
 
                     )),
@@ -48,7 +75,7 @@ class BuddiesCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10,top: 60,left: 20),
                     child: Card(color: YellowColor,child: Center(child: Text(
-                     " ${buddiesModel.rank}",
+                     " ${buddiesModel.rating} ",
                       style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black),)),
                       elevation: 2,shadowColor: YellowColor,
                       shape: RoundedRectangleBorder(
@@ -70,15 +97,26 @@ class BuddiesCard extends StatelessWidget {
 
                       children:[
                         SizedBox(width: MediaQuery.of(context).size.width*0.43,),
+                        buddiesModel.isAvailable==true?
                         Icon(
                           Icons.circle,
                           color: Colors.green,
                           size: 12,
-                        ),
-
-                        Text("${buddiesModel.available}",
+                        ):Icon(
+                          Icons.circle,
+    color: Colors.red,
+    size: 12,
+    ),
+                        SizedBox(width: 5,),
+                        buddiesModel.isAvailable==true?
+                        Text("Available",
                           style: TextStyle(color: Colors.grey[600],
-                              fontSize: 12, fontWeight: FontWeight.bold)),
+                              fontSize: 12, fontWeight: FontWeight.bold)):
+                        Text("Not Available",
+                            style: TextStyle(color: Colors.grey[600],
+                                fontSize: 12, fontWeight: FontWeight.bold))
+
+                        ,
                   ]),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height*0.02,),

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:hooka/Hooka%20Basket/ui/screen/basket_screen.dart';
-import 'package:hooka/buddies/ui/screens/buddies.dart';
+import 'package:hooka/hooka_buddies/buddies_routes.dart';
 import 'package:hooka/hooka_places/places_routes.dart';
 import 'package:hooka/hooka_places/response/places_response.dart';
 import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
 import '../../../filter/filter.dart';
+import '../../../hooka_buddies/ui/screens/buddies.dart';
 import '../../../hooka_places/ui/screen/hooka_places.dart';
 import '../../../hooka_product/ui/screen/hooka_product.dart';
 import 'package:hooka/home_page/ui/widget/hooka_card.dart';
@@ -116,7 +117,9 @@ class _MainScreenState extends State<MainScreen> {
             HookaCard(
                 image: ImageAsset.BUDDIES,
                 onCardTap: () {
-                  Navigator.push(context, CustomPageRoute(child: Buddies()));
+    Navigator.pushNamed(context, BuddiesRoutes.Buddies);
+
+
                 },
                 text: "HOOKA BUDDIES"),
           ]),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooka/invitations/model/received_model.dart';
-
-import '../../../buddies/ui/screens/view_profile.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
 
@@ -114,10 +112,10 @@ class _ReceivedCardState extends State<ReceivedCard> {
                             .width * 0.03,),
 
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context, CustomPageRoute(child: ViewProfile()));
-                          },
+                          // onTap: () {
+                          //   Navigator.push(
+                          //       context, CustomPageRoute(child: ViewProfile()));
+                          // },
                           child: Container(
                             color: Primarycolor,
                             height: MediaQuery

@@ -7,28 +7,32 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../auth/auth_module.dart' as _i24;
+import '../auth/auth_module.dart' as _i26;
 import '../auth/HiveSetUp.dart' as _i4;
-import '../auth/repository/login_repository.dart' as _i12;
+import '../auth/repository/login_repository.dart' as _i13;
 import '../auth/service/auth_service.dart' as _i5;
-import '../auth/state_manager/login_state_manager.dart' as _i20;
-import '../auth/state_manager/otp_state_screen.dart' as _i13;
-import '../auth/state_manager/signup_state_manager.dart' as _i16;
-import '../auth/ui/screens/login_screen.dart' as _i23;
-import '../auth/ui/screens/otp_screen.dart' as _i14;
-import '../auth/ui/screens/signup_screen.dart' as _i17;
-import '../home_page/home_module.dart' as _i11;
+import '../auth/state_manager/login_state_manager.dart' as _i22;
+import '../auth/state_manager/otp_state_screen.dart' as _i14;
+import '../auth/state_manager/signup_state_manager.dart' as _i17;
+import '../auth/ui/screens/login_screen.dart' as _i25;
+import '../auth/ui/screens/otp_screen.dart' as _i15;
+import '../auth/ui/screens/signup_screen.dart' as _i18;
+import '../home_page/home_module.dart' as _i12;
 import '../home_page/ui/screens/main_screen.dart' as _i8;
-import '../hooka_places/places_module.dart' as _i26;
-import '../hooka_places/repository/places_repository.dart' as _i15;
-import '../hooka_places/state_manager/details_state_manager.dart' as _i19;
-import '../hooka_places/state_manager/places_state_manager.dart' as _i21;
-import '../hooka_places/ui/screen/hooka_places.dart' as _i25;
-import '../hooka_places/ui/screen/places_details.dart' as _i22;
+import '../hooka_buddies/buddies_module.dart' as _i28;
+import '../hooka_buddies/repository/buddies_repository.dart' as _i11;
+import '../hooka_buddies/state_manager/Buddies_state_manager.dart' as _i20;
+import '../hooka_buddies/ui/screens/buddies.dart' as _i27;
+import '../hooka_places/places_module.dart' as _i30;
+import '../hooka_places/repository/places_repository.dart' as _i16;
+import '../hooka_places/state_manager/details_state_manager.dart' as _i21;
+import '../hooka_places/state_manager/places_state_manager.dart' as _i23;
+import '../hooka_places/ui/screen/hooka_places.dart' as _i29;
+import '../hooka_places/ui/screen/places_details.dart' as _i24;
 import '../localization_service/localizationSservice.dart' as _i6;
-import '../main.dart' as _i27;
+import '../main.dart' as _i31;
 import '../module_network/http_client/http_client.dart' as _i10;
-import '../splash_screen/splash_module.dart' as _i18;
+import '../splash_screen/splash_module.dart' as _i19;
 import '../splash_screen/ui/splash_screen.dart' as _i9;
 import '../utils/logger/logger.dart' as _i7;
 import '../utils/service/theme_serrvice/theme_service.dart'
@@ -48,40 +52,47 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i8.MainScreen>(() => _i8.MainScreen());
   gh.factory<_i9.SplashScreen>(() => _i9.SplashScreen());
   gh.factory<_i10.ApiClient>(() => _i10.ApiClient(get<_i7.Logger>()));
-  gh.factory<_i11.HomeModule>(() => _i11.HomeModule(get<_i8.MainScreen>()));
-  gh.factory<_i12.LoginRepository>(() =>
-      _i12.LoginRepository(get<_i10.ApiClient>(), get<_i5.AuthService>()));
-  gh.factory<_i13.OtpCubit>(() => _i13.OtpCubit(get<_i12.LoginRepository>()));
-  gh.factory<_i14.PinCodeVerificationScreen>(
-      () => _i14.PinCodeVerificationScreen(get<_i13.OtpCubit>()));
-  gh.factory<_i15.PlacesRepository>(() =>
-      _i15.PlacesRepository(get<_i10.ApiClient>(), get<_i5.AuthService>()));
-  gh.factory<_i16.SignUpCubit>(
-      () => _i16.SignUpCubit(get<_i12.LoginRepository>()));
-  gh.factory<_i17.SignupScreen>(
-      () => _i17.SignupScreen(cubit: get<_i16.SignUpCubit>()));
-  gh.factory<_i18.SplashModule>(
-      () => _i18.SplashModule(get<_i9.SplashScreen>()));
-  gh.factory<_i19.DetailsCubit>(() =>
-      _i19.DetailsCubit(get<_i15.PlacesRepository>(), get<_i5.AuthService>()));
-  gh.factory<_i20.LoginCubit>(() =>
-      _i20.LoginCubit(get<_i12.LoginRepository>(), get<_i5.AuthService>()));
-  gh.factory<_i21.PlacesCubit>(() =>
-      _i21.PlacesCubit(get<_i15.PlacesRepository>(), get<_i5.AuthService>()));
-  gh.factory<_i22.PlacesDetails>(
-      () => _i22.PlacesDetails(get<_i19.DetailsCubit>()));
-  gh.factory<_i23.loginScreen>(
-      () => _i23.loginScreen(cubit: get<_i20.LoginCubit>()));
-  gh.factory<_i24.AuthModule>(() => _i24.AuthModule(get<_i23.loginScreen>(),
-      get<_i17.SignupScreen>(), get<_i14.PinCodeVerificationScreen>()));
-  gh.factory<_i25.HookaPlaces>(() => _i25.HookaPlaces(get<_i21.PlacesCubit>()));
-  gh.factory<_i26.PlacesModule>(() =>
-      _i26.PlacesModule(get<_i25.HookaPlaces>(), get<_i22.PlacesDetails>()));
-  gh.factory<_i27.MyApp>(() => _i27.MyApp(
+  gh.factory<_i11.BuddiesRepository>(() =>
+      _i11.BuddiesRepository(get<_i10.ApiClient>(), get<_i5.AuthService>()));
+  gh.factory<_i12.HomeModule>(() => _i12.HomeModule(get<_i8.MainScreen>()));
+  gh.factory<_i13.LoginRepository>(() =>
+      _i13.LoginRepository(get<_i10.ApiClient>(), get<_i5.AuthService>()));
+  gh.factory<_i14.OtpCubit>(() => _i14.OtpCubit(get<_i13.LoginRepository>()));
+  gh.factory<_i15.PinCodeVerificationScreen>(
+      () => _i15.PinCodeVerificationScreen(get<_i14.OtpCubit>()));
+  gh.factory<_i16.PlacesRepository>(() =>
+      _i16.PlacesRepository(get<_i10.ApiClient>(), get<_i5.AuthService>()));
+  gh.factory<_i17.SignUpCubit>(
+      () => _i17.SignUpCubit(get<_i13.LoginRepository>()));
+  gh.factory<_i18.SignupScreen>(
+      () => _i18.SignupScreen(cubit: get<_i17.SignUpCubit>()));
+  gh.factory<_i19.SplashModule>(
+      () => _i19.SplashModule(get<_i9.SplashScreen>()));
+  gh.factory<_i20.BuddiesCubit>(() =>
+      _i20.BuddiesCubit(get<_i11.BuddiesRepository>(), get<_i5.AuthService>()));
+  gh.factory<_i21.DetailsCubit>(() =>
+      _i21.DetailsCubit(get<_i16.PlacesRepository>(), get<_i5.AuthService>()));
+  gh.factory<_i22.LoginCubit>(() =>
+      _i22.LoginCubit(get<_i13.LoginRepository>(), get<_i5.AuthService>()));
+  gh.factory<_i23.PlacesCubit>(() =>
+      _i23.PlacesCubit(get<_i16.PlacesRepository>(), get<_i5.AuthService>()));
+  gh.factory<_i24.PlacesDetails>(
+      () => _i24.PlacesDetails(get<_i21.DetailsCubit>()));
+  gh.factory<_i25.loginScreen>(
+      () => _i25.loginScreen(cubit: get<_i22.LoginCubit>()));
+  gh.factory<_i26.AuthModule>(() => _i26.AuthModule(get<_i25.loginScreen>(),
+      get<_i18.SignupScreen>(), get<_i15.PinCodeVerificationScreen>()));
+  gh.factory<_i27.Buddies>(() => _i27.Buddies(get<_i20.BuddiesCubit>()));
+  gh.factory<_i28.BuddiesModule>(() => _i28.BuddiesModule(get<_i27.Buddies>()));
+  gh.factory<_i29.HookaPlaces>(() => _i29.HookaPlaces(get<_i23.PlacesCubit>()));
+  gh.factory<_i30.PlacesModule>(() =>
+      _i30.PlacesModule(get<_i29.HookaPlaces>(), get<_i24.PlacesDetails>()));
+  gh.factory<_i31.MyApp>(() => _i31.MyApp(
       get<_i6.LocalizationService>(),
-      get<_i24.AuthModule>(),
-      get<_i18.SplashModule>(),
-      get<_i11.HomeModule>(),
-      get<_i26.PlacesModule>()));
+      get<_i26.AuthModule>(),
+      get<_i19.SplashModule>(),
+      get<_i12.HomeModule>(),
+      get<_i30.PlacesModule>(),
+      get<_i28.BuddiesModule>()));
   return get;
 }

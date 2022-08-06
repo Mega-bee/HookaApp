@@ -5,8 +5,9 @@ class Urls {
   static const String DOMAIN = 'https://hookatimes.azurewebsites.net';
 
   /*--------BASE-------------------*/
-  static const String BASE_ACCOUNTS = DOMAIN + '/webapi/api/Accounts/';
-  static const String BASE_Places = DOMAIN + '/webapi/api/Places/';
+  static const String BASE_ACCOUNTS = DOMAIN +'/webapi/api/Accounts/';
+  static const String BASE_Places = DOMAIN +'/webapi/api/Places/';
+  static const String BASE_Buddies = DOMAIN +'/webapi/api/Buddies/';
 
 
 
@@ -22,6 +23,9 @@ class Urls {
   static const GETALLPLACES = BASE_Places + 'GetAllPlaces';
   static const Details = BASE_Places + 'GetPlace/';
   static const FAVORITE = BASE_Places + 'ToggleFavorite/';
+
+  //  /*--------BUDDIES-------------------*/
+  static const BUDDIES = BASE_Buddies +'GetAllBuddies';
 
 
 

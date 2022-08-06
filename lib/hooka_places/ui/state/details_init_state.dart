@@ -230,44 +230,37 @@ class DetailsInitState extends States {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
+            height: MediaQuery.of(context).size.height * 0.01,
           ),
-      Container(
-        height: 130,
-        child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-   shrinkWrap: true,
-        itemCount:detailsModell.favorites!.length,
-        itemBuilder: (context, index) {
-        return
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 270),
-              child: Row(children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 130,width:700,
+          child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+
+   // shrinkWrap: true,
+          itemCount:detailsModell.favorites!.length,
+          itemBuilder: (context, index) {
+          return
+              Row(children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.04,
                 ),
 
-                Container(
-
-                  decoration:
+                Card(
+                  elevation:10,
+                shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(85.0),),
+                  color:Colors.black,
+                  shadowColor:
                   detailsModell.favorites![index].isAvailable==true?
-                  BoxDecoration(
-          borderRadius:BorderRadius.circular(80),
-                    color:Colors.green,
-
-          ):
-                  BoxDecoration(
-                    borderRadius:BorderRadius.circular(80),
-                    color:Colors.red,
-
-                  )
-                  ,
-                  child:
-                  Padding(
+                  Colors.green:Colors.red,
+                  child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      height: 100,
-                      width: 100,
+                      height: 80,
+                      width: 80,
                       child: Center(
 
                           child:
@@ -301,14 +294,15 @@ class DetailsInitState extends States {
                           )),
                     ),
                   ),
-                ),]));
+                ),]);
 
-        }),
+          }),
+        ),
       ),
 
 
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
+            height: MediaQuery.of(context).size.height * 0.01,
           ),
           ElevatedButton(
             onPressed: () {},
