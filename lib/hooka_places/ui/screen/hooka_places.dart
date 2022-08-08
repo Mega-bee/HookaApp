@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hooka/hooka_places/ui/widget/SearchWidgetHookahPlaces.dart';
 import 'package:hooka/hooka_places/ui/widget/places_card.dart';
+import 'package:injectable/injectable.dart';
 
+import '../../../abstracts/states/state.dart';
 import '../../../utils/style/colors.dart';
+import '../../state_manager/places_state_manager.dart';
 import '../model/places_card_model.dart';
 import '../model/places_card_model.dart';
 import '../model/places_card_model.dart';
 import '../model/places_card_model.dart';
-
+@injectable
 class HookaPlaces extends StatefulWidget {
+  final PlacesCubit  cubit;
+  HookaPlaces(this.cubit);
 
   @override
-  State<HookaPlaces> createState() => _HookaPlacesState();
+  State<HookaPlaces> createState() => HookaPlacesState();
 }
 
-class _HookaPlacesState extends State<HookaPlaces> {
+class HookaPlacesState extends State<HookaPlaces> {
   late List<PlaceModel> placesModel;
   String query = '';
 
   @override
   void initState() {
     super.initState();
-
+    widget.cubit.getPlacess(this);
     placesModel = placecard;
   }
   @override
@@ -42,42 +48,12 @@ class _HookaPlacesState extends State<HookaPlaces> {
           TextButton(onPressed: (){}, child: Text("Map",style: TextStyle(fontSize: 18),))
         ],
       ) ,
-      body:  Column(
-        children:[
-          SizedBox(height:MediaQuery.of(context).size.height*0.01 ,),
-          Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.05),
-          child: SearchWidgetHookahPlaces(
-            hintText: "Search",
-            onChanged: searchPlaces,
-            text: query,)
-        ),
-          SizedBox(height:MediaQuery.of(context).size.height*0.01 ,),
-
-          Expanded(
-            child: Card(
-
-                    child: ListView.builder(
-itemCount:placesModel.length ,
-    itemBuilder: (context, index) {
-      final PlacesList = placesModel[index];
-      return PlacesCard(modelp:PlacesList);
-
-
-    })),
-
-
-
-
-
-
-                )
-
-
-
-
-      ]),
+      body:   BlocBuilder<PlacesCubit, States>(
+        bloc: widget.cubit,
+        builder: (context, state) {
+          return state.getUI(context);
+        },
+      )
     );
   }
   void searchPlaces(String query) {

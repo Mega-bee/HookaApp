@@ -8,6 +8,7 @@ import 'package:hooka/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
 
 import '../request/confirm_otp_request.dart';
+import '../request/forget_pass_request.dart';
 
 @injectable
 class LoginRepository {
@@ -46,6 +47,15 @@ class LoginRepository {
     return response;
   }
   Future<WebServiceResponse?> ConfirmOtpRequest(ConfOtpRequest request) async {
+    var token =   _authService.getToken();
+    WebServiceResponse? response = await _apiClient.post(
+      Urls.CONFIRM_OTP ,request.toJson(),
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+  Future<WebServiceResponse?> ForgetPasswordRequest(ForgRequest request) async {
     var token =   _authService.getToken();
     WebServiceResponse? response = await _apiClient.post(
       Urls.CONFIRM_OTP ,request.toJson(),

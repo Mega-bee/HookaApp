@@ -1,12 +1,12 @@
 class GenOtpRequest {
-  String? number;
+  String? email;
 
 
-  GenOtpRequest(this.number, );
+  GenOtpRequest(this.email, );
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['phone'] = number;
+    data['email'] = email;
 
     return data;
   }

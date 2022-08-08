@@ -29,7 +29,7 @@ class SignUpCubit extends Cubit<States> {
         Fluttertoast.showToast(msg: 'Connection error');
       } else if (value.code == 200) {
 
-        OtpGen(GenOtpRequest(request.phonenumber), screenState , request.phonenumber ?? '');
+        OtpGen(GenOtpRequest(request.email), screenState , request.email ?? '');
 //         Navigator.pushNamed(screenState.context, OtpRoutes.OTP_SCREEN ,arguments: );
       }
     });
@@ -52,13 +52,5 @@ class SignUpCubit extends Cubit<States> {
     });
   }
 
-  // OtpConf(ConfOtpRequest request, PinCodeVerificationScreenState screenState) {
-  //   _loginRepository.ConfirmOtpRequest(request).then((value) {
-  //     if (value == null) {
-  //       emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
-  //     } else if (value.code == 200) {
-  //       Navigator.pushNamed(screenState.context, HomeRoutes.HOME_SCREEN);
-  //     }
-  //   });
-  // }
+
 }

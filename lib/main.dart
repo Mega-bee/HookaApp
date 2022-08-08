@@ -8,12 +8,16 @@ import 'package:hooka/auth/auth_module.dart';
 import 'package:hooka/di/di_config.dart';
 import 'package:hooka/generated/l10n.dart';
 import 'package:hooka/home_page/home_module.dart';
+import 'package:hooka/hooka_buddies/buddies_module.dart';
 import 'package:hooka/localization_service/localizationSservice.dart';
+import 'package:hooka/offers/offers_module.dart';
 import 'package:hooka/splash_screen/splash_module.dart';
 import 'package:hooka/splash_screen/splash_routes.dart';
 import 'package:hooka/utils/logger/logger.dart';
 import 'package:hooka/utils/service/theme_serrvice/theme_service.dart';
 import 'package:injectable/injectable.dart';
+
+import 'hooka_places/places_module.dart';
 
 
 void main() async {
@@ -47,6 +51,10 @@ class MyApp extends StatefulWidget {
   final SplashModule _splashModule;
   final AuthModule _authModule;
   final HomeModule _homeModule;
+  final PlacesModule _placesModule;
+  final BuddiesModule _buddiesModule;
+  final OffersModule _offersModule;
+
 
   MyApp(
 //    this._themeDataService,
@@ -54,6 +62,9 @@ class MyApp extends StatefulWidget {
       this._authModule,
       this._splashModule,
       this._homeModule,
+      this._placesModule,
+      this._buddiesModule,
+      this._offersModule
   );
 
   @override
