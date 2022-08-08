@@ -51,16 +51,7 @@ class OffersDetailsScreenState extends State<OffersDetailsScreen> {
           "Offers",
           style: TextStyle(color: Primarycolor),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.share,
-              color: Primarycolor,
-              size: 25,
-            ),
-            onPressed: () {},
-          ),
-        ],
+
       ),
       body: BlocBuilder<OffersDetailsCubit, States>(
         bloc: widget.cubit,

@@ -12,6 +12,7 @@ import '../../../abstracts/states/state.dart';
 import '../../../hooka_product/ui/screen/hooka_product.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
+import '../../request/addreview_request.dart';
 import '../../state_manager/details_state_manager.dart';
 import '../state/details_init_state.dart';
 @injectable
@@ -36,6 +37,9 @@ class PlacesDetailsState extends State<PlacesDetails> {
 
   isFav(IsFavorite request,String id){
     widget.cubit.IsFavo(this, request,id);
+  }
+  AddReviewww(AddReviewReq request,String id){
+    widget.cubit.AddReviewstate(this, request,id);
   }
 
   @override

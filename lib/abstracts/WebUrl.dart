@@ -24,6 +24,7 @@ class Urls {
   static const GETALLPLACES = BASE_Places + 'GetAllPlaces';
   static const Details = BASE_Places + 'GetPlace/';
   static const FAVORITE = BASE_Places + 'ToggleFavorite/';
+  static const ADD_REVIEW = BASE_Places + 'AddReview/';
 
   //  /*--------BUDDIES-------------------*/
   static const BUDDIES = BASE_Buddies +'GetAllBuddies';

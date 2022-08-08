@@ -18,9 +18,9 @@ class OfferInitState extends States{
    child: Padding(
      padding: const EdgeInsets.all(20.0),
      child: GridView.builder(
-         physics: NeverScrollableScrollPhysics(),
+         physics:const NeverScrollableScrollPhysics(),
          shrinkWrap: true,
-         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+         gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
              crossAxisCount: 2,
              childAspectRatio: (4 / 4),
              crossAxisSpacing: 50,

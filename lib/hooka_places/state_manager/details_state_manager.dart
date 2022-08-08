@@ -17,6 +17,7 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../repository/places_repository.dart';
+import '../request/addreview_request.dart';
 import '../response/details_response.dart';
 import '../response/places_response.dart';
 import '../ui/screen/hooka_places.dart';
@@ -57,6 +58,26 @@ class DetailsCubit extends Cubit<States> {
         request.isFav
             ? Fluttertoast.showToast(msg: "Place added to favorites")
             : Fluttertoast.showToast(msg: "Place removed from favorites");
+      }
+    });
+
+  }
+  AddReviewstate(
+      PlacesDetailsState screenState, AddReviewReq request, String? id) {
+    emit(LoadingState());
+    _placesRepository.AddRev(id,request).then((value) {
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+
+            }));
+      } else if (value.code == 200) {
+request.description.isNotEmpty?
+      Fluttertoast.showToast(msg: "Review Added Successfully"):Container();
+
+        print('review add successfully');
+
       }
     });
   }

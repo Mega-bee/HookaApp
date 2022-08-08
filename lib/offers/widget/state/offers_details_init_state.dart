@@ -31,7 +31,7 @@ class OffersDetailsInitState extends States{
       child: Column(
         children: [
           PlayAnimation<double>(
-              duration: Duration(milliseconds: 1200),
+              duration:const Duration(milliseconds: 1200),
               // delay: Duration(milliseconds: 400),
               tween: Tween(begin: 0.0, end: 250),
               builder: (context, child, value) {
@@ -50,8 +50,10 @@ class OffersDetailsInitState extends States{
                             ),
                           ),
                         ),
-                        placeholder: (context, url) => Padding(
-                          padding: const EdgeInsets.all(15.0),
+                        placeholder: (context, url) =>
+
+                            const Padding(
+                          padding:  EdgeInsets.all(15.0),
                           child: LoadingIndicator(
 
                             indicatorType:
@@ -60,7 +62,7 @@ class OffersDetailsInitState extends States{
 
                             colors: [Colors.black],
                           ),),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        errorWidget: (context, url, error) =>const Icon(Icons.error),
                       ),
                   ),
                 );
@@ -75,7 +77,7 @@ class OffersDetailsInitState extends States{
               children: [
                 Text(detailsResponse.restaurantName.toString(),
                     style:
-                    TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                    const   TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                 Container(
                   height: 30,
                   width: 70,
@@ -84,7 +86,7 @@ class OffersDetailsInitState extends States{
                       color: Colors.green,
                       child: Center(
                           child: Text(detailsResponse.rating.toString(),
-                              style: TextStyle(
+                              style:const TextStyle(
                                   fontSize:18, color: Colors.white)))),
                 ),
               ],
@@ -109,16 +111,27 @@ class OffersDetailsInitState extends States{
             padding: const EdgeInsets.only(left: 35, right: 10),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Container(
-                height: 20,
-                width: 70,
-                color: Colors.red[50],
-                child: Center(
-                  child: Text(detailsResponse.cuisine.toString(),
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.italic)),
+              child: Expanded(
+
+                child: Container(
+
+                  child: Card(
+                    color: Colors.red[100],
+                    child: SizedBox(
+                      width: 160,
+                      height: 20,
+                      child: Center(
+                        child: Text(
+                            detailsResponse.cuisine.toString(),
+
+                            style:
+                            const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: FontStyle.italic)),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -131,7 +144,7 @@ class OffersDetailsInitState extends States{
             child: Align(
               alignment: Alignment.centerLeft,
               child: Row(children: [
-                Icon(
+               const Icon(
                   FontAwesomeIcons.clock,
                   color: Colors.grey,
                   size: 15,
@@ -149,7 +162,8 @@ class OffersDetailsInitState extends States{
             height: MediaQuery.of(context).size.height * 0.02,
           ),
           Padding(
-            padding: EdgeInsets.only(right: 20, left: 20),
+            padding:
+            const EdgeInsets.only(right: 20, left: 20),
             child: Container(
               color: Colors.grey,
               height: 1,
@@ -159,8 +173,8 @@ class OffersDetailsInitState extends States{
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 35, right: 10),
+          const Padding(
+            padding:  EdgeInsets.only(left: 35, right: 10),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text("Description",
@@ -183,7 +197,7 @@ class OffersDetailsInitState extends States{
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
-          Padding(
+          const Padding(
             padding: const EdgeInsets.only(left: 35, right: 10),
             child: Align(
               alignment: Alignment.centerLeft,
@@ -204,7 +218,7 @@ class OffersDetailsInitState extends States{
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [  Column(children: [
-                    Padding(
+                    const Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text("type"),
                     ),
@@ -217,7 +231,7 @@ class OffersDetailsInitState extends States{
                     ),
                   ],),
                     Padding(
-                      padding: EdgeInsets.only(right: 2, left: 24),
+                      padding:const EdgeInsets.only(right: 2, left: 24),
                       child: Container(
                         color: Colors.black,
                         height: 50,
@@ -226,7 +240,7 @@ class OffersDetailsInitState extends States{
                     ),
 
                     Column(children: [
-                      Padding(
+                      const Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text("Discount"),
                       ),
@@ -235,7 +249,7 @@ class OffersDetailsInitState extends States{
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(detailsResponse.discount.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
+                        child: Text("${detailsResponse.discount} %",style: TextStyle(fontWeight: FontWeight.bold),),
                       ),
                     ],),
                     Padding(
@@ -247,7 +261,7 @@ class OffersDetailsInitState extends States{
                       ),
                     ),
                     Column(children: [
-                      Padding(
+                      const Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text("Expiry Date"),
                       ),
@@ -256,7 +270,7 @@ class OffersDetailsInitState extends States{
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(detailsResponse.expiryDate!.split(":").first.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
+                        child: Text(detailsResponse.expiryDate!.split("T").first.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
                       ),
                     ],),
                   ]),

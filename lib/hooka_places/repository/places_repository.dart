@@ -8,6 +8,8 @@ import 'package:hooka/hooka_places/request/isfav_request.dart';
 import 'package:hooka/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
 
+import '../request/addreview_request.dart';
+
 
 
 @injectable
@@ -42,6 +44,18 @@ class PlacesRepository {
 
     WebServiceResponse? response = await _apiClient.put(
       Urls.FAVORITE + "$id",
+      request.toJson()
+      ,
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+  Future<WebServiceResponse?> AddRev(String? id,AddReviewReq request) async {
+    var token =   _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.post(
+      Urls.ADD_REVIEW + "$id",
       request.toJson()
       ,
       headers: {'Authorization': 'Bearer ' '$token'},

@@ -5,14 +5,14 @@ class MenuWidget extends StatefulWidget {
   const MenuWidget({Key? key}) : super(key: key);
 
   @override
-  State<MenuWidget> createState() => _MenuWidgetState();
+  State<MenuWidget> createState() => MenuWidgetState();
 }
 
-class _MenuWidgetState extends State<MenuWidget> {
+class MenuWidgetState extends State<MenuWidget> {
   @override
   Widget build(BuildContext context) {
     return IconButton(onPressed: ()=>
       ZoomDrawer.of(context)!.toggle()
-    , icon:Icon( Icons.menu,color: Colors.black),);
+    , icon:const Icon( Icons.menu,color: Colors.black),);
   }
 }

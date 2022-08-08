@@ -37,8 +37,8 @@ class _OffersCardState extends State<OffersCard> {
                   ),
                 ),
               ),
-              placeholder: (context, url) => Padding(
-                padding: const EdgeInsets.all(15.0),
+              placeholder: (context, url) =>const Padding(
+                padding:  EdgeInsets.all(15.0),
                 child: LoadingIndicator(
 
                   indicatorType:
@@ -54,7 +54,7 @@ class _OffersCardState extends State<OffersCard> {
                 .of(context)
                 .size
                 .height * 0.02,),
-            Text(widget.offersResp.restaurantTitle.toString(), style: TextStyle(
+            Text(widget.offersResp.restaurantTitle.toString(), style:const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold),),
             SizedBox(height: MediaQuery
                 .of(context)
