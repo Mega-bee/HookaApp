@@ -36,44 +36,44 @@ class SignupInitState extends States{
   Widget getUI(BuildContext context) {
     var mediaQueryHeight = MediaQuery.of(context).size.height;
     var mediaQueryWidth = MediaQuery.of(context).size.width;
-    return Column(children: [
-      Container(
-        color: Colors.black,
-        height: MediaQuery.of(context).size.height * 0.18,
-        child: Column(
-          children: [
-            Align(
+    return SingleChildScrollView(
+      child: Column(children: [
+        Container(
+          color: Colors.black,
+          height: MediaQuery.of(context).size.height * 0.18,
+          child: Column(
+            children: [
+              Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Let's Get Started",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 37,
+                        fontWeight: FontWeight.bold),
+                  )),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Let's Get Started",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 37,
-                      fontWeight: FontWeight.bold),
-                )),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                  "Please enter your email and password to signup for HookaApp.",
-                  style: TextStyle(color: Colors.white, fontSize: 20)),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-          ],
+                    "Please enter your email and password to signup for HookaApp.",
+                    style: TextStyle(color: Colors.white, fontSize: 20)),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            ],
+          ),
         ),
-      ),
-      Stack(children: [
-        Container(
-          height: MediaQuery.of(context).size.height * 0.10,
-          color: Colors.black,
-        ),
-        Center(
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.68,
-            width: MediaQuery.of(context).size.height * 0.40,
-            child: SingleChildScrollView(
+        Stack(children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.10,
+            color: Colors.black,
+          ),
+          Center(
+            child: Container(
+//              height: MediaQuery.of(context).size.height * 0.68,
+              width: MediaQuery.of(context).size.height * 0.40,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -402,10 +402,10 @@ class SignupInitState extends States{
                 ),
               ),
             ),
-          ),
-        )
+          )
+        ]),
       ]),
-    ]);
+    );
   }
 
 }

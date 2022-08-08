@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 class MenuWidget extends StatefulWidget {
-  const MenuWidget({Key? key}) : super(key: key);
 
   @override
   State<MenuWidget> createState() => MenuWidgetState();

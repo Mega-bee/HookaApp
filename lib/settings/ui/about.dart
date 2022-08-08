@@ -1,10 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import '../../utils/style/colors.dart';
 
+@injectable
 class About extends StatefulWidget {
-  const About({Key? key}) : super(key: key);
+  const About() ;
 
   @override
   State<About> createState() => _AboutState();

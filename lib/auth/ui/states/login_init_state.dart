@@ -67,82 +67,81 @@ return  SingleChildScrollView(
         height: MediaQuery.of(context).size.height * 0.10,
         color: Colors.black,
       ),
-      Center(
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.7,
-          width: MediaQuery.of(context).size.height * 0.42,
-          child: SingleChildScrollView(
+      SingleChildScrollView(
+        child: Center(
+          child: Container(
+//            height: MediaQuery.of(context).size.height * 0.7,
+            width: MediaQuery.of(context).size.height * 0.42,
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
               elevation: 15,
-              child: SingleChildScrollView(
-                child: Column(children: [
-                 const Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textAlign: TextAlign.left,
+              child: Column(children: [
+               const Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w600,
                       ),
+                      textAlign: TextAlign.left,
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 2, left: 24),
-                      child: Container(
-                        color: Colors.black,
-                        height: 4,
-                        width: 35,
-                      ),
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 2, left: 24),
+                    child: Container(
+                      color: Colors.black,
+                      height: 4,
+                      width: 35,
                     ),
                   ),
-                  SizedBox(
-                    height: mediaQueryHeight * 0.03,
-                  ),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        Padding(
+                ),
+                SizedBox(
+                  height: mediaQueryHeight * 0.03,
+                ),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: mediaQueryWidth * 0.05),
+                        child: EmailField(email: email),
+                      ),
+                      SizedBox(
+                        height:
+                        MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: mediaQueryWidth * 0.05),
-                          child: EmailField(email: email),
-                        ),
-                        SizedBox(
-                          height:
-                          MediaQuery.of(context).size.height * 0.02,
-                        ),
-                        Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: mediaQueryWidth * 0.05,
-                            ),
-                            child: PasswordField(
-                              password: password,
-                            )),
-                        SizedBox(
-                          height:
-                          MediaQuery.of(context).size.height * 0.01,
-                        ),
-                        Padding(
-                          padding:
-                          const EdgeInsets.fromLTRB(20, 0, 15, 0),
-                          child: Align(
-                              alignment: Alignment.centerRight,
-                              child: TextButton(
-                                child: Text("Forgot Password?",
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w300,
-                                        color: Colors.grey)),
-                                onPressed: () {
+                            horizontal: mediaQueryWidth * 0.05,
+                          ),
+                          child: PasswordField(
+                            password: password,
+                          )),
+                      SizedBox(
+                        height:
+                        MediaQuery.of(context).size.height * 0.01,
+                      ),
+                      Padding(
+                        padding:
+                        const EdgeInsets.fromLTRB(20, 0, 15, 0),
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                              child: Text("Forgot Password?",
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.grey)),
+                              onPressed: () {
 //                                  Navigator.push(
 //                                      context,
 //                                      MaterialPageRoute(
@@ -150,9 +149,9 @@ return  SingleChildScrollView(
 //                                          const PinCodeVerificationScreen(
 //                                            phoneNumber: "",
 //                                          )));
-                                },
-                              )),
-                        ),
+                              },
+                            )),
+                      ),
 //                        Padding(
 //                          padding: EdgeInsets.symmetric(
 //                            vertical: mediaQueryHeight * 0.03,
@@ -193,124 +192,123 @@ return  SingleChildScrollView(
 //                            ),
 //                          ),
 //                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CustomButton(
-                            buttonTab: () {
-                              if (password.text.isEmpty ||
-                                  email.text.isEmpty ||
-                                  password.text.length < 6) {
-                                _formKey.currentState!.validate();
-                              }
-                              _screenState.loginRequest(LogRequest(email.text, password.text));
-                            },
-                            loading: _screenState.loadingSnapshot.connectionState ==
-                                ConnectionState.waiting,
-                            text: 'Login',
-                            bgColor: YellowColor,
-                            textColor: Colors.black,
-                          ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CustomButton(
+                          buttonTab: () {
+                            if (password.text.isEmpty ||
+                                email.text.isEmpty ||
+                                password.text.length < 6) {
+                              _formKey.currentState!.validate();
+                            }
+                            _screenState.loginRequest(LogRequest(email.text, password.text));
+                          },
+                          loading: _screenState.loadingSnapshot.connectionState ==
+                              ConnectionState.waiting,
+                          text: 'Login',
+                          bgColor: YellowColor,
+                          textColor: Colors.black,
                         ),
+                      ),
 
-                        SizedBox(
-                          height: mediaQueryHeight * 0.02,
+                      SizedBox(
+                        height: mediaQueryHeight * 0.02,
+                      ),
+                      errorMessage==null?
+                      Container():
+                      Text("${errorMessage}",style: TextStyle(color: Colors.red),),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      SizedBox(
+                        height: mediaQueryHeight * 0.03,
+                      ),
+                      Center(
+                        child: Text(
+                          "or login with",
+                          style: TextStyle(color: Colors.grey[500]),
                         ),
-                        errorMessage==null?
-                        Container():
-                        Text("${errorMessage}",style: TextStyle(color: Colors.red),),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        SizedBox(
-                          height: mediaQueryHeight * 0.03,
-                        ),
-                        Center(
-                          child: Text(
-                            "or login with",
-                            style: TextStyle(color: Colors.grey[500]),
+                      ),
+                      SizedBox(
+                        height: mediaQueryHeight * 0.02,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 60,
+                            child: Card(
+                              elevation: 7,
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(30.0),
+                              ),
+                              child: Center(
+                                  child: Image.asset(
+                                    "assets/images/1534129544.png",
+                                    width: 25,
+                                  )),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: mediaQueryHeight * 0.02,
-                        ),
-                        Row(
+                          SizedBox(
+                            width: mediaQueryWidth * 0.03,
+                          ),
+                          Container(
+                            height: 60,
+                            width: 60,
+                            child: Card(
+                              elevation: 7,
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(30.0),
+                              ),
+                              child: Center(
+                                  child: Icon(
+                                    FontAwesomeIcons.facebookF,
+                                    size: 25,
+                                    color: Colors.blue[900],
+                                  )),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: mediaQueryHeight * 0.02,
+                      ),
+                      Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              height: 60,
-                              width: 60,
-                              child: Card(
-                                elevation: 7,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(30.0),
-                                ),
-                                child: Center(
-                                    child: Image.asset(
-                                      "assets/images/1534129544.png",
-                                      width: 25,
-                                    )),
-                              ),
+                            Text(
+                              "Don't have an account? ",
+                              style: TextStyle(color: Colors.grey),
                             ),
-                            SizedBox(
-                              width: mediaQueryWidth * 0.03,
-                            ),
-                            Container(
-                              height: 60,
-                              width: 60,
-                              child: Card(
-                                elevation: 7,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(30.0),
+                            TextButton(
+                              child: Text(
+                                "SIGN UP",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                  decoration: TextDecoration.underline
                                 ),
-                                child: Center(
-                                    child: Icon(
-                                      FontAwesomeIcons.facebookF,
-                                      size: 25,
-                                      color: Colors.blue[900],
-                                    )),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: mediaQueryHeight * 0.02,
-                        ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Don't have an account? ",
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              TextButton(
-                                child: Text(
-                                  "SIGN UP",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                    decoration: TextDecoration.underline
-                                  ),
-                                ),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, AuthRoutes.SIGNUP_SCREEN);
+                              onPressed: () {
+                                Navigator.pushNamed(context, AuthRoutes.SIGNUP_SCREEN);
 //                                  Navigator.push(
 //                                      context,
 //                                      CustomPageRoute(
 //                                          child: SignupScreen()));
-                                },
-                              ),
-                            ]),
-                        SizedBox(
-                          height:
-                          MediaQuery.of(context).size.height * 0.1,
-                        ),
-                      ],
-                    ),
+                              },
+                            ),
+                          ]),
+                      SizedBox(
+                        height:
+                        MediaQuery.of(context).size.height * 0.1,
+                      ),
+                    ],
                   ),
-                ]),
-              ),
+                ),
+              ]),
             ),
           ),
         ),

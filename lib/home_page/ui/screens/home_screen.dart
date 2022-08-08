@@ -1,37 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-import 'package:hooka/Hooka%20Basket/ui/screen/basket_screen.dart';
+import 'package:hooka/home_page/ui/widget/hooka_card.dart';
+import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 import 'package:hooka/hooka_buddies/buddies_routes.dart';
 import 'package:hooka/hooka_places/places_routes.dart';
-import 'package:hooka/hooka_places/response/places_response.dart';
+import 'package:hooka/offers/offers_routes.dart';
+import 'package:hooka/utils/images/images.dart';
 import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
-import '../../../filter/filter.dart';
-import '../../../hooka_buddies/ui/screens/buddies.dart';
-import '../../../hooka_places/ui/screen/hooka_places.dart';
-import '../../../hooka_product/ui/screen/hooka_product.dart';
-import 'package:hooka/home_page/ui/widget/hooka_card.dart';
-import 'package:hooka/utils/images/images.dart';
-
-import '../../../offers/offers_routes.dart';
-import '../../../offers/widget/screen/offers.dart';
-import '../../../auth/ui/screens/otp_screen.dart';
-import '../../../utils/effect/custom_page_route.dart';
-import '../widget/menu_widget.dart';
 
 @injectable
-class MainScreen extends StatefulWidget {
-  // final HookaPlacesState hookaPlacesStatee;
-  // MainScreen(this.hookaPlacesStatee)
+class HomeScreen extends StatefulWidget {
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
           elevation: 1,
           title: Text(
@@ -42,16 +29,13 @@ class _MainScreenState extends State<MainScreen> {
           leading: MenuWidget(),
           actions: [
             IconButton(
-                onPressed: () {
-    },
+                onPressed: () {},
                 icon: Icon(
                   Icons.notifications,
                   color: Colors.black,
                 )),
             IconButton(
-                onPressed: () {
-                  Navigator.push(context, CustomPageRoute(child: BasketScreen()));
-                },
+                onPressed: () {},
                 icon: Icon(
                   Icons.shopping_cart,
                   color: Colors.black,
@@ -72,13 +56,22 @@ class _MainScreenState extends State<MainScreen> {
                         height: 20,
                         color: Colors.transparent,
                         child: Center(
-                          child:
-                          connected ?
-                              Text('Online',style: TextStyle(color: YellowColor,fontWeight: FontWeight.bold,decoration: TextDecoration.underline),):
-                              Text('Offline',style: TextStyle(color:  Color(0xFFEE4400),fontWeight: FontWeight.bold,decoration: TextDecoration.lineThrough)),),
+                          child: connected
+                              ? Text(
+                                  'Online',
+                                  style: TextStyle(
+                                      color: YellowColor,
+                                      fontWeight: FontWeight.bold,
+                                      decoration: TextDecoration.underline),
+                                )
+                              : Text('Offline',
+                                  style: TextStyle(
+                                      color: Color(0xFFEE4400),
+                                      fontWeight: FontWeight.bold,
+                                      decoration: TextDecoration.lineThrough)),
                         ),
                       ),
-
+                    ),
                   ],
                 );
               },
@@ -109,18 +102,14 @@ class _MainScreenState extends State<MainScreen> {
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             HookaCard(
                 image: ImageAsset.PLACES,
-
                 onCardTap: () {
                   Navigator.pushNamed(context, PlacesRoutes.Places);
-
                 },
                 text: "HOOKA PLACES"),
             HookaCard(
                 image: ImageAsset.BUDDIES,
                 onCardTap: () {
-    Navigator.pushNamed(context, BuddiesRoutes.Buddies);
-
-
+                  Navigator.pushNamed(context, BuddiesRoutes.Buddies);
                 },
                 text: "HOOKA BUDDIES"),
           ]),
@@ -133,14 +122,12 @@ class _MainScreenState extends State<MainScreen> {
                 text: "OFFERS"),
             HookaCard(
                 image: ImageAsset.PRODUCT,
-                onCardTap: () {
-                  Navigator.push(
-                      context, CustomPageRoute(child: HookaProduct()));
-                },
+                onCardTap: () {},
                 text: "Hooka product"),
-
           ]),
-          SizedBox(height: MediaQuery.of(context).size.height*0.2,),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.2,
+          ),
         ]),
       ),
     );

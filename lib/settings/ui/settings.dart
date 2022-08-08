@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:injectable/injectable.dart';
 import '../../utils/style/colors.dart';
 import '../../utils/style/colors.dart';
 import 'about.dart';
@@ -9,8 +10,9 @@ import 'package:rolling_switch/rolling_switch.dart';
 import '../../utils/effect/custom_page_route.dart';
 import '../../home_page/ui/widget/menu_widget.dart';
 
+@injectable
 class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings() ;
 
   @override
   State<Settings> createState() => _SettingsState();
@@ -27,6 +29,7 @@ class _SettingsState extends State<Settings> {
         elevation: 1,
         leading: MenuWidget(),
         backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
         title: Text("Settings",style: TextStyle(color: Colors.black),),
 
       ),

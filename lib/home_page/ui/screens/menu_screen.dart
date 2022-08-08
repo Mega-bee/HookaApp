@@ -4,9 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
 import '../../../utils/components/custom_alert.dart';
-import '../../../auth/ui/screens/login_screen.dart';
 import '../../../profile/ui/profile.dart';
-import 'main_screen.dart';
 
 
 class MenuItemm {
