@@ -11,10 +11,10 @@ import '../widget/custem_button.dart';
 
 
 class OtpInitState extends States{
-  final String? phoneNumber;
+  final String? email;
   final PinCodeVerificationScreenState screenState;
   String? errorMessage;
-  OtpInitState(this.phoneNumber,this.screenState,this.errorMessage);
+  OtpInitState(this.email,this.screenState,this.errorMessage);
   TextEditingController otptext = TextEditingController();
   // ..text = "123456";
 
@@ -73,7 +73,7 @@ class OtpInitState extends States{
                        text: "Enter the code sent to ",
                        children: [
                          TextSpan(
-                             text: "${phoneNumber}",
+                             text: "${email}",
                              style: const TextStyle(
                                  color: Colors.red,
                                  fontWeight: FontWeight.bold,
@@ -196,7 +196,7 @@ class OtpInitState extends States{
     // conditions for validating
 
     // errorController!.add(ErrorAnimationType.shake); //
-    screenState.ConfirmOtpRequest(ConfOtpRequest(otptext.text, phoneNumber));
+    screenState.ConfirmOtpRequest(ConfOtpRequest(otptext.text, email));
                    },
                    loading: screenState.loadingSnapshot.connectionState ==
                        ConnectionState.waiting,

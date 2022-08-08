@@ -68,6 +68,7 @@ dependencies:
   cached_network_image:
   shimmer:
   neon:
+  url_launcher:
 
 dev_dependencies:
   flutter_test:

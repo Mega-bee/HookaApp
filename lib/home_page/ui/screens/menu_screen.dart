@@ -9,22 +9,22 @@ import '../../../profile/ui/profile.dart';
 import 'main_screen.dart';
 
 
-class MenuItem {
+class MenuItemm {
   final String title;
   final IconData icon;
-  const MenuItem(this.icon, this.title);
+  const MenuItemm(this.icon, this.title);
 }
 
 class MenuItems {
-  static const MainScreen = MenuItem(Icons.home, 'MainScreen');
-  static const mycart = MenuItem(Icons.shopping_basket, 'My Cart');
-  static const myorder = MenuItem(Icons.star_border, 'My Orders');
-  static const invitations = MenuItem(Icons.calendar_today, 'Invitations');
-  static const notifications = MenuItem(Icons.notifications, 'Notifications');
-  static const contactus = MenuItem(Icons.email, 'Contact us');
-  static const settings = MenuItem(Icons.settings, 'Settings');
+  static const MainScreen = MenuItemm(Icons.home, 'MainScreen');
+  static const mycart = MenuItemm(Icons.shopping_basket, 'My Cart');
+  static const myorder = MenuItemm(Icons.star_border, 'My Orders');
+  static const invitations = MenuItemm(Icons.calendar_today, 'Invitations');
+  static const notifications = MenuItemm(Icons.notifications, 'Notifications');
+  static const contactus = MenuItemm(Icons.email, 'Contact us');
+  static const settings = MenuItemm(Icons.settings, 'Settings');
 
-  static final all = <MenuItem>[
+  static final all = <MenuItemm>[
     MainScreen,
     mycart,
     myorder,
@@ -36,8 +36,8 @@ class MenuItems {
 }
 
 class Menupage extends StatefulWidget {
-  final MenuItem currentItem;
-  final ValueChanged<MenuItem> onSelectedItem;
+  final MenuItemm currentItem;
+  final ValueChanged<MenuItemm> onSelectedItem;
   const Menupage({
     required this.currentItem,
     required this.onSelectedItem,
@@ -84,7 +84,7 @@ class _MenupageState extends State<Menupage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
-              ...MenuItems.all.map(buildMenuItems).toList(),
+              ...MenuItems.all.map(buildMenuItemms).toList(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
@@ -137,7 +137,7 @@ class _MenupageState extends State<Menupage> {
         ));
   }
 
-  Widget buildMenuItems(MenuItem item) => ListTile(
+  Widget buildMenuItemms(MenuItemm item) => ListTile(
         selectedTileColor: YellowColor,
         selected: widget.currentItem == item,
         textColor: Colors.white,

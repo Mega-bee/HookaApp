@@ -35,7 +35,7 @@ class LoginCubit extends Cubit<States> {
       } else if (value.code == 200) {
         // logInModel TT = logInModel.fromJson(value.data.insideData);
         _authService.setToken(value.data.insideData ?? "");
-      Navigator.pushNamed(screenState.context, HomeRoutes.HOME_SCREEN);
+      Navigator.pushNamedAndRemoveUntil(screenState.context, HomeRoutes.HOME_SCREEN, (route) => false);
       }else if (value.code != 200){
         _loadingStateSubject.add(AsyncSnapshot.nothing());
         Fluttertoast.showToast(msg: value.errorMessage);

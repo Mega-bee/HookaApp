@@ -8,6 +8,7 @@ class Urls {
   static const String BASE_ACCOUNTS = DOMAIN +'/webapi/api/Accounts/';
   static const String BASE_Places = DOMAIN +'/webapi/api/Places/';
   static const String BASE_Buddies = DOMAIN +'/webapi/api/Buddies/';
+  static const String BASE_Offers = DOMAIN +'/webapi/api/Offers/';
 
 
 
@@ -26,6 +27,10 @@ class Urls {
 
   //  /*--------BUDDIES-------------------*/
   static const BUDDIES = BASE_Buddies +'GetAllBuddies';
+
+  //  /*--------OFFERS-------------------*/
+  static const OFFERS = BASE_Offers +'GetAllOffers';
+  static const OFFERS_DETAILS = BASE_Offers +'GetOfferById/';
 
 
 

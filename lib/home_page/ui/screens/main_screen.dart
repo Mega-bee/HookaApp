@@ -13,7 +13,8 @@ import '../../../hooka_product/ui/screen/hooka_product.dart';
 import 'package:hooka/home_page/ui/widget/hooka_card.dart';
 import 'package:hooka/utils/images/images.dart';
 
-import '../../../offers/widget/ui/offers.dart';
+import '../../../offers/offers_routes.dart';
+import '../../../offers/widget/screen/offers.dart';
 import '../../../auth/ui/screens/otp_screen.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../widget/menu_widget.dart';
@@ -127,7 +128,7 @@ class _MainScreenState extends State<MainScreen> {
             HookaCard(
                 image: ImageAsset.OFFER,
                 onCardTap: () {
-                  Navigator.push(context, CustomPageRoute(child: Offers()));
+                  Navigator.pushNamed(context, OffersRoutes.Offers);
                 },
                 text: "OFFERS"),
             HookaCard(

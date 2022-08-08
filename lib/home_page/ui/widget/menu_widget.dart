@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:injectable/injectable.dart';
+
 class MenuWidget extends StatefulWidget {
   const MenuWidget({Key? key}) : super(key: key);
 

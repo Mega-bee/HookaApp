@@ -10,6 +10,7 @@ import 'package:hooka/generated/l10n.dart';
 import 'package:hooka/home_page/home_module.dart';
 import 'package:hooka/hooka_buddies/buddies_module.dart';
 import 'package:hooka/localization_service/localizationSservice.dart';
+import 'package:hooka/offers/offers_module.dart';
 import 'package:hooka/splash_screen/splash_module.dart';
 import 'package:hooka/splash_screen/splash_routes.dart';
 import 'package:hooka/utils/logger/logger.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatefulWidget {
   final HomeModule _homeModule;
   final PlacesModule _placesModule;
   final BuddiesModule _buddiesModule;
+  final OffersModule _offersModule;
 
 
   MyApp(
@@ -61,7 +63,8 @@ class MyApp extends StatefulWidget {
       this._splashModule,
       this._homeModule,
       this._placesModule,
-      this._buddiesModule
+      this._buddiesModule,
+      this._offersModule
   );
 
   @override
