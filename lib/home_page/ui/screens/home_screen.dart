@@ -131,6 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "Hooka product"),
           ]),
           SizedBox(
+
             height: MediaQuery.of(context).size.height * 0.2,
           ),
         ]),
