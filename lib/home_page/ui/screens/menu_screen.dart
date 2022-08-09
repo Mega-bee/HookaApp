@@ -141,6 +141,8 @@ class _MenupageState extends State<Menupage> {
         textColor: Colors.white,
         iconColor: YellowColor,
         minLeadingWidth: 20,
+
+        selectedColor: Colors.black,
         leading: Icon(item.icon),
         title: Text(item.title),
         onTap: () {

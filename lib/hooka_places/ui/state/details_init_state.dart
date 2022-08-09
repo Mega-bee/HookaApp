@@ -20,7 +20,7 @@ class DetailsInitState extends States {
 
   DetailsInitState(this.placesDetailsState,this.detailsModell);
 
-  bool isFavvvv=false;
+  bool isFavvvv=true;
   @override
 
   Widget getUI(BuildContext context) {
@@ -85,7 +85,7 @@ class DetailsInitState extends States {
 
                                   icon:
 
-                isFavvvv?
+                                  isFavvvv==detailsModell.isFavorite?
                                   Icon(Icons.favorite,size: 35,color:Colors.red):
                 Icon(Icons.favorite_border,size: 30,))
 

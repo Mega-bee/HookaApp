@@ -9,6 +9,7 @@ class Urls {
   static const String BASE_Places = DOMAIN +'/webapi/api/Places/';
   static const String BASE_Buddies = DOMAIN +'/webapi/api/Buddies/';
   static const String BASE_Offers = DOMAIN +'/webapi/api/Offers/';
+  static const String BASE_Invitations = DOMAIN +'/webapi/api/Invitations/';
 
 
 
@@ -18,7 +19,8 @@ class Urls {
    static const GENERATE_OTP = BASE_ACCOUNTS + 'GenerateOtp';
    static const CONFIRM_OTP = BASE_ACCOUNTS + 'ConfirmOtp';
    static const FORGET_PASS = BASE_ACCOUNTS + 'ForgetPassword';
-   // static const VERIFY_OTP = BSE_API_SETTINGS + 'VerifyOtp';
+
+
 
 //  /*--------Places-------------------*/
   static const GETALLPLACES = BASE_Places + 'GetAllPlaces';
@@ -32,6 +34,12 @@ class Urls {
   //  /*--------OFFERS-------------------*/
   static const OFFERS = BASE_Offers +'GetAllOffers';
   static const OFFERS_DETAILS = BASE_Offers +'GetOfferById/';
+
+//  /*--------INVITATIONS-------------------*/
+  static const RECEIVED_INVITATIONS = BASE_Invitations +'GetRecievedInvitations';
+  static const SENT_INVITATIONS = BASE_Invitations +'GetSentInvitations';
+
+
 
 
 

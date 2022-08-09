@@ -37,6 +37,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
         ),
       ),
       showShadow: true,
+      
       drawerShadowsBackgroundColor: Colors.black,
     );
 

@@ -8,6 +8,7 @@ class DetailsRep {
   String? openingFrom;
   String? openingTo;
   String? description;
+  bool? isFavorite;
   List<Favorites>? favorites;
   List<Albums>? albums;
   List<Menus>? menus;
@@ -26,6 +27,7 @@ class DetailsRep {
         this.favorites,
         this.albums,
         this.menus,
+        this.isFavorite,
         this.reviews});
 
   DetailsRep.fromJson(Map<String, dynamic> json) {
@@ -33,6 +35,7 @@ class DetailsRep {
     name = json['name'];
     image = json['image'];
     rating = json['rating'];
+    isFavorite = json['isFavorite'];
     location = json['location'];
     cuisine = json['cuisine'];
     openingFrom = json['openingFrom'];
@@ -70,6 +73,7 @@ class DetailsRep {
     data['name'] = this.name;
     data['image'] = this.image;
     data['rating'] = this.rating;
+    data['isFavorite'] = this.isFavorite;
     data['location'] = this.location;
     data['cuisine'] = this.cuisine;
     data['openingFrom'] = this.openingFrom;
