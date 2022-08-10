@@ -20,27 +20,7 @@ class BasketScreen extends StatefulWidget {
 
 class _BasketScreenState extends State<BasketScreen> {
   List<BasketModel> basketmodel=[
-    // BasketModel(
-    //   id: 1,
-    //   increment: 0,
-    //   incprice: Product().getPrice() ,
-    //   bcp: 0,
-    //   image: Product().getImage(),
-    // ),
-    // BasketModel(
-    //   id: 2,
-    //   increment: 0,
-    //   incprice: Product().getPrice(),
-    //   bcp: 0,
-    //   image: Product().getImage(),
-    // ),
-    // BasketModel(
-    //   id: 3,
-    //   increment: 0,
-    //   incprice: Product().getPrice(),
-    //   bcp: 0,
-    //   image: Product().getImage(),
-    // ),
+
 
   ];
   num Total1 =0;

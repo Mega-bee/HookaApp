@@ -7,8 +7,11 @@ import 'package:hooka/auth/service/auth_service.dart';
 import 'package:injectable/injectable.dart';
 import '../repository/buddies_repository.dart';
 import '../response/buddies_response.dart';
+import '../response/invitation_options_response.dart';
 import '../ui/screens/buddies.dart';
+import '../ui/screens/invite.dart';
 import '../ui/state/buddies_init_state.dart';
+import '../ui/state/invite_init_state.dart';
 
 
 @injectable
@@ -34,7 +37,26 @@ class BuddiesCubit extends Cubit<States> {
         for (var item in value.data.insideData) {
           b.add(BuddiesResp.fromJson(item));
         }
-        emit(BuddiesInitState(screenState,  b));
+        emit(BuddiesInitState(screenState,  b,));
+      }
+    });
+  }
+  getOptionInv(InviteBuddiesState screenState) {
+
+    emit(LoadingState());
+    _buddiesRep.getInvOptions().then((value) {
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+              getOptionInv(screenState);
+            }));
+      } else if (value.code == 200) {
+        List<InvitationOptionsResponse> b = [];
+        for (var item in value.data.insideData) {
+          b.add(InvitationOptionsResponse.fromJson(item));
+        }
+        emit(InviteInitState(screenState,  b));
       }
     });
   }

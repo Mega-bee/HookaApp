@@ -4,6 +4,7 @@ import 'package:hooka/home_page/ui/widget/hooka_card.dart';
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 import 'package:hooka/hooka_buddies/buddies_routes.dart';
 import 'package:hooka/hooka_places/places_routes.dart';
+import 'package:hooka/hooka_product/product_routes.dart';
 import 'package:hooka/hooka_product/ui/screen/hooka_product.dart';
 import 'package:hooka/offers/offers_routes.dart';
 import 'package:hooka/utils/images/images.dart';
@@ -124,9 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
             HookaCard(
                 image: ImageAsset.PRODUCT,
                 onCardTap: () {
-                  Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const HookaProduct()));
+                  Navigator.pushNamed(context, ProductsRoutes.Product);
                 },
                 text: "Hooka product"),
           ]),

@@ -19,6 +19,7 @@ import 'package:hooka/utils/service/theme_serrvice/theme_service.dart';
 import 'package:injectable/injectable.dart';
 
 import 'hooka_places/places_module.dart';
+import 'hooka_product/product_module.dart';
 
 
 void main() async {
@@ -56,6 +57,7 @@ class MyApp extends StatefulWidget {
   final BuddiesModule _buddiesModule;
   final OffersModule _offersModule;
   final SettingModule _settingModule;
+  final ProductModule _productModule;
 
 
   MyApp(
@@ -67,7 +69,8 @@ class MyApp extends StatefulWidget {
       this._placesModule,
       this._buddiesModule,
       this._offersModule,
-      this._settingModule
+      this._settingModule,
+      this._productModule
   );
 
   @override
