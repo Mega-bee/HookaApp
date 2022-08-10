@@ -7,31 +7,32 @@ import 'package:injectable/injectable.dart';
 
 
 @injectable
-class BuddiesRepository {
+class InvitationsRepository {
   final ApiClient _apiClient;
   final AuthService _authService;
 
-  BuddiesRepository(this._apiClient, this._authService);
+  InvitationsRepository(this._apiClient,this._authService);
 
-  Future<WebServiceResponse?> getBuddiessss() async {
+  Future<WebServiceResponse?> getRecevedInvitation() async {
     var token = _authService.getToken();
 
     WebServiceResponse? response = await _apiClient.get(
-      Urls.BUDDIES,
+      Urls.RECEIVED_INVITATIONS,
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
   }
-  Future<WebServiceResponse?> getInvOptions() async {
+  Future<WebServiceResponse?> getSentInvitation() async {
     var token = _authService.getToken();
 
     WebServiceResponse? response = await _apiClient.get(
-      Urls.OTIONS_INVITATIONS,
+      Urls.SENT_INVITATIONS,
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
   }
+
 
 }

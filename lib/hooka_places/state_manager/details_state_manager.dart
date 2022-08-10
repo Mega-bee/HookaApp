@@ -73,8 +73,9 @@ class DetailsCubit extends Cubit<States> {
 
             }));
       } else if (value.code == 200) {
-request.description.isNotEmpty?
-      Fluttertoast.showToast(msg: "Review Added Successfully"):Container();
+        getDetails(screenState, id??"-1");
+
+      Fluttertoast.showToast(msg: "Review Added Successfully");
 
         print('review add successfully');
 

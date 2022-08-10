@@ -4,7 +4,6 @@ import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 import 'package:hooka/my_orders/ui/Widget/OrderWidget.dart';
 import 'package:hooka/utils/style/colors.dart';
 
-import '../../../hooka_product/ui/Model/HookaAccessorieModel.dart';
 
 class MyOrders extends StatefulWidget {
   const MyOrders({Key? key}) : super(key: key);

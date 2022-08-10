@@ -8,6 +8,8 @@ import '../../../profile/ui/profile.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
 import '../../Model/BuddiesModel.dart';
+import '../../buddies_routes.dart';
+import '../screens/invite.dart';
 import '../screens/view_profile.dart';
 
 class BuddiesCard extends StatelessWidget {
@@ -132,11 +134,17 @@ class BuddiesCard extends StatelessWidget {
                    Row(
                      mainAxisAlignment: MainAxisAlignment.center,
                      children: [
-                       Container(
-                         color:YellowColor,
-                         height: MediaQuery.of(context).size.height*0.03,
-                         width: MediaQuery.of(context).size.width*0.25,
-                         child: Center(child: Text("invite")),
+                       InkWell(
+                         onTap: (){
+                           Navigator.pushNamed(context, BuddiesRoutes.InvitOp,);
+
+                         },
+                         child: Container(
+                           color:YellowColor,
+                           height: MediaQuery.of(context).size.height*0.03,
+                           width: MediaQuery.of(context).size.width*0.25,
+                           child: Center(child: Text("invite")),
+                         ),
                        ),
                        SizedBox(width: MediaQuery.of(context).size.width*0.03,),
 

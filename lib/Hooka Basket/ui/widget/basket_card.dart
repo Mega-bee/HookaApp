@@ -57,7 +57,8 @@ class _BasketCardState extends State<BasketCard> {
                 //       widget.basketm.bcp.toInt()
                 //   );
                 },
-                child: Card(
+                child:
+                Card(
                     color: Colors.grey[200],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),

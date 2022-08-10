@@ -95,7 +95,7 @@ class CustomReviewDialog extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              continueBtn(review.text,rate.text);
+              continueBtn(int.parse(rate.text),review.text);
 
             },
             child: const Text("Save review",style: TextStyle(color: Colors.black),),

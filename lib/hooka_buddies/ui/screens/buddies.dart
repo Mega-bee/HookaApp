@@ -19,6 +19,11 @@ Buddies(this.cubit);
 }
 
 class BuddiesState extends State<Buddies> {
+  void refresh() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
   late List<BuddiesResp> buddiesModel;
   String query = '';
 

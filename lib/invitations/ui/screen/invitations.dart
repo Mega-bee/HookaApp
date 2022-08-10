@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
-import 'package:hooka/invitations/ui/widget/received_tab.dart';
-import 'package:hooka/invitations/ui/widget/sent_tab.dart';
+import 'package:hooka/invitations/ui/screen/received_tab.dart';
+import 'package:hooka/invitations/ui/screen/sent_tab.dart';
 import 'package:hooka/utils/style/colors.dart';
+import 'package:injectable/injectable.dart';
 
+import '../../../di/di_config.dart';
 
+@injectable
 class Invitations extends StatefulWidget {
-  const Invitations({Key? key}) : super(key: key);
 
   @override
   State<Invitations> createState() => _InvitationsState();
@@ -26,7 +28,9 @@ class _InvitationsState extends State<Invitations>with TickerProviderStateMixin 
           title: Text("Invitations",style: TextStyle(color: Colors.black),),
 
         ),
-        body: Column(
+        body:
+
+        Column(
           children:[
             Padding(
             padding: const EdgeInsets.only(
@@ -98,8 +102,9 @@ class _InvitationsState extends State<Invitations>with TickerProviderStateMixin 
         child: TabBarView(
         controller: _tabController,
         children: [
-          ReceivedTab(),
-          SentTab(),
+    getIt<ReceivedTab>(),
+          getIt< SentTab>(),
+
 
             ])),
       ),

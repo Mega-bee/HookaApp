@@ -1,11 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hooka/invitations/model/received_model.dart';
-import '../../../utils/effect/custom_page_route.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import '../../../utils/style/colors.dart';
+import '../../response/received_invitation_response.dart';
 
 
 class ReceivedCard extends StatefulWidget {
-final ReceivedModel? receivedModel;
+final ReceivedInvitationResponse? receivedModel;
 ReceivedCard({
   this.receivedModel
 });
@@ -34,12 +35,29 @@ class _ReceivedCardState extends State<ReceivedCard> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(60)),
 
-                      child: CircleAvatar(
-                        foregroundImage: AssetImage(
-                           "${widget.receivedModel!.image}", ),
-                        radius: 120,
-                        backgroundColor: Colors.green,
+                      child:
+                      CachedNetworkImage(
+                        imageUrl: (widget.receivedModel!.buddyImage.toString()),height: 600,fit: BoxFit.cover,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(80),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                        placeholder: (context, url) => Padding(
+                          padding: const EdgeInsets.all(95.0),
+                          child: LoadingIndicator(
 
+                            indicatorType:
+                            Indicator.ballBeat,
+
+
+                            colors: [Colors.black],
+                          ),),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
 
@@ -58,7 +76,7 @@ class _ReceivedCardState extends State<ReceivedCard> {
                         .height * 0.02,),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 100),
-                      child: Text(widget.receivedModel!.title.toString(),
+                      child: Text(widget.receivedModel!.buddyName.toString(),
                           style: TextStyle(fontSize: 17,
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.italic)),

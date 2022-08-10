@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:hooka/hooka_product/ui/screen_cards/ui/hooka_witty.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import '../../../abstracts/states/state.dart';
 import '../../../home_page/ui/widget/menu_widget.dart';
 import 'package:hooka/utils/images/images.dart';
 
 import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
-import '../screen_cards/ui/hooka_accessories.dart';
-import '../screen_cards/ui/hooka_capsules.dart';
+import '../../state_manager/getproduct_state_manager.dart';
 
+
+@injectable
 class HookaProduct extends StatefulWidget {
-  const HookaProduct({Key? key}) : super(key: key);
+ final GetProductCubit cubit;
+ HookaProduct(this.cubit);
 
   @override
-  State<HookaProduct> createState() => _HookaProductState();
+  State<HookaProduct> createState() => HookaProductState();
 }
 
-class _HookaProductState extends State<HookaProduct> {
+class HookaProductState extends State<HookaProduct> {
+  @override
+  void initState() {
+    super.initState();
+    widget.cubit.getProduct(this);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,81 +42,15 @@ class _HookaProductState extends State<HookaProduct> {
           IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart,color: Colors.black,)),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: BlocBuilder<GetProductCubit, States>(
+        bloc: widget.cubit,
+        builder: (context, state) {
+          return state.getUI(context);
+        },
+      ));}
 
-          children: [
-            SizedBox(height: MediaQuery.of(context).size.height*0.1,),
-            Image.asset(ImageAsset.LOGO,height: 250,width: 500,fit: BoxFit.cover,),
 
-            Row( mainAxisAlignment: MainAxisAlignment.center,
-                children:[
-                  InkWell(
-                    onTap: (){Navigator.push(context,
-                        CustomPageRoute(child: HookaWitty()));},
-                    child: Card(
-elevation: 0,
-                      color: AmberColor,
-                      child: Column(
-                          children:[ Image.asset(
-                            "assets/images/Hookawitty.png",
-                            fit: BoxFit.scaleDown,
-                            height: 100,
-                            width: 150,
-                          ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 30,),
-                              child: Text("HOOKA WITTY",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15),),
-                            )
-                          ] ),
-                    ),
-                  ),
-                  InkWell(
-                      onTap: (){Navigator.push(context,
-                          CustomPageRoute(child: HookaCapsules()));},
-                      child:Card(
-                    color: AmberColor,
-                    child: Column(
-                        children:[ Image.asset(
-                          "assets/images/HookaCapsules.png",
-                          fit: BoxFit.scaleDown,
-                          height: 100,
-                          width: 150,
-                        ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 30,),
-                            child: Text("HOOKA CAPSULES",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15)),
-                          )
-                        ] ),
-                      ),
-                  ),
-            ]),
-            Row(mainAxisAlignment: MainAxisAlignment.center,
-                children:[
-                  InkWell(
-                      onTap: (){Navigator.push(context,
-                          CustomPageRoute(child: HookaAccessories()));},
-                      child:Card(
-                    color: AmberColor,
-                    child: Column(
-                        children:[ Image.asset(
-                          "assets/images/Group 7.png",
-                          fit: BoxFit.scaleDown,
-                          height: 100,
-                          width: 150,
-                        ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 30,),
-                            child: Text("HOOKA ACCESSORIES",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 14)),
-                          )
-                        ] ),
-                      ),
-                  ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.2,),
 
-          ]),
-      ]),
-    ));
-  }
+
+
 }
