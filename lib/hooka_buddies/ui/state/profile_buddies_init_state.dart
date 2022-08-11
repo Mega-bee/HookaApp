@@ -243,7 +243,9 @@ class ProfileBuddiesInitState extends States {
                         child: ExpansionTileCard(
                           baseColor: Colors.white,
                           expandedColor: Colors.white,
-
+                          borderRadius: BorderRadius.circular(25),
+                          elevation: 0,
+                          shadowColor: Colors.transparent,
                           key: cardA,
                           leading: Icon(Icons.work,color: Colors.grey,),
                           title: Text("Experiences",style: TextStyle(color: Colors.black)),
@@ -377,7 +379,9 @@ class ProfileBuddiesInitState extends States {
                         child: ExpansionTileCard(
                           baseColor: Colors.white,
                           expandedColor: Colors.white,
-
+                          borderRadius: BorderRadius.circular(25),
+                          elevation: 0,
+                          shadowColor: Colors.transparent,
                           key: cardB,
                           leading: Icon(Icons.grade,color: Colors.grey,),
 
@@ -512,7 +516,9 @@ class ProfileBuddiesInitState extends States {
                         child: ExpansionTileCard(
                           baseColor: Colors.white,
                           expandedColor: Colors.white,
-
+                          borderRadius: BorderRadius.circular(25),
+                          elevation: 0,
+                          shadowColor: Colors.transparent,
                           key: cardC,
                           leading: Icon(Icons.location_city,color: Colors.grey,),
 

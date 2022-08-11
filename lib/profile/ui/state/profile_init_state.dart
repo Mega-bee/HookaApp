@@ -241,6 +241,9 @@ height: 140,
                            child:  Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
                              child: ExpansionTileCard(
+                               borderRadius: BorderRadius.circular(25),
+                               elevation: 0,
+                               shadowColor: Colors.transparent,
                                baseColor: Colors.white,
                                expandedColor: Colors.white,
 
@@ -377,7 +380,9 @@ height: 140,
                        child: ExpansionTileCard(
                          baseColor: Colors.white,
                          expandedColor: Colors.white,
-
+                         borderRadius: BorderRadius.circular(25),
+                         elevation: 0,
+                         shadowColor: Colors.transparent,
                          key: cardB,
                          leading: Icon(Icons.grade,color: Colors.grey,),
 
@@ -512,7 +517,9 @@ height: 140,
                        child: ExpansionTileCard(
                          baseColor: Colors.white,
                          expandedColor: Colors.white,
-
+                         borderRadius: BorderRadius.circular(25),
+                         elevation: 0,
+                         shadowColor: Colors.transparent,
                          key: cardC,
                          leading: Icon(Icons.location_city,color: Colors.grey,),
 

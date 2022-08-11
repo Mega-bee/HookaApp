@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import '../../../hooka_buddies/buddies_routes.dart';
 import '../../../utils/style/colors.dart';
 import '../../response/received_invitation_response.dart';
 
@@ -130,10 +131,12 @@ class _ReceivedCardState extends State<ReceivedCard> {
                             .width * 0.03,),
 
                         InkWell(
-                          // onTap: () {
-                          //   Navigator.push(
-                          //       context, CustomPageRoute(child: ViewProfile()));
-                          // },
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context,
+                                BuddiesRoutes.PROFBUDDIES,arguments: widget.receivedModel!.id.toString()
+                            );
+                          },
                           child: Container(
                             color: Primarycolor,
                             height: MediaQuery
