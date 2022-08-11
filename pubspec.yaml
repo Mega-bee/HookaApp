@@ -41,6 +41,7 @@ dependencies:
   flutter_bloc: ^7.3.3
   dio: ^4.0.0
   font_awesome_flutter:
+  expansion_tile_card:
   flutter_zoom_drawer:
   rolling_switch:
   custom_cupertino_picker:

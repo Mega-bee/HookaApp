@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hooka/profile/profile_routes.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
 import '../../../utils/components/custom_alert.dart';
-import '../../../profile/ui/profile.dart';
+import '../../../profile/ui/screens/profile.dart';
 
 
 class MenuItemm {
@@ -58,7 +59,7 @@ class _MenupageState extends State<Menupage> {
               Spacer(),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context, CustomPageRoute(child: Profile()));
+                  Navigator.pushNamed(context, ProfileRoutes.Profile,);
                 },
                 child: Row(children: [
                   CircleAvatar(

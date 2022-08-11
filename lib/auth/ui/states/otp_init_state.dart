@@ -68,7 +68,8 @@ class OtpInitState extends States{
                Padding(
                  padding:
                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),
-                 child: RichText(
+                 child:
+                 RichText(
                    text: TextSpan(
                        text: "Enter the code sent to ",
                        children: [

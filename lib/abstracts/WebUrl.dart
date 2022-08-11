@@ -11,6 +11,7 @@ class Urls {
   static const String BASE_Offers = DOMAIN +'/webapi/api/Offers/';
   static const String BASE_Invitations = DOMAIN +'/webapi/api/Invitations/';
   static const String BASE_Product = DOMAIN +'/webapi/api/Products/';
+  static const String BASE_Profile = DOMAIN +'/webapi/api/Accounts/';
 
 
 
@@ -31,6 +32,7 @@ class Urls {
 
   //  /*--------BUDDIES-------------------*/
   static const BUDDIES = BASE_Buddies +'GetAllBuddies';
+  static const BUDDIES_PROFILE = BASE_Buddies +'GetBuddyProfile/';
 
   //  /*--------OFFERS-------------------*/
   static const OFFERS = BASE_Offers +'GetAllOffers';
@@ -45,6 +47,12 @@ class Urls {
   //  /*--------PRODUCTS-------------------*/
   static const GET_ALL_PRODUCT = BASE_Product +'GetAllCategories';
   static const DETAILS_PRODUCT = BASE_Product +'GetCategoryProducts/';
+
+
+  //  /*--------PROFILE-------------------*/
+  static const PROFILE = BASE_Profile +'GetProfile';
+
+
 
 
 

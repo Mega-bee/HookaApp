@@ -11,6 +11,7 @@ import 'package:hooka/home_page/home_module.dart';
 import 'package:hooka/hooka_buddies/buddies_module.dart';
 import 'package:hooka/localization_service/localizationSservice.dart';
 import 'package:hooka/offers/offers_module.dart';
+import 'package:hooka/profile/profile_module.dart';
 import 'package:hooka/settings/setting_module.dart';
 import 'package:hooka/splash_screen/splash_module.dart';
 import 'package:hooka/splash_screen/splash_routes.dart';
@@ -58,6 +59,7 @@ class MyApp extends StatefulWidget {
   final OffersModule _offersModule;
   final SettingModule _settingModule;
   final ProductModule _productModule;
+  final ProfileModule _profileModule;
 
 
   MyApp(
@@ -70,7 +72,8 @@ class MyApp extends StatefulWidget {
       this._buddiesModule,
       this._offersModule,
       this._settingModule,
-      this._productModule
+      this._productModule,
+      this._profileModule
   );
 
   @override

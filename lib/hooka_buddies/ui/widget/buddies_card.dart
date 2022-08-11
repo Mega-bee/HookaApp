@@ -4,6 +4,7 @@ import 'package:hooka/hooka_buddies/response/buddies_response.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
+import '../../buddies_routes.dart';
 import '../screens/view_profile.dart';
 
 class BuddiesCard extends StatelessWidget {
@@ -132,10 +133,10 @@ class BuddiesCard extends StatelessWidget {
                 InkWell(
                   onTap: () {
                      inviteBody();
-//                    Navigator.pushNamed(
-//                      context,
-//                      BuddiesRoutes.InvitOp,
-//                    );
+                   // Navigator.pushNamed(
+                   //   context,
+                   //   BuddiesRoutes.InvitOp,
+                   // );
                   },
                   child: Container(
                     color: YellowColor,
@@ -149,8 +150,10 @@ class BuddiesCard extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context, CustomPageRoute(child: ViewProfile()));
+                    Navigator.pushNamed(
+                      context,
+                      BuddiesRoutes.PROFBUDDIES,arguments: buddiesModel.id.toString()
+                    );
                   },
                   child: Container(
                     color: Primarycolor,

@@ -41,7 +41,8 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: CachedNetworkImage(
+                    child:
+                    CachedNetworkImage(
                       imageUrl:widget.detailsProductResponse.image.toString(),height: 50,fit: BoxFit.cover,
                       imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
