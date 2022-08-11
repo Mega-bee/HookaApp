@@ -1,20 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooka/hooka_places/request/isfav_request.dart';
-import 'package:hooka/profile/ui/profile.dart';
-import 'package:hooka/utils/images/images.dart';
 import 'package:injectable/injectable.dart';
-import 'package:simple_animations/simple_animations.dart';
-
 import '../../../abstracts/states/state.dart';
-import '../../../hooka_product/ui/screen/hooka_product.dart';
-import '../../../utils/effect/custom_page_route.dart';
+
 import '../../../utils/style/colors.dart';
 import '../../request/addreview_request.dart';
 import '../../state_manager/details_state_manager.dart';
-import '../state/details_init_state.dart';
 @injectable
 class PlacesDetails extends StatefulWidget {
   final DetailsCubit  cubit;

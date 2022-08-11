@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooka/utils/style/colors.dart';
 
 class CustomReviewDialog extends StatelessWidget {
@@ -6,7 +7,7 @@ class CustomReviewDialog extends StatelessWidget {
   CustomReviewDialog({required this.continueBtn});
 
   TextEditingController review = TextEditingController();
-  TextEditingController rate = TextEditingController();
+  double? rateCount = 1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class CustomReviewDialog extends StatelessWidget {
               },
               child: Icon(
                 Icons.cancel,
-                color:YellowColor,
+                color: YellowColor,
               ),
             ),
           ),
@@ -63,29 +64,27 @@ class CustomReviewDialog extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const Text(
-                  "Rating  / 5",
-                  style: TextStyle(
+                Text('Select rate',style: TextStyle(
 //                      color: greyColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
-                ),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),),
                 const SizedBox(
                   height: 10,
                 ),
-                TextFormField(
-                  minLines: 1,
-                  maxLines: 2,
-                  controller: rate,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Theme.of(context).primaryColor,
-                          width: 5,
-                        ),
-                      ),
-                      contentPadding: const EdgeInsetsDirectional.only(
-                          top: 10, bottom: 10, start: 10)),
+                RatingBar.builder(
+                  initialRating: 1,
+                  minRating: 1,
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  onRatingUpdate: (rating) {
+                     rateCount = rating;
+                  },
                 ),
               ],
             ),
@@ -95,10 +94,12 @@ class CustomReviewDialog extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              continueBtn(int.parse(rate.text),review.text);
-
+              continueBtn( rateCount, review.text);
             },
-            child: const Text("Save review",style: TextStyle(color: Colors.black),),
+            child: const Text(
+              "Save review",
+              style: TextStyle(color: Colors.black),
+            ),
             style: ElevatedButton.styleFrom(
                 primary: YellowColor,
                 padding: const EdgeInsets.fromLTRB(30, 12, 30, 12)),

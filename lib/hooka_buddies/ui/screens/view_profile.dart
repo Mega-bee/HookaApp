@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../utils/style/colors.dart';
-import 'package:hooka/profile/ui/edit_profile.dart';
-import 'package:rolling_switch/rolling_switch.dart';
 
 
 class ViewProfile extends StatefulWidget {

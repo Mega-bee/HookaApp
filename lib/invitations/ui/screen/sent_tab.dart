@@ -12,27 +12,27 @@ class SentTab extends StatefulWidget {
   final SentInvitationCubit cubit;
   SentTab(this.cubit);
 
-
   @override
   State<SentTab> createState() => SentTabState();
 }
 
-class SentTabState extends State<SentTab> {
+class SentTabState extends State<SentTab> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
     widget.cubit.getSentInv(this);
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return
-      BlocBuilder<SentInvitationCubit, States>(
-          bloc: widget.cubit,
-          builder: (context, state)
-          {
-            return state.getUI(context);}
-      ); }
+    return BlocBuilder<SentInvitationCubit, States>(
+        bloc: widget.cubit,
+        builder: (context, state) {
+          return state.getUI(context);
+        });
+  }
 
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

@@ -12,26 +12,27 @@ class ReceivedTab extends StatefulWidget {
   final RecInvitationCubit cubit;
   ReceivedTab(this.cubit);
 
-
   @override
   State<ReceivedTab> createState() => ReceivedTabState();
 }
 
-class ReceivedTabState extends State<ReceivedTab> {
-
+class ReceivedTabState extends State<ReceivedTab> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
     widget.cubit.getReceivedInv(this);
-
   }
+
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder<RecInvitationCubit, States>(
+    return BlocBuilder<RecInvitationCubit, States>(
         bloc: widget.cubit,
-        builder: (context, state)
-    {
-      return state.getUI(context);}
-    ); }
+        builder: (context, state) {
+          return state.getUI(context);
+        });
+  }
 
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

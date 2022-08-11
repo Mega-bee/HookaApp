@@ -2,13 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hooka/hooka_buddies/buddies_routes.dart';
 import 'package:hooka/hooka_places/request/addreview_request.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/components/CustomVerificationDialog.dart';
-import '../../../utils/effect/custom_page_route.dart';
-import '../../../utils/images/images.dart';
 import '../../../utils/style/colors.dart';
 import '../../request/isfav_request.dart';
 import '../../response/details_response.dart';
@@ -18,79 +17,74 @@ class DetailsInitState extends States {
   final PlacesDetailsState placesDetailsState;
   final DetailsRep detailsModell;
 
-  DetailsInitState(this.placesDetailsState,this.detailsModell);
+  DetailsInitState(this.placesDetailsState, this.detailsModell);
 
-  bool isFavvvv=true;
+  bool isFavvvv = true;
   @override
-
   Widget getUI(BuildContext context) {
-
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PlayAnimation<double>(
               duration: Duration(milliseconds: 1200),
-              // delay: Duration(milliseconds: 400),
               tween: Tween(begin: 0.0, end: 250),
               builder: (context, child, value) {
-                return
-                  Stack(
-                    children:[
-                      Container(
+                return Stack(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    children: [
+                  Container(
                     height: value,
                     child: Center(
-                        child:
-                        CachedNetworkImage(
-                          imageUrl: detailsModell.image.toString(),height: 600,fit: BoxFit.cover,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(80),
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.contain,
-                              ),
+                      child: CachedNetworkImage(
+                        imageUrl: detailsModell.image.toString(),
+                        height: 600,
+                        fit: BoxFit.cover,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(80),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.contain,
                             ),
                           ),
-                          placeholder: (context, url) => Padding(
-                            padding: const EdgeInsets.all(95.0),
-                            child: LoadingIndicator(
-
-                              indicatorType:
-                              Indicator.ballBeat,
-
-
-                              colors: [Colors.black],
-                            ),),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
                         ),
-
-                    ),
-                ),
-                      Positioned(
-                          left:375,
-                          top:198,
-                          child: Card(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(color: Colors.black, width: 1),
-                                borderRadius: BorderRadius.circular(10),
+                        placeholder: (context, url) => Padding(
+                          padding: const EdgeInsets.all(95.0),
+                          child: LoadingIndicator(
+                            indicatorType: Indicator.ballBeat,
+                            colors: [Colors.black],
                           ),
-
-                              child: IconButton(onPressed: (){
-                                isFavvvv=!isFavvvv;
+                        ),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
+                    ),
+                  ),
+                  Align(
+                      child: Card(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.black, width: 1),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: IconButton(
+                              onPressed: () {
+                                isFavvvv = !isFavvvv;
                                 placesDetailsState.refresh();
                                 placesDetailsState.isFav(
-                                    IsFavorite(isFav: isFavvvv, ),detailsModell.id.toString() );
-
+                                    IsFavorite(
+                                      isFav: isFavvvv,
+                                    ),
+                                    detailsModell.id.toString());
                               },
-
-                                  icon:
-
-                                  isFavvvv==detailsModell.isFavorite?
-                                  Icon(Icons.favorite,size: 35,color:Colors.red):
-                Icon(Icons.favorite_border,size: 30,))
-
-                          ))
-                  ]);
+                              icon: isFavvvv == detailsModell.isFavorite
+                                  ? Icon(Icons.favorite,
+                                      size: 35, color: Colors.red)
+                                  : Icon(
+                                      Icons.favorite_border,
+                                      size: 30,
+                                    ))),
+                    alignment: AlignmentDirectional.bottomEnd,)
+                ]);
               }),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
@@ -100,11 +94,9 @@ class DetailsInitState extends States {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                    detailsModell.name.toString(),
-
+                Text(detailsModell.name.toString(),
                     style:
-                    TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                 Container(
                   height: 30,
                   width: 70,
@@ -126,11 +118,8 @@ class DetailsInitState extends States {
             padding: const EdgeInsets.only(left: 35, right: 10),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Text(
-                  detailsModell.location.toString(),
-
-                  style:
-                  TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+              child: Text(detailsModell.location.toString(),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
             ),
           ),
           SizedBox(
@@ -141,16 +130,13 @@ class DetailsInitState extends States {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Container(
-
                 child: Card(
                   color: Colors.red[100],
                   child: SizedBox(
                     width: 160,
                     height: 20,
                     child: Center(
-                      child: Text(
-                          detailsModell.cuisine.toString(),
-
+                      child: Text(detailsModell.cuisine.toString(),
                           style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
@@ -177,10 +163,10 @@ class DetailsInitState extends States {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.01,
                 ),
-
-                Text("Opening hours [${detailsModell.openingFrom} - ${detailsModell.openingTo}]",
+                Text(
+                    "Opening hours [${detailsModell.openingFrom} - ${detailsModell.openingTo}]",
                     style:
-                    TextStyle(fontSize: 14, fontWeight: FontWeight.w300)),
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.w300)),
               ]),
             ),
           ),
@@ -200,13 +186,8 @@ class DetailsInitState extends States {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 35, right: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text("Description",
-
-                  style:
-                  TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-            ),
+            child: Text("Description",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
@@ -215,113 +196,95 @@ class DetailsInitState extends States {
             padding: const EdgeInsets.only(left: 35, right: 10),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Text( detailsModell.description.toString(),
-                  style:
-                  TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
+              child: Text(detailsModell.description.toString(),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
-          ),
           Padding(
-            padding: const EdgeInsets.only(left: 35, right: 10),
+            padding: const EdgeInsets.only(left: 35, right: 10, top: 30),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text("Favorite To",
-                  style:
-                  TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
+            height: 10,
           ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          height: 130,width:700,
-          child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-
-   // shrinkWrap: true,
-          itemCount:detailsModell.favorites!.length,
-          itemBuilder: (context, index) {
-          return
-              Row(children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.04,
-                ),
-
-                Container(
-
-
-           color:
-            detailsModell.favorites![index].isAvailable==true?
-            Colors.green:Colors.red,
-
-
-                  child: Container(
-                    height: 70,
-                    width: 70,
-                    child: Center(
-
-                        child:
-                        CachedNetworkImage(
-                          imageUrl:detailsModell.favorites![index].image.toString(),height: 65,fit: BoxFit.cover,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.contain,
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: 35),
+            child: SizedBox(
+              height: 120,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: detailsModell.favorites!.length,
+                    itemBuilder: (context, index) {
+                      return SizedBox(
+                        height: 10,
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Container(
+                            color: detailsModell.favorites![index].isAvailable!
+                                ? Colors.green
+                                : Colors.red,
+                            width: 70,
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: CachedNetworkImage(
+                                imageUrl: detailsModell.favorites![index].image
+                                    .toString(),
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  height: 10,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                placeholder: (context, url) => Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: LoadingIndicator(
+                                    indicatorType: Indicator.ballBeat,
+                                    colors: [Colors.black],
+                                  ),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
                               ),
                             ),
                           ),
-                          placeholder: (context, url) => Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: LoadingIndicator(
-
-                              indicatorType:
-                              Indicator.ballBeat,
-
-
-                              colors: [Colors.black],
-                            ),),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
-
-
-
-
-
-                        )),
-                  ),
-                ),]);
-
-          }),
-        ),
-      ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
-          ),
-
-          ElevatedButton(
-            onPressed: () {},
-//
-
-            child: const Text(
-              'INVITE BUDDY ',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Roboto-Bold'),
+                        ),
+                      );
+                    }),
+              ),
             ),
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.12,
-                  vertical: MediaQuery.of(context).size.height * 0.013),
-              primary: YellowColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, BuddiesRoutes.Buddies,arguments: detailsModell.id);
+              },
+              child: const Text(
+                'INVITE BUDDY ',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Roboto-Bold'),
+              ),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.12,
+                    vertical: MediaQuery.of(context).size.height * 0.013),
+                primary: YellowColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
             ),
           ),
@@ -333,8 +296,7 @@ class DetailsInitState extends States {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text("Reviews",
-                  style:
-                  TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
             ),
           ),
           SizedBox(
@@ -342,94 +304,89 @@ class DetailsInitState extends States {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 230,width:700,
-              child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-
-                  // shrinkWrap: true,
-                  itemCount:detailsModell.reviews!.length,
-                  itemBuilder: (context, index) {
-                    return
-
-
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            child: ListTile(
-                              leading: 
-                              Container(
-                                width: 30,height: 40,
-                                child: Stack(children: [
-                                  Icon(Icons.star,color: YellowColor,size: 45,),
-                                  Positioned(
-                                    top: 15,left: 18,
-                                      child: Text(detailsModell.reviews![index].rating.toString(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),))
-                                ],),
-                              ),
-//                               Container(
-//                                 width: 30,height: 40,
-// color: Colors.green,
-//                                   child:
-//                                   Center(child: 
-//                                  
-//                                   Text(detailsModell.reviews![index].rating.toString()))
-//                               ),
-                              title:Text( detailsModell.reviews![index].name.toString(),
-
+            child: ListView.builder(
+//                scrollDirection: Axis.vertical,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: detailsModell.reviews!.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      child: ListTile(
+                        leading: Stack(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: YellowColor,
+                              size: 45,
                             ),
-                              subtitle: Text( detailsModell.reviews![index].description.toString(),
+                            Positioned(
+                                top: 15,
+                                left: 18,
+                                child: Text(
+                                  detailsModell.reviews![index].rating
+                                      .toString(),
+                                  style: TextStyle(
 
-                              ),
-                              trailing: Text( detailsModell.reviews![index].createdDate!.split("T").first.toString(),style: TextStyle(color: Colors.grey),
-
-                              ),
-                            ),
-                          ),
-                        );
-
-
-                  }),
-            ),
+                                      fontWeight: FontWeight.bold),
+                                ))
+                          ],
+                        ),
+                        title: Text(
+                          detailsModell.reviews![index].name.toString(),
+                        ),
+                        subtitle: Text(
+                          detailsModell.reviews![index].description.toString(),
+                        ),
+                        trailing: Text(
+                          detailsModell.reviews![index].createdDate!
+                              .split("T")
+                              .first
+                              .toString(),
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
           ),
-
-
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
-          ElevatedButton(
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (context) =>CustomReviewDialog(
-                    continueBtn: (rate,reviewText){
-                      Navigator.pop(context);
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) =>
+                        CustomReviewDialog(continueBtn: (rate, reviewText) {
+                          Navigator.pop(context);
 
-                      placesDetailsState.AddReviewww(AddReviewReq( rating:rate,description: reviewText ), detailsModell.id.toString());
-
-                    }
-
-                  )
-                  
-              );
-            },
+                          placesDetailsState.AddReviewww(
+                              AddReviewReq(
+                                  rating: rate, description: reviewText),
+                              detailsModell.id.toString());
+                        }));
+              },
 //
 
-            child: const Text(
-              'Add Review ',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Roboto-Bold'),
-            ),
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.12,
-                  vertical: MediaQuery.of(context).size.height * 0.013),
-              primary: YellowColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+              child: const Text(
+                'Add Review ',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Roboto-Bold'),
+              ),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.12,
+                    vertical: MediaQuery.of(context).size.height * 0.013),
+                primary: YellowColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
             ),
           ),
@@ -441,65 +398,57 @@ class DetailsInitState extends States {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text("Album",
-                  style:
-                  TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
             ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
           ),
           Container(
             height: 150,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
-                itemCount:detailsModell.albums!.length,
+                itemCount: detailsModell.albums!.length,
                 itemBuilder: (context, index) {
-                  return
-                    Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 240),
-                        child: Row(children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.04,
+                  return Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 240),
+                      child: Row(children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.04,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 130,
+                            width: 130,
+                            child: Center(
+                                child: CachedNetworkImage(
+                              imageUrl:
+                                  detailsModell.albums![index].image.toString(),
+                              height: 120,
+                              fit: BoxFit.cover,
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(0),
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                              placeholder: (context, url) => Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: LoadingIndicator(
+                                  indicatorType: Indicator.ballBeat,
+                                  colors: [Colors.black],
+                                ),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
+                            )),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 130,
-                              width: 130,
-                              child: Center(
-
-                                  child:
-                                  CachedNetworkImage(
-                                    imageUrl:detailsModell.albums![index].image.toString(),height: 120,fit: BoxFit.cover,
-                                    imageBuilder: (context, imageProvider) => Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(0),
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.contain,
-                                        ),
-                                      ),
-                                    ),
-                                    placeholder: (context, url) => Padding(
-                                      padding: const EdgeInsets.all(15.0),
-                                      child: LoadingIndicator(
-
-                                        indicatorType:
-                                        Indicator.ballBeat,
-
-
-                                        colors: [Colors.black],
-                                      ),),
-                                    errorWidget: (context, url, error) => Icon(Icons.error),
-
-
-
-
-
-                                  )),
-                            ),
-                          ),]));}),
+                        ),
+                      ]));
+                }),
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.04,
@@ -508,5 +457,4 @@ class DetailsInitState extends States {
       ),
     );
   }
-
 }

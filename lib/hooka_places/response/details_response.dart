@@ -2,7 +2,7 @@ class DetailsRep {
   int? id;
   String? name;
   String? image;
-  int? rating;
+  num? rating;
   String? location;
   String? cuisine;
   String? openingFrom;
@@ -98,7 +98,7 @@ class DetailsRep {
 class Favorites {
   int? id;
   String? image;
-  Null? isAvailable;
+  bool? isAvailable;
 
   Favorites({this.id, this.image, this.isAvailable});
 
@@ -157,7 +157,7 @@ class Reviews {
   int? id;
   String? name;
   String? createdDate;
-  int? rating;
+  num? rating;
   String? description;
 
   Reviews(
