@@ -124,8 +124,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i33.SplashModule(get<_i14.SplashScreen>()));
   gh.factory<_i34.ViewProfileBuddie>(
       () => _i34.ViewProfileBuddie(get<_i24.ProfileBuddiesCubit>()));
-  gh.factory<_i35.BuddiesCubit>(() =>
-      _i35.BuddiesCubit(get<_i16.BuddiesRepository>(), get<_i6.AuthService>()));
+  gh.factory<_i35.BuddiesCubit>(() => _i35.BuddiesCubit(
+      get<_i16.BuddiesRepository>(), get<_i22.PlacesRepository>()));
   gh.factory<_i36.DetailsCubit>(() =>
       _i36.DetailsCubit(get<_i22.PlacesRepository>(), get<_i6.AuthService>()));
   gh.factory<_i37.GetProductCubit>(() => _i37.GetProductCubit(

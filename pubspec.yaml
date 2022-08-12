@@ -71,6 +71,7 @@ dependencies:
   neon:
   url_launcher:
   flutter_rating_bar: ^4.0.1
+  dropdown_search: ^5.0.2
 
 
 dev_dependencies:

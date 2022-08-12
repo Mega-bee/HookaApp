@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooka/di/di_config.dart';
+import 'package:hooka/hooka_buddies/buddies_routes.dart';
 import 'package:hooka/hooka_buddies/response/buddies_response.dart';
 import 'package:hooka/hooka_buddies/ui/screens/invite.dart';
 import '../../../abstracts/states/state.dart';
@@ -35,9 +36,9 @@ class BuddiesInitState extends States {
             searchList = buddresp
                 .where(
                   (string) => (string.name!).toLowerCase().contains(
-                        searchText.toLowerCase(),
-                      ),
-                )
+                searchText.toLowerCase(),
+              ),
+            )
                 .toList();
             buddiesState.refresh();
           },
@@ -54,17 +55,13 @@ class BuddiesInitState extends States {
                   final model = searchList![index];
                   return BuddiesCard(
                     inviteBody: () {
-
-                      if (buddiesState.placeId != null) {
-                        showModalBottomSheet(
-                          isScrollControlled: false,
-                          context:context ,
-                          useRootNavigator: true,
-                          builder: (BuildContext context) {
-                            return   getIt<InviteBuddies>();
-                          },
-                        );
-                      }
+                      Navigator.pushNamed(context, BuddiesRoutes.InvitOp , arguments: model.id);
+//                      showDialog(
+//                        context: context,
+//                        builder: (context) {
+//                          return getIt<InviteBuddies>();
+//                        },
+//                      );
                     },
                     buddiesModel: model,
                   );

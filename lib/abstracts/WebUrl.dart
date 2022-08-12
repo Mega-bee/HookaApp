@@ -33,6 +33,7 @@ class Urls {
   //  /*--------BUDDIES-------------------*/
   static const BUDDIES = BASE_Buddies +'GetAllBuddies';
   static const BUDDIES_PROFILE = BASE_Buddies +'GetBuddyProfile/';
+  static const INVITE_BUDDY = BASE_Buddies +'InviteBuddy';
 
   //  /*--------OFFERS-------------------*/
   static const OFFERS = BASE_Offers +'GetAllOffers';

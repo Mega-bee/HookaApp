@@ -1,10 +1,15 @@
-
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooka/abstracts/states/error_state.dart';
 import 'package:hooka/abstracts/states/loading_state.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/service/auth_service.dart';
+import 'package:hooka/hooka_buddies/request/invite_request.dart';
+import 'package:hooka/hooka_places/repository/places_repository.dart';
+import 'package:hooka/hooka_places/response/places_response.dart';
 import 'package:injectable/injectable.dart';
+import 'package:rxdart/rxdart.dart';
 import '../repository/buddies_repository.dart';
 import '../response/buddies_response.dart';
 import '../response/invitation_options_response.dart';
@@ -13,17 +18,21 @@ import '../ui/screens/invite.dart';
 import '../ui/state/buddies_init_state.dart';
 import '../ui/state/invite_init_state.dart';
 
-
 @injectable
 class BuddiesCubit extends Cubit<States> {
   final BuddiesRepository _buddiesRep;
-  final AuthService _authService;
+  final PlacesRepository _placesRepository;
 
-  BuddiesCubit(this._buddiesRep, this._authService) : super(LoadingState());
+  BuddiesCubit(
+    this._buddiesRep,
+    this._placesRepository,
+  ) : super(LoadingState());
+
+  final _loadingStateSubject = PublishSubject<AsyncSnapshot>();
+  Stream<AsyncSnapshot> get loadingStream => _loadingStateSubject.stream;
 
 
   getBudd(BuddiesState screenState) {
-
     emit(LoadingState());
     _buddiesRep.getBuddiessss().then((value) {
       if (value == null) {
@@ -37,12 +46,15 @@ class BuddiesCubit extends Cubit<States> {
         for (var item in value.data.insideData) {
           b.add(BuddiesResp.fromJson(item));
         }
-        emit(BuddiesInitState(screenState,  b,));
+        emit(BuddiesInitState(
+          screenState,
+          b,
+        ));
       }
     });
   }
-  getOptionInv(InviteBuddiesState screenState) {
 
+  getOptionInv(InviteBuddiesState screenState) {
     emit(LoadingState());
     _buddiesRep.getInvOptions().then((value) {
       if (value == null) {
@@ -52,11 +64,35 @@ class BuddiesCubit extends Cubit<States> {
               getOptionInv(screenState);
             }));
       } else if (value.code == 200) {
-        List<InvitationOptionsResponse> b = [];
+        List<InvitationOptionsResponse> options = [];
         for (var item in value.data.insideData) {
-          b.add(InvitationOptionsResponse.fromJson(item));
+          options.add(InvitationOptionsResponse.fromJson(item));
         }
-        emit(InviteInitState(screenState,  b));
+        _placesRepository.getPlaces().then((value) {
+          if (value == null) {
+          } else if (value.code == 200) {
+            List<PlacesResp> places = [];
+            for (var item in value.data.insideData) {
+              places.add(PlacesResp.fromJson(item));
+            }
+
+            emit(InviteInitState(screenState, options, places));
+          }
+        });
+      }
+    });
+  }
+
+  sendInvitation(InviteBuddiesState inviteBuddiesState, InviteRequest request) {
+    _loadingStateSubject.add(AsyncSnapshot.waiting());
+    print('dddddddddddddddddddddddddddd');
+    _buddiesRep.sendInvitation(request).then((value) {
+      if (value == null) {
+        Fluttertoast.showToast(msg: 'connection error');
+      } else if (value.code == 201) {
+        _loadingStateSubject.add(AsyncSnapshot.nothing());
+        Navigator.pop(inviteBuddiesState.context);
+        Fluttertoast.showToast(msg: 'Invitation sent sucessfully');
       }
     });
   }

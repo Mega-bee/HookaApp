@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
-import '../../../home_page/ui/widget/menu_widget.dart';
 import 'package:hooka/profile/ui/edit_profile.dart';
-import 'package:rolling_switch/rolling_switch.dart';
-
 import '../../../utils/style/colors.dart';
 import '../../state_manager/profile_state_manager.dart';
 @injectable
