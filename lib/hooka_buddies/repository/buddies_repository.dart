@@ -33,5 +33,15 @@ class BuddiesRepository {
     if (response == null) return null;
     return response;
   }
+  Future<WebServiceResponse?> getBuddiesProf(String? id) async {
+    var token = _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.get(
+      Urls.BUDDIES_PROFILE +"$id",
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
 
 }
