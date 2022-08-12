@@ -10,13 +10,15 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import '../request/gen_otp_request.dart';
 import '../request/signup_request.dart';
+import '../response/signup_response.dart';
+import '../service/auth_service.dart';
 import '../ui/screens/signup_screen.dart';
 
 @injectable
 class SignUpCubit extends Cubit<States> {
   final LoginRepository _loginRepository;
 
-  SignUpCubit(this._loginRepository) : super(LoadingState());
+  SignUpCubit(this._loginRepository,) : super(LoadingState());
 
   final _loadingStateSubject = PublishSubject<AsyncSnapshot>();
   Stream<AsyncSnapshot> get loadingStream => _loadingStateSubject.stream;
@@ -29,25 +31,26 @@ class SignUpCubit extends Cubit<States> {
         Fluttertoast.showToast(msg: 'Connection error');
       } else if (value.code == 200) {
 
-        OtpGen(GenOtpRequest(request.email), screenState , request.email ?? '');
+
+        OtpGen(GenOtpRequest(request.email,request.password), screenState , request.email ?? '',request.password ?? '');
 //         Navigator.pushNamed(screenState.context, OtpRoutes.OTP_SCREEN ,arguments: );
       }
     });
   }
 
-  OtpGen(GenOtpRequest request, SignupScreenState screenState , String number) {
+  OtpGen(GenOtpRequest request, SignupScreenState screenState , String number,String pass) {
     _loginRepository.GenerateOtpRequest(request).then((value) {
       if (value == null) {
         _loadingStateSubject.add(AsyncSnapshot.nothing());
         Fluttertoast.showToast(msg: 'Connection error');
       } else if (value.code == 200) {
+
         _loadingStateSubject.add(AsyncSnapshot.nothing());
         Fluttertoast.showToast(msg: value.errorMessage);
         Navigator.pushNamed(
           screenState.context,
             AuthRoutes.OTP_SCREEN,
-          arguments: number
-        );
+          arguments: {'email':number , 'pass':pass});
       }
     });
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:hooka/auth/auth_routes.dart';
+import 'package:hooka/auth/service/auth_service.dart';
 import 'package:hooka/di/di_config.dart';
 import 'package:hooka/home_page/ui/screens/home_screen.dart';
 import 'package:injectable/injectable.dart';
@@ -14,7 +16,11 @@ import 'menu_screen.dart';
 
 @injectable
 class DrawerScreen extends StatefulWidget {
-  const DrawerScreen();
+  final AuthService _authService;
+
+  const DrawerScreen(this._authService);
+
+
   @override
   State<DrawerScreen> createState() => _DrawerScreenState();
 }
@@ -27,7 +33,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
       style: DrawerStyle.defaultStyle,
       mainScreen: getScreen(),
       menuScreen: Builder(
-        builder:(context)=> Menupage(currentItem:currentItem,
+        builder:(context)=> Menupage(currentItem:currentItem,name :widget._authService.getName() ?? '',
+            Logout: (){widget._authService.clearToken().then((value) {
+              Navigator.pushNamedAndRemoveUntil(context, AuthRoutes.LOGIN_SCREEN,(route)=>false);
+
+            });} ,
         onSelectedItem:(item){
           setState(() {
             currentItem=item;

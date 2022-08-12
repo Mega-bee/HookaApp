@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hooka/invitations/ui/widget/sent_card.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../abstracts/states/state.dart';
-import '../../model/sent_model.dart';
+import '../../request/status_inv_request.dart';
 import '../../state_manager/sent_state_manager.dart';
 
 @injectable
@@ -21,7 +19,9 @@ class SentTabState extends State<SentTab> with AutomaticKeepAliveClientMixin {
   void initState() {
     super.initState();
     widget.cubit.getSentInv(this);
+
   }
+
 
   @override
   Widget build(BuildContext context) {

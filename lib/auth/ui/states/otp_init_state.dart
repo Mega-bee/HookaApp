@@ -12,9 +12,10 @@ import '../widget/custem_button.dart';
 
 class OtpInitState extends States{
   final String? email;
+  final String? pass;
   final PinCodeVerificationScreenState screenState;
   String? errorMessage;
-  OtpInitState(this.email,this.screenState,this.errorMessage);
+  OtpInitState(this.email,this.screenState,this.errorMessage, this.pass);
   TextEditingController otptext = TextEditingController();
   // ..text = "123456";
 
@@ -197,7 +198,7 @@ class OtpInitState extends States{
     // conditions for validating
 
     // errorController!.add(ErrorAnimationType.shake); //
-    screenState.ConfirmOtpRequest(ConfOtpRequest(otptext.text, email));
+    screenState.ConfirmOtpRequest(ConfOtpRequest(otptext.text, email,pass));
                    },
                    loading: screenState.loadingSnapshot.connectionState ==
                        ConnectionState.waiting,

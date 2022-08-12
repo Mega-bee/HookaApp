@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-
-import '../../../hooka_places/ui/screen/places_details.dart';
 import '../../../utils/style/colors.dart';
-import '../../model/sent_model.dart';
-import '../../model/sent_model.dart';
+import '../../details_routes.dart';
 import '../../response/sent_invitation_response.dart';
 
 class SentCard extends StatefulWidget {
@@ -115,12 +112,10 @@ class _SentCardState extends State<SentCard> {
                         SizedBox(height: MediaQuery.of(context).size.height*0.02,),
 
                         InkWell(
-                          // onTap: (){
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => const PlacesDetails()),
-                          // );
-                      // },
+                          onTap: (){
+                            Navigator.pushNamed(context, DetailsInvRoutes.SentInvDetails,arguments: widget.senttttModel!.placeId.toString());
+
+                          },
                           child: Container(height: 30,width: 120,
                             color: YellowColor,
                             child: Center(

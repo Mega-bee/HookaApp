@@ -15,6 +15,7 @@ class Urls {
 
 
 
+
 //  /*--------Auth-------------------*/
    static const LOGIN = BASE_ACCOUNTS + 'SignIn';
    static const SIGNUP = BASE_ACCOUNTS + 'SignUp';
@@ -43,6 +44,8 @@ class Urls {
   static const RECEIVED_INVITATIONS = BASE_Invitations +'GetRecievedInvitations';
   static const SENT_INVITATIONS = BASE_Invitations +'GetSentInvitations';
   static const OTIONS_INVITATIONS = BASE_Invitations +'GetInvitationOptions';
+  static const SENT_INV_DETAILS = BASE_Invitations +'GetPlaceInvtations/';
+  static const INVITATION_STATUS = BASE_Invitations +'SetInvitationStatus/';
 
 
   //  /*--------PRODUCTS-------------------*/

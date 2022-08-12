@@ -35,11 +35,13 @@ class MenuItems {
 }
 
 class Menupage extends StatefulWidget {
+  final  String name;
   final MenuItemm currentItem;
+  final Function Logout;
   final ValueChanged<MenuItemm> onSelectedItem;
   const Menupage({
-    required this.currentItem,
-    required this.onSelectedItem,
+    required this.currentItem,required this.Logout,
+    required this.onSelectedItem, required this.name,
   });
 
   @override
@@ -47,6 +49,7 @@ class Menupage extends StatefulWidget {
 }
 
 class _MenupageState extends State<Menupage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,8 +74,8 @@ class _MenupageState extends State<Menupage> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.02,
                   ),
-                  Text(
-                    "Christian Zakhour",
+                  Text(widget.name
+                    ,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 15,
@@ -95,10 +98,7 @@ class _MenupageState extends State<Menupage> {
                       title: "Are You Sure Do You Want To logout",
                       content: "",
                       yesBtn: () {
-//                        Navigator.of(context).pushAndRemoveUntil(
-//                            MaterialPageRoute(
-//                                builder: (context) => loginScreen()),
-//                            (route) => false);
+                        widget.Logout();
                       },
                       noBtn: () {
                         Navigator.pop(context);

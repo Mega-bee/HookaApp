@@ -17,6 +17,13 @@ class AuthService {
   String? getToken() {
     return _prefsHelper.getToken();
   }
+  setName(String name) {
+    _prefsHelper.setName(name);
+  }
+
+  String? getName() {
+    return _prefsHelper.getName();
+  }
 
   Future<void> clearToken() async {
     await _prefsHelper.clearToken();

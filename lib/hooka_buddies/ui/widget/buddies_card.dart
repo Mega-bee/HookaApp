@@ -9,6 +9,7 @@ import '../screens/view_profile.dart';
 
 class BuddiesCard extends StatelessWidget {
   final BuddiesResp buddiesModel;
+
   final Function inviteBody;
 
   BuddiesCard({required this.buddiesModel,required this.inviteBody});

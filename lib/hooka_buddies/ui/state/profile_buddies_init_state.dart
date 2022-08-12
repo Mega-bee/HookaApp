@@ -33,7 +33,8 @@ class ProfileBuddiesInitState extends States {
                   width: MediaQuery.of(context).size.width * 0.20,
 
                   child: CircleAvatar(
-                    child: CachedNetworkImage(
+                    child:
+                    CachedNetworkImage(
                       imageUrl: _profileResponse.imageUrl.toString(),
                       height: 90,
                       fit: BoxFit.cover,

@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:hooka/hooka_places/response/places_response.dart';
 
 import '../../../abstracts/states/state.dart';
+import '../../../hooka_buddies/ui/widget/SearchWidgetBuddies.dart';
 import '../screen/hooka_places.dart';
 import '../widget/SearchWidgetHookahPlaces.dart';
 import '../widget/places_card.dart';
@@ -10,12 +11,35 @@ import '../widget/places_card.dart';
 class PlaceInitState extends States {
   final List<PlacesResp> placesModell;
   final HookaPlacesState hookaPlacesState;
-  PlaceInitState(this.hookaPlacesState, {required this.placesModell});
-
+  PlaceInitState(this.hookaPlacesState, {required this.placesModell}): super() {
+    searchList = placesModell;
+  }
+  String query = '';
+  List<PlacesResp>? searchList;
   @override
   Widget getUI(BuildContext context) {
     final _textEditingController = TextEditingController();
     return Column(children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SearchWidgetBuddies(
+          hintText: "Search",
+          text: query,
+          onChanged: (searchText) {
+            searchText = searchText.toLowerCase();
+            print(searchText);
+            print("search test");
+            searchList = placesModell
+                .where(
+                  (string) => (string.name!).toLowerCase().contains(
+                searchText.toLowerCase(),
+              ),
+            )
+                .toList();
+            hookaPlacesState.refresh();
+          },
+        ),
+      ),
       SizedBox(
         height: MediaQuery.of(context).size.height * 0.01,
       ),
@@ -34,9 +58,9 @@ class PlaceInitState extends States {
       Expanded(
         child: Card(
             child: ListView.builder(
-                itemCount: placesModell.length,
+                itemCount: searchList!.length,
                 itemBuilder: (context, index) {
-                  final PlacesList = placesModell[index];
+                  final PlacesList = searchList![index];
                   return PlacesCard(modelp: PlacesList);
                 })),
       )

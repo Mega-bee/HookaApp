@@ -7,53 +7,55 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../auth/auth_module.dart' as _i51;
+import '../auth/auth_module.dart' as _i52;
 import '../auth/HiveSetUp.dart' as _i5;
 import '../auth/repository/login_repository.dart' as _i18;
 import '../auth/service/auth_service.dart' as _i6;
 import '../auth/state_manager/login_state_manager.dart' as _i41;
 import '../auth/state_manager/otp_state_screen.dart' as _i20;
 import '../auth/state_manager/signup_state_manager.dart' as _i31;
-import '../auth/ui/screens/login_screen.dart' as _i50;
+import '../auth/ui/screens/login_screen.dart' as _i51;
 import '../auth/ui/screens/otp_screen.dart' as _i21;
 import '../auth/ui/screens/signup_screen.dart' as _i32;
 import '../home_page/home_module.dart' as _i8;
 import '../home_page/ui/screens/drawer_screen.dart' as _i7;
 import '../home_page/ui/screens/home_screen.dart' as _i9;
-import '../hooka_buddies/buddies_module.dart' as _i53;
+import '../hooka_buddies/buddies_module.dart' as _i54;
 import '../hooka_buddies/repository/buddies_repository.dart' as _i16;
 import '../hooka_buddies/state_manager/buddies_profile_state_manager.dart'
     as _i24;
 import '../hooka_buddies/state_manager/Buddies_state_manager.dart' as _i35;
-import '../hooka_buddies/ui/screens/buddies.dart' as _i52;
+import '../hooka_buddies/ui/screens/buddies.dart' as _i53;
 import '../hooka_buddies/ui/screens/invite.dart' as _i40;
 import '../hooka_buddies/ui/screens/view_profile.dart' as _i34;
-import '../hooka_places/places_module.dart' as _i58;
+import '../hooka_places/places_module.dart' as _i60;
 import '../hooka_places/repository/places_repository.dart' as _i22;
 import '../hooka_places/state_manager/details_state_manager.dart' as _i36;
 import '../hooka_places/state_manager/places_state_manager.dart' as _i45;
-import '../hooka_places/ui/screen/hooka_places.dart' as _i55;
+import '../hooka_places/ui/screen/hooka_places.dart' as _i57;
 import '../hooka_places/ui/screen/places_details.dart' as _i46;
-import '../hooka_product/product_module.dart' as _i59;
+import '../hooka_product/product_module.dart' as _i61;
 import '../hooka_product/repository/product_repository.dart' as _i23;
 import '../hooka_product/state_manager/detailsprod_state_manager.dart' as _i47;
 import '../hooka_product/state_manager/getproduct_state_manager.dart' as _i37;
 import '../hooka_product/ui/screen/hooka_product.dart' as _i39;
-import '../hooka_product/ui/screen/prod_details.dart' as _i54;
+import '../hooka_product/ui/screen/prod_details.dart' as _i56;
+import '../invitations/details_module.dart' as _i55;
 import '../invitations/repository/invitations_repository.dart' as _i17;
 import '../invitations/state_manager/invitation_state_manager.dart' as _i26;
 import '../invitations/state_manager/sent_state_manager.dart' as _i28;
 import '../invitations/ui/screen/invitations.dart' as _i10;
 import '../invitations/ui/screen/received_tab.dart' as _i27;
+import '../invitations/ui/screen/sent_details.dart' as _i50;
 import '../invitations/ui/screen/sent_tab.dart' as _i29;
 import '../localization_service/localizationSservice.dart' as _i11;
-import '../main.dart' as _i60;
+import '../main.dart' as _i62;
 import '../module_network/http_client/http_client.dart' as _i15;
-import '../offers/offers_module.dart' as _i57;
+import '../offers/offers_module.dart' as _i59;
 import '../offers/repository/offers_repository.dart' as _i19;
 import '../offers/state_manager/offers_details_state_manager.dart' as _i43;
 import '../offers/state_manager/offers_state_manager.dart' as _i42;
-import '../offers/widget/screen/offers.dart' as _i56;
+import '../offers/widget/screen/offers.dart' as _i58;
 import '../offers/widget/screen/offers_details_screens.dart' as _i44;
 import '../profile/profile_module.dart' as _i49;
 import '../profile/repository/profile_repository.dart' as _i25;
@@ -78,7 +80,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i5.AuthPrefsHelper>(() => _i5.AuthPrefsHelper());
   gh.factory<_i6.AuthService>(
       () => _i6.AuthService(get<_i5.AuthPrefsHelper>()));
-  gh.factory<_i7.DrawerScreen>(() => _i7.DrawerScreen());
+  gh.factory<_i7.DrawerScreen>(() => _i7.DrawerScreen(get<_i6.AuthService>()));
   gh.factory<_i8.HomeModule>(() => _i8.HomeModule(get<_i7.DrawerScreen>()));
   gh.factory<_i9.HomeScreen>(() => _i9.HomeScreen());
   gh.factory<_i10.Invitations>(() => _i10.Invitations());
@@ -96,7 +98,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i18.LoginRepository(get<_i15.ApiClient>(), get<_i6.AuthService>()));
   gh.factory<_i19.OffersRepository>(() =>
       _i19.OffersRepository(get<_i15.ApiClient>(), get<_i6.AuthService>()));
-  gh.factory<_i20.OtpCubit>(() => _i20.OtpCubit(get<_i18.LoginRepository>()));
+  gh.factory<_i20.OtpCubit>(
+      () => _i20.OtpCubit(get<_i18.LoginRepository>(), get<_i6.AuthService>()));
   gh.factory<_i21.PinCodeVerificationScreen>(
       () => _i21.PinCodeVerificationScreen(get<_i20.OtpCubit>()));
   gh.factory<_i22.PlacesRepository>(() =>
@@ -152,33 +155,38 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i23.ProductsRepository>(), get<_i6.AuthService>()));
   gh.factory<_i48.Profile>(() => _i48.Profile(get<_i38.GetProfileCubit>()));
   gh.factory<_i49.ProfileModule>(() => _i49.ProfileModule(get<_i48.Profile>()));
-  gh.factory<_i50.loginScreen>(
-      () => _i50.loginScreen(cubit: get<_i41.LoginCubit>()));
-  gh.factory<_i51.AuthModule>(() => _i51.AuthModule(get<_i50.loginScreen>(),
+  gh.factory<_i50.SentDetails>(
+      () => _i50.SentDetails(get<_i28.SentInvitationCubit>()));
+  gh.factory<_i51.loginScreen>(
+      () => _i51.loginScreen(cubit: get<_i41.LoginCubit>()));
+  gh.factory<_i52.AuthModule>(() => _i52.AuthModule(get<_i51.loginScreen>(),
       get<_i32.SignupScreen>(), get<_i21.PinCodeVerificationScreen>()));
-  gh.factory<_i52.Buddies>(() => _i52.Buddies(get<_i35.BuddiesCubit>()));
-  gh.factory<_i53.BuddiesModule>(() => _i53.BuddiesModule(get<_i52.Buddies>(),
+  gh.factory<_i53.Buddies>(() => _i53.Buddies(get<_i35.BuddiesCubit>()));
+  gh.factory<_i54.BuddiesModule>(() => _i54.BuddiesModule(get<_i53.Buddies>(),
       get<_i40.InviteBuddies>(), get<_i34.ViewProfileBuddie>()));
-  gh.factory<_i54.DetailsProduct>(
-      () => _i54.DetailsProduct(get<_i47.ProdDetailsCubit>()));
-  gh.factory<_i55.HookaPlaces>(() => _i55.HookaPlaces(get<_i45.PlacesCubit>()));
-  gh.factory<_i56.Offers>(() => _i56.Offers(get<_i42.OffersCubit>()));
-  gh.factory<_i57.OffersModule>(() =>
-      _i57.OffersModule(get<_i56.Offers>(), get<_i44.OffersDetailsScreen>()));
-  gh.factory<_i58.PlacesModule>(() =>
-      _i58.PlacesModule(get<_i55.HookaPlaces>(), get<_i46.PlacesDetails>()));
-  gh.factory<_i59.ProductModule>(() =>
-      _i59.ProductModule(get<_i39.HookaProduct>(), get<_i54.DetailsProduct>()));
-  gh.factory<_i60.MyApp>(() => _i60.MyApp(
+  gh.factory<_i55.DetailsInvModule>(
+      () => _i55.DetailsInvModule(get<_i50.SentDetails>()));
+  gh.factory<_i56.DetailsProduct>(
+      () => _i56.DetailsProduct(get<_i47.ProdDetailsCubit>()));
+  gh.factory<_i57.HookaPlaces>(() => _i57.HookaPlaces(get<_i45.PlacesCubit>()));
+  gh.factory<_i58.Offers>(() => _i58.Offers(get<_i42.OffersCubit>()));
+  gh.factory<_i59.OffersModule>(() =>
+      _i59.OffersModule(get<_i58.Offers>(), get<_i44.OffersDetailsScreen>()));
+  gh.factory<_i60.PlacesModule>(() =>
+      _i60.PlacesModule(get<_i57.HookaPlaces>(), get<_i46.PlacesDetails>()));
+  gh.factory<_i61.ProductModule>(() =>
+      _i61.ProductModule(get<_i39.HookaProduct>(), get<_i56.DetailsProduct>()));
+  gh.factory<_i62.MyApp>(() => _i62.MyApp(
       get<_i11.LocalizationService>(),
-      get<_i51.AuthModule>(),
+      get<_i52.AuthModule>(),
       get<_i33.SplashModule>(),
       get<_i8.HomeModule>(),
-      get<_i58.PlacesModule>(),
-      get<_i53.BuddiesModule>(),
-      get<_i57.OffersModule>(),
+      get<_i60.PlacesModule>(),
+      get<_i54.BuddiesModule>(),
+      get<_i59.OffersModule>(),
       get<_i30.SettingModule>(),
-      get<_i59.ProductModule>(),
-      get<_i49.ProfileModule>()));
+      get<_i61.ProductModule>(),
+      get<_i49.ProfileModule>(),
+      get<_i55.DetailsInvModule>()));
   return get;
 }

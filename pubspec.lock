@@ -321,6 +321,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_3d_choice_chip:
+    dependency: "direct main"
+    description:
+      name: flutter_3d_choice_chip
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   flutter_bloc:
     dependency: "direct main"
     description:
@@ -798,6 +805,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.4.0"
+  photo_view:
+    dependency: "direct main"
+    description:
+      name: photo_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.14.0"
   photofilters:
     dependency: "direct main"
     description:

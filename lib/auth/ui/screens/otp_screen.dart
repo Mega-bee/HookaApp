@@ -71,8 +71,10 @@ bool flags = true;
   Widget build(BuildContext context) {
     if(flags){
       var  args = ModalRoute.of(context)?.settings.arguments;
-      if (args != null && args is String) {
-        widget.cubit.emit(OtpInitState(args,this,''));
+      if (args != null && args is Map) {
+        String email = args['email'];
+        String pass = args['pass'];
+        widget.cubit.emit(OtpInitState(email,this,'',pass));
       }
       flags = false;
     }

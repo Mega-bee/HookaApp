@@ -8,6 +8,7 @@ import 'package:loading_indicator/loading_indicator.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/components/CustomVerificationDialog.dart';
+import '../../../utils/components/cutom_network_image.dart';
 import '../../../utils/style/colors.dart';
 import '../../request/isfav_request.dart';
 import '../../response/details_response.dart';
@@ -420,31 +421,12 @@ class DetailsInitState extends States {
                             height: 130,
                             width: 130,
                             child: Center(
-                                child: CachedNetworkImage(
-                              imageUrl:
-                                  detailsModell.albums![index].image.toString(),
-                              height: 120,
-                              fit: BoxFit.cover,
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(0),
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ),
-                              placeholder: (context, url) => Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: LoadingIndicator(
-                                  indicatorType: Indicator.ballBeat,
-                                  colors: [Colors.black],
-                                ),
-                              ),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
-                            )),
+                                child:
+                  CustomNetworkImage(
+                  thumbnail: detailsModell.albums![index].image.toString(),
+                  imageSource: [detailsModell.albums![index].image.toString()],
+                  )
+                            ),
                           ),
                         ),
                       ]));
