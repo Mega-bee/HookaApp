@@ -395,7 +395,7 @@ class SignupInitState extends States{
                             ),
                           ]),
                       SizedBox(
-                        height: mediaQueryHeight * 0.04,
+                        height: 150,
                       ),
                     ],
                   ),

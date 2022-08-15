@@ -30,7 +30,8 @@ class BuddiesCard extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(60)),
 
-                    child: CachedNetworkImage(
+                    child:
+                    CachedNetworkImage(
                       imageUrl: buddiesModel.image.toString(),
                       height: 120,
                       fit: BoxFit.cover,

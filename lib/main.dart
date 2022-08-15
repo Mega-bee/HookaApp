@@ -20,6 +20,7 @@ import 'package:hooka/utils/service/theme_serrvice/theme_service.dart';
 import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
 
+import 'Hooka Basket/basket_module.dart';
 import 'hooka_places/places_module.dart';
 import 'hooka_product/product_module.dart';
 import 'invitations/details_module.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatefulWidget {
   final ProductModule _productModule;
   final ProfileModule _profileModule;
   final DetailsInvModule _detailsInvModule;
+  final BasketModule _basketModule;
 
 
   MyApp(
@@ -77,7 +79,8 @@ class MyApp extends StatefulWidget {
       this._settingModule,
       this._productModule,
       this._profileModule,
-      this._detailsInvModule
+      this._detailsInvModule,
+      this._basketModule
   );
 
   @override
@@ -111,9 +114,15 @@ class _MyAppState extends State<MyApp> {
       title: 'Hooka',
       routes: fullRoutesList,
       theme: ThemeData(
+
         primaryColor: YellowColor,
         accentColor: Colors.black,
         hoverColor: Colors.black,
+        colorScheme: ColorScheme.light(
+          primary: Colors.black,
+
+        ),
+
 
 
       ),
