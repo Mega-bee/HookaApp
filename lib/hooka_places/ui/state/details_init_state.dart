@@ -8,6 +8,7 @@ import 'package:loading_indicator/loading_indicator.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/components/CustomVerificationDialog.dart';
+import '../../../utils/components/cutom_network_image.dart';
 import '../../../utils/style/colors.dart';
 import '../../request/isfav_request.dart';
 import '../../response/details_response.dart';
@@ -61,28 +62,32 @@ class DetailsInitState extends States {
                     ),
                   ),
                   Align(
-                      child: Card(
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(color: Colors.black, width: 1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: IconButton(
-                              onPressed: () {
-                                isFavvvv = !isFavvvv;
-                                placesDetailsState.refresh();
-                                placesDetailsState.isFav(
-                                    IsFavorite(
-                                      isFav: isFavvvv,
-                                    ),
-                                    detailsModell.id.toString());
-                              },
-                              icon: isFavvvv == detailsModell.isFavorite
-                                  ? Icon(Icons.favorite,
-                                      size: 35, color: Colors.red)
-                                  : Icon(
-                                      Icons.favorite_border,
-                                      size: 30,
-                                    ))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          color:YellowColor,
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(color: Colors.transparent, width: 0),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: IconButton(
+                                onPressed: () {
+                                  isFavvvv = !isFavvvv;
+                                  placesDetailsState.refresh();
+                                  placesDetailsState.isFav(
+                                      IsFavorite(
+                                        isFav: isFavvvv,
+                                      ),
+                                      detailsModell.id.toString());
+                                },
+                                icon: isFavvvv == detailsModell.isFavorite
+                                    ? Icon(Icons.favorite,
+                                        size: 30, color: Colors.red)
+                                    : Icon(
+                                        Icons.favorite_border,
+                                        size: 30,
+                                      ))),
+                      ),
                     alignment: AlignmentDirectional.bottomEnd,)
                 ]);
               }),
@@ -102,6 +107,7 @@ class DetailsInitState extends States {
                   width: 70,
                   color: Colors.transparent,
                   child: Card(
+                    
                       color: Colors.green,
                       child: Center(
                           child: Text(detailsModell.rating.toString(),
@@ -227,6 +233,7 @@ class DetailsInitState extends States {
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Container(
+
                             color: detailsModell.favorites![index].isAvailable!
                                 ? Colors.green
                                 : Colors.red,
@@ -420,31 +427,12 @@ class DetailsInitState extends States {
                             height: 130,
                             width: 130,
                             child: Center(
-                                child: CachedNetworkImage(
-                              imageUrl:
-                                  detailsModell.albums![index].image.toString(),
-                              height: 120,
-                              fit: BoxFit.cover,
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(0),
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ),
-                              placeholder: (context, url) => Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: LoadingIndicator(
-                                  indicatorType: Indicator.ballBeat,
-                                  colors: [Colors.black],
-                                ),
-                              ),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
-                            )),
+                                child:
+                  CustomNetworkImage(
+                  thumbnail: detailsModell.albums![index].image.toString(),
+                  imageSource: [detailsModell.albums![index].image.toString()],
+                  )
+                            ),
                           ),
                         ),
                       ]));

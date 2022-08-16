@@ -15,7 +15,11 @@ class HookaPlaces extends StatefulWidget {
 }
 
 class HookaPlacesState extends State<HookaPlaces> {
-
+  void refresh() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
   String query = '';
 
   @override

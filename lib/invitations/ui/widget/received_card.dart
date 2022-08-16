@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../hooka_buddies/buddies_routes.dart';
 import '../../../utils/style/colors.dart';
+import '../../request/status_inv_request.dart';
 import '../../response/received_invitation_response.dart';
+import '../screen/received_tab.dart';
 
 
 class ReceivedCard extends StatefulWidget {
 final ReceivedInvitationResponse? receivedModel;
+final Function Accept ;
 ReceivedCard({
-  this.receivedModel
+  this.receivedModel,required this.Accept
 });
   @override
   State<ReceivedCard> createState() => _ReceivedCardState();
@@ -92,17 +95,27 @@ class _ReceivedCardState extends State<ReceivedCard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          color: YellowColor,
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 0.03,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width * 0.15,
-                          child: Center(child: Text("Accept")),
+                        InkWell(
+                          onTap: (){
+                            widget.Accept(StatusInvRequest(statusId: "2"));
+
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: YellowColor,
+                            ),
+
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .height * 0.03,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width * 0.15,
+                            child: Center(child: Text("Accept")),
+                          ),
                         ),
                         SizedBox(width: MediaQuery
                             .of(context)
@@ -110,10 +123,14 @@ class _ReceivedCardState extends State<ReceivedCard> {
                             .width * 0.03,),
                         InkWell(
                           onTap: (){
-
+                            widget.Accept(StatusInvRequest(statusId: "3"));
+                            // widget.screenstate!.refresh();
                           },
                           child: Container(
-                            color: Colors.red,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Colors.red,
+                            ),
                             height: MediaQuery
                                 .of(context)
                                 .size
@@ -138,7 +155,10 @@ class _ReceivedCardState extends State<ReceivedCard> {
                             );
                           },
                           child: Container(
-                            color: Primarycolor,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Primarycolor,
+                            ),
                             height: MediaQuery
                                 .of(context)
                                 .size

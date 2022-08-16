@@ -12,6 +12,8 @@ class Urls {
   static const String BASE_Invitations = DOMAIN +'/webapi/api/Invitations/';
   static const String BASE_Product = DOMAIN +'/webapi/api/Products/';
   static const String BASE_Profile = DOMAIN +'/webapi/api/Accounts/';
+  static const String BASE_Basket = DOMAIN +'/webapi/api/Cart/';
+
 
 
 
@@ -43,6 +45,8 @@ class Urls {
   static const RECEIVED_INVITATIONS = BASE_Invitations +'GetRecievedInvitations';
   static const SENT_INVITATIONS = BASE_Invitations +'GetSentInvitations';
   static const OTIONS_INVITATIONS = BASE_Invitations +'GetInvitationOptions';
+  static const SENT_INV_DETAILS = BASE_Invitations +'GetPlaceInvtations/';
+  static const INVITATION_STATUS = BASE_Invitations +'SetInvitationStatus/';
 
 
   //  /*--------PRODUCTS-------------------*/
@@ -52,6 +56,9 @@ class Urls {
 
   //  /*--------PROFILE-------------------*/
   static const PROFILE = BASE_Profile +'GetProfile';
+
+  //  /*--------BASKET-------------------*/
+  static const BASKET = BASE_Basket +'GetCartSummary';
 
 
 

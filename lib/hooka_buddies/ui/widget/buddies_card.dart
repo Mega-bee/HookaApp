@@ -9,6 +9,7 @@ import '../screens/view_profile.dart';
 
 class BuddiesCard extends StatelessWidget {
   final BuddiesResp buddiesModel;
+
   final Function inviteBody;
 
   BuddiesCard({required this.buddiesModel,required this.inviteBody});
@@ -29,7 +30,8 @@ class BuddiesCard extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(60)),
 
-                    child: CachedNetworkImage(
+                    child:
+                    CachedNetworkImage(
                       imageUrl: buddiesModel.image.toString(),
                       height: 120,
                       fit: BoxFit.cover,

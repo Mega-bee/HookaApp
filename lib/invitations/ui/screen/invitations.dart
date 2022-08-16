@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 import 'package:hooka/invitations/ui/screen/received_tab.dart';
 import 'package:hooka/invitations/ui/screen/sent_tab.dart';

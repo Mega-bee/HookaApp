@@ -57,17 +57,21 @@ class InviteInitState extends States {
             SizedBox(
               height: 15,
             ),
-            Text(
-              'Choose place  ',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Choose place  ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
+
             DropdownSearch<PlacesResp>(
               popupProps: PopupProps.modalBottomSheet(
                 showSelectedItems: true,
                 searchFieldProps: TextFieldProps(
                     decoration: InputDecoration(
-                        labelText: "Search palces",
-                        hintText: "Search palces",
+                        labelText: "Search places",
+                        hintText: "Search places",
                         filled: true,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -77,6 +81,7 @@ class InviteInitState extends States {
                 showSearchBox: true,
               ),
               items: placess,
+
               onChanged: (value) {
                 selectedItem = value;
               },
@@ -92,9 +97,12 @@ class InviteInitState extends States {
             SizedBox(
               height: 15,
             ),
-            Text(
-              'Choose date time',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Choose date time',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             SizedBox(
               height: 15,
@@ -125,6 +133,7 @@ class InviteInitState extends States {
             InkWell(
               onTap: () {
                 _selectTime(context);
+
               },
               child: Container(
                 color: Colors.grey.shade300,
@@ -208,12 +217,17 @@ class InviteInitState extends States {
   }
 
   Future<void> _selectDate(BuildContext context) async {
+
     final DateTime? picked = await showDatePicker(
+
+
+
         context: context,
         initialDate: inviteBuddiesState.inviteDate,
         firstDate: DateTime.now(),
         lastDate: DateTime(2101));
     if (picked != null && picked != inviteBuddiesState.inviteDate) {
+
       inviteBuddiesState.inviteDate = picked;
       inviteBuddiesState.refresh();
     }

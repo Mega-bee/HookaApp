@@ -33,8 +33,10 @@ class LoginCubit extends Cubit<States> {
         Fluttertoast.showToast(msg: 'Connection error');
 //        emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
       } else if (value.code == 200) {
-        // logInModel TT = logInModel.fromJson(value.data.insideData);
-        _authService.setToken(value.data.insideData ?? "");
+        logInModel TT = logInModel.fromJson(value.data.insideData);
+        _authService.setToken(TT.token ??"",);
+        _authService.setName(TT.name ??"");
+        // _authService.setToken(value.data.insideData ?? "");
       Navigator.pushNamedAndRemoveUntil(screenState.context, HomeRoutes.HOME_SCREEN, (route) => false);
       }else if (value.code != 200){
         _loadingStateSubject.add(AsyncSnapshot.nothing());

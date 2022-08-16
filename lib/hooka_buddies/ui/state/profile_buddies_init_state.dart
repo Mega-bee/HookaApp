@@ -13,11 +13,8 @@ class ProfileBuddiesInitState extends States {
 
   @override
   Widget getUI(BuildContext context) {
-    final ButtonStyle flatButtonStyle = TextButton.styleFrom(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
-      ),
-    );
+
+
 
     return SingleChildScrollView(
       child: Column(
@@ -33,7 +30,8 @@ class ProfileBuddiesInitState extends States {
                   width: MediaQuery.of(context).size.width * 0.20,
 
                   child: CircleAvatar(
-                    child: CachedNetworkImage(
+                    child:
+                    CachedNetworkImage(
                       imageUrl: _profileResponse.imageUrl.toString(),
                       height: 90,
                       fit: BoxFit.cover,
@@ -95,475 +93,359 @@ class ProfileBuddiesInitState extends States {
             height: MediaQuery.of(context).size.height * 0.01,
           ),
           Container(
-            height: 1000,
-            child: Expanded(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Phone Number  :   ${_profileResponse.phoneNumber}",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    color: Colors.grey,
-                    child: Card(color: Colors.black, elevation: 0),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Email                  :   ${_profileResponse.email}",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    color: Colors.grey,
-                    child: Card(color: Colors.black, elevation: 0),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Instagram          :   ${_profileResponse.socialMediaLink1}",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    color: Colors.grey,
-                    child: Card(color: Colors.black, elevation: 0),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Date of birth     :   ${_profileResponse.birthDate!.split("T").first}",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    color: Colors.grey,
-                    child: Card(color: Colors.black, elevation: 0),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Gender             :   ${_profileResponse.gender}",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    color: Colors.grey,
-                    child: Card(color: Colors.black, elevation: 0),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Martial Status  :   ${_profileResponse.maritalStatus}",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    color: Colors.grey,
-                    child: Card(color: Colors.black, elevation: 0),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Height              :   ${_profileResponse.height} cm",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    color: Colors.grey,
-                    child: Card(color: Colors.black, elevation: 0),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Weight             :   ${_profileResponse.weight} kg",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    color: Colors.grey,
-                    child: Card(color: Colors.black, elevation: 0),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Body Type       :   ${_profileResponse.bodyType}",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    color: Colors.grey,
-                    child: Card(color: Colors.black, elevation: 0),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Eyes                :   ${_profileResponse.eyes}",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    color: Colors.grey,
-                    child: Card(color: Colors.black, elevation: 0),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Hair                 :   ${_profileResponse.hair}",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    color: Colors.grey,
-                    child: Card(color: Colors.black, elevation: 0),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: ExpansionTileCard(
-                      baseColor: Colors.white,
-                      expandedColor: Colors.white,
-                      borderRadius: BorderRadius.circular(25),
-                      elevation: 0,
-                      shadowColor: Colors.transparent,
-                      title: Text("Experiences : ",
-                          style: TextStyle(color: Colors.black)),
-                      // subtitle: Text('I expand!'),
-                      children: <Widget>[
-                        ListView.builder(
-                            itemCount: _profileResponse.experience!.length,
-                            itemBuilder: (context1, index) {
-                              final model = _profileResponse.experience![index];
-                              return Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 200),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "Place        : ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${model.place}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 190),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "Position    : ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${model.position}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 160),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "WorkedFrom :  ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${model.workedFrom}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 160),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "WorkedTo     :  ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${model.workedTo}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ],
-                              );
-                            })
-                      ],
-                    ),
-                  ),
-                  Divider(color: Colors.black, endIndent: 20, indent: 20),
-                  Container(
-                    color: Colors.white,
-                    child: ExpansionTileCard(
-                      baseColor: Colors.white,
-                      expandedColor: Colors.white,
-                      borderRadius: BorderRadius.circular(25),
-                      elevation: 0,
-                      shadowColor: Colors.transparent,
-                      title: Text("Educations",
-                          style: TextStyle(color: Colors.black)),
-                      // subtitle: Text('I expand!'),
-                      children: <Widget>[
-                        ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: _profileResponse.education!.length,
-                            itemBuilder: (context1, index) {
-                              final m = _profileResponse.education![index];
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 1.0,
-                                  vertical: 2.0,
-                                ),
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 200),
-                                      child: RichText(
-                                        text: TextSpan(
-                                            text: "University        : ",
-                                            children: [
-                                              TextSpan(
-                                                  text: "${m.university}",
-                                                  style: const TextStyle(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 12)),
-                                            ],
-                                            style: const TextStyle(
-                                                color: Colors.black54,
-                                                fontSize: 15)),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 190),
-                                      child: RichText(
-                                        text: TextSpan(
-                                            text: "Degree    : ",
-                                            children: [
-                                              TextSpan(
-                                                  text: "${m.degree}",
-                                                  style: const TextStyle(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 12)),
-                                            ],
-                                            style: const TextStyle(
-                                                color: Colors.black54,
-                                                fontSize: 15)),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 160),
-                                      child: RichText(
-                                        text: TextSpan(
-                                            text: "StudiedFrom :  ",
-                                            children: [
-                                              TextSpan(
-                                                  text: "${m.studiedFrom}",
-                                                  style: const TextStyle(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 12)),
-                                            ],
-                                            style: const TextStyle(
-                                                color: Colors.black54,
-                                                fontSize: 15)),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 160),
-                                      child: RichText(
-                                        text: TextSpan(
-                                            text: "StudiedTo     :  ",
-                                            children: [
-                                              TextSpan(
-                                                  text: "${m.studiedTo}",
-                                                  style: const TextStyle(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 12)),
-                                            ],
-                                            style: const TextStyle(
-                                                color: Colors.black54,
-                                                fontSize: 15)),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            })
-                      ],
-                    ),
-                  ),
-                  Divider(color: Colors.black, endIndent: 20, indent: 20),
-                  Container(
-                    color: Colors.white,
-                    child: ExpansionTileCard(
-                      baseColor: Colors.white,
-                      expandedColor: Colors.white,
-                      borderRadius: BorderRadius.circular(25),
-                      elevation: 0,
-                      shadowColor: Colors.transparent,
-                      title: Text("Addresses: ",
-                          style: TextStyle(color: Colors.black)),
-                      // subtitle: Text('I expand!'),
-                      children: <Widget>[
-                        ListView.builder(
-                          itemCount: _profileResponse.addresses!.length,
+
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Phone Number  :   ${_profileResponse.phoneNumber}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Email                  :   ${_profileResponse.email}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Instagram          :   ${_profileResponse.socialMediaLink1}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Date of birth     :   ${_profileResponse.birthDate!.split("T").first}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Gender             :   ${_profileResponse.gender}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Martial Status  :   ${_profileResponse.maritalStatus}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Height              :   ${_profileResponse.height} cm",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Weight             :   ${_profileResponse.weight} kg",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Body Type       :   ${_profileResponse.bodyType}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Eyes                :   ${_profileResponse.eyes}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Hair                 :   ${_profileResponse.hair}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  color: Colors.white,
+                  child: ExpansionTileCard(
+                    baseColor: Colors.white,
+                    expandedColor: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                    elevation: 0,
+                    shadowColor: Colors.transparent,
+                    title: Text("Experiences : ",
+                        style: TextStyle(color: Colors.black)),
+                    // subtitle: Text('I expand!'),
+                    children: <Widget>[
+                      ListView.builder(
+                          itemCount: _profileResponse.experience!.length,
                           itemBuilder: (context1, index) {
-                            final model = _profileResponse.addresses![index];
+                            final model = _profileResponse.experience![index];
+                            return Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 200),
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: "Place        : ",
+                                        children: [
+                                          TextSpan(
+                                              text: "${model.place}",
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12)),
+                                        ],
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 15)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 190),
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: "Position    : ",
+                                        children: [
+                                          TextSpan(
+                                              text: "${model.position}",
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12)),
+                                        ],
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 15)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 160),
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: "WorkedFrom :  ",
+                                        children: [
+                                          TextSpan(
+                                              text: "${model.workedFrom}",
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12)),
+                                        ],
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 15)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 160),
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: "WorkedTo     :  ",
+                                        children: [
+                                          TextSpan(
+                                              text: "${model.workedTo}",
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12)),
+                                        ],
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 15)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            );
+                          })
+                    ],
+                  ),
+                ),
+                Divider(color: Colors.black, endIndent: 20, indent: 20),
+                Container(
+                  color: Colors.white,
+                  child: ExpansionTileCard(
+                    baseColor: Colors.white,
+                    expandedColor: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                    elevation: 0,
+                    shadowColor: Colors.transparent,
+                    title: Text("Educations",
+                        style: TextStyle(color: Colors.black)),
+                    // subtitle: Text('I expand!'),
+                    children: <Widget>[
+                      ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: _profileResponse.education!.length,
+                          itemBuilder: (context1, index) {
+                            final m = _profileResponse.education![index];
                             return Padding(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 1.0,
@@ -572,16 +454,81 @@ class ProfileBuddiesInitState extends States {
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(right: 200),
+                                    padding:
+                                        const EdgeInsets.only(right: 200),
                                     child: RichText(
                                       text: TextSpan(
-                                          text: "Place        : ",
+                                          text: "University        : ",
                                           children: [
                                             TextSpan(
-                                                text: "${model.title}",
+                                                text: "${m.university}",
                                                 style: const TextStyle(
                                                     color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
+                                                    fontWeight:
+                                                        FontWeight.bold,
+                                                    fontSize: 12)),
+                                          ],
+                                          style: const TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 15)),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(right: 190),
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: "Degree    : ",
+                                          children: [
+                                            TextSpan(
+                                                text: "${m.degree}",
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.bold,
+                                                    fontSize: 12)),
+                                          ],
+                                          style: const TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 15)),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(right: 160),
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: "StudiedFrom :  ",
+                                          children: [
+                                            TextSpan(
+                                                text: "${m.studiedFrom}",
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.bold,
+                                                    fontSize: 12)),
+                                          ],
+                                          style: const TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 15)),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(right: 160),
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: "StudiedTo     :  ",
+                                          children: [
+                                            TextSpan(
+                                                text: "${m.studiedTo}",
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.bold,
                                                     fontSize: 12)),
                                           ],
                                           style: const TextStyle(
@@ -593,19 +540,68 @@ class ProfileBuddiesInitState extends States {
                                 ],
                               ),
                             );
-                          },
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                        )
-                      ],
-                    ),
+                          })
+                    ],
                   ),
-                  Divider(color: Colors.black, endIndent: 20, indent: 20),
-                  SizedBox(
-                    height: 1,
+                ),
+                Divider(color: Colors.black, endIndent: 20, indent: 20),
+                Container(
+                  color: Colors.white,
+                  child: ExpansionTileCard(
+                    baseColor: Colors.white,
+                    expandedColor: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                    elevation: 0,
+                    shadowColor: Colors.transparent,
+                    title: Text("Addresses: ",
+                        style: TextStyle(color: Colors.black)),
+                    // subtitle: Text('I expand!'),
+                    children: <Widget>[
+                      ListView.builder(
+                        itemCount: _profileResponse.addresses!.length,
+                        itemBuilder: (context1, index) {
+                          final model = _profileResponse.addresses![index];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 1.0,
+                              vertical: 2.0,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 200),
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: "Place        : ",
+                                        children: [
+                                          TextSpan(
+                                              text: "${model.title}",
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12)),
+                                        ],
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 15)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                      )
+                    ],
                   ),
-                ],
-              ),
+                ),
+                Divider(color: Colors.black, endIndent: 20, indent: 20),
+                SizedBox(
+                  height: 1,
+                ),
+              ],
             ),
           ),
         ],

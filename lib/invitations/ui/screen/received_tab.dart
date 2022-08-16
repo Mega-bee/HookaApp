@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hooka/invitations/ui/widget/received_card.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../abstracts/states/state.dart';
-import '../../model/received_model.dart';
+import '../../request/status_inv_request.dart';
 import '../../state_manager/invitation_state_manager.dart';
 
 @injectable
@@ -17,6 +15,16 @@ class ReceivedTab extends StatefulWidget {
 }
 
 class ReceivedTabState extends State<ReceivedTab> with AutomaticKeepAliveClientMixin {
+  void refresh() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  StatusInvite(StatusInvRequest request,String id){
+    widget.cubit.StatusInv(this, request,id);
+  }
+
   @override
   void initState() {
     super.initState();

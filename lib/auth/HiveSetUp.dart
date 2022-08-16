@@ -28,6 +28,13 @@ class AuthPrefsHelper {
   String? getToken() {
     return box.get('token');
   }
+  void setName(String name) {
+    box.put('name', name);
+  }
+
+  String? getName() {
+    return box.get('name');
+  }
 
   Future<void> clearToken() async {
     await box.clear();

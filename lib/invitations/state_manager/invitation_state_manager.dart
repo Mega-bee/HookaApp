@@ -17,6 +17,7 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../repository/invitations_repository.dart';
+import '../request/status_inv_request.dart';
 import '../response/received_invitation_response.dart';
 import '../ui/screen/received_tab.dart';
 import '../ui/state/received_init_state.dart';
@@ -49,6 +50,18 @@ class RecInvitationCubit extends Cubit<States> {
         }
         emit(ReceivedInitState(r,screenState));
       }
+    });
+  }
+  StatusInv(
+      ReceivedTabState screenState, StatusInvRequest request, String? id) {
+    _invitationsRepository.InvitationsStatus(request, id).then((value) {
+      if (value!.code == 200) {
+        request.statusId == 2
+            ? Fluttertoast.showToast(msg: "Invitation Accepted")
+            : Fluttertoast.showToast(msg: "Invitation Rejected");
+        getReceivedInv(screenState);
+      }
+
     });
   }
 }

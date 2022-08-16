@@ -63,7 +63,7 @@ class BuddiesState extends State<Buddies> {
                 onPressed: () {},
                 child: Text(
                   "Map",
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18,color: Colors.black),
                 ))
           ],
         ),

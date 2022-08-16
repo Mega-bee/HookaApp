@@ -18,10 +18,13 @@ import 'package:rxdart/rxdart.dart';
 
 import '../repository/invitations_repository.dart';
 import '../response/received_invitation_response.dart';
+import '../response/sent_details_response.dart';
 import '../response/sent_invitation_response.dart';
 import '../ui/screen/received_tab.dart';
+import '../ui/screen/sent_details.dart';
 import '../ui/screen/sent_tab.dart';
 import '../ui/state/received_init_state.dart';
+import '../ui/state/sent_details_init_state.dart';
 import '../ui/state/sent_init_state.dart';
 
 
@@ -51,6 +54,27 @@ class SentInvitationCubit extends Cubit<States> {
           s.add(SentInvitationResponse.fromJson(item));
         }
         emit(SentInitState(s,screenState));
+      }
+    });
+  }
+  getDetailsSentInv(SentDetailsState screenState,String? id ) {
+
+    emit(LoadingState());
+    _invitationsRepository.getDetailsSentInvitation(id).then((value) {
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+              getDetailsSentInv(screenState,"");
+            }));
+      } else if (value.code == 200) {
+        DetailsSentResponse s =
+        DetailsSentResponse.fromJson(value.data.insideData);
+        // List<SentInvitationResponse> s = [];
+        // for (var item in value.data.insideData) {
+        //   s.add(SentInvitationResponse.fromJson(item));
+        // }
+        emit(DetailsSentInitState(s,screenState));
       }
     });
   }

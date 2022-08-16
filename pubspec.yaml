@@ -72,6 +72,8 @@ dependencies:
   url_launcher:
   flutter_rating_bar: ^4.0.1
   dropdown_search: ^5.0.2
+  flutter_3d_choice_chip:
+  photo_view:
 
 
 dev_dependencies:

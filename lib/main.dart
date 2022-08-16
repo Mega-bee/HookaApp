@@ -17,10 +17,13 @@ import 'package:hooka/splash_screen/splash_module.dart';
 import 'package:hooka/splash_screen/splash_routes.dart';
 import 'package:hooka/utils/logger/logger.dart';
 import 'package:hooka/utils/service/theme_serrvice/theme_service.dart';
+import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
 
+import 'Hooka Basket/basket_module.dart';
 import 'hooka_places/places_module.dart';
 import 'hooka_product/product_module.dart';
+import 'invitations/details_module.dart';
 
 
 void main() async {
@@ -60,6 +63,8 @@ class MyApp extends StatefulWidget {
   final SettingModule _settingModule;
   final ProductModule _productModule;
   final ProfileModule _profileModule;
+  final DetailsInvModule _detailsInvModule;
+  final BasketModule _basketModule;
 
 
   MyApp(
@@ -73,7 +78,9 @@ class MyApp extends StatefulWidget {
       this._offersModule,
       this._settingModule,
       this._productModule,
-      this._profileModule
+      this._profileModule,
+      this._detailsInvModule,
+      this._basketModule
   );
 
   @override
@@ -107,7 +114,16 @@ class _MyAppState extends State<MyApp> {
       title: 'Hooka',
       routes: fullRoutesList,
       theme: ThemeData(
-        primaryColor: Colors.yellow,
+
+        primaryColor: YellowColor,
+        accentColor: Colors.black,
+        hoverColor: Colors.black,
+        colorScheme: ColorScheme.light(
+          primary: Colors.black,
+
+        ),
+
+
 
       ),
       initialRoute: SplashRoutes.SPLASH_SCREEN,

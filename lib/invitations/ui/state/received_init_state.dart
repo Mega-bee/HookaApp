@@ -22,8 +22,11 @@ class ReceivedInitState extends States{
                     itemCount:receivedmod.length ,
                     itemBuilder: (context, index) {
                       return ReceivedCard(
-                        receivedModel: receivedmod[index],
+                        receivedModel: receivedmod[index],Accept: (request){
+                          screenstate.StatusInvite(request, receivedmod[index].id.toString());
+                      } ,
                       );
+
                     })))]
 
       ),

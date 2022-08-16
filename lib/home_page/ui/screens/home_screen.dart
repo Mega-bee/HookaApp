@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:hooka/Hooka%20Basket/basket_routes.dart';
 import 'package:hooka/home_page/ui/widget/hooka_card.dart';
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 import 'package:hooka/hooka_buddies/buddies_routes.dart';
@@ -37,7 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.black,
                 )),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, BasketRoutes.BasketS);
+                },
                 icon: Icon(
                   Icons.shopping_cart,
                   color: Colors.black,
