@@ -7,19 +7,18 @@ import 'package:injectable/injectable.dart';
 
 
 
-
 @injectable
-class SettingRepository {
+class CheckoutRepository {
   final ApiClient _apiClient;
   final AuthService _authService;
 
-  SettingRepository(this._apiClient, this._authService);
+  CheckoutRepository(this._apiClient, this._authService);
 
-  Future<WebServiceResponse?> Availble() async {
+  Future<WebServiceResponse?> getCheckoutBasket() async {
     var token = _authService.getToken();
 
-    WebServiceResponse? response = await _apiClient.put(
-      Urls.AVAILABLE,{},
+    WebServiceResponse? response = await _apiClient.get(
+      Urls.BASKET,
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;

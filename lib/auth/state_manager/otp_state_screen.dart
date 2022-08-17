@@ -35,7 +35,7 @@ class OtpCubit extends Cubit<States> {
         _loadingStateSubject.add(AsyncSnapshot.nothing());
         Fluttertoast.showToast(msg: 'Connection error');
       } else if (value.code == 200) {
-        _loginRepository.loginRequest(LogRequest(request.number, request.password)).then((value)
+        _loginRepository.loginRequest(LogRequest(request.email, request.password)).then((value)
         {
           if (value == null) {
             _loadingStateSubject.add(AsyncSnapshot.nothing());

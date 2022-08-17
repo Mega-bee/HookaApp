@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
-import 'package:hooka/Hooka%20Basket/model/basket.dart';
-import 'package:hooka/Hooka%20Basket/ui/widget/basket_card.dart';
 import 'package:injectable/injectable.dart';
-import 'package:simple_animations/stateless_animation/play_animation.dart';
-
 import '../../../abstracts/states/state.dart';
 import '../../../utils/style/colors.dart';
 import '../../state_manager/basket_state_manager.dart';
@@ -39,6 +34,7 @@ class BasketScreenState extends State<BasketScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+backgroundColor: Colors.white,
       appBar: AppBar(
           elevation: 1,
           backgroundColor: Colors.white,
@@ -56,7 +52,8 @@ class BasketScreenState extends State<BasketScreen> {
             "Hooka Basket",
             style: TextStyle(color: Colors.black),
           )),
-      body:BlocBuilder<BasketCubit, States>(
+      body:
+      BlocBuilder<BasketCubit, States>(
         bloc: widget.cubit,
         builder: (context, state) {
           return state.getUI(context);

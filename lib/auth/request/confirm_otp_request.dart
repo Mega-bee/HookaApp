@@ -1,14 +1,14 @@
 class ConfOtpRequest {
   String? otp;
-  String? number;
+  String? email;
   String? password;
 
-  ConfOtpRequest(this.otp, this.number,this.password);
+  ConfOtpRequest(this.otp, this.email,this.password);
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['otp'] = otp;
-    data['phone'] = number;
+    data['email'] = email;
 
     return data;
   }

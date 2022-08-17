@@ -23,6 +23,7 @@ class Urls {
    static const GENERATE_OTP = BASE_ACCOUNTS + 'GenerateOtp';
    static const CONFIRM_OTP = BASE_ACCOUNTS + 'ConfirmOtp';
    static const FORGET_PASS = BASE_ACCOUNTS + 'ForgetPassword';
+   static const AVAILABLE = BASE_ACCOUNTS + 'IsAvailableToggle';
 
 
 
@@ -59,6 +60,7 @@ class Urls {
 
   //  /*--------BASKET-------------------*/
   static const BASKET = BASE_Basket +'GetCartSummary';
+  static const ADD_TO_CART = BASE_Basket +'AddToCart/';
 
 
 

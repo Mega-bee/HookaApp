@@ -16,7 +16,7 @@ class MenuItemm {
 
 class MenuItems {
   static const MainScreen = MenuItemm(Icons.home, 'MainScreen');
-  static const mycart = MenuItemm(Icons.shopping_basket, 'My Cart');
+  static const Checkout = MenuItemm(Icons.fact_check_outlined, 'Checkout');
   static const myorder = MenuItemm(Icons.star_border, 'My Orders');
   static const invitations = MenuItemm(Icons.calendar_today, 'Invitations');
   static const notifications = MenuItemm(Icons.notifications, 'Notifications');
@@ -25,7 +25,7 @@ class MenuItems {
 
   static final all = <MenuItemm>[
     MainScreen,
-    mycart,
+    Checkout,
     myorder,
     invitations,
     notifications,

@@ -24,6 +24,7 @@ import 'Hooka Basket/basket_module.dart';
 import 'hooka_places/places_module.dart';
 import 'hooka_product/product_module.dart';
 import 'invitations/details_module.dart';
+import 'my_cart/checkout_module.dart';
 
 
 void main() async {
@@ -65,6 +66,7 @@ class MyApp extends StatefulWidget {
   final ProfileModule _profileModule;
   final DetailsInvModule _detailsInvModule;
   final BasketModule _basketModule;
+  final CheckoutModule _checkoutModule;
 
 
   MyApp(
@@ -80,7 +82,8 @@ class MyApp extends StatefulWidget {
       this._productModule,
       this._profileModule,
       this._detailsInvModule,
-      this._basketModule
+      this._basketModule,
+      this._checkoutModule
   );
 
   @override
@@ -115,11 +118,15 @@ class _MyAppState extends State<MyApp> {
       routes: fullRoutesList,
       theme: ThemeData(
 
+
         primaryColor: YellowColor,
         accentColor: Colors.black,
+        accentColorBrightness: Brightness.light,
         hoverColor: Colors.black,
+
         colorScheme: ColorScheme.light(
           primary: Colors.black,
+
 
         ),
 

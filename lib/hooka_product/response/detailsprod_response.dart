@@ -5,9 +5,11 @@ class DetailsProductResponse {
   String? description;
   String? image;
   num? customerInitialPrice;
+  bool? isselected =false;
 
   DetailsProductResponse(
       {this.id,
+        required this.isselected,
         this.category,
         this.title,
         this.description,
