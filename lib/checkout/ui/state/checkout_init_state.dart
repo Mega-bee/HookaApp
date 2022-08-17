@@ -209,6 +209,8 @@ class CheckoutInitState extends States {
               SizedBox(width: MediaQuery.of(context).size.width*0.4,),
               Text("${basketResponse.totalPrice} \$",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold),),
 
+
+
             ],),
         ),
         SizedBox(height: MediaQuery.of(context).size.height*0.02,),
