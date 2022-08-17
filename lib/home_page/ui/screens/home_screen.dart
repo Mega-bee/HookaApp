@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
           elevation: 1,
           title: Text(
@@ -95,12 +96,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
       body: SingleChildScrollView(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
+
+          Image.asset(
+            ImageAsset.HOMEIMAGE,
+            height: 200,
+            width: 500,
+            fit: BoxFit.cover,
           ),
           Image.asset(
             ImageAsset.LOGO,
-            height: 250,
+            height: 200,
             width: 500,
             fit: BoxFit.cover,
           ),

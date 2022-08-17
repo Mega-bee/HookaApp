@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hooka/my_cart/checkout_routes.dart';
 import '../../../abstracts/states/state.dart';
+import '../../../checkout/checkout_routes.dart';
 import '../../../utils/style/colors.dart';
 import '../../response/basket_response.dart';
 import '../screen/basket_screen.dart';
@@ -116,6 +116,7 @@ class BasketInitState extends States {
 
               InkWell(
                 onTap: (){
+
                   Navigator.pushNamed(context, CheckoutRoutes.Checkout_screen);
                 },
                 child: Container(

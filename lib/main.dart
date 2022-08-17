@@ -16,15 +16,13 @@ import 'package:hooka/settings/setting_module.dart';
 import 'package:hooka/splash_screen/splash_module.dart';
 import 'package:hooka/splash_screen/splash_routes.dart';
 import 'package:hooka/utils/logger/logger.dart';
-import 'package:hooka/utils/service/theme_serrvice/theme_service.dart';
 import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
-
 import 'Hooka Basket/basket_module.dart';
+import 'checkout/checkout_module.dart';
 import 'hooka_places/places_module.dart';
 import 'hooka_product/product_module.dart';
 import 'invitations/details_module.dart';
-import 'my_cart/checkout_module.dart';
 
 
 void main() async {

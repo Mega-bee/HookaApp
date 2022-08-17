@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import '../../../Hooka Basket/basket_routes.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../hooka_places/state_manager/details_state_manager.dart';
 import '../../../utils/style/colors.dart';
@@ -52,7 +53,9 @@ class DetailsProductState extends State<DetailsProduct> {
             onPressed: (){Navigator.of(context).pop();},
           ),
           actions: [IconButton(onPressed: (){}, icon: Icon(Icons.notifications,color: Colors.black,)),
-            IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart,color: Colors.black,)),
+            IconButton(onPressed: (){
+              Navigator.pushNamed(context, BasketRoutes.BasketS);
+            }, icon: Icon(Icons.shopping_cart,color: Colors.black,)),
           ],
         ),
         body: BlocBuilder<ProdDetailsCubit, States>(

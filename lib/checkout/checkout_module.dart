@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooka/abstracts/module/rout_module.dart';
-import 'package:hooka/my_cart/checkout_routes.dart';
-import 'package:hooka/my_cart/ui/screen/checkout.dart';
+import 'package:hooka/checkout/ui/screen/checkout.dart';
 import 'package:injectable/injectable.dart';
+
+import 'checkout_routes.dart';
 
 @injectable
 class CheckoutModule extends RoutModule {

@@ -187,14 +187,9 @@ class CheckoutInitState extends States {
         ),
         SizedBox(height: MediaQuery.of(context).size.height*0.03,),
 
-        Padding(
-          padding: EdgeInsets.only(right: 20, left: 20),
-          child: Container(
-            color: Colors.grey,
-            height: 1,
-            width: MediaQuery.of(context).size.width * 0.9,
-          ),
-        ),
+        Container(
+            width: MediaQuery.of(context).size.width*0.9,
+            child: MySeparator(color: Colors.black,height: 0.4,)),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.02,
         ),
@@ -217,17 +212,14 @@ class CheckoutInitState extends States {
             ],),
         ),
         SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-        Container(
-            width: MediaQuery.of(context).size.width*0.9,
-            child: MySeparator(color: Colors.grey,height: 0.4,)),
-        SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+
 
         ElevatedButton(
           onPressed: () {},
 //
 
           child: const Text(
-            'PAY ',
+            'Order Now',
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 14,
