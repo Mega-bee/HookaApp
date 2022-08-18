@@ -7,7 +7,8 @@ import '../../response/detailsprod_response.dart';
 
 class DetailsProdCard extends StatefulWidget {
   final  DetailsProductResponse detailsProductResponse;
-  DetailsProdCard(this.detailsProductResponse);
+  final Function ontap;
+  DetailsProdCard(this.detailsProductResponse,this.ontap);
 
   @override
   State<DetailsProdCard> createState() => _DetailsProdCardState();
@@ -16,25 +17,32 @@ class DetailsProdCard extends StatefulWidget {
 class _DetailsProdCardState extends State<DetailsProdCard> {
   bool _value = false;
   late bool valu;
-  bool selectedList = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+
 
         Container(
           height: 100,width: 100,
 
           child: InkWell(
             onTap: (){
-              selectedList = !selectedList;
+
+              widget.detailsProductResponse.isselected = !widget.detailsProductResponse.isselected!;
+
               setState(() {
 
               });
+              widget.ontap();
             },
             child: Card(
-              color: selectedList==true
-                  ?YellowColor:Colors.white,
+
+              color:
+              widget.detailsProductResponse.isselected==true?
+                YellowColor:
+              Colors.white,
 
 
               child: Column(

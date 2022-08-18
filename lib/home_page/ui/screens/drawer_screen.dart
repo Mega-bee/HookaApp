@@ -6,12 +6,12 @@ import 'package:hooka/auth/service/auth_service.dart';
 import 'package:hooka/di/di_config.dart';
 import 'package:hooka/home_page/ui/screens/home_screen.dart';
 import 'package:injectable/injectable.dart';
+import '../../../checkout/ui/screen/checkout.dart';
 import '../../../contact_us/ui/contactus.dart';
 import '../../../invitations/ui/screen/invitations.dart';
-import '../../../my_cart/widget/screen/MyCart.dart';
 import '../../../my_orders/ui/Screen/myorders.dart';
 import '../../../notifications/ui/screen/notifications.dart';
-import '../../../settings/ui/settings.dart';
+import '../../../settings/ui/screen/settings.dart';
 import 'menu_screen.dart';
 
 @injectable
@@ -58,8 +58,8 @@ Widget   getScreen() {
       return getIt<HomeScreen>();
     case  MenuItems.settings:
       return getIt<Settings>();
-    case  MenuItems.mycart:
-      return MyCart();
+    case  MenuItems.Checkout:
+      return getIt<Checkout>();
     case  MenuItems.myorder:
       return MyOrders();
     case  MenuItems.notifications:

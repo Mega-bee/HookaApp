@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/stateless_animation/play_animation.dart';
-
 import '../../../abstracts/states/state.dart';
+import '../../../checkout/checkout_routes.dart';
 import '../../../utils/style/colors.dart';
-import '../../model/basket.dart';
 import '../../response/basket_response.dart';
 import '../screen/basket_screen.dart';
 import '../widget/basket_card.dart';
@@ -17,28 +15,15 @@ class BasketInitState extends States {
   Widget getUI(BuildContext context) {
     return     Column(
       children: [
-        PlayAnimation<double>(
-            duration: Duration(milliseconds: 1200),
-            // delay: Duration(milliseconds: 400),
-            tween: Tween(begin: 0.0, end: 250),
-            builder: (context, child, value) {
-              return Container(
-                height: value,
-                child: Center(
-                    child: Image.asset(
-                      "assets/images/basket.jpeg",
-                      fit: BoxFit.cover,
-                      height: 400,
-                      width: 700,
-                    )),
-              );
-            }),
+
         SizedBox(
-          height: 40,
+          height: 5,
         ),
         Expanded(
+
           child: Container(
-            width: MediaQuery.of(context).size.width*0.9,
+
+            width: MediaQuery.of(context).size.width*0.97,
             height:  MediaQuery.of(context).size.height*0.8,
 
             child: ListView.builder(
@@ -69,232 +54,43 @@ class BasketInitState extends States {
                 }),
           ),
         ),
+        Container(height: 2,width: 400,color: Colors.black87,),
 
-        // Container(
-        //   width: 300,
-        //   height: 100,
-        //   child: Card(
-        //     elevation: 8,
-        //     shape: RoundedRectangleBorder(
-        //       borderRadius: BorderRadius.circular(40.0),
-        //     ),
-        //     child: Padding(
-        //       padding: const EdgeInsets.all(8.0),
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //         children: [
-        //           Image.asset(
-        //             "assets/images/shisha.png",
-        //             width: 50,
-        //           ),
-        //           Container(
-        //             width: 40,
-        //             height: 40,
-        //             child: InkWell(
-        //               onTap: () {
-        //                 setState(() {
-        //                   if (increment > 0)
-        //                     increment--;
-        //                   else
-        //                     increment = 0;
-        //                 });
-        //               },
-        //               child: Card(
-        //                   color: Colors.grey[200],
-        //                   shape: RoundedRectangleBorder(
-        //                     borderRadius: BorderRadius.circular(40.0),
-        //                   ),
-        //                   child: Center(
-        //                       child: Text(
-        //                     "-",
-        //                     style: TextStyle(fontWeight: FontWeight.bold),
-        //                   ))),
-        //             ),
-        //           ),
-        //           Text(
-        //             "${increment}",
-        //             style: TextStyle(fontWeight: FontWeight.bold),
-        //           ),
-        //           Container(
-        //             width: 40,
-        //             height: 40,
-        //             child: InkWell(
-        //               onTap: () {
-        //                 setState(() {
-        //                   increment++;
-        //                 });
-        //               },
-        //               child: Card(
-        //                   color: Colors.grey[200],
-        //                   shape: RoundedRectangleBorder(
-        //                     borderRadius: BorderRadius.circular(40.0),
-        //                   ),
-        //                   child: Center(child: Text("+"))),
-        //             ),
-        //           ),
-        //           Text("USD $icp",
-        //               style: TextStyle(fontWeight: FontWeight.bold))
-        //         ],
-        //       ),
-        //     ),
-        //   ),
-        // ),
-        // SizedBox(
-        //   height: 40,
-        // ),
-        // Container(
-        //   width: 300,
-        //   height: 100,
-        //   child: Card(
-        //     elevation: 8,
-        //     shape: RoundedRectangleBorder(
-        //       borderRadius: BorderRadius.circular(40.0),
-        //     ),
-        //     child: Padding(
-        //       padding: const EdgeInsets.all(8.0),
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //         children: [
-        //           Image.asset(
-        //             "assets/images/shisha.png",
-        //             width: 50,
-        //           ),
-        //           Container(
-        //             width: 40,
-        //             height: 40,
-        //             child: InkWell(
-        //               onTap: () {
-        //                 setState(() {
-        //                   if (increment2 > 0)
-        //                     increment2--;
-        //                   else
-        //                     increment2 = 0;
-        //                 });
-        //               },
-        //               child: Card(
-        //                   color: Colors.grey[200],
-        //                   shape: RoundedRectangleBorder(
-        //                     borderRadius: BorderRadius.circular(40.0),
-        //                   ),
-        //                   child: Center(
-        //                       child: Text(
-        //                     "-",
-        //                     style: TextStyle(fontWeight: FontWeight.bold),
-        //                   ))),
-        //             ),
-        //           ),
-        //           Text(
-        //             "${increment2}",
-        //             style: TextStyle(fontWeight: FontWeight.bold),
-        //           ),
-        //           Container(
-        //             width: 40,
-        //             height: 40,
-        //             child: InkWell(
-        //               onTap: () {
-        //                 setState(() {
-        //                   increment2++;
-        //                 });
-        //               },
-        //               child: Card(
-        //                   color: Colors.grey[200],
-        //                   shape: RoundedRectangleBorder(
-        //                     borderRadius: BorderRadius.circular(40.0),
-        //                   ),
-        //                   child: Center(child: Text("+"))),
-        //             ),
-        //           ),
-        //           Text("USD $icp2",
-        //               style: TextStyle(fontWeight: FontWeight.bold))
-        //         ],
-        //       ),
-        //     ),
-        //   ),
-        // ),
-        // SizedBox(
-        //   height: 40,
-        // ),
-        // Container(
-        //   width: 300,
-        //   height: 100,
-        //   child: Card(
-        //     elevation: 8,
-        //     shape: RoundedRectangleBorder(
-        //       borderRadius: BorderRadius.circular(40.0),
-        //     ),
-        //     child: Padding(
-        //       padding: const EdgeInsets.all(8.0),
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //         children: [
-        //           Image.asset(
-        //             "assets/images/shisha.png",
-        //             width: 50,
-        //           ),
-        //           Container(
-        //             width: 40,
-        //             height: 40,
-        //             child: InkWell(
-        //               onTap: () {
-        //                 setState(() {
-        //                   if (increment3 > 0)
-        //                     increment3--;
-        //                   else
-        //                     increment3 = 0;
-        //                 });
-        //               },
-        //               child: Card(
-        //                   color: Colors.grey[200],
-        //                   shape: RoundedRectangleBorder(
-        //                     borderRadius: BorderRadius.circular(40.0),
-        //                   ),
-        //                   child: Center(
-        //                       child: Text(
-        //                     "-",
-        //                     style: TextStyle(fontWeight: FontWeight.bold),
-        //                   ))),
-        //             ),
-        //           ),
-        //           Text(
-        //             "${increment3}",
-        //             style: TextStyle(fontWeight: FontWeight.bold),
-        //           ),
-        //           Container(
-        //             width: 40,
-        //             height: 40,
-        //             child: InkWell(
-        //               onTap: () {
-        //                 setState(() {
-        //                   increment3++;
-        //                 });
-        //               },
-        //               child: Card(
-        //                   color: Colors.grey[200],
-        //                   shape: RoundedRectangleBorder(
-        //                     borderRadius: BorderRadius.circular(40.0),
-        //                   ),
-        //                   child: Center(child: Text("+"))),
-        //             ),
-        //           ),
-        //           Text("USD $icp3",
-        //               style: TextStyle(fontWeight: FontWeight.bold))
-        //         ],
-        //       ),
-        //     ),
-        //   ),
-        // ),
-        // SizedBox(
-        //   height: 30,
-        // ),
-        Padding(
-          padding: const EdgeInsets.only(left: 200),
-          child: Text(
-            "TOTAL : USD ${Total1}",
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-          ),
-        ),
+
+
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children:[
+            Spacer(flex: 3,),
+
+            Container(
+              height: 35,
+              width: 180,
+
+
+              child: Center(
+                child: Text(
+                  "Total :           \$ ${_basketResponse.totalPrice}",
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black87),
+                ),
+              ),
+            ),
+            Spacer(flex: 2,),
+            Container(
+
+              child: Center(
+                  child: Image.asset(
+                    "assets/images/92-924113_shopping-cart-icon-e-commerce-removebg-preview.png",
+                    fit: BoxFit.contain,
+                    height: 40,
+                    width: 50,
+                  )),
+            ),
+
+
+
+        ]),
         SizedBox(
-          height: 50,
+          height: 30,
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 30),
@@ -314,25 +110,32 @@ class BasketInitState extends States {
                           padding: const EdgeInsets.all(8.0),
                           child: Center(
                               child: Text(
-                                "Save",
-                                style: TextStyle(color: Colors.black, fontSize: 12),
+                                "Update",
+                                style: TextStyle(color: Colors.black87, fontSize: 12,fontWeight: FontWeight.bold),
                               ))))),
-              Container(
-                  width: 100,
-                  height: 50,
-                  child: Card(
-                      color: YellowColor,
-                      elevation: 8,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
-                      ),
-                      child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                              child: Text(
-                                "Buy Now",
-                                style: TextStyle(color: Colors.black, fontSize: 12),
-                              ))))),
+
+              InkWell(
+                onTap: (){
+
+                  Navigator.pushNamed(context, CheckoutRoutes.Checkout_screen);
+                },
+                child: Container(
+                    width: 200,
+                    height: 50,
+                    child: Card(
+                        color: Colors.black87,
+                        elevation: 8,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40.0),
+                        ),
+                        child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                                child: Text(
+                                  "Checkout",
+                                  style: TextStyle(color: YellowColor, fontSize: 12,fontWeight: FontWeight.bold),
+                                ))))),
+              ),
             ],
           ),
         )

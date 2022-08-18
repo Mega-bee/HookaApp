@@ -31,14 +31,14 @@ class ProductInitState extends States{
       crossAxisCount: 3,
       childAspectRatio: (4 / 4),
       crossAxisSpacing: 50,
-      mainAxisSpacing: 30),
+      mainAxisSpacing: 20),
       itemCount: getallproducts.length,
       itemBuilder: (context, index) {
         final OffersList = getallproducts[index];
         return ProductCard(OffersList);
       }),
     ),
-           SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+           SizedBox(height: MediaQuery.of(context).size.height*0.1,),
            Text("- - - - - - - - - - - - - - - - - - - - - - - - ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
          ]),
     );

@@ -34,6 +34,16 @@ class ProductsRepository {
     if (response == null) return null;
     return response;
   }
+  Future<WebServiceResponse?> addToCart(String? Prodid,String? quantity) async {
+    var token = _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.put(
+      Urls.ADD_TO_CART +"$Prodid"+"/$quantity",{},
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
 
 
 

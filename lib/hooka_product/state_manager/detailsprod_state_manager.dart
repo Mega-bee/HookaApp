@@ -46,9 +46,23 @@ class ProdDetailsCubit extends Cubit<States> {
         for (var item in value.data.insideData) {
           detailsss.add(DetailsProductResponse.fromJson(item));
 
-        emit(DetailsProdInitState(detailsss,screenState));
+        emit(DetailsProdInitState(detailsss,screenState,));
       }
     }});
+  }
+  AddToCart(DetailsProductState screenState,String Prodid,String quantity) {
+
+
+    _productsRepository.addToCart(Prodid, quantity).then((value) {
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+              AddToCart(screenState,"","");
+            }));
+      } else if (value.code == 200) {
+
+      }});
   }
 
 }
