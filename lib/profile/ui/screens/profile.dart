@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hooka/profile/profile_routes.dart';
+import 'package:hooka/profile/response/profile_response.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
-import 'package:hooka/profile/ui/edit_profile.dart';
 import '../../../utils/style/colors.dart';
 import '../../state_manager/profile_state_manager.dart';
 @injectable
@@ -17,13 +18,15 @@ Profile(this.cubit);
 }
 
 class ProfileState extends State<Profile> {
-
+   ProfileResponse? profileResponse;
+  // Function goEditprof;
   @override
   void initState() {
     super.initState();
     widget.cubit.getProfile(this);
 
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,10 +43,11 @@ class ProfileState extends State<Profile> {
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.notifications,color: Primarycolor)),
           TextButton(onPressed: (){}, child:TextButton(
-              onPressed:(){  Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) =>  EditProfile()),
-              );},
+              onPressed:(){
+                Navigator.pushNamed(context, ProfileRoutes.Edit,arguments: profileResponse);
+
+
+              },
               child: Text("Edit",style: TextStyle(color: Primarycolor),)),)
 
         ],

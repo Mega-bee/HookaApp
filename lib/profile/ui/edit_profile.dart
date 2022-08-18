@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:photofilters/widgets/photo_filter.dart';
+import 'package:injectable/injectable.dart';
 import '../../../../utils/style/colors.dart';
 import 'dart:io' as i;
 import '../../../../utils/components/picker.dart';
-import '../../../../auth/ui/widget/email_field.dart';
-import '../../filter/filter.dart';
-import '../../utils/effect/custom_page_route.dart';
+import '../response/profile_response.dart';
 
+@injectable
 class EditProfile extends StatefulWidget {
-  const EditProfile({Key? key}) : super(key: key);
 
   @override
+  final name = TextEditingController();
   State<EditProfile> createState() => _EditProfileState();
 }
 
 class _EditProfileState extends State<EditProfile> {
+  bool flags=false;
   var _selectedDateTO;
   var _selectedDate1;
   var _selectedDate2;
@@ -129,10 +129,19 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
+    // if(flags){
+    //   var  args = ModalRoute.of(context)?.settings.arguments;
+    //   if (args != null && args is Profres) {
+    //
+    //   }
+    //   flags = false;
+    // }
+    List<TextEditingController>? _controllers = [];
+
     final _formKey = GlobalKey<FormState>();
     var mediaQueryHeight = MediaQuery.of(context).size.height;
     var mediaQueryWidth = MediaQuery.of(context).size.width;
-    final name = TextEditingController();
+
     final email = TextEditingController();
     final Dob = TextEditingController(text: _selectedDateTO.toString().split(' ').first);
     final Mobilenum = TextEditingController();
@@ -154,7 +163,7 @@ elevation: 1,
           icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
           onPressed: (){Navigator.of(context).pop();},
         ),
-        title: Text("My Account",style: TextStyle(color: Primarycolor),),
+        title: Text("Edit Account",style: TextStyle(color: Primarycolor),),
 
       ),
       body: SingleChildScrollView(
@@ -322,7 +331,7 @@ elevation: 1,
                             child: TextFormField(
                                 cursorColor: YellowColor,
                                 style: const TextStyle(fontSize: 18),
-                                controller:name,
+                                controller:widget.name,
                                 decoration: InputDecoration(
 
                                   filled: true,
@@ -828,6 +837,18 @@ elevation: 1,
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.01,
                           ),
+    // ListView.builder(
+    // shrinkWrap: true,
+    // physics: ScrollPhysics(),
+    // itemCount: list.length,
+    // itemBuilder: (BuildContext context, int index) {
+    // _controllers.add(new TextEditingController());
+    // return Container(
+    // child: TextField(
+    // textAlign: TextAlign.start,
+    // controller:   _controllers[index],
+    // autofocus: false,
+    // keyboardType: TextInputType.text,),);}),
                           Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: mediaQueryWidth * 0.05),

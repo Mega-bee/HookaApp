@@ -9,8 +9,13 @@ import '../screens/profile.dart';
 class ProfileInitState extends States {
   final ProfileResponse _profileResponse;
   final ProfileState screenState;
-  ProfileInitState(this._profileResponse, this.screenState);
+
+  ProfileInitState(this._profileResponse, this.screenState):super(){}
+  final name = TextEditingController();
+
   @override
+
+
   Widget getUI(BuildContext context) {
     final ButtonStyle flatButtonStyle = TextButton.styleFrom(
       shape: const RoundedRectangleBorder(
