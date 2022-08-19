@@ -208,9 +208,8 @@ class OffersDetailsInitState extends States{
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            Container(
-              height: MediaQuery.of(context).size.height*0.095,
-              width: MediaQuery.of(context).size.width*0.8,
+            Padding(
+              padding: const EdgeInsetsDirectional.only(start: 30 ,end: 30),
               child: Card(
                 elevation: 4,
                 shadowColor: Colors.red[100],
