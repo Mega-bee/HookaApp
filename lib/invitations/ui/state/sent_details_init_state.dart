@@ -13,95 +13,106 @@ class DetailsSentInitState extends States {
   DetailsSentInitState(this.detailsSentResponse,this.sentDetailsState);
   @override
   Widget getUI(BuildContext context) {
-return Column(
-  children: [
-    SizedBox(height: 20,),
-    CachedNetworkImage(
-      imageUrl:detailsSentResponse.placeImage.toString(),
-      height: 190,
-      fit: BoxFit.cover,
-      imageBuilder: (context, imageProvider) => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(80),
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.contain,
-          ),
-        ),
-      ),
-      placeholder: (context, url) => const Padding(
-        padding: EdgeInsets.all(15.0),
-        child: LoadingIndicator(
-          indicatorType: Indicator.ballBeat,
-          colors: [Colors.black],
-        ),
-      ),
-      errorWidget: (context, url, error) => Icon(Icons.error),
-    ),
-    SizedBox(height: 50,),
-    Padding(
-      padding: const EdgeInsets.all(28.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("Place Name :",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600,color: Colors.grey)),
-          Text("${detailsSentResponse.placeName}",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+return SingleChildScrollView(
 
-
-        ],
-
-      ),
-    ),
-
-    SizedBox(height: 1,),
-    Padding(
-      padding: const EdgeInsets.all(28.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("Place Location :",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600,color: Colors.grey)),
-          Text("${detailsSentResponse.placeLocation}",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-
-
-        ],
-
-      ),
-    ),
-    SizedBox(height: 1,),
-    Padding(
-      padding: const EdgeInsets.all(28.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("Place Rating :",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600,color: Colors.grey)),
-          Container(
-            color: Colors.green,height: 25,width: 40,
-            child: Center(
-              child: Text("${detailsSentResponse.placeRating}",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600,color: Colors.white)),
+  child:   Container(
+    height: 900,
+    child: Column(
+      children: [
+        SizedBox(height: 20,),
+        CachedNetworkImage(
+          imageUrl:detailsSentResponse.placeImage.toString(),
+          height: 130,
+          fit: BoxFit.cover,
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(80),
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
+          placeholder: (context, url) => const Padding(
+            padding: EdgeInsets.all(15.0),
+            child: LoadingIndicator(
+              indicatorType: Indicator.ballBeat,
+              colors: [Colors.black],
+            ),
+          ),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
+        SizedBox(height: 50,),
+        Padding(
+          padding: const EdgeInsets.all(28.0),
+          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Place Name :",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600,color: Colors.grey)),
+              Text("${detailsSentResponse.placeName}",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
 
 
-        ],
+            ],
 
-      ),
+          ),
+        ),
+
+        SizedBox(height: 1,),
+        Padding(
+          padding: const EdgeInsets.all(28.0),
+          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Place Location :",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600,color: Colors.grey)),
+              Text("${detailsSentResponse.placeLocation}",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+
+
+            ],
+
+          ),
+        ),
+        SizedBox(height: 1,),
+        Padding(
+          padding: const EdgeInsets.all(28.0),
+          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Place Rating :",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600,color: Colors.grey)),
+              Container(
+                color: Colors.green,height: 20,width: 40,
+                child: Center(
+                  child: Text("${detailsSentResponse.placeRating}",
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600,color: Colors.white)),
+                ),
+              ),
+
+
+            ],
+
+          ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.02,
+        ),
+
+        SizedBox(height: 20,),
+
+        Expanded(
+          child: Container(
+            child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount:detailsSentResponse.buddies!.length,
+          itemBuilder: (context, index) {
+          return DetailsSentCard(sentinvModel: detailsSentResponse.buddies![index],);
+          })),
+        ),
+
+      ],
     ),
-    SizedBox(
-      height: MediaQuery.of(context).size.height * 0.02,
-    ),
-
-    SizedBox(height: 20,),
-    Container(height: 200,
-      child: ListView.builder(
-    itemCount:detailsSentResponse.buddies!.length,
-    itemBuilder: (context, index) {
-    return DetailsSentCard(sentinvModel: detailsSentResponse.buddies![index],);
-    })),
-
-  ],
+  ),
 );
   }
 

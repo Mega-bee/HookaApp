@@ -117,7 +117,7 @@ class BasketInitState extends States {
               InkWell(
                 onTap: (){
 
-                  Navigator.pushNamed(context, CheckoutRoutes.Checkout_screen);
+                  Navigator.pushNamed(context, CheckoutRoutes.Checkout_screen,arguments: true);
                 },
                 child: Container(
                     width: 200,

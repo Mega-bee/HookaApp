@@ -43,6 +43,7 @@ class GetProfileCubit extends Cubit<States> {
       } else if (value.code == 200) {
         ProfileResponse det =
         ProfileResponse.fromJson(value.data.insideData);
+        screenState.profileResponse = det;
         // List<ProfileResponse> det = [];
         // for (var item in value.data.insideData) {
         //   det.add(ProfileResponse.fromJson(item));

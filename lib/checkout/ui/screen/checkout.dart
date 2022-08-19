@@ -9,26 +9,52 @@ import '../../state_manager/checkout_state_manager.dart';
 @injectable
 class Checkout extends StatefulWidget {
 final CheckoutCubit cubit;
-Checkout(this.cubit);
+
+
+Checkout(this.cubit,);
   @override
   State<Checkout> createState() => CheckoutState();
 }
 
 class CheckoutState extends State<Checkout> {
+  bool flags=true;
+  bool checkout=false;
+
   @override
   void initState() {
     super.initState();
-    widget.cubit.getCheckout(this);
+widget.cubit.getCheckout(this,);
   }
 
   @override
   Widget build(BuildContext context) {
+    if(flags){
+      var  args = ModalRoute.of(context)?.settings.arguments;
+      if (args != null && args is bool) {
+        checkout=args;
+      }
+      flags = false;
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 1,
-        leading: MenuWidget(),
         backgroundColor: Colors.white,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+
+        leading:
+
+        checkout?IconButton(icon: Icon(Icons.arrow_back_ios_rounded),onPressed: (){
+          Navigator.pop(context);
+        },):
+        MenuWidget()
+        ,
+
+
+        elevation: 1,
+        // leading: MenuWidget(),
+
         title: Text("Checkout",style: TextStyle(color: Colors.black),),
 
       ),
