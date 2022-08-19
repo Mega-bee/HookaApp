@@ -115,6 +115,9 @@ class _MyAppState extends State<MyApp> {
       title: 'Hooka',
       routes: fullRoutesList,
       theme: ThemeData(
+        bottomAppBarColor: Colors.black,
+
+
 
 
         primaryColor: YellowColor,

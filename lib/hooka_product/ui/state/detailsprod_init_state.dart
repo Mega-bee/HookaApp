@@ -28,44 +28,90 @@ class DetailsProdInitState extends States {
   @override
   Widget getUI(BuildContext context) {
 
-    return Column(
+    return
+      Column(
+        children: [
+          Container(height: MediaQuery.of(context).size.height*0.7,
+            child: Scrollbar(
+              child: SingleChildScrollView(
+                child: Column(
 
 
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:[
-          Image.asset("assets/images/Cool-dad.jpg",fit: BoxFit.cover,height: MediaQuery.of(context).size.height*0.30,width: double.infinity,),
-
-
-
-          Container(
-            height: MediaQuery.of(context).size.height*0.15,
-
-            child: ListView.builder(
-                itemCount:detailsprodresp.length ,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  final PlacesList = detailsprodresp[index];
-
-
-                  return DetailsProdCard(PlacesList,
-                    (){
-                      detailsprodresp.forEach((element) {element.isselected=false;});
-
-
-                      detailsprodresp[index].isselected=true;
-                      isselec = PlacesList;
-                      detailsProductState.refresh();
-
-
-                  }
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children:[
+                    Image.asset("assets/images/Cool-dad.jpg",fit: BoxFit.cover,height: MediaQuery.of(context).size.height*0.40,width: double.infinity,),
 
 
 
-                  );
+                    Container(
+                      height: MediaQuery.of(context).size.height*0.15,
+
+                      child: ListView.builder(
+                          itemCount:detailsprodresp.length ,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            final PlacesList = detailsprodresp[index];
 
 
-                }),
+                            return DetailsProdCard(PlacesList,
+                              (){
+                                detailsprodresp.forEach((element) {element.isselected=false;});
+
+
+                                detailsprodresp[index].isselected=true;
+                                isselec = PlacesList;
+                                detailsProductState.refresh();
+
+
+                            }
+
+
+
+                            );
+
+
+                          }),
+                    ),
+                    Container(
+                     width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start ,
+
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(18.0),
+                            child: Text("Item Price",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(18.0),
+                            child: Text("\$ ${isselec!.customerInitialPrice}",style: TextStyle(color: Colors.black,fontSize: 18),),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(18.0),
+                            child: Text("Description",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(18.0),
+                            child: Text(isselec!.description.toString(),style: TextStyle(color: Colors.black,fontSize: 18),),
+                          ),
+                        ],),
+                    ),
+
+
+
+
+
+
+
+
+
+
+
+                  ]),
+              ),
+            ),
           ),
+
           isselec==null?Container(
 
           ):
@@ -75,48 +121,19 @@ class DetailsProdInitState extends States {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start ,
               children: [
-                Container(
-                  height: 210,
-                  child: Scrollbar(
 
-                    child: SingleChildScrollView(
-
-                      
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start ,
-
-                        children: [
-                        Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: Text("Item Price",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: Text("\$ ${isselec!.customerInitialPrice}",style: TextStyle(color: Colors.black,fontSize: 18),),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: Text("Description",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: Text(isselec!.description.toString(),style: TextStyle(color: Colors.black,fontSize: 18),),
-                        ),
-                      ],),
-                    ),
-                  ),
-                ),
                 SizedBox(height: 30,),
 
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(isselec!.title.toString(),style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold)),
+                    // Text(isselec!.title.toString(),style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold)),
 
                     Container(
                       width: 40,
                       height: 40,
+
                       child: InkWell(
                         onTap: () {
 
@@ -146,7 +163,8 @@ class DetailsProdInitState extends States {
 
                         child:
                         Card(
-                            color: Colors.grey[200],
+                            color:YellowColor,
+
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
@@ -179,18 +197,18 @@ class DetailsProdInitState extends States {
 
                         },
                         child: Card(
-                            color: Colors.grey[200],
+                            color:YellowColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                             child: Center(child: Text("+"))),
                       ),
                     ),
-                    Container(
-                      width: 70,
-                      child: Text("\$ ${inc*isselec!.customerInitialPrice!}",
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                    )
+                    // Container(
+                    //   width: 70,
+                    //   child: Text("\$ ${inc*isselec!.customerInitialPrice!}",
+                    //       style: TextStyle(fontWeight: FontWeight.bold)),
+                    // )
                   ],
                 ),
                 SizedBox(
@@ -201,21 +219,21 @@ class DetailsProdInitState extends States {
                     onTap: (){
                       if(inc>0){
 
-                      Fluttertoast.showToast(msg: "${inc} ${isselec!.title} Added To Cart");
+                        Fluttertoast.showToast(msg: "${inc} ${isselec!.title} Added To Cart");
 
-                      detailsProductState.AddToCarttttt(
-                          isselec!.id.toString(),inc.toString()
-                      );
+                        detailsProductState.AddToCarttttt(
+                            isselec!.id.toString(),inc.toString()
+                        );
 
                       }
                       else  Fluttertoast.showToast(msg: " Please Add Qunatity ");
 
                     },
                     child: Card(
-                      color: YellowColor,
+                      color: Colors.black,elevation: 9,
                       child: Container(
                         height: 30,width: 200,
-                        child: Center(child: Text("Add To Cart",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),)),
+                        child: Center(child: Text("Add To Cart",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: YellowColor),)),
                       ),
                     ),
                   ),
@@ -225,16 +243,8 @@ class DetailsProdInitState extends States {
               ],
             ),
           ),
-
-
-
-
-
-
-
-
-
-        ]);
+        ],
+      );
   }
 
 }

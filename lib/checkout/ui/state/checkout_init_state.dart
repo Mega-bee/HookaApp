@@ -130,11 +130,8 @@ class CheckoutInitState extends States {
 
 
 
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text("Delivery Adress",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-              ),
-              SizedBox(width: MediaQuery.of(context).size.width*0.23,),
+              Text("Delivery Adress",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              SizedBox(width: MediaQuery.of(context).size.width*0.1,),
               TextButton(onPressed: (){
                 // Navigator.push(context, CustomPageRoute(child: Address()));
               }, child:

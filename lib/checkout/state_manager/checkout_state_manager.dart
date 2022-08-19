@@ -24,7 +24,7 @@ class CheckoutCubit extends Cubit<States> {
   CheckoutCubit(this._checkoutRepository, this._authService) : super(LoadingState());
 
 
-  getCheckout(CheckoutState screenState) {
+  getCheckout(CheckoutState screenState,) {
 
     emit(LoadingState());
     _checkoutRepository.getCheckoutBasket().then((value) {
@@ -32,7 +32,7 @@ class CheckoutCubit extends Cubit<States> {
         emit(ErrorState(
             errorMessage: 'Connection error',
             retry: () {
-              getCheckout(screenState);
+              getCheckout(screenState,);
             }));
       } else if (value.code == 200) {
         BasketResponse det =
