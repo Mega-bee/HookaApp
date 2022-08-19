@@ -194,7 +194,8 @@ return  SingleChildScrollView(
 //                        ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: CustomButton(
+                        child:
+                        CustomButton(
                           buttonTab: () {
                             if (password.text.isEmpty ||
                                 email.text.isEmpty ||

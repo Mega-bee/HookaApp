@@ -2,7 +2,11 @@ import 'package:hooka/abstracts/WebUrl.dart';
 import 'package:hooka/abstracts/model/WebServiceResponse.dart';
 import 'package:hooka/auth/service/auth_service.dart';
 import 'package:hooka/module_network/http_client/http_client.dart';
+import 'package:hooka/profile/request/add_experience_request.dart';
+import 'package:hooka/profile/request/update_profile_request.dart';
 import 'package:injectable/injectable.dart';
+
+import '../request/add_education_request.dart';
 
 
 
@@ -24,6 +28,37 @@ class ProfileRepository {
     if (response == null) return null;
     return response;
   }
+  Future<WebServiceResponse?> AddEducation(AddEducationRequest request) async {
+    var token = _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.post(
+      Urls.ADD_EDUCATION,request.toJson(),
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+  Future<WebServiceResponse?> AddExperience(AddExperienceRequest request) async {
+    var token = _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.post(
+      Urls.ADD_EXPERIENCE,request.toJson(),
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+  Future<WebServiceResponse?> UpdateProfile(UpdateProfileRequest request) async {
+    var token = _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.post(
+      Urls.ADD_EDUCATION,request.toJson(),
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+
 
 
 

@@ -5,6 +5,8 @@ import 'package:hooka/hooka_buddies/request/invite_request.dart';
 import 'package:hooka/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
 
+import '../request/update_basket_request.dart';
+
 
 
 @injectable
@@ -19,6 +21,16 @@ class BasketRepository {
 
     WebServiceResponse? response = await _apiClient.get(
       Urls.BASKET,
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+  Future<WebServiceResponse?> updateCart(UpdateCartRequest request) async {
+    var token = _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.put(
+      Urls.UPDATE_CART,request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;

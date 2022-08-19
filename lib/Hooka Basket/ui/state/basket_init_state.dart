@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hooka/Hooka%20Basket/request/update_basket_request.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../checkout/checkout_routes.dart';
 import '../../../utils/style/colors.dart';
@@ -97,22 +98,28 @@ class BasketInitState extends States {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                  width: 100,
-                  height: 50,
-                  child: Card(
-                      color: YellowColor,
-                      elevation: 8,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
-                      ),
-                      child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                              child: Text(
-                                "Update",
-                                style: TextStyle(color: Colors.black87, fontSize: 12,fontWeight: FontWeight.bold),
-                              ))))),
+              InkWell(
+                
+                onTap:(){
+                  // screenState.UpdateCartttt(UpdateCartRequest(id: ))
+                },
+                child: Container(
+                    width: 100,
+                    height: 50,
+                    child: Card(
+                        color: YellowColor,
+                        elevation: 8,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40.0),
+                        ),
+                        child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                                child: Text(
+                                  "Update",
+                                  style: TextStyle(color: Colors.black87, fontSize: 12,fontWeight: FontWeight.bold),
+                                ))))),
+              ),
 
               InkWell(
                 onTap: (){

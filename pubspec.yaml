@@ -38,6 +38,8 @@ dependencies:
   fluttertoast:
   motion_toast:
   equatable:
+  geolocator:
+  geocoding:
   flutter_bloc: ^7.3.3
   dio: ^4.0.0
   font_awesome_flutter:

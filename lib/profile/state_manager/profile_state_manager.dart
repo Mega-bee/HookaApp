@@ -54,23 +54,7 @@ class GetProfileCubit extends Cubit<States> {
       }
     });
   }
-  getEditProfile(EditProfileState screenState) {
 
 
-    _profileRepository.getProfile().then((value) {
-      if (value == null) {
-        emit(ErrorState(
-            errorMessage: 'Connection error',
-            retry: () {
-              getEditProfile(screenState);
-            }));
-      } else if (value.code == 200) {
-        ProfileResponse det =
-        ProfileResponse.fromJson(value.data.insideData);
-        screenState.mod = det;
-        emit(EditInitState(screenState,det));
-      }
-    });
-  }
 }
 

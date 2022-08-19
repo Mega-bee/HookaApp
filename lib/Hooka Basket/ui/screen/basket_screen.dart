@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/style/colors.dart';
+import '../../request/update_basket_request.dart';
 import '../../state_manager/basket_state_manager.dart';
 @injectable
 class BasketScreen extends StatefulWidget {
@@ -28,6 +29,9 @@ class BasketScreenState extends State<BasketScreen> {
     if (mounted) {
       setState(() {});
     }
+  }
+  UpdateCartttt(UpdateCartRequest request){
+    widget.cubit.updateeeeeeeCart(this,request);
   }
 
   num Total1 =0;
