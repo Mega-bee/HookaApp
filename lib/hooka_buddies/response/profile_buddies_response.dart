@@ -64,8 +64,8 @@ class BuddiesProfResponse {
     birthDate = json['birthDate'];
     aboutMe = json['aboutMe'];
     maritalStatus = json['maritalStatus'];
-    height = json['height'];
-    weight = json['weight'];
+    height = json['height'] ?? 0;
+    weight = json['weight'] ?? 0;
     bodyType = json['bodyType'];
     eyes = json['eyes'];
     hair = json['hair'];

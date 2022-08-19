@@ -18,7 +18,7 @@ class ProductInitState extends States{
          mainAxisAlignment: MainAxisAlignment.center,
 
          children: [
-     SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+
     Image.asset(ImageAsset.LOGO,height: 250,width: 500,fit: BoxFit.cover,),
            SizedBox(height: MediaQuery.of(context).size.height*0.03,),
     Text("- - - - - - -     Catergories     - - - - - - - -",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
@@ -29,7 +29,7 @@ class ProductInitState extends States{
       shrinkWrap: true,
       gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 3,
-      childAspectRatio: (4 / 4),
+      childAspectRatio: (4 / 4.5),
       crossAxisSpacing: 50,
       mainAxisSpacing: 20),
       itemCount: getallproducts.length,
