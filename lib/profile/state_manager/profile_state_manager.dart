@@ -12,10 +12,12 @@ import 'package:hooka/auth/service/auth_service.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/states/login_init_state.dart';
 import 'package:hooka/home_page/home_routes.dart';
+import 'package:hooka/profile/ui/state/edit_init_state.dart';
 import 'package:injectable/injectable.dart';
 
 import '../repository/profile_repository.dart';
 import '../response/profile_response.dart';
+import '../ui/screens/edit_profile.dart';
 import '../ui/screens/profile.dart';
 import '../ui/state/profile_init_state.dart';
 
@@ -52,5 +54,7 @@ class GetProfileCubit extends Cubit<States> {
       }
     });
   }
+
+
 }
 

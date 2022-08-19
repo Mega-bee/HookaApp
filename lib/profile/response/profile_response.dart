@@ -136,6 +136,10 @@ class Addresses {
   String? longitude;
   String? latitude;
   String? title;
+  String? city;
+  String? appartment;
+  String? street;
+  String? building;
 
   Addresses({this.longitude, this.latitude, this.title});
 
@@ -143,6 +147,10 @@ class Addresses {
     longitude = json['longitude'];
     latitude = json['latitude'];
     title = json['title'];
+    title = json['building'];
+    title = json['appartment'];
+    title = json['city'];
+    title = json['building'];
   }
 
   Map<String, dynamic> toJson() {

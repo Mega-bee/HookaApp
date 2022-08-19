@@ -3,18 +3,25 @@ import 'package:flutter/material.dart';
 import '../style/colors.dart';
 
 
-
+class ItemOptions {
+  String? name;
+  int? id;
+  ItemOptions(this.id,this.name);
+}
 
 class CustomCupertinoPicker extends StatefulWidget {
   String label;
   TextInputType inputType;
-  List<String> items=[
-    "MALE",
-    "FEMALE",
-    "RATHER NOT TO SAY"
+
+  List<ItemOptions> items=[
+    ItemOptions(1,"Male"),
+    ItemOptions(2,"Female"),
+    ItemOptions(3,"RATHER NOT TO SAY"),
+
+
   ];
 
-  int selectedValue;
+  ItemOptions? selectedValue;
 
 
   TextEditingController controller = TextEditingController();
@@ -23,7 +30,7 @@ class CustomCupertinoPicker extends StatefulWidget {
       { required this.label,
         required this.inputType,
         required this.items,
-        this.selectedValue = 0,
+        this.selectedValue  ,
         required this.controller});
 
   @override
@@ -40,7 +47,7 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
         Center(
             child: Text(
               widget.items[i].toString(),
-              style: TextStyle(color: YellowColor),
+              style: TextStyle(color: Colors.black),
             )),
       );
     }
@@ -62,6 +69,7 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
 
   void showPicker(BuildContext ctx) {
     showCupertinoModalPopup(
+
 
         context: ctx,
         builder: (_) {
@@ -86,7 +94,7 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
                       child: Text(
                         "Pick " + widget.label.toLowerCase(),
                         style: TextStyle(
-                            color: YellowColor, fontWeight: FontWeight.w300),
+                            color: Colors.black, fontWeight: FontWeight.w300),
                       ),
 
                       onPressed: () {
@@ -113,16 +121,19 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
               ),
               Container(
                 height: 250,
-                child:  CupertinoPicker(
+                child:
+
+                CupertinoPicker(
+
 
                   backgroundColor: Colors.white,
                   onSelectedItemChanged: (value) {
                     setState(() {
                       // widget.id=authProvider.genderIdList[value].id;
 
-                      widget.selectedValue = value;
-                      widget.controller.text =
-                      widget.items[widget.selectedValue];
+                      // widget.selectedValue = value;
+                      // widget.controller.text =
+                      // widget.items[widget.selectedValue];
                     });
 
                   },

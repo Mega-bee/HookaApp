@@ -57,10 +57,14 @@ class Urls {
 
   //  /*--------PROFILE-------------------*/
   static const PROFILE = BASE_Profile +'GetProfile';
+  static const ADD_EDUCATION = BASE_Profile +'AddEducation';
+  static const ADD_EXPERIENCE = BASE_Profile +'AddExperience';
+  static const UPDATE_PROFILE = BASE_Profile +'UpdateProfile';
 
   //  /*--------BASKET-------------------*/
   static const BASKET = BASE_Basket +'GetCartSummary';
   static const ADD_TO_CART = BASE_Basket +'AddToCart/';
+  static const UPDATE_CART = BASE_Basket +'UpdateCart';
 
 
 

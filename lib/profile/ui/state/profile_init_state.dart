@@ -3,6 +3,7 @@ import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../abstracts/states/state.dart';
+import '../../../utils/style/colors.dart';
 import '../../response/profile_response.dart';
 import '../screens/profile.dart';
 
@@ -10,7 +11,7 @@ class ProfileInitState extends States {
   final ProfileResponse _profileResponse;
   final ProfileState screenState;
 
-  ProfileInitState(this._profileResponse, this.screenState):super(){}
+  ProfileInitState(this._profileResponse, this.screenState);
   final name = TextEditingController();
 
   @override
@@ -341,83 +342,88 @@ class ProfileInitState extends States {
                         style: TextStyle(fontStyle: FontStyle.italic)),
                     // subtitle: Text('I expand!'),
                     children: <Widget>[
-                      ListView.builder(
-                        itemCount: _profileResponse.experience!.length,
-                        itemBuilder: (context1, index) {
-                          final model = _profileResponse.experience![index];
-                          return Padding(
-                            padding:
-                                const EdgeInsetsDirectional.only(start: 40),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                RichText(
-                                  text: TextSpan(
-                                      text: "Place        : ",
+                      Container(
+
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: _profileResponse.experience!.length,
+                          itemBuilder: (context1, index) {
+                            final mod = _profileResponse.experience![index];
+                            return
+                              Padding(
+                                padding: const EdgeInsets.all(18.0),
+                                child: Container(
+
+                                  height: 380,width:double.infinity,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(color: Colors.black, width: 1),),
+                                    child: Column(
                                       children: [
-                                        TextSpan(
-                                            text: "${model.place}",
-                                            style: const TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12)),
+
+                                        Container(
+                                          color:YellowColor,width: 500,
+                                          height: 120,
+                                          child:
+                                          Icon(Icons.work,size: 90,),
+                                        ),
+                                        SizedBox(height: 20,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text("Place           :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.place.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),
+                                        SizedBox(height: 15,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text("Position        :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.position.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),SizedBox(height:15,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(" From             :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.workedFrom.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),SizedBox(height: 15,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text( " To                 :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.workedTo.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),
+
+                                        SizedBox(height: 45,),
+                                        Container(
+                                          height: 35,width: 180,
+
+
+                                          child: Card(color: Colors.black,
+                                              shape: RoundedRectangleBorder(
+                                                side: BorderSide(color: Colors.black, width: 1),),
+                                              child: Center(child: Text("Remove",style: TextStyle(color: YellowColor,fontWeight: FontWeight.bold),))),),
+
+
+
                                       ],
-                                      style: const TextStyle(
-                                          color: Colors.black54, fontSize: 15)),
-                                  textAlign: TextAlign.center,
+                                    ),
+                                  ),
                                 ),
-                                RichText(
-                                  text: TextSpan(
-                                      text: "Position    : ",
-                                      children: [
-                                        TextSpan(
-                                            text: "${model.position}",
-                                            style: const TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12)),
-                                      ],
-                                      style: const TextStyle(
-                                          color: Colors.black54, fontSize: 15)),
-                                  textAlign: TextAlign.center,
-                                ),
-                                RichText(
-                                  text: TextSpan(
-                                      text: "WorkedFrom :  ",
-                                      children: [
-                                        TextSpan(
-                                            text: "${model.workedFrom}",
-                                            style: const TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12)),
-                                      ],
-                                      style: const TextStyle(
-                                          color: Colors.black54, fontSize: 15)),
-                                  textAlign: TextAlign.center,
-                                ),
-                                RichText(
-                                  text: TextSpan(
-                                      text: "WorkedTo     :  ",
-                                      children: [
-                                        TextSpan(
-                                            text: "${model.workedTo}",
-                                            style: const TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12)),
-                                      ],
-                                      style: const TextStyle(
-                                          color: Colors.black54, fontSize: 15)),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                      )
+                              );
+                          },
+                          shrinkWrap: true,
+
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -434,100 +440,93 @@ class ProfileInitState extends States {
                         style: TextStyle(fontStyle: FontStyle.italic)),
                     // subtitle: Text('I expand!'),
                     children: <Widget>[
-                      ListView.builder(
-                        itemCount: _profileResponse.education!.length,
-                        itemBuilder: (context1, index) {
-                          final m = _profileResponse.education![index];
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 1.0,
-                              vertical: 2.0,
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 200),
-                                  child: RichText(
-                                    text: TextSpan(
-                                        text: "University        : ",
-                                        children: [
-                                          TextSpan(
-                                              text: "${m.university}",
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12)),
-                                        ],
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 15)),
-                                    textAlign: TextAlign.center,
+                      Container(
+
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: _profileResponse.education!.length,
+                          itemBuilder: (context1, index) {
+                            final mod = _profileResponse.education![index];
+                            return
+                              Padding(
+                                padding: const EdgeInsets.all(18.0),
+                                child: Container(
+
+                                  height: 380,width:double.infinity,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(color: Colors.black, width: 1),),
+                                    child: Column(
+                                      children: [
+
+                                        Container(
+                                          color:YellowColor,width: 500,
+                                          height: 120,
+                                          child:
+                                          _profileResponse.genderId==1?
+                                          Image.asset("assets/images/istockphoto-910022842-170667a-removebg-preview.png",
+                                            fit: BoxFit.contain,
+                                            height: 20,width: 20,):Image.asset("assets/images/fuser-Graduate-512.webp",
+                                            fit: BoxFit.contain,
+                                            height: 20,width: 20,),
+                                        ),
+                                        SizedBox(height: 20,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text("University      :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.university.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),
+                                        SizedBox(height: 15,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text("Degree          :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.degree.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),SizedBox(height:15,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text("    From              :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.studiedFrom.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),SizedBox(height: 15,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text( "    To                   :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.studiedTo.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),
+
+                                        SizedBox(height: 45,),
+                                        Container(
+                                          height: 35,width: 180,
+
+
+                                          child: Card(color: Colors.black,
+                                              shape: RoundedRectangleBorder(
+                                                side: BorderSide(color: Colors.black, width: 1),),
+                                              child: Center(child: Text("Remove",style: TextStyle(color: YellowColor,fontWeight: FontWeight.bold),))),),
+
+
+
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 190),
-                                  child: RichText(
-                                    text: TextSpan(
-                                        text: "Degree    : ",
-                                        children: [
-                                          TextSpan(
-                                              text: "${m.degree}",
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12)),
-                                        ],
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 15)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 160),
-                                  child: RichText(
-                                    text: TextSpan(
-                                        text: "StudiedFrom :  ",
-                                        children: [
-                                          TextSpan(
-                                              text: "${m.studiedFrom}",
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12)),
-                                        ],
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 15)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 160),
-                                  child: RichText(
-                                    text: TextSpan(
-                                        text: "StudiedTo     :  ",
-                                        children: [
-                                          TextSpan(
-                                              text: "${m.studiedTo}",
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12)),
-                                        ],
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 15)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                      )
+                              );
+                          },
+                          shrinkWrap: true,
+
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -544,42 +543,103 @@ class ProfileInitState extends States {
                         style: TextStyle(color: Colors.black)),
                     // subtitle: Text('I expand!'),
                     children: <Widget>[
-                      ListView.builder(
-                        itemCount: _profileResponse.addresses!.length,
-                        itemBuilder: (context1, index) {
-                          final model = _profileResponse.addresses![index];
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 1.0,
-                              vertical: 2.0,
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 200),
-                                  child: RichText(
-                                    text: TextSpan(
-                                        text: "Place        : ",
-                                        children: [
-                                          TextSpan(
-                                              text: "${model.title}",
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12)),
-                                        ],
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 15)),
-                                    textAlign: TextAlign.center,
+                      Container(
+
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: _profileResponse.addresses!.length,
+                          itemBuilder: (context1, index) {
+                            final mod = _profileResponse.addresses![index];
+                            return
+                              Padding(
+                                padding: const EdgeInsets.all(18.0),
+                                child: Container(
+
+                                  height: 480,width:double.infinity,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(color: Colors.black, width: 1),),
+                                    child: Column(
+                                      children: [
+
+                                        Container(
+                                          color:YellowColor,width: 500,
+                                          height: 120,
+                                          child:
+                                          Icon(Icons.location_city,size: 90,),
+                                        ),
+                                        SizedBox(height: 20,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text("Title               :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.title.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),
+                                        SizedBox(height: 15,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text("City                  :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.city.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),SizedBox(height:15,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(" Building             :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.building.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),SizedBox(height: 15,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text( " Appartment            :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.appartment.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),SizedBox(height: 15,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text( " Longitude            :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.longitude.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),SizedBox(height: 15,),
+                                        Container(
+                                          color: Colors.grey[200],
+                                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text( " Latitude            :",style: TextStyle(fontSize: 20),),
+                                              Text(mod.latitude.toString(),style: TextStyle(fontSize: 20),)
+                                            ],),
+                                        ),
+
+                                        SizedBox(height: 45,),
+                                        Container(
+                                          height: 35,width: 180,
+
+
+                                          child: Card(color: Colors.black,
+                                              shape: RoundedRectangleBorder(
+                                                side: BorderSide(color: Colors.black, width: 1),),
+                                              child: Center(child: Text("Remove",style: TextStyle(color: YellowColor,fontWeight: FontWeight.bold),))),),
+
+
+
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ],
-                            ),
-                          );
-                        },
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                              );
+                          },
+                          shrinkWrap: true,
+
+                        ),
                       )
                     ],
                   ),

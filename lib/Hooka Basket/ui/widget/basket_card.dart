@@ -32,7 +32,7 @@ class _BasketCardState extends State<BasketCard> {
   @override
 
   Widget build(BuildContext context) {
-    var increment =  widget._items.quantity ??0 ;
+   var increment =  widget._items.quantity ??0;
     var total = widget._items.quantity!  * widget._items.productPrice! ;
     // var icp=(widget.basketm.increment * widget.basketm.incprice);
     return Container(
@@ -111,7 +111,7 @@ class _BasketCardState extends State<BasketCard> {
                               onTap: () {
 
                                 if(increment > 0){
-                                  increment--;
+                                  increment --;
                                   setState(() {
 
                                   });
@@ -144,7 +144,7 @@ class _BasketCardState extends State<BasketCard> {
                             child: InkWell(
                               onTap: () {
 
-                                increment=increment +1;
+                                increment ++;
                                 setState(() {
 
                                 });
