@@ -10,7 +10,7 @@ class ProfileInitState extends States {
   final ProfileResponse _profileResponse;
   final ProfileState screenState;
 
-  ProfileInitState(this._profileResponse, this.screenState):super(){}
+  ProfileInitState(this._profileResponse, this.screenState);
   final name = TextEditingController();
 
   @override

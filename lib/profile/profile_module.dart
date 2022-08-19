@@ -4,7 +4,7 @@ import 'package:hooka/hooka_product/product_routes.dart';
 import 'package:hooka/hooka_product/ui/screen/hooka_product.dart';
 import 'package:hooka/hooka_product/ui/screen/prod_details.dart';
 import 'package:hooka/profile/profile_routes.dart';
-import 'package:hooka/profile/ui/edit_profile.dart';
+import 'package:hooka/profile/ui/screens/edit_profile.dart';
 import 'package:hooka/profile/ui/screens/profile.dart';
 import 'package:injectable/injectable.dart';
 
