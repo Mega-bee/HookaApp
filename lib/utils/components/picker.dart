@@ -3,25 +3,25 @@ import 'package:flutter/material.dart';
 import '../style/colors.dart';
 
 
-class ItemOptions {
-  String? name;
-  int? id;
-  ItemOptions(this.id,this.name);
-}
+
 
 class CustomCupertinoPicker extends StatefulWidget {
   String label;
   TextInputType inputType;
 
-  List<ItemOptions> items=[
-    ItemOptions(1,"Male"),
-    ItemOptions(2,"Female"),
-    ItemOptions(3,"RATHER NOT TO SAY"),
+//  List<ItemOptions> items=[
+//    ItemOptions(1,"Male"),
+//    ItemOptions(2,"Female"),
+//    ItemOptions(3,"RATHER NOT TO SAY"),
+//
+//
+//  ];
+  List<String> items=[
+     ''
 
 
   ];
-
-  ItemOptions? selectedValue;
+  int? selectedValue;
 
 
   TextEditingController controller = TextEditingController();
@@ -139,7 +139,7 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
                   },
 
                   scrollController: FixedExtentScrollController(
-                      initialItem: widget.selectedValue-1),
+                      initialItem: widget.selectedValue  ?? 0),
                   itemExtent: 40.0,
                   children: [...buildItems()],
                 ),

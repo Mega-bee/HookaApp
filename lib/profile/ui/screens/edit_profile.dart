@@ -18,9 +18,9 @@ import '../state/edit_init_state.dart';
 
 @injectable
 class EditProfile extends StatefulWidget {
- final  GetEditProfileCubit cubit;
+  final GetEditProfileCubit cubit;
 
- EditProfile(this.cubit);
+  EditProfile(this.cubit);
   @override
   final name = TextEditingController();
   State<EditProfile> createState() => EditProfileState();
@@ -28,62 +28,77 @@ class EditProfile extends StatefulWidget {
 
 class EditProfileState extends State<EditProfile> {
   late AsyncSnapshot loadingSnapshot;
-  AddEdd(AddEducationRequest request){
-    widget.cubit.AddEducation(this, request,);
+  AddEdd(AddEducationRequest request) {
+    widget.cubit.AddEducation(
+      this,
+      request,
+    );
   }
-  AddExp(AddExperienceRequest request){
-    widget.cubit.AddExperience(this, request,);
+
+  AddExp(AddExperienceRequest request) {
+    widget.cubit.AddExperience(
+      this,
+      request,
+    );
   }
+
   ProfileResponse? mod;
   void refresh() {
     if (mounted) {
       setState(() {});
     }
   }
-  bool flags=true;
+
+  bool flags = true;
 
   @override
   void initState() {
     super.initState();
     loadingSnapshot = AsyncSnapshot.nothing();
     widget.cubit.loadingStream.listen((event) {
-      if (this.mounted) {
+      if (mounted) {
         setState(() {
           loadingSnapshot = event;
         });
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    if(flags){
-      var  args = ModalRoute.of(context)?.settings.arguments;
+    if (flags) {
+      var args = ModalRoute.of(context)?.settings.arguments;
       if (args != null && args is ProfileResponse) {
-        mod =args;
+        mod = args;
       }
       flags = false;
-      widget.cubit.emit(EditInitState(this ,mod));
+      widget.cubit.emit(EditInitState(this, mod));
     }
 
-
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-elevation: 1,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
-          onPressed: (){Navigator.of(context).pop();},
+        appBar: AppBar(
+          elevation: 1,
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_outlined,
+              color: Primarycolor,
+              size: 35,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          title: Text(
+            "Edit Account",
+            style: TextStyle(color: Primarycolor),
+          ),
         ),
-        title: Text("Edit Account",style: TextStyle(color: Primarycolor),),
-
-      ),
-      body: BlocBuilder<GetEditProfileCubit, States>(
-          bloc: widget.cubit,
-          builder: (context, state) {
-            return state.getUI(context);
-          })
-
-    );
+        body: BlocBuilder<GetEditProfileCubit, States>(
+            bloc: widget.cubit,
+            builder: (context, state) {
+              return state.getUI(context);
+            }));
   }
 }

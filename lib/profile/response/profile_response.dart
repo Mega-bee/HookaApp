@@ -10,11 +10,15 @@ class ProfileResponse {
   String? birthDate;
   String? aboutMe;
   String? maritalStatus;
+  int? maritalStatusId;
   num? height;
   num? weight;
   String? bodyType;
+  int? bodyTypeId;
   String? eyes;
+  int? eyesId;
   String? hair;
+  int? hairId;
   String? profession;
   String? interests;
   String? hobbies;
@@ -50,7 +54,7 @@ class ProfileResponse {
         this.socialMediaLink3,
         this.addresses,
         this.education,
-        this.experience});
+        this.experience , this.bodyTypeId,this.eyesId,this.hairId , this.maritalStatusId});
 
   ProfileResponse.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -64,6 +68,7 @@ class ProfileResponse {
     birthDate = json['birthDate'];
     aboutMe = json['aboutMe'];
     maritalStatus = json['maritalStatus'];
+    maritalStatusId = json['maritalStatusId'];
     height = json['height'];
     weight = json['weight'];
     bodyType = json['bodyType'];
@@ -75,6 +80,10 @@ class ProfileResponse {
     socialMediaLink1 = json['socialMediaLink1'];
     socialMediaLink2 = json['socialMediaLink2'];
     socialMediaLink3 = json['socialMediaLink3'];
+    bodyTypeId = json['bodyTypeId'];
+    hairId = json['hairId'];
+    eyesId = json['eyesId'];
+
     if (json['addresses'] != null) {
       addresses = <Addresses>[];
       json['addresses'].forEach((v) {
