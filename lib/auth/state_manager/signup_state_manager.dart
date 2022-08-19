@@ -29,9 +29,11 @@ class SignUpCubit extends Cubit<States> {
       if (value == null) {
         _loadingStateSubject.add(AsyncSnapshot.nothing());
         Fluttertoast.showToast(msg: 'Connection error');
-      } else if (value.code == 200) {
-
-
+      }else if (value.code != 200){
+        _loadingStateSubject.add(AsyncSnapshot.nothing());
+        Fluttertoast.showToast(msg:value.errorMessage);
+      }
+      else if (value.code == 200) {
         OtpGen(GenOtpRequest(request.email,request.password), screenState , request.email ?? '',request.password ?? '');
 //         Navigator.pushNamed(screenState.context, OtpRoutes.OTP_SCREEN ,arguments: );
       }
