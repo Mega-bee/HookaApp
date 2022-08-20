@@ -31,6 +31,13 @@ static List<ItemProfileOption> getEyesList(){
       ItemProfileOption(2,'Straight'),
     ];
   }
+  static List<ItemProfileOption> getGenderList(){
+    return [
+      ItemProfileOption(1,'Male'),
+      ItemProfileOption(2,'Female'),
+      ItemProfileOption(3,'Rather Not To Say'),
+    ];
+  }
 
 }
 

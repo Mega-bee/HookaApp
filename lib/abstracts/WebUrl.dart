@@ -60,6 +60,10 @@ class Urls {
   static const ADD_EDUCATION = BASE_Profile +'AddEducation';
   static const ADD_EXPERIENCE = BASE_Profile +'AddExperience';
   static const UPDATE_PROFILE = BASE_Profile +'UpdateProfile';
+  static const ADD_ADDRESS = BASE_Profile +'AddAddress';
+  static const DELETE_ADDRESSS = BASE_Profile +'DeleteAddress';
+  static const DELETE_EDUCATION = BASE_Profile +'DeleteEducation';
+  static const DELETE_EXPERIENCE = BASE_Profile +'DeleteExperience';
 
   //  /*--------BASKET-------------------*/
   static const BASKET = BASE_Basket +'GetCartSummary';

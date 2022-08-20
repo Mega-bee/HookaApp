@@ -142,6 +142,7 @@ class ProfileResponse {
 }
 
 class Addresses {
+  int? id;
   String? longitude;
   String? latitude;
   String? title;
@@ -150,16 +151,17 @@ class Addresses {
   String? street;
   String? building;
 
-  Addresses({this.longitude, this.latitude, this.title});
+  Addresses({this.id,this.longitude, this.latitude, this.title,this.building,this.appartment,this.street,this.city});
 
   Addresses.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     longitude = json['longitude'];
     latitude = json['latitude'];
     title = json['title'];
-    title = json['building'];
-    title = json['appartment'];
-    title = json['city'];
-    title = json['building'];
+    building = json['building'];
+    appartment = json['appartment'];
+    city = json['city'];
+    building = json['building'];
   }
 
   Map<String, dynamic> toJson() {
@@ -172,14 +174,16 @@ class Addresses {
 }
 
 class Education {
+  int? id;
   String? university;
   String? degree;
   String? studiedFrom;
   String? studiedTo;
 
-  Education({this.university, this.degree, this.studiedFrom, this.studiedTo});
+  Education({this.id,this.university, this.degree, this.studiedFrom, this.studiedTo});
 
   Education.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     university = json['university'];
     degree = json['degree'];
     studiedFrom = json['studiedFrom'];
@@ -188,7 +192,9 @@ class Education {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+
     data['university'] = this.university;
+    data['id'] = this.id;
     data['degree'] = this.degree;
     data['studiedFrom'] = this.studiedFrom;
     data['studiedTo'] = this.studiedTo;
@@ -197,15 +203,17 @@ class Education {
 }
 
 class Experience {
+  int? id;
   String? place;
   String? position;
   String? workedFrom;
   String? workedTo;
 
-  Experience({this.place, this.position, this.workedFrom, this.workedTo});
+  Experience({this.id,this.place, this.position, this.workedFrom, this.workedTo});
 
   Experience.fromJson(Map<String, dynamic> json) {
     place = json['place'];
+    id = json['id'];
     position = json['position'];
     workedFrom = json['workedFrom'];
     workedTo = json['workedTo'];
@@ -214,6 +222,7 @@ class Experience {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['place'] = this.place;
+    data['id'] = this.id;
     data['position'] = this.position;
     data['workedFrom'] = this.workedFrom;
     data['workedTo'] = this.workedTo;

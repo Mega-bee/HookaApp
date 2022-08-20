@@ -174,44 +174,52 @@ class ApiClient {
   }
 
   Future<WebServiceResponse?> delete(
-    String url, {
-    Map<String, String>? queryParams,
-    Map<String, String>? headers,
-  }) async {
+      String url,
+      Map<String, dynamic> payLoad, {
+        Map<String, String>? queryParams,
+        Map<String, String>? headers,
+      }) async {
     try {
-      _logger.info(tag, 'Requesting DELETE to: ' + url);
-      _logger.info(tag, 'Headers: ' + headers.toString());
-      _logger.info(tag, 'Query: ' + queryParams.toString());
+      _logger.info(tag, 'Requesting Delete to: ' + url);
+      _logger.info(tag, 'DELETE: ' + payLoad.toString());
+      _logger.info(tag, 'Headers: ' + jsonEncode(headers));
       Dio client = Dio(BaseOptions(
         sendTimeout: 60000,
         receiveTimeout: 60000,
         connectTimeout: 60000,
       ));
-      if (!kIsWeb) {
-//        client.interceptors.add(performanceInterceptor);
-      }
+
       if (headers != null) {
         if (headers['Authorization'] != null) {
           _logger.info(tag, 'Adding Auth Header');
           client.options.headers['Authorization'] = headers['Authorization'];
         }
       }
-      //   client.options.headers['Access-Control-Allow-Origin'] = '*';
+      //  client.options.headers['Access-Control-Allow-Origin'] = '*';
+      if (!kIsWeb) {
+//        client.interceptors.add(performanceInterceptor);
+      }
       var response = await client.delete(
         url,
         queryParameters: queryParams,
+        data:FormData.fromMap(payLoad),
+        options: Options(headers: headers),
       );
       return _processResponse(response);
     } catch (e) {
       if (e is DioError) {
         DioError err = e;
-        if (err.response!.statusCode != 404) {
-          _logger.error(
-              tag, err.message + ', DELETE: ' + url, StackTrace.current);
+        if (err.response != null) {
+          if (err.response!.statusCode! < 501) {
+            _logger.error(
+                tag, err.message + ', DELETE: ' + url, StackTrace.current);
+//            return {
+//              'status_code': '${err.response?.statusCode?.toString() ?? '0'}'
+//            };
+          }
         }
       } else {
-        _logger.error(
-            tag, e.toString() + ', DELETE: ' + url, StackTrace.current);
+        _logger.error(tag, e.toString() + ', DELETE: ' + url, StackTrace.current);
       }
       return null;
     }

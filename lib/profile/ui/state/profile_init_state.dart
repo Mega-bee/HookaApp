@@ -403,14 +403,7 @@ class ProfileInitState extends States {
                                         ),
 
                                         SizedBox(height: 45,),
-                                        Container(
-                                          height: 35,width: 180,
 
-
-                                          child: Card(color: Colors.black,
-                                              shape: RoundedRectangleBorder(
-                                                side: BorderSide(color: Colors.black, width: 1),),
-                                              child: Center(child: Text("Remove",style: TextStyle(color: YellowColor,fontWeight: FontWeight.bold),))),),
 
 
 
@@ -506,14 +499,7 @@ class ProfileInitState extends States {
                                         ),
 
                                         SizedBox(height: 45,),
-                                        Container(
-                                          height: 35,width: 180,
 
-
-                                          child: Card(color: Colors.black,
-                                              shape: RoundedRectangleBorder(
-                                                side: BorderSide(color: Colors.black, width: 1),),
-                                              child: Center(child: Text("Remove",style: TextStyle(color: YellowColor,fontWeight: FontWeight.bold),))),),
 
 
 
@@ -606,7 +592,7 @@ class ProfileInitState extends States {
                                           color: Colors.grey[200],
                                           child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: [
-                                              Text( " Longitude            :",style: TextStyle(fontSize: 20),),
+                                              Text( " Longitude:",style: TextStyle(fontSize: 20),),
                                               Text(mod.longitude.toString(),style: TextStyle(fontSize: 20),)
                                             ],),
                                         ),SizedBox(height: 15,),
@@ -614,20 +600,13 @@ class ProfileInitState extends States {
                                           color: Colors.grey[200],
                                           child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: [
-                                              Text( " Latitude            :",style: TextStyle(fontSize: 20),),
+                                              Text( " Latitude:",style: TextStyle(fontSize: 20),),
                                               Text(mod.latitude.toString(),style: TextStyle(fontSize: 20),)
                                             ],),
                                         ),
 
                                         SizedBox(height: 45,),
-                                        Container(
-                                          height: 35,width: 180,
 
-
-                                          child: Card(color: Colors.black,
-                                              shape: RoundedRectangleBorder(
-                                                side: BorderSide(color: Colors.black, width: 1),),
-                                              child: Center(child: Text("Remove",style: TextStyle(color: YellowColor,fontWeight: FontWeight.bold),))),),
 
 
 
