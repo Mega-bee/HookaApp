@@ -6,41 +6,47 @@ import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/service/auth_service.dart';
 import 'package:injectable/injectable.dart';
 import '../repository/order_repository.dart';
+import '../response/details_order_response.dart';
 import '../response/order_response.dart';
-import '../ui/Screen/current_tab.dart';
-import '../ui/state/curentorder_init_state.dart';
+import '../ui/Screen/allorder_tab.dart';
+import '../ui/Screen/order_details.dart';
+import '../ui/state/Details_init_state.dart';
+import '../ui/state/allorder_init_state.dart';
+
+
 
 
 
 
 
 @injectable
-class CurrentCubit extends Cubit<States> {
+class DetailsOrderCubit extends Cubit<States> {
   final OrderRepository _orderRepository;
   final AuthService _authService;
 
-  CurrentCubit(this._orderRepository, this._authService) : super(LoadingState());
+  DetailsOrderCubit(this._orderRepository, this._authService) : super(LoadingState());
 
 
-  getCurrentOrder(CurrentTabState screenState) {
+  getOrderDetails(OrderDetailsState screenState,String? id) {
 
     emit(LoadingState());
-    _orderRepository.getOrder().then((value) {
+    _orderRepository.getOrderDetails(id).then((value) {
       if (value == null) {
         emit(ErrorState(
             errorMessage: 'Connection error',
             retry: () {
-              getCurrentOrder(screenState);
+              getOrderDetails(screenState,"");
             }));
       } else if (value.code == 200) {
-        OrderResponse s =
-        OrderResponse.fromJson(value.data.insideData);
-          emit(CurrentOrderInitState(s,screenState));
-        }
+        DetailsResponse s =
+        DetailsResponse.fromJson(value.data.insideData);
+        emit(OrderDetailsInitState(s, screenState));
+      }
 
-
-    });
+    }
+    );
   }
+
 
 }
 

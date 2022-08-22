@@ -26,6 +26,17 @@ class OrderRepository {
     return response;
   }
 
+  Future<WebServiceResponse?> getOrderDetails(String? id) async {
+    var token = _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.get(
+      Urls.DETAILS_ORDER +"$id",
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+
 
 
 

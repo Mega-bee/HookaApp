@@ -74,7 +74,7 @@ class MyOrderState extends State<MyOrder>
                         Container(
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Center(
-                              child: Text('All order',
+                              child: Text('All',
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),

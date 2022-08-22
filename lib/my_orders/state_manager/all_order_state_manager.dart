@@ -15,6 +15,7 @@ import '../ui/state/allorder_init_state.dart';
 
 
 
+
 @injectable
 class AllOrderCubit extends Cubit<States> {
   final OrderRepository _orderRepository;
@@ -42,6 +43,7 @@ class AllOrderCubit extends Cubit<States> {
     }
   );
 }
+
 
 }
 

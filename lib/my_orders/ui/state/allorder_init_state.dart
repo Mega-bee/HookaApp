@@ -7,8 +7,8 @@ import '../Screen/allorder_tab.dart';
 
 class AllOrderInitState extends States{
   final OrderResponse allorderlist;
-  final AllOrderTabbState _allOrderTabbState;
-  AllOrderInitState(this.allorderlist,this._allOrderTabbState);
+  final AllOrderTabbState screenstate;
+  AllOrderInitState(this.allorderlist,this.screenstate);
   @override
   Widget getUI(BuildContext context) {
     return  Container(

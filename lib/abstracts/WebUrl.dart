@@ -71,6 +71,7 @@ class Urls {
   static const BASKET = BASE_Basket +'GetCartSummary';
   static const ADD_TO_CART = BASE_Basket +'AddToCart/';
   static const UPDATE_CART = BASE_Basket +'UpdateCart';
+  static const DELETE_ITEM_CART = BASE_Basket +'RemoveItemFromCart';
 
 
   //  /*--------CONTACTUS-------------------*/
@@ -78,6 +79,7 @@ class Urls {
 
   //  /*--------ORDER-------------------*/
   static const GET_ORDER = BASE_ORDERS +'GetOrders';
+  static const DETAILS_ORDER = BASE_ORDERS +'GetOrder/';
 
 
 

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/style/colors.dart';
+import '../../request/item_delete_request.dart';
 import '../../request/update_basket_request.dart';
 import '../../state_manager/basket_state_manager.dart';
 @injectable
@@ -32,6 +33,9 @@ class BasketScreenState extends State<BasketScreen> {
   }
   UpdateCartttt(UpdateCartRequest request){
     widget.cubit.updateeeeeeeCart(this,request);
+  }
+  DeleteItemFromCart(DeleteItemCarttRequest request){
+    widget.cubit.DeleteItemCart(this,request);
   }
 
   num Total1 =0;

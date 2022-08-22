@@ -17,88 +17,34 @@ class AllOrderCard extends StatefulWidget {
 class AllOrderCardState extends State<AllOrderCard> {
   @override
   Widget build(BuildContext context) {
-    return  Column(children: <Widget>[
 
-      GestureDetector(
-        onTap: () =>
-        {
-        },
-        child: Row(
-            children: [
-              Container(
-                  width: 100,
-                  height: 150,
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Stack(
-                      children:[
-
-                        Center(
-                          child:
-                        Padding(
-                          padding: const EdgeInsets.only(left: 50,bottom: 20,top: 100),
-                          child: Container(
-                            height: 200,
-                            width: 200,
-                            color: Colors.transparent,
-                            child:
-                            Card(color: Colors.green,child: Center(child: Text('',
-                              style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.white),)),
-                              elevation: 2,shadowColor: YellowColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12),
-                                  topRight: Radius.circular(1),
-                                  bottomRight:  Radius.circular(10),
-                                  bottomLeft: Radius.circular(1),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),),
-
-                      ])),
-
-              Flexible(
-
-                  child:
-                  Column(
-                      children: [ Text(widget.orderResponse!.status.toString(),
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
-                        SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-                        Container(
-                          height: 20,width: 70,
-                          child: Center(
-                            child: Text("${widget.orderResponse!.date}",
-                                style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,fontStyle: FontStyle.italic)),
-                          ),
-                        ),
-                        SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+    return  InkWell(
+      onTap: (){
+        Navigator.pushNamed(context, OrderRoutes.ORDER_DETAILS , arguments: widget.orderResponse!.id.toString());
+        print("hwloooooooooo ${widget.orderResponse!.id}");
+      },
+      child: Container(
+        child: Column(children: <Widget>[
+          ListTile(
+            leading: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(35),
+                  color: YellowColor,
+                ),
+                child: Center(child: Text(widget.orderResponse!.id.toString(),style: TextStyle(fontWeight: FontWeight.bold)))),
+            title:Text(widget.orderResponse!.status.toString()) ,
+            subtitle: Text("Total : ${widget.orderResponse!.total}"),
+            trailing: Text(widget.orderResponse!.date.toString()),
+          ),
 
 
-                        SizedBox(height: MediaQuery.of(context).size.height*0.02,),
 
-                        InkWell(
-                          onTap: (){
-                            // Navigator.pushNamed(context, DetailsInvRoutes.SentInvDetails,arguments: widget.senttttModel!.placeId.toString());
+          Divider(color: Colors.grey, thickness: 0),
 
-                          },
-                          child: Container(height: 30,width: 120,
-                            color: YellowColor,
-                            child: Center(
-                              child: Text("View Details",
-                                  style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,fontStyle: FontStyle.italic)),
-                            ),
-                          ),
-                        ),
-                      ])
-              ),
-
-            ]),),
-
-      Divider(color: Colors.grey, thickness: 0),
-
-    ],
+        ],
+        ),
+      ),
     );
   }
 }

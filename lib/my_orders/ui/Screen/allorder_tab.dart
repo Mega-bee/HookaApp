@@ -18,7 +18,7 @@ class AllOrderTabbState extends State<AllOrderTabb> with AutomaticKeepAliveClien
   @override
   void initState() {
     super.initState();
-    widget.cubit.getAllOrder(this);
+  widget.cubit.getAllOrder(this);
   }
 
 

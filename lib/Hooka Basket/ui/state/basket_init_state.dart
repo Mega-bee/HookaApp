@@ -3,6 +3,7 @@ import 'package:hooka/Hooka%20Basket/request/update_basket_request.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../checkout/checkout_routes.dart';
 import '../../../utils/style/colors.dart';
+import '../../request/item_delete_request.dart';
 import '../../response/basket_response.dart';
 import '../screen/basket_screen.dart';
 import '../widget/basket_card.dart';
@@ -31,7 +32,15 @@ class BasketInitState extends States {
                 itemCount:_basketResponse.items!.length,
                 itemBuilder: (context, index) {
                   return BasketCard(
-                      _basketResponse.items![index],Total1
+                      _basketResponse.items![index],Total1,
+                     OnDelete:(){
+                        _basketResponse.items!.remove(_basketResponse.items![index].itemId);
+                        screenState.refresh();
+
+                        screenState.DeleteItemFromCart(DeleteItemCarttRequest(productId:_basketResponse.items![index].itemId.toString() ));
+
+                     }
+
 
                   //     basketmodel[index],(){
                   //   Total1=0;
