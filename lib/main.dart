@@ -20,9 +20,11 @@ import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
 import 'Hooka Basket/basket_module.dart';
 import 'checkout/checkout_module.dart';
+import 'contact_us/contactus_module.dart';
 import 'hooka_places/places_module.dart';
 import 'hooka_product/product_module.dart';
 import 'invitations/details_module.dart';
+import 'my_orders/order_module.dart';
 
 
 void main() async {
@@ -60,11 +62,14 @@ class MyApp extends StatefulWidget {
   final BuddiesModule _buddiesModule;
   final OffersModule _offersModule;
   final SettingModule _settingModule;
+  final ContactUsSModule _contactUsModule;
   final ProductModule _productModule;
   final ProfileModule _profileModule;
   final DetailsInvModule _detailsInvModule;
   final BasketModule _basketModule;
   final CheckoutModule _checkoutModule;
+  final OrderModule _orderModule;
+
 
 
   MyApp(
@@ -74,14 +79,17 @@ class MyApp extends StatefulWidget {
       this._splashModule,
       this._homeModule,
       this._placesModule,
+      this._orderModule,
       this._buddiesModule,
       this._offersModule,
       this._settingModule,
+      this._contactUsModule,
       this._productModule,
       this._profileModule,
       this._detailsInvModule,
       this._basketModule,
-      this._checkoutModule
+      this._checkoutModule,
+
   );
 
   @override

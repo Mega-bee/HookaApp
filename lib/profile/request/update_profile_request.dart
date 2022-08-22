@@ -4,13 +4,13 @@ class UpdateProfileRequest {
   // String? Image;
   String? AboutMe;
   String? Birthdate;
-  int? GenderId;
-  int? MaterialStatus;
+  num? GenderId;
+  num? MaterialStatus;
   num? Height;
   num? Weight;
-  int? BodyType;
-  int? Eyes;
-  int? Hair;
+  num? BodyType;
+  num? Eyes;
+  num? Hair;
   String? Hobbies;
   String? Interests;
   String? Profession;

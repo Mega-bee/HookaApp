@@ -1,5 +1,5 @@
 class ItemProfileOption{
-  int id;
+  num id;
   String name;
 
   ItemProfileOption(this.id, this.name);

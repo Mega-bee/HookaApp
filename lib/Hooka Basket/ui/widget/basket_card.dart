@@ -110,6 +110,7 @@ class _BasketCardState extends State<BasketCard> {
                             child: InkWell(
                               onTap: () {
 
+
                                 if(increment > 0){
                                   increment --;
                                   setState(() {

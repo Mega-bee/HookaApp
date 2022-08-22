@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -13,6 +14,7 @@ import 'package:hooka/profile/request/delete_experience_request.dart';
 import 'package:hooka/profile/request/update_profile_request.dart';
 import 'package:hooka/profile/response/profile_response.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'dart:io' as i;
 import '../../../abstracts/states/state.dart';
 import '../../../auth/ui/widget/custem_button.dart';
@@ -34,7 +36,7 @@ class EditInitState extends States {
       fburl.text = module?.socialMediaLink1 ?? '';
       instaurl.text = module?.socialMediaLink2 ?? '';
       twitterurl.text = module?.socialMediaLink3 ?? '';
-      Gender.text = module?.gender ?? "";
+      // genderoption!.id = module?.genderId as num;
       hobbies.text = module?.hobbies ?? "";
       weight.text = module?.weight.toString() ?? "";
       height.text = module?.height.toString() ?? "";
@@ -462,11 +464,31 @@ class EditInitState extends States {
         Center(
           child: Stack(children: [
             profileImage != null
-                ? Image.network(
-                    profileImage!,
-                    height: 170,
-                    width: 170,
-                  )
+                ?      Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CachedNetworkImage(
+          imageUrl:profileImage!,
+          height: 150,width: 150,
+          fit: BoxFit.contain,
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(80),
+              image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          placeholder: (context, url) => const Padding(
+            padding: EdgeInsets.all(15.0),
+            child: LoadingIndicator(
+              indicatorType: Indicator.ballBeat,
+              colors: [Colors.black],
+            ),
+          ),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
+                )
                 : Container(
                     margin: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                     child: CircleAvatar(
@@ -2353,10 +2375,10 @@ class EditInitState extends States {
                       AboutMe: bio.text,
                       ImageFile: selectedImage.toString(),
                       Birthdate: Dob.text,
-                      GenderId: genderoption!.id,
+                      GenderId: genderoption!.id ,
                       MaterialStatus: statusOption!.id,
-                      Height: int.parse("${height}"),
-                      Weight: int.parse("${weight}"),
+                      Height: num.parse("${height}"),
+                      Weight: num.parse("${weight}"),
                       BodyType: bodyOption!.id,
                       LastName: lastname.text,
                       Eyes: eyesOption!.id,
