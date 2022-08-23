@@ -25,4 +25,14 @@ class SettingRepository {
     if (response == null) return null;
     return response;
   }
+  Future<WebServiceResponse?> GetSetting() async {
+    var token = _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.get(
+      Urls.GET_SETTING,
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
 }

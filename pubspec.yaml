@@ -80,6 +80,10 @@ dependencies:
   firebase_messaging:
   flutter_local_notifications:
   path_provider:
+  google_maps_flutter:
+  location:
+  custom_info_window:
+
 
 
 

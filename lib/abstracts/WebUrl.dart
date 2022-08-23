@@ -15,6 +15,7 @@ class Urls {
   static const String BASE_Basket = DOMAIN +'/webapi/api/Cart/';
   static const String BASE_CONTACTUS = DOMAIN +'/webapi/api/ContactUs/';
   static const String BASE_ORDERS = DOMAIN +'/webapi/api/Orders/';
+  static const String BASE_SETTING = DOMAIN +'/webapi/api/Settings/';
 
 
 
@@ -55,6 +56,10 @@ class Urls {
   //  /*--------PRODUCTS-------------------*/
   static const GET_ALL_PRODUCT = BASE_Product +'GetAllCategories';
   static const DETAILS_PRODUCT = BASE_Product +'GetCategoryProducts/';
+
+  //  /*--------SETTING-------------------*/
+  static const GET_SETTING = BASE_SETTING +'GetSettings';
+
 
 
   //  /*--------PROFILE-------------------*/
