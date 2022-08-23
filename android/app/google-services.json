@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "323108388957",
+    "project_id": "hooka-times-c69ed",
+    "storage_bucket": "hooka-times-c69ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323108388957:android:b6a88197748998ea964db4",
+        "android_client_info": {
+          "package_name": "com.example.hooka.hooka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323108388957-j41oeb87gjv5ofg9j60489k4gte617um.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJLK--dW1eTYUvdcOegeWrtZHj-7SsrsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "323108388957-j41oeb87gjv5ofg9j60489k4gte617um.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "323108388957-s95cqtqp1olatr18bk53kpepaa17jivr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hooka.hooka",
+                "app_store_id": "01051996"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

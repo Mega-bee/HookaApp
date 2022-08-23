@@ -73,7 +73,7 @@ class BasketCubit extends Cubit<States> {
             }));
       } else if (value.code == 200) {
 
-screenState.refresh();
+
         Fluttertoast.showToast(msg: "Item Deleted Successfully");
 
         print('review add successfully');

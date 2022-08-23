@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooka/abstracts/module/rout_module.dart';
 import 'package:hooka/auth/HiveSetUp.dart';
@@ -12,6 +14,8 @@ import 'package:hooka/hooka_buddies/buddies_module.dart';
 import 'package:hooka/localization_service/localizationSservice.dart';
 import 'package:hooka/offers/offers_module.dart';
 import 'package:hooka/profile/profile_module.dart';
+import 'package:hooka/services/fire_notification_services.dart';
+import 'package:hooka/services/local_notification_service.dart';
 import 'package:hooka/settings/setting_module.dart';
 import 'package:hooka/splash_screen/splash_module.dart';
 import 'package:hooka/splash_screen/splash_routes.dart';
@@ -21,34 +25,46 @@ import 'package:injectable/injectable.dart';
 import 'Hooka Basket/basket_module.dart';
 import 'checkout/checkout_module.dart';
 import 'contact_us/contactus_module.dart';
+import 'firebase_options.dart';
 import 'hooka_places/places_module.dart';
 import 'hooka_product/product_module.dart';
 import 'invitations/details_module.dart';
 import 'my_orders/order_module.dart';
 
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options:DefaultFirebaseOptions.currentPlatform, );
   await HiveSetUp.init();
+
 
 //  ByteData data = await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');
 //  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
 
   await SystemChrome.setPreferredOrientations([
+
     DeviceOrientation.portraitUp,
   ]).then((_) async {
+
     FlutterError.onError = (FlutterErrorDetails details) async {
       Logger().error('Main', details.toString(), StackTrace.current);
     };
     runZonedGuarded(() {
       configureDependencies();
+
       // Your App Here
       runApp(getIt<MyApp>());
+
     }, (error, stackTrace) {
       Logger().error(
           'Main', error.toString() + stackTrace.toString(), StackTrace.current);
     });
   });
+
 }
 
 @injectable
@@ -97,6 +113,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  LocalNotificationService localNotificationService =
+  LocalNotificationService();
+  static FireNotificationService fireNotificationService =
+  FireNotificationService();
+
 //  late ThemeData activeThem;
 //  late String lang;
 
@@ -148,6 +169,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    fireNotificationService = FireNotificationService();
+
+    fireNotificationService.init();
+
+
+    localNotificationService.init();
+
+    localNotificationService.onLocalNotificationStream.listen((event) {
+      setState(() {});
+    });
+    fireNotificationService.onNotificationStream.listen((event) {
+
+      localNotificationService.showNotification(event);
+    });
 //    activeThem = widget._themeDataService.getActiveTheme();
 //    widget._themeDataService.darkModeStream.listen((event) {
 //      activeThem = event;

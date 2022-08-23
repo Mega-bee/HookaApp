@@ -9,10 +9,11 @@ class BasketCard extends StatefulWidget {
 
   final Items _items;
   final Function OnDelete;
+  final totalinc;
   var  total;
 
 
-  BasketCard(this._items,this.total,{required this.OnDelete});
+  BasketCard(this._items,this.total,{required this.OnDelete,required this.totalinc});
 
 
 
@@ -28,12 +29,14 @@ class BasketCard extends StatefulWidget {
 }
 
 class _BasketCardState extends State<BasketCard> {
-
+  var inc = 0;
 
   @override
 
   Widget build(BuildContext context) {
-   var increment =  widget._items.quantity ??0;
+    var increment =  widget._items.quantity ??0;
+
+    var totalinc=increment +inc ;
     var total = widget._items.quantity!  * widget._items.productPrice! ;
     // var icp=(widget.basketm.increment * widget.basketm.incprice);
     return Container(
@@ -114,7 +117,7 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
 
                                 if(increment > 0){
-                                  increment --;
+                                  inc --;
                                   setState(() {
 
                                   });
@@ -136,7 +139,7 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             ),
                           ),
                           SizedBox(width: 30,),
-                          Text(increment.toString(),
+                          Text(totalinc.toString(),
                             // "${widget.basketm.increment }",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
@@ -147,7 +150,7 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             child: InkWell(
                               onTap: () {
 
-                                increment ++;
+                                inc ++;
                                 setState(() {
 
                                 });

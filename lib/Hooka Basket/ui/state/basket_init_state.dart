@@ -11,8 +11,9 @@ import '../widget/basket_card.dart';
 class BasketInitState extends States {
  final BasketResponse _basketResponse;
   final BasketScreenState screenState;
- BasketInitState(this._basketResponse,this.screenState);
+ BasketInitState(this._basketResponse,this.screenState,);
   num Total1=0;
+  num? NewQunatity ;
   @override
   Widget getUI(BuildContext context) {
     return     Column(
@@ -32,6 +33,7 @@ class BasketInitState extends States {
                 itemCount:_basketResponse.items!.length,
                 itemBuilder: (context, index) {
                   return BasketCard(
+                    totalinc: NewQunatity,
                       _basketResponse.items![index],Total1,
                      OnDelete:(){
                         _basketResponse.items!.remove(_basketResponse.items![index].itemId);
@@ -110,7 +112,9 @@ class BasketInitState extends States {
               InkWell(
                 
                 onTap:(){
-                  // screenState.UpdateCartttt(UpdateCartRequest(id: ))
+                  screenState.UpdateCartttt(UpdateCartRequest(id: _basketResponse.items!.toString(),
+                  quantity: NewQunatity.toString(),
+                  ));
                 },
                 child: Container(
                     width: 100,
