@@ -1,5 +1,5 @@
 class ItemProfileOption{
-  int id;
+  num id;
   String name;
 
   ItemProfileOption(this.id, this.name);
@@ -29,6 +29,13 @@ static List<ItemProfileOption> getEyesList(){
     return [
       ItemProfileOption(1,'Curly'),
       ItemProfileOption(2,'Straight'),
+    ];
+  }
+  static List<ItemProfileOption> getGenderList(){
+    return [
+      ItemProfileOption(1,'Male'),
+      ItemProfileOption(2,'Female'),
+      ItemProfileOption(3,'Rather Not To Say'),
     ];
   }
 

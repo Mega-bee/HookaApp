@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:hooka/profile/request/add_adress.dart';
+import 'package:hooka/profile/request/delete_address_request.dart';
+import 'package:hooka/profile/request/delete_education_request.dart';
+import 'package:hooka/profile/request/delete_experience_request.dart';
 import 'package:hooka/profile/request/update_profile_request.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
@@ -37,6 +41,36 @@ class EditProfileState extends State<EditProfile> {
 
   AddExp(AddExperienceRequest request) {
     widget.cubit.AddExperience(
+      this,
+      request,
+    );
+  }
+  AddAddresss(AddAddressRequest request) {
+    widget.cubit.AddAddressssss(
+      this,
+      request,
+    );
+  }
+  DeleteAddresss(DeleteAddressRequest request) {
+    widget.cubit.DeleteAddressssss(
+      this,
+      request,
+    );
+  }
+  DeleteEducation(DeleteEducationRequest request) {
+    widget.cubit.DeleteEducationnn(
+      this,
+      request,
+    );
+  }
+  DeleteExperienceeee(DeleteExperienceRequest request) {
+    widget.cubit.DeleteExperience(
+      this,
+      request,
+    );
+  }
+  UpdateProfileee(UpdateProfileRequest request) {
+    widget.cubit.UpdateProfile(
       this,
       request,
     );

@@ -13,6 +13,9 @@ class Urls {
   static const String BASE_Product = DOMAIN +'/webapi/api/Products/';
   static const String BASE_Profile = DOMAIN +'/webapi/api/Accounts/';
   static const String BASE_Basket = DOMAIN +'/webapi/api/Cart/';
+  static const String BASE_CONTACTUS = DOMAIN +'/webapi/api/ContactUs/';
+  static const String BASE_ORDERS = DOMAIN +'/webapi/api/Orders/';
+  static const String BASE_SETTING = DOMAIN +'/webapi/api/Settings/';
 
 
 
@@ -54,17 +57,34 @@ class Urls {
   static const GET_ALL_PRODUCT = BASE_Product +'GetAllCategories';
   static const DETAILS_PRODUCT = BASE_Product +'GetCategoryProducts/';
 
+  //  /*--------SETTING-------------------*/
+  static const GET_SETTING = BASE_SETTING +'GetSettings';
+
+
 
   //  /*--------PROFILE-------------------*/
   static const PROFILE = BASE_Profile +'GetProfile';
   static const ADD_EDUCATION = BASE_Profile +'AddEducation';
   static const ADD_EXPERIENCE = BASE_Profile +'AddExperience';
   static const UPDATE_PROFILE = BASE_Profile +'UpdateProfile';
+  static const ADD_ADDRESS = BASE_Profile +'AddAddress';
+  static const DELETE_ADDRESSS = BASE_Profile +'DeleteAddress';
+  static const DELETE_EDUCATION = BASE_Profile +'DeleteEducation';
+  static const DELETE_EXPERIENCE = BASE_Profile +'DeleteExperience';
 
   //  /*--------BASKET-------------------*/
   static const BASKET = BASE_Basket +'GetCartSummary';
   static const ADD_TO_CART = BASE_Basket +'AddToCart/';
   static const UPDATE_CART = BASE_Basket +'UpdateCart';
+  static const DELETE_ITEM_CART = BASE_Basket +'RemoveItemFromCart';
+
+
+  //  /*--------CONTACTUS-------------------*/
+  static const CONTACT_US = BASE_CONTACTUS +'SendContactUsMessage';
+
+  //  /*--------ORDER-------------------*/
+  static const GET_ORDER = BASE_ORDERS +'GetOrders';
+  static const DETAILS_ORDER = BASE_ORDERS +'GetOrder/';
 
 
 

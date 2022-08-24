@@ -12,7 +12,11 @@ import 'package:hooka/auth/service/auth_service.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/states/login_init_state.dart';
 import 'package:hooka/home_page/home_routes.dart';
+import 'package:hooka/profile/request/add_adress.dart';
 import 'package:hooka/profile/request/add_experience_request.dart';
+import 'package:hooka/profile/request/delete_address_request.dart';
+import 'package:hooka/profile/request/delete_education_request.dart';
+import 'package:hooka/profile/request/delete_experience_request.dart';
 import 'package:hooka/profile/request/update_profile_request.dart';
 import 'package:hooka/profile/ui/state/edit_init_state.dart';
 import 'package:injectable/injectable.dart';
@@ -75,15 +79,106 @@ class GetEditProfileCubit extends Cubit<States> {
             retry: () {
 
             }));
-      } else if (value.code == 200) {
+      } else if (value.code == 201) {
 
         _loadingStateSubject.add(AsyncSnapshot.nothing());
+        Navigator.pop(screenState.context);
         Fluttertoast.showToast(msg: "Experience Added Successfully");
-        screenState.refresh();
 
 
 
       }
+    });
+  }
+  AddAddressssss(
+      EditProfileState screenState, AddAddressRequest request,) {
+    _loadingStateSubject.add(AsyncSnapshot.waiting());
+    _profileRepository.AddAddressrepo(request).then((value) {
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+
+            }));
+      } else if (value.code == 201) {
+
+        _loadingStateSubject.add(AsyncSnapshot.nothing());
+        Navigator.pop(screenState.context);
+        Fluttertoast.showToast(msg: "Address Added Successfully");
+
+
+
+      }
+      else if(value.code == 400){
+        Fluttertoast.showToast(msg: "Please Fill All Field Of Address");
+        _loadingStateSubject.add(AsyncSnapshot.nothing());
+      }
+    });
+  }
+  DeleteAddressssss(
+      EditProfileState screenState, DeleteAddressRequest request,) {
+    _loadingStateSubject.add(AsyncSnapshot.waiting());
+    _profileRepository.DeleteAddress(request).then((value) {
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+
+            }));
+      } else if (value.code == 201) {
+
+        _loadingStateSubject.add(AsyncSnapshot.nothing());
+
+        Fluttertoast.showToast(msg: "Address Deleted Successfully");
+
+
+
+      }
+
+    });
+  }
+  DeleteEducationnn(
+      EditProfileState screenState, DeleteEducationRequest request,) {
+    _loadingStateSubject.add(AsyncSnapshot.waiting());
+    _profileRepository.DeleteEducation(request).then((value) {
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+
+            }));
+      } else if (value.code == 200) {
+
+        _loadingStateSubject.add(AsyncSnapshot.nothing());
+
+        Fluttertoast.showToast(msg: "Education Deleted Successfully");
+
+
+
+      }
+
+    });
+  }
+  DeleteExperience(
+      EditProfileState screenState, DeleteExperienceRequest request,) {
+    _loadingStateSubject.add(AsyncSnapshot.waiting());
+    _profileRepository.DeleteEXPERIENCE(request).then((value) {
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+
+            }));
+      } else if (value.code == 200) {
+
+        _loadingStateSubject.add(AsyncSnapshot.nothing());
+
+        Fluttertoast.showToast(msg: "Experience Deleted Successfully");
+
+
+
+      }
+
     });
   }
   UpdateProfile(
@@ -98,7 +193,8 @@ class GetEditProfileCubit extends Cubit<States> {
             }));
       } else if (value.code == 200) {
         _loadingStateSubject.add(AsyncSnapshot.nothing());
-        Fluttertoast.showToast(msg: "Experience Added Successfully");
+        Navigator.pop(screenState.context);
+        Fluttertoast.showToast(msg: "Profile Updated Successfully");
         screenState.refresh();
       }
     });

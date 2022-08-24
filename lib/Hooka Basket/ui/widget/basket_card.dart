@@ -8,10 +8,12 @@ import '../../response/basket_response.dart';
 class BasketCard extends StatefulWidget {
 
   final Items _items;
+  final Function OnDelete;
+  final totalinc;
   var  total;
 
 
-  BasketCard(this._items,this.total);
+  BasketCard(this._items,this.total,{required this.OnDelete,required this.totalinc});
 
 
 
@@ -27,12 +29,14 @@ class BasketCard extends StatefulWidget {
 }
 
 class _BasketCardState extends State<BasketCard> {
-
+  var inc = 0;
 
   @override
 
   Widget build(BuildContext context) {
-   var increment =  widget._items.quantity ??0;
+    var increment =  widget._items.quantity ??0;
+
+    var totalinc=increment +inc ;
     var total = widget._items.quantity!  * widget._items.productPrice! ;
     // var icp=(widget.basketm.increment * widget.basketm.incprice);
     return Container(
@@ -83,7 +87,7 @@ class _BasketCardState extends State<BasketCard> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  width: 240,
+                  width: 280,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -99,6 +103,7 @@ class _BasketCardState extends State<BasketCard> {
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       Row(
+mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                         children:
 
@@ -110,8 +115,9 @@ class _BasketCardState extends State<BasketCard> {
                             child: InkWell(
                               onTap: () {
 
+
                                 if(increment > 0){
-                                  increment --;
+                                  inc --;
                                   setState(() {
 
                                   });
@@ -132,19 +138,19 @@ class _BasketCardState extends State<BasketCard> {
                                       ))),
                             ),
                           ),
-                          Spacer(),
-                          Text(increment.toString(),
+                          SizedBox(width: 30,),
+                          Text(totalinc.toString(),
                             // "${widget.basketm.increment }",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Spacer(),
+                          SizedBox(width: 30,),
                           Container(
                             width: 30,
                             height: 30,
                             child: InkWell(
                               onTap: () {
 
-                                increment ++;
+                                inc ++;
                                 setState(() {
 
                                 });
@@ -167,6 +173,11 @@ class _BasketCardState extends State<BasketCard> {
                                   child: Center(child: Text("+",style: TextStyle(color: Colors.black),))),
                             ),
                           ),
+SizedBox(width: 50,),
+                          IconButton(onPressed: (){
+                           widget.OnDelete();
+                          }, icon: Icon(Icons.delete,size: 17,color: Colors.red[300],))
+
                         ],),
 
                     ],

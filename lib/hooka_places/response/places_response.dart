@@ -3,7 +3,7 @@ class PlacesResp {
   String? image;
   String? location;
   String? cuisine;
-  int? rating;
+  num? rating;
   String? name;
 
   PlacesResp(

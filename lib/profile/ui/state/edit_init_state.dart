@@ -1,12 +1,20 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hooka/profile/model/item_option_model.dart';
+import 'package:hooka/profile/request/add_adress.dart';
 import 'package:hooka/profile/request/add_experience_request.dart';
+import 'package:hooka/profile/request/delete_address_request.dart';
+import 'package:hooka/profile/request/delete_education_request.dart';
+import 'package:hooka/profile/request/delete_experience_request.dart';
+import 'package:hooka/profile/request/update_profile_request.dart';
 import 'package:hooka/profile/response/profile_response.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'dart:io' as i;
 import '../../../abstracts/states/state.dart';
 import '../../../auth/ui/widget/custem_button.dart';
@@ -21,13 +29,14 @@ class EditInitState extends States {
   EditInitState(this.screenState, this.module) : super() {
     if (module != null) {
       email.text = module?.email ?? '';
-      name.text = module?.name ?? '';
+      name.text = module?.firstName ?? '';
+      lastname.text = module?.lastName ?? '';
       Mobilenum.text = module?.phoneNumber ?? '';
       Dob.text = module?.birthDate?.split("T").first ?? '';
       fburl.text = module?.socialMediaLink1 ?? '';
       instaurl.text = module?.socialMediaLink2 ?? '';
       twitterurl.text = module?.socialMediaLink3 ?? '';
-      Gender.text = module?.gender ?? "";
+      // genderoption!.id = module?.genderId as num;
       hobbies.text = module?.hobbies ?? "";
       weight.text = module?.weight.toString() ?? "";
       height.text = module?.height.toString() ?? "";
@@ -352,6 +361,7 @@ class EditInitState extends States {
 
   final email = TextEditingController();
   final name = TextEditingController();
+  final lastname = TextEditingController();
   final Dob = TextEditingController();
   final title = TextEditingController();
   final building = TextEditingController();
@@ -387,6 +397,7 @@ class EditInitState extends States {
   ItemProfileOption? statusOption;
   ItemProfileOption? eyesOption;
   ItemProfileOption? bodyOption;
+  ItemProfileOption? genderoption;
 
   Future<Position> _getGeoLocationPosition() async {
     bool serviceEnabled;
@@ -453,11 +464,31 @@ class EditInitState extends States {
         Center(
           child: Stack(children: [
             profileImage != null
-                ? Image.network(
-                    profileImage!,
-                    height: 170,
-                    width: 170,
-                  )
+                ?      Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CachedNetworkImage(
+          imageUrl:profileImage!,
+          height: 150,width: 150,
+          fit: BoxFit.contain,
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(80),
+              image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          placeholder: (context, url) => const Padding(
+            padding: EdgeInsets.all(15.0),
+            child: LoadingIndicator(
+              indicatorType: Indicator.ballBeat,
+              colors: [Colors.black],
+            ),
+          ),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
+                )
                 : Container(
                     margin: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                     child: CircleAvatar(
@@ -620,11 +651,39 @@ class EditInitState extends States {
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
-                            labelText: "Name",
-                            hintText: " Name",
+                            labelText: "First Name",
+                            hintText: "First Name",
                             enabledBorder: const OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
+                                borderSide: BorderSide(
+                                    width: 0, color: Colors.black12)),
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          keyboardType: TextInputType.emailAddress),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.03,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: mediaQueryWidth * 0.05),
+                      child: TextFormField(
+                          cursorColor: YellowColor,
+                          style: const TextStyle(fontSize: 18),
+                          controller: lastname,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: "Last Name",
+                            hintText: "Last Name",
+                            enabledBorder: const OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10)),
                                 borderSide: BorderSide(
                                     width: 0, color: Colors.black12)),
                             border: OutlineInputBorder(
@@ -934,18 +993,34 @@ class EditInitState extends States {
                             width: 1.0,
                           ),
                         ),
-//                        child: CustomCupertinoPicker(
-//                          label: "Gender",
-//
-//                          // events: address.regular.events,
-//                          selectedValue: 0,
-//                          inputType: TextInputType.text,
-//                          controller: Gender,
-//                          items: [
-//                            "Male",
-//                            "Female",
-//                          ],
-//                        ),
+                        child:   DropdownButtonFormField<ItemProfileOption>(
+                          // Initial Value
+                          value: genderoption,
+
+                          // Down Arrow Icon
+                          icon: const Icon(Icons.keyboard_arrow_down),
+
+                          // Array list of items
+                          items: ItemProfileOption.getGenderList().map((ItemProfileOption items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.only(start: 8),
+                                child: Text(items.name),
+                              ),
+                            );
+                          }).toList(),
+                          // After selecting the desired option,it will
+                          // change button value to selected value
+                          onChanged: (ItemProfileOption? newValue) {
+                            print(newValue);
+                            genderoption = newValue!;
+                          },
+                          isExpanded: true,
+//                          underline: Container(),
+                          hint: Text('Gender'),
+
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -1117,6 +1192,10 @@ class EditInitState extends States {
                           keyboardType: TextInputType.text),
                     ),
                   ])),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
@@ -1431,7 +1510,7 @@ class EditInitState extends States {
                     return Padding(
                       padding: const EdgeInsets.all(18.0),
                       child: Container(
-                        height: 380,
+                        height: 420,
                         width: double.infinity,
                         child: Card(
                           shape: RoundedRectangleBorder(
@@ -1541,21 +1620,20 @@ class EditInitState extends States {
                                 height: 45,
                               ),
                               Container(
-                                height: 35,
-                                width: 180,
-                                child: Card(
-                                    color: Colors.black,
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                          color: Colors.black, width: 1),
-                                    ),
-                                    child: Center(
-                                        child: Text(
-                                      "Remove",
-                                      style: TextStyle(
-                                          color: YellowColor,
-                                          fontWeight: FontWeight.bold),
-                                    ))),
+                                height: 65,width: 150,
+                                child: CustomButton(
+                                  buttonTab: () {
+                                    module!.education!.remove(mod.id);
+
+                                    screenState.DeleteEducation(DeleteEducationRequest(EducationId: mod.id));
+                                    screenState.refresh();
+                                  },
+                                  loading: screenState.loadingSnapshot.connectionState ==
+                                      ConnectionState.waiting,
+                                  text: 'Remove',
+                                  bgColor: Colors.black,
+                                  textColor: YellowColor,
+                                ),
                               ),
                             ],
                           ),
@@ -1758,19 +1836,20 @@ class EditInitState extends States {
                 width: 200,
                 child: CustomButton(
                   buttonTab: () {
-                    if (_formKey.currentState!.validate() ||
+                    if (
                         _selectedDate3 != null ||
                         place.text.isNotEmpty ||
-                        place.text.isNotEmpty) {
+                        position.text.isNotEmpty) {
                       screenState.AddExp(AddExperienceRequest(
                         id: 0,
                         Place: place.text,
                         Position: position.text,
-                        WorkedFrom: _selectedDate3,
-                        WorkedTo: _selectedDate4,
+                        WorkedFrom: _selectedDate3.toString(),
+                        WorkedTo: _selectedDate4.toString(),
                         IsDeleted: false,
                       ));
-                    }
+                    }else
+                      Fluttertoast.showToast(msg: "Please Fill All Experience Field");
                   },
                   loading: screenState.loadingSnapshot.connectionState ==
                       ConnectionState.waiting,
@@ -1788,7 +1867,7 @@ class EditInitState extends States {
                     return Padding(
                       padding: const EdgeInsets.all(18.0),
                       child: Container(
-                        height: 380,
+                        height: 420,
                         width: double.infinity,
                         child: Card(
                           shape: RoundedRectangleBorder(
@@ -1889,21 +1968,20 @@ class EditInitState extends States {
                                 height: 45,
                               ),
                               Container(
-                                height: 35,
-                                width: 180,
-                                child: Card(
-                                    color: Colors.black,
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                          color: Colors.black, width: 1),
-                                    ),
-                                    child: Center(
-                                        child: Text(
-                                      "Remove",
-                                      style: TextStyle(
-                                          color: YellowColor,
-                                          fontWeight: FontWeight.bold),
-                                    ))),
+                                height: 65,width: 150,
+                                child: CustomButton(
+                                  buttonTab: () {
+                                    module!.experience!.remove(mod.id);
+
+                                    screenState.DeleteExperienceeee(DeleteExperienceRequest(DeleteExperience: mod.id));
+                                    screenState.refresh();
+                                  },
+                                  loading: screenState.loadingSnapshot.connectionState ==
+                                      ConnectionState.waiting,
+                                  text: 'Remove',
+                                  bgColor: Colors.black,
+                                  textColor: YellowColor,
+                                ),
                               ),
                             ],
                           ),
@@ -2076,9 +2154,9 @@ class EditInitState extends States {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "${location}",
+                    "latitude :${location}",
                   ),
-                  Text("${location2}"),
+                  Text("longitude :${location2}"),
                 ],
               ),
               SizedBox(
@@ -2087,8 +2165,8 @@ class EditInitState extends States {
               ElevatedButton(
                   onPressed: () async {
                     Position position = await _getGeoLocationPosition();
-                    location = 'Lat: ${position.latitude}';
-                    location2 = ' Long: ${position.longitude}';
+                    location = '${position.latitude}';
+                    location2 = '${position.longitude}';
                     GetAddressFromLatLong(position);
                   },
                   child: Text('Get Location')),
@@ -2097,20 +2175,20 @@ class EditInitState extends States {
               ),
               Container(
                 width: 200,
-                child: CustomButton(
+                child:
+                CustomButton(
                   buttonTab: () {
-                    if (_formKey.currentState!.validate() ||
-                        _selectedDate3 != null ||
-                        place.text.isNotEmpty ||
-                        place.text.isNotEmpty) {
-                      screenState.AddExp(AddExperienceRequest(
-                        id: 0,
-                        Place: place.text,
-                        Position: position.text,
-                        WorkedFrom: _selectedDate3,
-                        WorkedTo: _selectedDate4,
-                        IsDeleted: false,
+                    if (location.isNotEmpty || location2.isNotEmpty ||
+                        building.text.isNotEmpty ||
+                        appartment.text.isNotEmpty || title.text.isNotEmpty ||
+                        city.text.isNotEmpty) {
+                      screenState.AddAddresss(AddAddressRequest(
+                        IsDeleted:false ,
+                        id: 0,Appartment:appartment.text ,Building:building.text ,City:city.text
+                          ,Latitude: location,Longitude: location2,Street:street.text ,Title: title.text,
                       ));
+                    } else {
+                      Fluttertoast.showToast(msg: "Please Fill All Field Of Address");
                     }
                   },
                   loading: screenState.loadingSnapshot.connectionState ==
@@ -2235,12 +2313,9 @@ class EditInitState extends States {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    Text(
-                                      " Longitude            :",
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                    Text(
-                                      mod.longitude.toString(),
+
+                                    Text("long : ${mod.longitude}"
+                                     ,
                                       style: TextStyle(fontSize: 20),
                                     )
                                   ],
@@ -2255,12 +2330,9 @@ class EditInitState extends States {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    Text(
-                                      " Latitude            :",
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                    Text(
-                                      mod.latitude.toString(),
+
+
+                                      Text("lat : ${mod.latitude}",
                                       style: TextStyle(fontSize: 20),
                                     )
                                   ],
@@ -2270,22 +2342,20 @@ class EditInitState extends States {
                                 height: 45,
                               ),
                               Container(
-                                height: 35,
-                                width: 180,
-                                child: Card(
-                                    color: Colors.black,
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                          color: Colors.black, width: 1),
-                                    ),
-                                    child: Center(
-                                        child: Text(
-                                      "Remove",
-                                      style: TextStyle(
-                                          color: YellowColor,
-                                          fontWeight: FontWeight.bold),
-                                    ))),
+                                height: 65,width: 150,
+                                child: CustomButton(
+                                  buttonTab: () {
+                                    module!.addresses!.remove(mod.id);
+                                    screenState.DeleteAddresss(DeleteAddressRequest(AddressId: mod.id));
+                                  },
+                                  loading: screenState.loadingSnapshot.connectionState ==
+                                      ConnectionState.waiting,
+                                  text: 'Remove',
+                                  bgColor: Colors.black,
+                                  textColor: YellowColor,
+                                ),
                               ),
+
                             ],
                           ),
                         ),
@@ -2300,15 +2370,28 @@ class EditInitState extends States {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // Fluttertoast.showToast(
-                  //     msg: getTranslate(context, 'fillField'),
-                  //     toastLength: Toast.LENGTH_SHORT,
-                  //     gravity: ToastGravity.BOTTOM,
-                  //     timeInSecForIosWeb: 1);
-                },
-//                             } Navigator.of(context).pushReplacement(MaterialPageRoute(
-//                                  builder: (context) =>  Navigationbar()));
+                  screenState.UpdateProfileee(UpdateProfileRequest(
+                      // Image: Image,
+                      AboutMe: bio.text,
+                      ImageFile: selectedImage.toString(),
+                      Birthdate: Dob.text,
+                      GenderId: genderoption!.id ,
+                      MaterialStatus: statusOption!.id,
+                      Height: num.parse("${height}"),
+                      Weight: num.parse("${weight}"),
+                      BodyType: bodyOption!.id,
+                      LastName: lastname.text,
+                      Eyes: eyesOption!.id,
+                      FirstName: name.text,
+                      Hair: hairOption!.id,
+                      Hobbies: hobbies.text,
+                      Interests: interest.text,
+                      Profession: profession.text,
+                      SocialMediaLink1: fburl.text,
+                      SocialMediaLink2: instaurl.text,
+                      SocialMediaLink3: twitterurl.text));
 
+                },
                 child: Text(
                   'SAVE',
                   style: TextStyle(

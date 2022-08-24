@@ -8,6 +8,7 @@ import 'package:hooka/auth/service/auth_service.dart';
 import 'package:injectable/injectable.dart';
 
 import '../repository/basket_repository.dart';
+import '../request/item_delete_request.dart';
 import '../request/update_basket_request.dart';
 import '../response/basket_response.dart';
 import '../ui/screen/basket_screen.dart';
@@ -54,6 +55,26 @@ class BasketCubit extends Cubit<States> {
         getBasketttt(screenState,);
 
         Fluttertoast.showToast(msg: "Cart Updated Successfully");
+
+        print('review add successfully');
+
+      }
+    });
+  }
+  DeleteItemCart(
+      BasketScreenState screenState,DeleteItemCarttRequest request) {
+
+    _basketRepository.DeleteItem(request).then((value) {
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+
+            }));
+      } else if (value.code == 200) {
+
+
+        Fluttertoast.showToast(msg: "Item Deleted Successfully");
 
         print('review add successfully');
 

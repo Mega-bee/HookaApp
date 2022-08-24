@@ -1,16 +1,16 @@
 class UpdateProfileRequest {
 
   String? ImageFile;
-  String? Image;
+  // String? Image;
   String? AboutMe;
   String? Birthdate;
-  int? GenderId;
-  int? MaterialStatus;
+  num? GenderId;
+  num? MaterialStatus;
   num? Height;
   num? Weight;
-  int? BodyType;
-  int? Eyes;
-  int? Hair;
+  num? BodyType;
+  num? Eyes;
+  num? Hair;
   String? Hobbies;
   String? Interests;
   String? Profession;
@@ -23,7 +23,7 @@ class UpdateProfileRequest {
 
 
   UpdateProfileRequest({
-    required this.Image,
+    // required this.Image,
     required this.AboutMe,
     required this.ImageFile,
     required this.Birthdate,
@@ -48,7 +48,7 @@ class UpdateProfileRequest {
   Map<String, dynamic> toJson() {
     return {
       'ImageFile': ImageFile,
-      'Image': Image,
+      // 'Image': Image,
       'AboutMe': AboutMe,
       'Birthdate': Birthdate,
       'GenderId': GenderId,

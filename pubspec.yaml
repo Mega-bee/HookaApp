@@ -76,6 +76,16 @@ dependencies:
   dropdown_search: ^5.0.2
   flutter_3d_choice_chip:
   photo_view:
+  firebase_core:
+  firebase_messaging:
+  flutter_local_notifications:
+  path_provider:
+  google_maps_flutter:
+  location:
+  custom_info_window:
+
+
+
 
 
 dev_dependencies:

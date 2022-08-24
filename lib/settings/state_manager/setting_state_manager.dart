@@ -19,7 +19,9 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../repository/setting_repository.dart';
+import '../response/setting_response.dart';
 import '../ui/screen/settings.dart';
+import '../ui/state/setting_init_state.dart';
 
 
 
@@ -42,4 +44,26 @@ IsAvailable(
     }
   });
 
-}}
+}
+  getSetting(SettingsState screenState) {
+
+    emit(LoadingState());
+    _settingRepository.GetSetting().then((value) {
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+              getSetting(screenState);
+            }));
+      } else if (value.code == 200) {
+        SettingResponse s =
+        SettingResponse.fromJson(value.data.insideData);
+        // List<ReceivedInvitationResponse> r = [];
+        // for (var item in value.data.insideData) {
+        //   r.add(ReceivedInvitationResponse.fromJson(item));
+        // }
+        emit(SettingInitState(s,screenState));
+      }
+    });
+  }
+}

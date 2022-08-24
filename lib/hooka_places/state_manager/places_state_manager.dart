@@ -16,6 +16,7 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../repository/places_repository.dart';
+import '../request/filter_places_request.dart';
 import '../response/places_response.dart';
 import '../ui/screen/hooka_places.dart';
 import '../ui/state/places_init_state.dart';
@@ -28,15 +29,15 @@ class PlacesCubit extends Cubit<States> {
   PlacesCubit(this._placesRepository, this._authService) : super(LoadingState());
 
 
-  getPlacess(HookaPlacesState screenState) {
+  getPlacess(HookaPlacesState screenState,FilterRequest request) {
 
       emit(LoadingState());
-      _placesRepository.getPlaces().then((value) {
+      _placesRepository.getPlaces(request).then((value) {
         if (value == null) {
           emit(ErrorState(
               errorMessage: 'Connection error',
               retry: () {
-                getPlacess(screenState);
+                getPlacess(screenState,request);
               }));
         } else if (value.code == 200) {
           List<PlacesResp> p = [];
