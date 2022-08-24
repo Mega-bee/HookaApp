@@ -6,12 +6,13 @@ class SearchWidgetBuddies extends StatefulWidget {
   final String text;
   final ValueChanged<String> onChanged;
   final String hintText;
+  final Function onFilterPress;
 
   const SearchWidgetBuddies({
     Key? key,
     required this.text,
     required this.onChanged,
-    required this.hintText,
+    required this.hintText,required this.onFilterPress
   }) : super(key: key);
 
   @override
@@ -63,7 +64,9 @@ class _SearchWidgetState extends State<SearchWidgetBuddies> {
               Icons.filter_alt_rounded,
               color: YellowColor,
             ),
-            onPressed: () {}
+            onPressed: () {
+              widget.onFilterPress();
+            }
       ),
         prefixIcon: const Icon(
           Icons.search_rounded,

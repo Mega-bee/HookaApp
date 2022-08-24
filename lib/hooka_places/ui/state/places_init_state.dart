@@ -23,6 +23,12 @@ class PlaceInitState extends States {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: SearchWidgetBuddies(
+          onFilterPress: (){
+            hookaPlacesState.request!.sortby=0;
+            hookaPlacesState.getPlacesss();
+
+          },
+
           hintText: "Search",
           text: query,
           onChanged: (searchText) {

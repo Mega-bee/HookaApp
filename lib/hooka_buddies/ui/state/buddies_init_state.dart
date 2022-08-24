@@ -27,6 +27,7 @@ class BuddiesInitState extends States {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: SearchWidgetBuddies(
+          onFilterPress: (){},
           hintText: "Search",
           text: query,
           onChanged: (searchText) {

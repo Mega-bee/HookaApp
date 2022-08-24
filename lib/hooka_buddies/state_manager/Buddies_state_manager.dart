@@ -10,6 +10,7 @@ import 'package:hooka/hooka_places/repository/places_repository.dart';
 import 'package:hooka/hooka_places/response/places_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
+import '../../hooka_places/request/filter_places_request.dart';
 import '../repository/buddies_repository.dart';
 import '../response/buddies_response.dart';
 import '../response/invitation_options_response.dart';
@@ -61,14 +62,14 @@ class BuddiesCubit extends Cubit<States> {
         emit(ErrorState(
             errorMessage: 'Connection error',
             retry: () {
-              getOptionInv(screenState);
+              getOptionInv(screenState,);
             }));
       } else if (value.code == 200) {
         List<InvitationOptionsResponse> options = [];
         for (var item in value.data.insideData) {
           options.add(InvitationOptionsResponse.fromJson(item));
         }
-        _placesRepository.getPlaces().then((value) {
+        _placesRepository.getPlaces(FilterRequest(1)).then((value) {
           if (value == null) {
           } else if (value.code == 200) {
             List<PlacesResp> places = [];

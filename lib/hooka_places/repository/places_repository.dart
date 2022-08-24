@@ -9,6 +9,7 @@ import 'package:hooka/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
 
 import '../request/addreview_request.dart';
+import '../request/filter_places_request.dart';
 
 
 
@@ -19,11 +20,11 @@ class PlacesRepository {
 
   PlacesRepository(this._apiClient,this._authService);
 
-  Future<WebServiceResponse?> getPlaces() async {
+  Future<WebServiceResponse?> getPlaces(FilterRequest request) async {
     var token = _authService.getToken();
 
     WebServiceResponse? response = await _apiClient.get(
-      Urls.GETALLPLACES,
+      Urls.GETALLPLACES,queryParams: request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
