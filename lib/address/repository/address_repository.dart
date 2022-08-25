@@ -5,24 +5,36 @@ import 'package:hooka/hooka_buddies/request/invite_request.dart';
 import 'package:hooka/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
 
+import '../request/address_request.dart';
+
 
 
 @injectable
-class CheckoutRepository {
+class AddressRepository {
   final ApiClient _apiClient;
   final AuthService _authService;
 
-  CheckoutRepository(this._apiClient, this._authService);
+  AddressRepository(this._apiClient, this._authService);
 
-  Future<WebServiceResponse?> getCheckoutBasket() async {
+
+  Future<WebServiceResponse?> getAddresses() async {
     var token = _authService.getToken();
 
     WebServiceResponse? response = await _apiClient.get(
-      Urls.BASKET,
+      Urls.GET_ADDRESS,
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
   }
+  Future<WebServiceResponse?> makeOrder(OrderRequest request) async {
+    var token = _authService.getToken();
 
+    WebServiceResponse? response = await _apiClient.post(
+      Urls.PLACE_ORDER,request.toJson(),
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
 }

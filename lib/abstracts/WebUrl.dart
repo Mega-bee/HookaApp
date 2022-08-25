@@ -16,6 +16,7 @@ class Urls {
   static const String BASE_CONTACTUS = DOMAIN +'/webapi/api/ContactUs/';
   static const String BASE_ORDERS = DOMAIN +'/webapi/api/Orders/';
   static const String BASE_SETTING = DOMAIN +'/webapi/api/Settings/';
+  static const String BASE_NOTIFICATIONS = DOMAIN +'/webapi/api/Notifications/';
 
 
 
@@ -27,6 +28,8 @@ class Urls {
    static const CONFIRM_OTP = BASE_ACCOUNTS + 'ConfirmOtp';
    static const FORGET_PASS = BASE_ACCOUNTS + 'ForgetPassword';
    static const AVAILABLE = BASE_ACCOUNTS + 'IsAvailableToggle';
+   static const GET_ADDRESS = BASE_ACCOUNTS + 'GetAdderesses';
+   static const FIRE_TOKEN = BASE_ACCOUNTS + 'RefreshFcmToken';
 
 
 
@@ -82,9 +85,13 @@ class Urls {
   //  /*--------CONTACTUS-------------------*/
   static const CONTACT_US = BASE_CONTACTUS +'SendContactUsMessage';
 
+  //  /*--------NOTIFICATIONS-------------------*/
+  static const GET_NOTIFICATION = BASE_NOTIFICATIONS +'GetNotifications';
+
   //  /*--------ORDER-------------------*/
   static const GET_ORDER = BASE_ORDERS +'GetOrders';
   static const DETAILS_ORDER = BASE_ORDERS +'GetOrder/';
+  static const PLACE_ORDER = BASE_ORDERS +'PlaceOrder';
 
 
 

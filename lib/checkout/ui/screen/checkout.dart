@@ -19,11 +19,16 @@ Checkout(this.cubit,);
 class CheckoutState extends State<Checkout> {
   bool flags=true;
   bool checkout=false;
-
+  void refresh() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
   @override
   void initState() {
     super.initState();
 widget.cubit.getCheckout(this,);
+
   }
 
   @override

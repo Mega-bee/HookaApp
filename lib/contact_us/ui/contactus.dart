@@ -19,6 +19,7 @@ class ScreenContactus extends StatefulWidget {
 
 class ScreenContactusState extends State<ScreenContactus> {
 
+
   final name = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final Mobile = TextEditingController();
@@ -241,9 +242,11 @@ Padding(
                   content: "",
                   yesBtn:() {
                     ContactUssss(ContactUsRequest(Mobile:Mobile.text, Email: email.text, Message: message.text, Name: name.text));
+
                     Fluttertoast.showToast(msg: "Your message has been sent");
 
                     Navigator.pop(context);
+
                     message.clear();
                     name.clear();
                     Mobile.clear();

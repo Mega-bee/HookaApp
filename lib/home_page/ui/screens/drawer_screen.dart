@@ -63,7 +63,7 @@ Widget   getScreen() {
     case  MenuItems.myorder:
       return getIt<MyOrder>();
     case  MenuItems.notifications:
-      return Notifications();
+      return getIt<Notifications>();
     case  MenuItems.contactus:
       return getIt<ScreenContactus>();
     case  MenuItems.invitations:

@@ -7,22 +7,23 @@ import 'package:injectable/injectable.dart';
 
 
 
+
 @injectable
-class CheckoutRepository {
+class NotificationRepository {
   final ApiClient _apiClient;
   final AuthService _authService;
 
-  CheckoutRepository(this._apiClient, this._authService);
+  NotificationRepository(this._apiClient, this._authService);
 
-  Future<WebServiceResponse?> getCheckoutBasket() async {
+
+  Future<WebServiceResponse?> GetNotifications() async {
     var token = _authService.getToken();
 
     WebServiceResponse? response = await _apiClient.get(
-      Urls.BASKET,
+      Urls.GET_NOTIFICATION,
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
   }
-
 }

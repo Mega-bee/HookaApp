@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hooka/address/address_routes.dart';
 import '../../../Hooka Basket/response/basket_response.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/components/seperator_doted.dart';
-import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
 import '../screen/checkout.dart';
 import '../widget/checkout_basket.dart';
 
 class CheckoutInitState extends States {
   final BasketResponse basketResponse;
+
   final CheckoutState screenState;
-  CheckoutInitState(this.basketResponse,this.screenState);
+  CheckoutInitState(this.basketResponse,this.screenState,);
+
+
   @override
   Widget getUI(BuildContext context) {
     return   SingleChildScrollView(
@@ -109,38 +112,13 @@ class CheckoutInitState extends States {
         ),
         SizedBox(height: MediaQuery.of(context).size.height*0.02,),
 
-        SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-
-
-        Padding(
-          padding: EdgeInsets.only(right: 20, left: 20),
-          child: Container(
-            color: Colors.grey,
-            height: 1,
-            width: MediaQuery.of(context).size.width * 0.9,
-          ),
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-        Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-            children: [
 
 
 
 
-              Text("Delivery Adress",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-              SizedBox(width: MediaQuery.of(context).size.width*0.1,),
-              TextButton(onPressed: (){
-                // Navigator.push(context, CustomPageRoute(child: Address()));
-              }, child:
-              Text("ADD NEW",style: TextStyle(color: YellowColor,decoration: TextDecoration.underline,fontSize: 13,fontWeight: FontWeight.bold),),)
 
-            ],),
-        ),
+
         SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-
         Padding(
           padding: EdgeInsets.only(right: 20, left: 20),
           child: Container(
@@ -216,11 +194,16 @@ class CheckoutInitState extends States {
 
 
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            basketResponse.items!.isNotEmpty?
+            Navigator.pushNamed(context, AddressRoutes.Address_screen):
+         Fluttertoast.showToast(msg: 'Please add items to Cart')
+            ;
+          },
 //
 
           child: const Text(
-            'Order Now',
+            'Complete Order',
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 14,

@@ -38,8 +38,32 @@ class CheckoutCubit extends Cubit<States> {
         BasketResponse det =
         BasketResponse.fromJson(value.data.insideData);
         emit(CheckoutInitState(det,screenState));
-      }
-    });
+
+
+    }});
   }
+  // getAddressesssss(CheckoutState screenState,) {
+  //
+  //   emit(LoadingState());
+  //   _checkoutRepository.getAddresses().then((value) {
+  //     if (value == null) {
+  //       emit(ErrorState(
+  //           errorMessage: 'Connection error',
+  //           retry: () {
+  //             getCheckout(screenState,);
+  //           }));
+  //     } else if (value.code == 200) {
+  //       List<AddressResponse> r = [];
+  //       for (var item in value.data.insideData) {
+  //         r.add(AddressResponse.fromJson(item));
+  //         BasketResponse det =
+  //         BasketResponse.fromJson(value.data.insideData);
+  //         emit(CheckoutInitState(det,screenState,r));
+  //       }
+  //
+  //
+  //     }
+  //   });
+  // }
 }
 

@@ -21,7 +21,7 @@ class SettingInitState extends States {
   @override
 
   Widget getUI(BuildContext context) {
-    value1=settingResponse.isAvailable!;
+   bool value2=settingResponse.isAvailable!;
    return     SingleChildScrollView(
      child: Column(
        children: [
@@ -76,7 +76,8 @@ class SettingInitState extends States {
 
              SizedBox(width: MediaQuery.of(context).size.width*0.05,),
              Icon(Icons.settings,
-                 color: value1==false?
+
+                 color: value2==false?
                  Colors.grey:YellowColor),
              SizedBox(width: MediaQuery.of(context).size.width*0.03,),
 
@@ -89,13 +90,14 @@ class SettingInitState extends States {
                    child: Switch.adaptive(
                        activeColor: YellowColor,
                        inactiveTrackColor: Colors.grey,
-                       value: value1,
+                       value: value2,
                        onChanged: (value) {
-                         this.value1 = value;
+                         settingResponse.isAvailable = value;
                          screenState.Availableeee();
-                         value1==false?
-                         Fluttertoast.showToast(msg: "Not Available"):
-                         Fluttertoast.showToast(msg: "Available");
+                         value2==false?
+                         Fluttertoast.showToast(msg: "Available"):
+                         Fluttertoast.showToast(msg: "Not Available");
+
 
                          screenState.refresh();
 
@@ -141,15 +143,8 @@ class SettingInitState extends States {
            Icon(Icons.privacy_tip,color: Colors.grey,),
            SizedBox(width: MediaQuery.of(context).size.width*0.05,),
            Text("Legal",style: TextStyle(fontSize: 17),),]),
-         SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-         Row(children: [
-           SizedBox(width: MediaQuery.of(context).size.width*0.05,),
 
-           Icon(Icons.flag,color: Colors.grey,),
-           SizedBox(width: MediaQuery.of(context).size.width*0.05,),
-           InkWell(
-               onTap: (){},
-               child: Text("Report an abuse",style: TextStyle(fontSize: 17),)),]),
+
          SizedBox(height: MediaQuery.of(context).size.height*0.04,),
          Align(alignment: Alignment.centerLeft,
            child: Padding(

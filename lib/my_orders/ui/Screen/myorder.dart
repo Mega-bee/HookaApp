@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hooka/home_page/home_routes.dart';
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 
 import 'package:hooka/utils/style/colors.dart';
@@ -16,14 +17,30 @@ class MyOrder extends StatefulWidget {
 
 class MyOrderState extends State<MyOrder>
     with TickerProviderStateMixin  {
+  bool MyOrder =false;
+  bool flags =true;
   @override
   Widget build(BuildContext context) {
+    if(flags){
+      var  args = ModalRoute.of(context)?.settings.arguments;
+      if (args != null && args is bool) {
+        MyOrder=args;
+      }
+      flags = false;
+    }
     TabController _tabController = TabController(length: 2, vsync: this);
 
     return Scaffold(
         appBar: AppBar(
           elevation: 1,
-          leading: MenuWidget(),
+iconTheme: IconThemeData(color: Colors.black),
+          leading:
+
+          MyOrder?IconButton(icon: Icon(Icons.home),onPressed: (){
+           Navigator.pushNamed(context, HomeRoutes.HOME_SCREEN);
+          },):
+          MenuWidget()
+          ,
           backgroundColor: Colors.white,
           title: Text(
             "My Order",

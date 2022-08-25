@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooka/abstracts/module/rout_module.dart';
+import 'package:hooka/address/address_module.dart';
 import 'package:hooka/auth/HiveSetUp.dart';
 import 'package:hooka/auth/auth_module.dart';
 import 'package:hooka/di/di_config.dart';
@@ -30,6 +32,7 @@ import 'hooka_places/places_module.dart';
 import 'hooka_product/product_module.dart';
 import 'invitations/details_module.dart';
 import 'my_orders/order_module.dart';
+import 'notifications/notification_module.dart';
 
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -39,6 +42,7 @@ FlutterLocalNotificationsPlugin();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options:DefaultFirebaseOptions.currentPlatform, );
+
   await HiveSetUp.init();
 
 
@@ -85,6 +89,8 @@ class MyApp extends StatefulWidget {
   final BasketModule _basketModule;
   final CheckoutModule _checkoutModule;
   final OrderModule _orderModule;
+  final AddressModule _addressModule;
+  final NotificationsModule _notificationsModule;
 
 
 
@@ -105,6 +111,8 @@ class MyApp extends StatefulWidget {
       this._detailsInvModule,
       this._basketModule,
       this._checkoutModule,
+      this._addressModule,
+      this._notificationsModule
 
   );
 

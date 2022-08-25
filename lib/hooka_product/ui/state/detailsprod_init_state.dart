@@ -28,7 +28,7 @@ class DetailsProdInitState extends States {
     return Column(
       children: [
         Container(
-          height: MediaQuery.of(context).size.height * 0.7,
+          height: MediaQuery.of(context).size.height * 0.77,
           child: Scrollbar(
             child: SingleChildScrollView(
               child: Column(
@@ -104,122 +104,100 @@ class DetailsProdInitState extends States {
           ),
         ),
         Container(
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 8,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-              ),
-              shape: BoxShape.rectangle),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          height: 100,
+          width:800,
+
+
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    child: InkWell(
-                      onTap: () {
-                        if (inc > 1) {
-                          inc--;
-                          detailsProductState.refresh();
-                        }
-                      },
-                      child: Card(
-                          color: YellowColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          child: Center(
-                              child: Text(
+              Spacer(),
+              Container(
+                width: 40,
+                height: 40,
+                child: InkWell(
+                  onTap: () {
+                    if (inc > 1) {
+                      inc--;
+                      detailsProductState.refresh();
+                    }
+                  },
+                  child: Card(
+                      color: YellowColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40.0),
+                      ),
+                      child: Center(
+                          child: Text(
                             "-",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ))),
-                    ),
-                  ),
-                  Text(
-                    "${inc}",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    child: InkWell(
-                      onTap: () {
-                        inc++;
-                        detailsProductState.refresh();
-
-                        // basketm.increment ++;
-                        //
-                        // widget.basketm.bcp =widget.basketm.increment * widget.basketm.incprice;
-                        // setState(() {
-                        // });
-                        // widget.total();
-                      },
-                      child: Card(
-                          color: YellowColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          child: Center(child: Text("+"))),
-                    ),
-                  ),
-                  // Container(
-                  //   width: 70,
-                  //   child: Text("\$ ${inc*isselec!.customerInitialPrice!}",
-                  //       style: TextStyle(fontWeight: FontWeight.bold)),
-                  // )
-                ],
+                ),
               ),
-              SizedBox(
-                height: 30,
+              Spacer(),
+              Text(
+                "${inc}",
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              Center(
+              Spacer(),
+              Container(
+                width: 40,
+                height: 40,
                 child: InkWell(
                   onTap: () {
-                    if (inc > 0) {
-                      Fluttertoast.showToast(
-                          msg: "${inc} ${isselec!.title} Added To Cart");
+                    inc++;
+                    detailsProductState.refresh();
 
-                      detailsProductState.AddToCarttttt(
-                          isselec!.id.toString(), inc.toString());
-                    } else
-                      Fluttertoast.showToast(msg: " Please Add Qunatity ");
+                    // basketm.increment ++;
+                    //
+                    // widget.basketm.bcp =widget.basketm.increment * widget.basketm.incprice;
+                    // setState(() {
+                    // });
+                    // widget.total();
                   },
                   child: Card(
-                    color: Colors.black,
-                    elevation: 9,
-                    child: Container(
-                      height: 30,
-                      width: 200,
-                      child: Center(
-                          child: Text(
-                        "Add To Cart",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: YellowColor),
-                      )),
-                    ),
+                      color: YellowColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40.0),
+                      ),
+                      child: Center(child: Text("+"))),
+                ),
+              ),
+              Spacer(),
+
+
+              InkWell(
+                onTap: () {
+                  if (inc > 0) {
+                    Fluttertoast.showToast(
+                        msg: "${inc} ${isselec!.title} Added To Cart");
+
+                    detailsProductState.AddToCarttttt(
+                        isselec!.id.toString(), inc.toString());
+                  } else
+                    Fluttertoast.showToast(msg: " Please Add Qunatity ");
+                },
+                child: Card(
+                  color: Colors.black,
+                  elevation: 9,
+                  child: Container(
+                    height: 30,
+                    width: 100,
+                    child: Center(
+                        child: Text(
+                      "Add To Cart",
+                      style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                          color: YellowColor),
+                    )),
                   ),
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
+              Spacer(),
             ],
           ),
         ),

@@ -8,17 +8,36 @@ import 'package:hooka/hooka_places/places_routes.dart';
 import 'package:hooka/hooka_product/product_routes.dart';
 import 'package:hooka/hooka_product/ui/screen/hooka_product.dart';
 import 'package:hooka/offers/offers_routes.dart';
+import 'package:hooka/services/fire_notification_services.dart';
 import 'package:hooka/utils/images/images.dart';
 import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../request/firebase_request.dart';
+import '../../state_manager/firebase_state_manager.dart';
+
 @injectable
 class HomeScreen extends StatefulWidget {
+  final FirebaseCubit cubit;
+  HomeScreen(this.cubit);
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
+  static FireNotificationService fireNotificationService =FireNotificationService();
+  @override
+  void initState() {
+
+    super.initState();
+    String FirebaseToken = '';
+      fireNotificationService.GetFireBaseToken().then((tokenFire) {
+        FirebaseToken = tokenFire ?? '';
+
+        widget.cubit.FireBasee(this, FireRequest(token: FirebaseToken));
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
