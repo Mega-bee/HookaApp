@@ -16,7 +16,7 @@ class DetailsSentInitState extends States {
 return SingleChildScrollView(
 
   child:   Container(
-    height: 900,
+height: 1000,
     child: Column(
       children: [
         SizedBox(height: 20,),

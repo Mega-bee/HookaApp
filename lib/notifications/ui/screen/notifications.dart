@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
-import 'package:hooka/notifications/ui/widget/notificationsCard.dart';
-import 'package:hooka/utils/style/colors.dart';
-
+import 'package:injectable/injectable.dart';
+import '../../../abstracts/states/state.dart';
+import '../../state_manager/notification_state_manager.dart';
+@injectable
 class Notifications extends StatefulWidget {
-  const Notifications({Key? key}) : super(key: key);
+final NotificationCubit cubit;
+Notifications(this.cubit);
+
 
   @override
-  State<Notifications> createState() => _NotificationsState();
+  State<Notifications> createState() => NotificationsState();
 }
 
-class _NotificationsState extends State<Notifications> {
+class NotificationsState extends State<Notifications> {
+  @override
+  void initState() {
+    super.initState();
+
+    widget.cubit.getNotification(this,);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,21 +32,14 @@ class _NotificationsState extends State<Notifications> {
         title: Text("Notifications",style: TextStyle(color: Colors.black),),
 
       ),
-      body:Container(
-        child: Column(children: [
-          Expanded(
-              flex: 100,
-              child: Card(
+      body:  BlocBuilder<NotificationCubit, States>(
+    bloc: widget.cubit,
+    builder: (context, state) {
+    return state.getUI(context);
+    },
 
-                  child: ListView.builder(
-                      itemCount:3 ,
-                      itemBuilder: (context, index) {
-                        return Notificationscard();
-                      })))]
 
-        ),
-      ),
 
-    );
+    ));
   }
 }

@@ -19,6 +19,8 @@ ReceivedCard({
 }
 
 class _ReceivedCardState extends State<ReceivedCard> {
+
+  bool Done=false;
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -95,9 +97,11 @@ class _ReceivedCardState extends State<ReceivedCard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Done==false?
                         InkWell(
                           onTap: (){
                             widget.Accept(StatusInvRequest(statusId: "2"));
+                            Done=true;
 
                           },
                           child: Container(
@@ -116,14 +120,16 @@ class _ReceivedCardState extends State<ReceivedCard> {
                                 .width * 0.15,
                             child: Center(child: Text("Accept")),
                           ),
-                        ),
+                        ):Text(widget.receivedModel!.invitationStatus.toString()),
                         SizedBox(width: MediaQuery
                             .of(context)
                             .size
                             .width * 0.03,),
+                        Done==false?
                         InkWell(
                           onTap: (){
                             widget.Accept(StatusInvRequest(statusId: "3"));
+                            Done=true;
                             // widget.screenstate!.refresh();
                           },
                           child: Container(
@@ -141,7 +147,7 @@ class _ReceivedCardState extends State<ReceivedCard> {
                                 .width * 0.15,
                             child: Center(child: Text("Deny",style: TextStyle(color: Colors.white),)),
                           ),
-                        ),
+                        ):Container(),
                         SizedBox(width: MediaQuery
                             .of(context)
                             .size
