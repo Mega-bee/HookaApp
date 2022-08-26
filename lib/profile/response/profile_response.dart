@@ -6,7 +6,7 @@ class ProfileResponse {
   String? imageUrl;
   String? email;
   String? gender;
-  num? genderId;
+  int? genderId;
   String? birthDate;
   String? aboutMe;
   String? maritalStatus;

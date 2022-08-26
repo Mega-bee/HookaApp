@@ -1,69 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:hooka/profile/request/add_adress.dart';
 import 'package:hooka/profile/request/delete_address_request.dart';
 import 'package:hooka/profile/request/delete_education_request.dart';
 import 'package:hooka/profile/request/delete_experience_request.dart';
 import 'package:hooka/profile/request/update_profile_request.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:hooka/profile/ui/state/edit_profile/edit_init_state.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../utils/style/colors.dart';
-import 'dart:io' as i;
-import '../../../../../utils/components/picker.dart';
 import '../../../abstracts/states/state.dart';
 import '../../request/add_education_request.dart';
 import '../../request/add_experience_request.dart';
 import '../../response/profile_response.dart';
 import '../../state_manager/edit_profile_state_manger.dart';
-import '../../state_manager/profile_state_manager.dart';
-import '../state/edit_init_state.dart';
 
 @injectable
 class EditProfile extends StatefulWidget {
   final GetEditProfileCubit cubit;
-
   EditProfile(this.cubit);
+
   @override
-  final name = TextEditingController();
   State<EditProfile> createState() => EditProfileState();
 }
 
 class EditProfileState extends State<EditProfile> {
   late AsyncSnapshot loadingSnapshot;
-  AddEdd(AddEducationRequest request) {
+  addEducation(AddEducationRequest request) {
     widget.cubit.AddEducation(
       this,
       request,
     );
   }
 
-  AddExp(AddExperienceRequest request) {
+  addExp(AddExperienceRequest request) {
     widget.cubit.AddExperience(
       this,
       request,
     );
   }
-  AddAddresss(AddAddressRequest request) {
+  addAddress(AddAddressRequest request) {
     widget.cubit.AddAddressssss(
       this,
       request,
     );
   }
-  DeleteAddresss(DeleteAddressRequest request) {
+  deleteAddresss(DeleteAddressRequest request) {
     widget.cubit.DeleteAddressssss(
       this,
       request,
     );
   }
-  DeleteEducation(DeleteEducationRequest request) {
+ deleteEducation(DeleteEducationRequest request) {
     widget.cubit.DeleteEducationnn(
       this,
       request,
     );
   }
-  DeleteExperienceeee(DeleteExperienceRequest request) {
+  deleteExperience(DeleteExperienceRequest request) {
     widget.cubit.DeleteExperience(
       this,
       request,

@@ -1,16 +1,16 @@
 class AddExperienceRequest {
 
-  int? id;
-  bool? IsDeleted;
+
+
   String? Place;
   String? Position;
   String? WorkedFrom;
   String? WorkedTo;
 
   AddExperienceRequest({
-    required this.id,
+
     required this.Place,
-    required this.IsDeleted,
+
     required this.WorkedFrom,
     required this.WorkedTo,
     required this.Position,
@@ -18,8 +18,8 @@ class AddExperienceRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'IsDeleted': IsDeleted,
-      'Id': id,
+      'IsDeleted': false,
+      'Id': 0,
       'Place': Place,
       'Position': Position,
       'WorkedFrom': WorkedFrom,

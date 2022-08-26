@@ -25,12 +25,13 @@ class BasketResponse {
 }
 
 class Items {
-  num? itemId;
-  num? quantity;
+  int? itemId;
+  int? quantity;
   String? productName;
   String? productImage;
   num? productPrice;
   num? totalPrice;
+  num  totalLocalPrice = 0;
 
   Items(
       {this.itemId,
@@ -38,7 +39,8 @@ class Items {
         this.productName,
         this.productImage,
         this.productPrice,
-        this.totalPrice});
+        this.totalPrice ,
+      required  this.totalLocalPrice   });
 
   Items.fromJson(Map<String, dynamic> json) {
     itemId = json['itemId'];
@@ -47,6 +49,7 @@ class Items {
     productImage = json['productImage'];
     productPrice = json['productPrice'];
     totalPrice = json['totalPrice'];
+    totalLocalPrice = totalPrice ?? 0;
   }
 
   Map<String, dynamic> toJson() {

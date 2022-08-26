@@ -9,97 +9,84 @@ import '../screen/basket_screen.dart';
 import '../widget/basket_card.dart';
 
 class BasketInitState extends States {
- final BasketResponse _basketResponse;
+  final BasketResponse _basketResponse;
   final BasketScreenState screenState;
- BasketInitState(this._basketResponse,this.screenState,);
-  num Total1=0;
-  num? NewQunatity ;
+  BasketInitState(
+    this._basketResponse,
+    this.screenState,
+  ) : super() {
+    totalPriceAllItem = _basketResponse.totalPrice ?? 0;
+  }
+
+  num totalPriceAllItem = 0;
+
   @override
   Widget getUI(BuildContext context) {
-    return     Column(
+    return Column(
       children: [
-
         SizedBox(
           height: 5,
         ),
         Expanded(
-
-          child: Container(
-
-            width: MediaQuery.of(context).size.width*0.97,
-            height:  MediaQuery.of(context).size.height*0.8,
-
-            child: ListView.builder(
-                itemCount:_basketResponse.items!.length,
-                itemBuilder: (context, index) {
-                  return BasketCard(
-                    totalinc: NewQunatity,
-                      _basketResponse.items![index],Total1,
-                     OnDelete:(){
-                        _basketResponse.items!.remove(_basketResponse.items![index].itemId);
-                        screenState.refresh();
-
-                        screenState.DeleteItemFromCart(DeleteItemCarttRequest(productId:_basketResponse.items![index].itemId.toString() ));
-
-                     }
-
-
-                  //     basketmodel[index],(){
-                  //   Total1=0;
-                  //   basketmodel.forEach((basketModel) {
-                  //
-                  //     Total1+= basketModel.bcp;
-                  //
-                  //
-                  //   });
-                  //   setState(() {
-                  //
-                  //   });
-                  // }
-
-
-
-                  );
-
-
-
-                }),
-          ),
+          child: ListView.builder(
+              itemCount: _basketResponse.items!.length,
+              itemBuilder: (context, index) {
+                return BasketCard(_basketResponse.items![index],
+                    onQuantityChange: () {
+                  totalPriceAllItem = 0;
+                  _basketResponse.items?.forEach((element) {
+                    totalPriceAllItem =
+                        totalPriceAllItem + element.totalLocalPrice;
+                  });
+                  screenState.refresh();
+                }, OnDelete: () {
+                  _basketResponse.items!.removeAt(index);
+                  totalPriceAllItem = 0;
+                  _basketResponse.items?.forEach((element) {
+                    totalPriceAllItem =
+                        totalPriceAllItem + element.totalLocalPrice;
+                  });
+                  screenState.DeleteItemFromCart(DeleteItemCarttRequest(
+                      productId:
+                          _basketResponse.items![index].itemId.toString()));
+                  screenState.refresh();
+                });
+              }),
         ),
-        Container(height: 2,width: 400,color: Colors.black87,),
-
-
-
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children:[
-            Spacer(flex: 3,),
-
-            Container(
-              height: 35,
-              width: 180,
-
-
-              child: Center(
-                child: Text(
-                  "Total :           \$ ${_basketResponse.totalPrice}",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black87),
-                ),
+        Container(
+          height: 2,
+          width: 400,
+          color: Colors.black87,
+        ),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Spacer(
+            flex: 3,
+          ),
+          Container(
+            height: 35,
+            width: 180,
+            child: Center(
+              child: Text(
+                "Total :           \$ ${totalPriceAllItem}",
+                style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87),
               ),
             ),
-            Spacer(flex: 2,),
-            Container(
-
-              child: Center(
-                  child: Image.asset(
-                    "assets/images/92-924113_shopping-cart-icon-e-commerce-removebg-preview.png",
-                    fit: BoxFit.contain,
-                    height: 40,
-                    width: 50,
-                  )),
-            ),
-
-
-
+          ),
+          Spacer(
+            flex: 2,
+          ),
+          Container(
+            child: Center(
+                child: Image.asset(
+              "assets/images/92-924113_shopping-cart-icon-e-commerce-removebg-preview.png",
+              fit: BoxFit.contain,
+              height: 40,
+              width: 50,
+            )),
+          ),
         ]),
         SizedBox(
           height: 30,
@@ -109,35 +96,44 @@ class BasketInitState extends States {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+//              InkWell(
+//                onTap: () {
+//                  screenState.UpdateCartttt(UpdateCartRequest(
+//                    id: _basketResponse.items!.toString(),
+//                    quantity: NewQunatity.toString(),
+//                  ));
+//                },
+//                child: Container(
+//                    width: 100,
+//                    height: 50,
+//                    child: Card(
+//                        color: YellowColor,
+//                        elevation: 8,
+//                        shape: RoundedRectangleBorder(
+//                          borderRadius: BorderRadius.circular(40.0),
+//                        ),
+//                        child: Padding(
+//                            padding: const EdgeInsets.all(8.0),
+//                            child: Center(
+//                                child: Text(
+//                              "Update",
+//                              style: TextStyle(
+//                                  color: Colors.black87,
+//                                  fontSize: 12,
+//                                  fontWeight: FontWeight.bold),
+//                            ))))),
+//              ),
               InkWell(
-                
-                onTap:(){
-                  screenState.UpdateCartttt(UpdateCartRequest(id: _basketResponse.items!.toString(),
-                  quantity: NewQunatity.toString(),
-                  ));
-                },
-                child: Container(
-                    width: 100,
-                    height: 50,
-                    child: Card(
-                        color: YellowColor,
-                        elevation: 8,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Center(
-                                child: Text(
-                                  "Update",
-                                  style: TextStyle(color: Colors.black87, fontSize: 12,fontWeight: FontWeight.bold),
-                                ))))),
-              ),
+                onTap: () {
+                  List<UpdateCartRequest> itemsUpdated = [];
+                  _basketResponse.items?.forEach((element) {
+                    itemsUpdated.add(UpdateCartRequest(
+                        id: element.itemId ?? -1,
+                        quantity: element.quantity ?? 0));
+                  });
 
-              InkWell(
-                onTap: (){
-
-                  Navigator.pushNamed(context, CheckoutRoutes.Checkout_screen,arguments: true);
+                  screenState.updateCartAndCheckOut(
+                      UpdateListCartRequest(items: itemsUpdated));
                 },
                 child: Container(
                     width: 200,
@@ -152,9 +148,12 @@ class BasketInitState extends States {
                             padding: const EdgeInsets.all(8.0),
                             child: Center(
                                 child: Text(
-                                  "Checkout",
-                                  style: TextStyle(color: YellowColor, fontSize: 12,fontWeight: FontWeight.bold),
-                                ))))),
+                              "Checkout",
+                              style: TextStyle(
+                                  color: YellowColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
+                            ))))),
               ),
             ],
           ),
@@ -162,6 +161,4 @@ class BasketInitState extends States {
       ],
     );
   }
-
 }
-
