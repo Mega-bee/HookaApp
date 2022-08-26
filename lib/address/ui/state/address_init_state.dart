@@ -61,6 +61,7 @@ class AddressInitState extends States{
     return await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
   }
+  int? CheckBoxId;
 
   Future<void> GetAddressFromLatLong(Position position) async {
     List<Placemark> placemarks =
@@ -70,6 +71,7 @@ class AddressInitState extends States{
     Address =
     '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
     screenState.refresh();
+
   }
   @override
   Widget getUI(BuildContext context) {
@@ -337,11 +339,20 @@ class AddressInitState extends States{
                  return CheckboxListTile(
 
                    activeColor: YellowColor,
-                   value: value, onChanged:(val) {
-                   value = val!;
+                   value: mod.isselected,
+                   onChanged:(val) {
+                     addressResponse.forEach((element) {
+                       element.isselected = false;
+                     });
+
+                     addressResponse[index].isselected = true;
+                   mod.isselected = val!;
+                  CheckBoxId=mod.id;
+                   print("hhhh ${mod.id} " );
                    screenState.refresh(
 
                    );
+                   print("your idddd iss  ${CheckBoxId}");
 
 
                 },
@@ -367,7 +378,9 @@ class AddressInitState extends States{
                  City: city1.text,Building: building1.text,Appartment: appartment1.text
              )
 
-             ):  screenState.Makeorder(OrderRequest(addressId:1 ));
+             ):  screenState.Makeorder(OrderRequest(addressId:CheckBoxId,Appartment: "empty",Building: "empty",City: "empty",
+             Latitude: "",Longitude: "",Street: "empty",Title: "empty",
+             ));
              print(OrderRequest);
 
                }),

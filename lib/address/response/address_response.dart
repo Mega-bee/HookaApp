@@ -7,6 +7,7 @@ class AddressResponse {
   num? latitude;
   String? title;
   String? appartment;
+  bool? isselected =false;
 
   AddressResponse(
       {this.id,
@@ -15,7 +16,7 @@ class AddressResponse {
         this.building,
         this.longitude,
         this.latitude,
-        this.title,
+        this.title,this.isselected,
         this.appartment});
 
   AddressResponse.fromJson(Map<String, dynamic> json) {
