@@ -1,5 +1,5 @@
 class ItemProfileOption{
-  num id;
+  int id;
   String name;
 
   ItemProfileOption(this.id, this.name);
@@ -38,6 +38,10 @@ static List<ItemProfileOption> getEyesList(){
       ItemProfileOption(3,'Rather Not To Say'),
     ];
   }
+  bool operator ==(dynamic other) =>
+      other != null && other is ItemProfileOption && this.id == other.id;
 
+  @override
+  int get hashCode => super.hashCode;
 }
 

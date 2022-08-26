@@ -1,16 +1,11 @@
 class AddEducationRequest {
-
-  int? id;
-  bool? IsDeleted;
   String? University;
   String? Degree;
   String? StudiedFrom;
   String? StudiedTo;
 
   AddEducationRequest({
-    required this.id,
     required this.Degree,
-    required this.IsDeleted,
     required this.StudiedFrom,
     required this.StudiedTo,
     required this.University,
@@ -18,8 +13,8 @@ class AddEducationRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'IsDeleted': IsDeleted,
-      'Id': id,
+      'IsDeleted': false,
+      'Id': 0,
       'University': University,
       'Degree': Degree,
       'StudiedFrom': StudiedFrom,

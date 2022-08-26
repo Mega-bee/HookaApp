@@ -1,3 +1,5 @@
+
+
 class ImageAsset {
   static const ROOT = 'assets/images/';
   static const LOGO = ROOT +'hooka_logo.png';
@@ -6,6 +8,8 @@ class ImageAsset {
   static const OFFER = ROOT +'hooka_offer.png';
   static const BUDDIES = ROOT +'hooka_buddies.png';
   static const HOMEIMAGE = ROOT +'app banners-01_637489184903443184.png';
+  static const Education = ROOT +'education.png';
+  static const Experience = ROOT +'experince.png';
 }
 
 class SvgAsset {

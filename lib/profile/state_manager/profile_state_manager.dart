@@ -12,7 +12,6 @@ import 'package:hooka/auth/service/auth_service.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/states/login_init_state.dart';
 import 'package:hooka/home_page/home_routes.dart';
-import 'package:hooka/profile/ui/state/edit_init_state.dart';
 import 'package:injectable/injectable.dart';
 
 import '../repository/profile_repository.dart';
