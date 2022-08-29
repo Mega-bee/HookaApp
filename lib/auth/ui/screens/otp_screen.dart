@@ -86,6 +86,10 @@ bool flags = true;
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
+          Navigator.pop(context);
+        }),
         title: Text(
           "Otp Verification",
           style: TextStyle(color: Colors.black),

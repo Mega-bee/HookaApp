@@ -51,8 +51,8 @@ class LoginCubit extends Cubit<States> {
         _loadingStateSubject.add(AsyncSnapshot.nothing());
         Fluttertoast.showToast(msg: 'Connection error');
       } else if (value.code == 200) {
-
-        Fluttertoast.showToast(msg: value.errorMessage);
+        _loadingStateSubject.add(AsyncSnapshot.nothing());
+        Fluttertoast.showToast(msg: "Your Code Has Been Sent");
         Navigator.pushNamed(
             screenState.context,
             AuthRoutes.FORGOT_OTP_SCREEN,

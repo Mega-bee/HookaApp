@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hooka/map/map_screen.dart';
+import 'package:hooka/map/map_routes.dart';
+import 'package:hooka/map/ui/screen/map_screen.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../abstracts/states/state.dart';
@@ -53,9 +54,8 @@ class HookaPlacesState extends State<HookaPlaces> {
         ),
         actions: [
           TextButton(onPressed: (){
-            Navigator.push(
-                context,
-                CustomPageRoute(child:LocationMap()));
+            Navigator.pushNamed(context, MapRoutes.MAP_SCREEN);
+
           }, child: Text("Map",style: TextStyle(fontSize: 18),))
         ],
       ) ,
