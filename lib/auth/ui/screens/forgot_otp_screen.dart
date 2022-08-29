@@ -1,35 +1,33 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hooka/auth/request/gen_otp_request.dart';
-import 'package:hooka/auth/state_manager/otp_state_screen.dart';
-import 'package:hooka/auth/state_manager/signup_state_manager.dart';
-import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-
 import '../../../abstracts/states/state.dart';
 import '../../request/confirm_otp_request.dart';
-import '../states/otp_init_state.dart';
+import '../../request/gen_otp_request.dart';
+import '../../state_manager/forgot_pass_state_manager.dart';
+import '../states/forget_otp_init_state.dart';
 
 @injectable
-class PinCodeVerificationScreen extends StatefulWidget {
-final OtpCubit cubit ;
+class VerificationOtpForgotScreen extends StatefulWidget {
+  final ForgotOtpCubit cubit ;
 // final SignUpCubit cubit ;
-PinCodeVerificationScreen(this.cubit,);
+  VerificationOtpForgotScreen(this.cubit,);
   @override
-  PinCodeVerificationScreenState createState() =>
-      PinCodeVerificationScreenState();
+  VerificationOtpForgotScreenState createState() =>
+      VerificationOtpForgotScreenState();
 }
 
-class PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
+class VerificationOtpForgotScreenState extends State<VerificationOtpForgotScreen> {
   late AsyncSnapshot loadingSnapshot;
-bool flags = true;
-  void ConfirmOtpRequest(ConfOtpRequest request){
-    widget.cubit.OtpConf(request,this);
+  bool flags = true;
+  String? email;
+  void ConfForgotRequest(ConfOtpRequest request){
+    widget.cubit.ForgetPassOtpConf(request,this);
   }
-  void ResendOtp(GenOtpRequest request){
-    widget.cubit.ResendOtp(request,this);
+  void Forgetpaswwww(GenOtpRequest request){
+    widget.cubit.ForgetPasswww(request,this);
   }
 
 
@@ -74,29 +72,29 @@ bool flags = true;
   Widget build(BuildContext context) {
     if(flags){
       var  args = ModalRoute.of(context)?.settings.arguments;
-      if (args != null && args is Map) {
-        String email = args['email'];
-        String pass = args['pass'];
-        widget.cubit.emit(OtpInitState(email,this,'',pass));
+      if (args != null && args is String) {
+         email = args;
+
+        widget.cubit.emit(OtpForgotInitState(email,this,'',));
       }
       flags = false;
     }
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 1,
         backgroundColor: Colors.white,
-        title: Text(
-          "Otp Verification",
-          style: TextStyle(color: Colors.black),
+        appBar: AppBar(
+          elevation: 1,
+          backgroundColor: Colors.white,
+          title: Text(
+            "Otp Verification",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
-      ),
-      body: BlocBuilder<OtpCubit, States>(
-        bloc: widget.cubit,
-        builder: (context, state) {
-          return state.getUI(context);
-        },
-      )
+        body: BlocBuilder<ForgotOtpCubit, States>(
+          bloc: widget.cubit,
+          builder: (context, state) {
+            return state.getUI(context);
+          },
+        )
     );
   }
 }

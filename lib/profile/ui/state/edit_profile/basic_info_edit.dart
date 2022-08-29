@@ -880,7 +880,8 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                   widget.updateBasicInfo(UpdateProfileRequest(
                     // Image: Image,
                       AboutMe: bio.text,
-//                      ImageFile: selectedImage.toString(),
+
+
                       ImageFile: null,
                       Birthdate: Dob.text,
                       GenderId: genderoption?.id ,

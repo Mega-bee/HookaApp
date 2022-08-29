@@ -7,27 +7,26 @@ import 'package:hooka/auth/repository/login_repository.dart';
 import 'package:hooka/auth/request/confirm_otp_request.dart';
 import 'package:hooka/auth/request/login_request.dart';
 import 'package:hooka/auth/response/login_response.dart';
-import 'package:hooka/home_page/home_routes.dart';
-
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import '../auth_routes.dart';
+import '../request/forget_pass_request.dart';
 import '../request/gen_otp_request.dart';
 import '../service/auth_service.dart';
 import '../ui/screens/forgot_otp_screen.dart';
-import '../ui/screens/otp_screen.dart';
+import '../ui/screens/login_screen.dart';
 
 @injectable
-class OtpCubit extends Cubit<States> {
+class ForgotOtpCubit extends Cubit<States> {
   final LoginRepository _loginRepository;
   final AuthService _authService;
 
-  OtpCubit(this._loginRepository,this._authService) : super(LoadingState());
+  ForgotOtpCubit(this._loginRepository,this._authService) : super(LoadingState());
 
   final _loadingStateSubject = PublishSubject<AsyncSnapshot>();
   Stream<AsyncSnapshot> get loadingStream => _loadingStateSubject.stream;
 
-  ResendOtp(GenOtpRequest request, PinCodeVerificationScreenState screenState) {
+  ForgetPasswww(GenOtpRequest request, VerificationOtpForgotScreenState screenState) {
     _loadingStateSubject.add(AsyncSnapshot.waiting());
     _loginRepository.GenerateOtpRequest(request).then((value) {
       if (value == null) {
@@ -35,13 +34,13 @@ class OtpCubit extends Cubit<States> {
         Fluttertoast.showToast(msg: 'Connection error');
       } else if (value.code == 200) {
         _loadingStateSubject.add(AsyncSnapshot.nothing());
-        Fluttertoast.showToast(msg: "Your Code Has Ben Recent");
+        Fluttertoast.showToast(msg: "Your Code Has Been Recent");
 
       }
     });
   }
 
-  OtpConf(ConfOtpRequest request,PinCodeVerificationScreenState screenState) {
+  ForgetPassOtpConf(ConfOtpRequest request,VerificationOtpForgotScreenState screenState) {
 
     _loginRepository.ConfirmOtpRequest(request).then((value) {
       _loadingStateSubject.add(AsyncSnapshot.waiting());
@@ -49,34 +48,22 @@ class OtpCubit extends Cubit<States> {
       if (value == null) {
         _loadingStateSubject.add(AsyncSnapshot.nothing());
         Fluttertoast.showToast(msg: 'Connection error');
-      } else if (value.code == 200) {
-        _loginRepository.loginRequest(LogRequest(request.email, request.password)).then((value)
-        {
-          if (value == null) {
-            _loadingStateSubject.add(AsyncSnapshot.nothing());
-            Fluttertoast.showToast(msg: 'Connection error');
-//        emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
-          } else if (value.code == 200) {
-            logInModel TT = logInModel.fromJson(value.data.insideData);
-            _authService.setToken(TT.token ??"",);
-            _authService.setName(TT.name ??"");
+      }  else if (value.code == 200) {
+        _loadingStateSubject.add(AsyncSnapshot.waiting());
+            // logInModel TT = logInModel.fromJson(value.data.insideData);
+            // _authService.setToken(TT.token ??"",);
+            // _authService.setName(TT.name ??"");
             // _authService.setToken(value.data.insideData ?? "");
-            Navigator.pushNamedAndRemoveUntil(screenState.context, HomeRoutes.HOME_SCREEN, (route) => false);
+            Navigator.pushNamedAndRemoveUntil(screenState.context, AuthRoutes.FORGOT_SCREEN, (route) => false,arguments: request.email.toString());
           }else if (value.code != 200){
             _loadingStateSubject.add(AsyncSnapshot.nothing());
             Fluttertoast.showToast(msg: value.errorMessage);
 //        emit(LoginInitState(screenState,value.errorMessage ));
           }
         });
-        Navigator.pushNamedAndRemoveUntil(screenState.context,  AuthRoutes.LOGIN_SCREEN, (route) => false, );
-      }
-      else if (value.code != 200){
 
-        _loadingStateSubject.add(AsyncSnapshot.nothing());
-        Fluttertoast.showToast(msg: value.errorMessage);
-//        emit(LoginInitState(screenState,value.errorMessage ));
-      }
-    });
+
+
   }
 
 }

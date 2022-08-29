@@ -26,7 +26,7 @@ class Urls {
    static const SIGNUP = BASE_ACCOUNTS + 'SignUp';
    static const GENERATE_OTP = BASE_ACCOUNTS + 'GenerateOtp';
    static const CONFIRM_OTP = BASE_ACCOUNTS + 'ConfirmOtp';
-   static const FORGET_PASS = BASE_ACCOUNTS + 'ForgetPassword';
+   static const FORGET_PASS = BASE_ACCOUNTS + 'ChangePassword';
    static const AVAILABLE = BASE_ACCOUNTS + 'IsAvailableToggle';
    static const GET_ADDRESS = BASE_ACCOUNTS + 'GetAdderesses';
    static const FIRE_TOKEN = BASE_ACCOUNTS + 'RefreshFcmToken';
