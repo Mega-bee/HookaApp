@@ -57,6 +57,15 @@ class FireNotificationService {
         ///gives u the message on which user taps and opened the app when terminated state
         FirebaseMessaging.instance.getInitialMessage().then((message) {
           print(message);
+          if(message!.data["inviteId"] != null){
+          int id = int.parse(message!.data["inviteId"].toString());
+          // Navigator.pushNamed(context, routeName);
+          }
+          else if (message!.data["orderid"] != null ) {
+            int idd = int.parse(message!.data["orderId"].toString());
+
+            // Navigator.pushNamed(context, routeName);
+          }
           // int id = message!.data["patientId"];
           // Navigator.of(context).push(
           //     MaterialPageRoute(builder: (context) => PatientPriorityInfo()));
@@ -64,8 +73,15 @@ class FireNotificationService {
 
         ///forground
         FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-          print('forground');
-          print(message.data.toString());
+          if(message.data["inviteId"] != null){
+            int id = int.parse(message.data["inviteId"].toString());
+            // Navigator.pushNamed(context, routeName);
+          }
+          else if (message.data["orderid"] != null ) {
+            int idd = int.parse(message.data["orderId"].toString());
+
+            // Navigator.pushNamed(context, routeName);
+          }
           // int id = int.parse(message.data["patientId"].toString());
 
           // Navigator.of(GlobalVariable.navState.currentContext!)
@@ -73,8 +89,7 @@ class FireNotificationService {
           //         builder: (ctx) => PatientPriorityInfo(
           //               id: id,
           //             )));
-          print("Patientt1");
-          print(message.data["patientId"]);
+
           _onNotificationReceived.add(message);
 
           // LocalNotificationService.display(message);
@@ -82,10 +97,16 @@ class FireNotificationService {
 
         ///when app is in background but opened and user taps on the notification
         FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-          print(message);
-          print(message.data.toString());
-          // int id = int.parse(message.data["patientId"].toString());
 
+          if(message.data["inviteId"] != null){
+            int id = int.parse(message.data["inviteId"].toString());
+            // Navigator.pushNamed(context, routeName);
+          }
+          else if (message.data["orderid"] != null ) {
+            int idd = int.parse(message.data["orderId"].toString());
+
+            // Navigator.pushNamed(context, routeName);
+          }
           // print("Patientt2");
           // print(id.toString());
           //
@@ -96,7 +117,7 @@ class FireNotificationService {
           //
           //     )));
 
-          print(message.data["patientId"]);
+
           // _onNotificationReceived.add(message);
         });
         FirebaseMessaging.onBackgroundMessage(backgroundMessageHandler);
