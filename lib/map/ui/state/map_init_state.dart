@@ -13,10 +13,17 @@ import '../screen/map_screen.dart';
 class MapInitState extends States{
   final LocationMapState screenState;
   final List<PlacesResp> placesResp;
-  MapInitState(this.screenState,this.placesResp);
-  Completer<GoogleMapController> controllerGoo = Completer();
-  CustomInfoWindowController? customInfoWindowController;
+  MapInitState(this.screenState,this.placesResp):super(){
+    placesResp.forEach((element) {
+      _markers.add(Marker(markerId: MarkerId(element.id.toString()) , position: LatLng(
+          double.parse(element.latitude ??""),double.parse(element.longitude ??""),),
+      infoWindow: InfoWindow(title:element.name,),
+      ));
+    });
+  }
+ 
   Set<Marker> _markers = {};
+ 
   LatLng? _addresPotion;
   LatLng zahahLat = LatLng(33.8463,
       35.9020); //initial currentPosition values cannot assign null values
@@ -25,19 +32,20 @@ class MapInitState extends States{
   // Location currentLocation = Location();
 
   @override
-  void initState() {
-    // TODO: implement initState
-    customInfoWindowController = CustomInfoWindowController();
-
-    defaultLocation().then((value) {
-      _markers = value!;
-      if(screenState.mounted){
-       screenState.refresh();
-      }
-    });
-
-    // super.initState();
-  }
+  // void initState() {
+  //   // TODO: implement initState
+  //  
+  //
+  //   defaultLocation().then((value) {
+  //     _markers = value!;
+  //     if(screenState.mounted){
+  //      screenState.refresh();
+  //     }
+  //   });
+  //
+  //   // super.initState();
+  // }
+  
 
 
 
@@ -52,11 +60,7 @@ class MapInitState extends States{
  //   //
  //   // );
  // });}
-  void _onMapCreated(GoogleMapController controller) {
-    customInfoWindowController
-        ?.googleMapController = controller;
-    controllerGoo.complete(controller);
-  }
+ 
   MapType _currentMapType = MapType.normal;
 
   // LatLng _lastMapPosition = _center;
@@ -186,7 +190,7 @@ class MapInitState extends States{
           compassEnabled: true,
           mapToolbarEnabled: true,
           myLocationButtonEnabled: false,
-          onMapCreated: _onMapCreated,
+          onMapCreated: screenState.onMapCreated(controller),
           onCameraMove: (co){
 //              customInfoWindowController.onCameraMove();
           },

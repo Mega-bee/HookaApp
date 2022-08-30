@@ -1,5 +1,9 @@
+import 'dart:async';
+
+import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../hooka_places/request/filter_places_request.dart';
@@ -14,19 +18,27 @@ class LocationMap extends StatefulWidget {
 }
 
 class LocationMapState extends State<LocationMap> {
+  Completer<GoogleMapController> controllerGoo = Completer();
+  CustomInfoWindowController? customInfoWindowController;
   FilterRequest? request;
   void refresh() {
     if (mounted) {
       setState(() {});
     }
   }
-
+  void onMapCreated(GoogleMapController controller) {
+    customInfoWindowController
+        ?.googleMapController = controller;
+    controllerGoo.complete(controller);
+  }
   @override
   void initState() {
 
     super.initState();
+    customInfoWindowController = CustomInfoWindowController();
     request=FilterRequest(0);
     widget.cubit.getPlacess(this,request!);
+
   }
 
   @override
