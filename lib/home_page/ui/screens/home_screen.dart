@@ -6,7 +6,6 @@ import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 import 'package:hooka/hooka_buddies/buddies_routes.dart';
 import 'package:hooka/hooka_places/places_routes.dart';
 import 'package:hooka/hooka_product/product_routes.dart';
-import 'package:hooka/hooka_product/ui/screen/hooka_product.dart';
 import 'package:hooka/offers/offers_routes.dart';
 import 'package:hooka/services/fire_notification_services.dart';
 import 'package:hooka/utils/images/images.dart';
@@ -51,12 +50,12 @@ class HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.white,
           leading: MenuWidget(),
           actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.notifications,
-                  color: Colors.black,
-                )),
+            // IconButton(
+            //     onPressed: () {},
+            //     icon: Icon(
+            //       Icons.notifications,
+            //       color: Colors.black,
+            //     )),
             IconButton(
                 onPressed: () {
                   Navigator.pushNamed(context, BasketRoutes.BasketS);

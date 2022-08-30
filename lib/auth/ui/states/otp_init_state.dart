@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hooka/auth/request/confirm_otp_request.dart';
+import 'package:hooka/auth/request/gen_otp_request.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../abstracts/states/state.dart';
@@ -178,7 +179,9 @@ class OtpInitState extends States{
                    ),
                    Container(
                        child: TextButton(
-                         onPressed: () => {},
+                         onPressed: () => {
+                           screenState.ResendOtp(GenOtpRequest(email, pass))
+                         },
                          child: Text(
                            "RESEND",
                            style: TextStyle(

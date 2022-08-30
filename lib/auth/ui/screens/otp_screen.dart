@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hooka/auth/request/gen_otp_request.dart';
 import 'package:hooka/auth/state_manager/otp_state_screen.dart';
 import 'package:hooka/auth/state_manager/signup_state_manager.dart';
 import 'package:hooka/utils/style/colors.dart';
@@ -27,6 +28,9 @@ bool flags = true;
   void ConfirmOtpRequest(ConfOtpRequest request){
     widget.cubit.OtpConf(request,this);
   }
+  void ResendOtp(GenOtpRequest request){
+    widget.cubit.ResendOtp(request,this);
+  }
 
 
 
@@ -34,7 +38,6 @@ bool flags = true;
 
   bool hasError = false;
   String currentText = "";
-  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -83,6 +86,10 @@ bool flags = true;
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
+          Navigator.pop(context);
+        }),
         title: Text(
           "Otp Verification",
           style: TextStyle(color: Colors.black),

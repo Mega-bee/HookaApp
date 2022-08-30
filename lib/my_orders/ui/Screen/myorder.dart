@@ -37,7 +37,7 @@ iconTheme: IconThemeData(color: Colors.black),
           leading:
 
           MyOrder?IconButton(icon: Icon(Icons.home),onPressed: (){
-           Navigator.pushNamed(context, HomeRoutes.HOME_SCREEN);
+           Navigator.pushNamedAndRemoveUntil(context, HomeRoutes.HOME_SCREEN,(route) => false,);
           },):
           MenuWidget()
           ,

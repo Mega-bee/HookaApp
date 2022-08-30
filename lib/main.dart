@@ -31,6 +31,7 @@ import 'firebase_options.dart';
 import 'hooka_places/places_module.dart';
 import 'hooka_product/product_module.dart';
 import 'invitations/details_module.dart';
+import 'map/map_module.dart';
 import 'my_orders/order_module.dart';
 import 'notifications/notification_module.dart';
 
@@ -91,6 +92,7 @@ class MyApp extends StatefulWidget {
   final OrderModule _orderModule;
   final AddressModule _addressModule;
   final NotificationsModule _notificationsModule;
+  final MapModule _mapModule;
 
 
 
@@ -112,7 +114,8 @@ class MyApp extends StatefulWidget {
       this._basketModule,
       this._checkoutModule,
       this._addressModule,
-      this._notificationsModule
+      this._notificationsModule,
+      this._mapModule
 
   );
 

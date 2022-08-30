@@ -1,0 +1,104 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import '../../../abstracts/states/state.dart';
+import '../../request/confirm_otp_request.dart';
+import '../../request/gen_otp_request.dart';
+import '../../state_manager/forgot_pass_state_manager.dart';
+import '../states/forget_otp_init_state.dart';
+
+@injectable
+class VerificationOtpForgotScreen extends StatefulWidget {
+  final ForgotOtpCubit cubit ;
+// final SignUpCubit cubit ;
+  VerificationOtpForgotScreen(this.cubit,);
+  @override
+  VerificationOtpForgotScreenState createState() =>
+      VerificationOtpForgotScreenState();
+}
+
+class VerificationOtpForgotScreenState extends State<VerificationOtpForgotScreen> {
+  late AsyncSnapshot loadingSnapshot;
+  bool flags = true;
+  String? email;
+  void ConfForgotRequest(ConfOtpRequest request){
+    widget.cubit.ForgetPassOtpConf(request,this);
+  }
+  void Forgetpaswwww(GenOtpRequest request){
+    widget.cubit.ForgetPasswww(request,this);
+  }
+
+
+
+  StreamController<ErrorAnimationType>? errorController;
+
+  bool hasError = false;
+  String currentText = "";
+
+  @override
+  void initState() {
+    super.initState();
+    loadingSnapshot = AsyncSnapshot.nothing();
+    widget.cubit.loadingStream.listen((event) {
+      if (this.mounted) {
+        setState(() {
+          loadingSnapshot = event;
+        });
+      }
+    });
+    // widget.cubit.emit(OtpInitState(this,""));
+  }
+
+  @override
+  void dispose() {
+    errorController!.close();
+
+    super.dispose();
+  }
+
+  // snackBar Widget
+  // snackBar(String? message) {
+  //   return ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(
+  //       content: Text(message!),
+  //       duration: const Duration(seconds: 2),
+  //     ),
+  //   );
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    if(flags){
+      var  args = ModalRoute.of(context)?.settings.arguments;
+      if (args != null && args is String) {
+         email = args;
+
+        widget.cubit.emit(OtpForgotInitState(email,this,'',));
+      }
+      flags = false;
+    }
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          elevation: 1,
+          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(color: Colors.black),
+          leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
+            Navigator.pop(context);
+          }),
+          title: Text(
+            "Otp Verification",
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        body: BlocBuilder<ForgotOtpCubit, States>(
+          bloc: widget.cubit,
+          builder: (context, state) {
+            return state.getUI(context);
+          },
+        )
+    );
+  }
+}

@@ -8,6 +8,8 @@ import 'package:hooka/auth/state_manager/login_state_manager.dart';
 import 'package:hooka/auth/ui/states/login_init_state.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../request/gen_otp_request.dart';
+
 @injectable
 class loginScreen extends StatefulWidget {
   final LoginCubit  cubit;
@@ -22,6 +24,9 @@ class loginScreenState extends State<loginScreen> {
 
   void loginRequest(LogRequest request){
     widget.cubit.login(request,this);
+  }
+ void ForgetPasssss(GenOtpRequest request){
+    widget.cubit.ForgetPass(request,this);
   }
 
   @override

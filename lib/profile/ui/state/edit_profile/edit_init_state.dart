@@ -21,6 +21,7 @@ import 'dart:io' as i;
 class EditInitState extends States {
   final EditProfileState screenState;
   final ProfileResponse? module;
+
   EditInitState(this.screenState, this.module) : super(){
     profileImage = module?.imageUrl ?? '';
   }
@@ -568,7 +569,7 @@ class EditInitState extends States {
                     Expanded(
                       child: TabBarView(
                         children:  [
-                          BasicInfoInitState(module,(request) => screenState.UpdateProfileee(request)),
+                          BasicInfoInitState(module,(request) => screenState.UpdateProfileee(request),),
                           EducationEditState(module?.education ?? [] , module?.genderId ,
                               addEducation: (request){
                             screenState.addEducation(request);

@@ -9,6 +9,7 @@ import 'package:injectable/injectable.dart';
 
 import '../request/confirm_otp_request.dart';
 import '../request/forget_pass_request.dart';
+import '../request/forgot_request.dart';
 
 @injectable
 class LoginRepository {
@@ -55,10 +56,10 @@ class LoginRepository {
     if (response == null) return null;
     return response;
   }
-  Future<WebServiceResponse?> ForgetPasswordRequest(ForgRequest request) async {
+  Future<WebServiceResponse?> ForgetPasswordRequest(ForgotRequest request) async {
     var token =   _authService.getToken();
     WebServiceResponse? response = await _apiClient.post(
-      Urls.CONFIRM_OTP ,request.toJson(),
+      Urls.FORGET_PASS ,request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;

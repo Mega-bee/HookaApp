@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hooka/hooka_buddies/state_manager/Buddies_state_manager.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
-import '../../../map/map_screen.dart';
+import '../../../map/map_routes.dart';
+import '../../../map/ui/screen/map_screen.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
 import '../../response/buddies_response.dart';
@@ -63,9 +64,7 @@ class BuddiesState extends State<Buddies> {
           actions: [
             TextButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      CustomPageRoute(child:LocationMap()));
+                  Navigator.pushNamed(context, MapRoutes.MAP_SCREEN);
                 },
                 child: Text(
                   "Map",

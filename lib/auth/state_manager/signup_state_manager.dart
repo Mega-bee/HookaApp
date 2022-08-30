@@ -5,13 +5,10 @@ import 'package:hooka/abstracts/states/loading_state.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/auth_routes.dart';
 import 'package:hooka/auth/repository/login_repository.dart';
-
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import '../request/gen_otp_request.dart';
 import '../request/signup_request.dart';
-import '../response/signup_response.dart';
-import '../service/auth_service.dart';
 import '../ui/screens/signup_screen.dart';
 
 @injectable

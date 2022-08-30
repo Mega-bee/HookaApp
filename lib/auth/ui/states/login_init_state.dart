@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/auth_routes.dart';
+import 'package:hooka/auth/request/gen_otp_request.dart';
 import 'package:hooka/auth/request/login_request.dart';
 import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/widget/email_field.dart';
+import 'package:hooka/auth/ui/widget/forgot_button.dart';
 import 'package:hooka/auth/ui/widget/password_field.dart';
 import 'package:hooka/generated/l10n.dart';
 import 'package:hooka/utils/style/colors.dart';
@@ -135,22 +138,26 @@ return  SingleChildScrollView(
                         const EdgeInsets.fromLTRB(20, 0, 15, 0),
                         child: Align(
                             alignment: Alignment.centerRight,
-                            child: TextButton(
-                              child: Text("Forgot Password?",
-                                  style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.grey)),
-                              onPressed: () {
-//                                  Navigator.push(
-//                                      context,
-//                                      MaterialPageRoute(
-//                                          builder: (context) =>
-//                                          const PinCodeVerificationScreen(
-//                                            phoneNumber: "",
-//                                          )));
-                              },
-                            )),
+                            child:
+                                Container(
+                                  height: 55,width: 130,
+                                  child: ForgotButton(textColor: Colors.grey,
+                                  bgColor: Colors.white,
+                                    buttonTab: (){
+                                      if (email.text.isNotEmpty){
+                                        _screenState.ForgetPasssss(GenOtpRequest(email.text,''));
+
+
+                                      }
+                                      else Fluttertoast.showToast(msg: "Please fill the Email do you want to forgot");
+                                    },
+                                    text: "Forgot Password?",
+                                    loading: _screenState.loadingSnapshot.connectionState ==
+                                      ConnectionState.waiting,
+                                  ),
+                                )
+
+                            ),
                       ),
 //                        Padding(
 //                          padding: EdgeInsets.symmetric(

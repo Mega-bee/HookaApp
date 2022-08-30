@@ -65,8 +65,9 @@ class FireNotificationService {
         ///forground
         FirebaseMessaging.onMessage.listen((RemoteMessage message) {
           print('forground');
-          print(message.data["patientId"].toString());
-          int id = int.parse(message.data["patientId"].toString());
+          print(message.data.toString());
+          // int id = int.parse(message.data["patientId"].toString());
+
           // Navigator.of(GlobalVariable.navState.currentContext!)
           //     .push(MaterialPageRoute(
           //         builder: (ctx) => PatientPriorityInfo(
@@ -82,11 +83,11 @@ class FireNotificationService {
         ///when app is in background but opened and user taps on the notification
         FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
           print(message);
-          print(message.data["patientId"].toString());
-          int id = int.parse(message.data["patientId"].toString());
+          print(message.data.toString());
+          // int id = int.parse(message.data["patientId"].toString());
 
-          print("Patientt2");
-          print(id.toString());
+          // print("Patientt2");
+          // print(id.toString());
           //
           // Navigator.of(GlobalVariable.navState.currentContext!)
           //     .push(MaterialPageRoute(
