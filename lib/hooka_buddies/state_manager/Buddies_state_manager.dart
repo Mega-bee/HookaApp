@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooka/abstracts/states/error_state.dart';
 import 'package:hooka/abstracts/states/loading_state.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/service/auth_service.dart';
+import 'package:hooka/hooka_buddies/request/buddies_filter_request.dart';
 import 'package:hooka/hooka_buddies/request/invite_request.dart';
 import 'package:hooka/hooka_places/repository/places_repository.dart';
 import 'package:hooka/hooka_places/response/places_response.dart';
+import 'package:hooka/module_deep_links/service/deep_links_service.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../hooka_places/request/filter_places_request.dart';
@@ -33,9 +36,12 @@ class BuddiesCubit extends Cubit<States> {
   Stream<AsyncSnapshot> get loadingStream => _loadingStateSubject.stream;
 
 
-  getBudd(BuddiesState screenState) {
+  getBudd(BuddiesState screenState) async{
     emit(LoadingState());
-    _buddiesRep.getBuddiessss().then((value) {
+    var myLocation = await DeepLinksService.defaultLocation();
+    LatLng myPos = LatLng(
+        myLocation?.latitude ?? 0, myLocation?.longitude ?? 0);
+    _buddiesRep.getBuddiessss(BuddiesFilerRequest(myPos.longitude.toString(), myPos.latitude.toString())).then((value) {
       if (value == null) {
         emit(ErrorState(
             errorMessage: 'Connection error',

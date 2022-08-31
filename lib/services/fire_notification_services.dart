@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'dart:io' as plat;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:hooka/home_page/home_routes.dart';
+import 'package:hooka/home_page/ui/screens/menu_screen.dart';
 import 'package:hooka/invitations/ui/screen/invitations.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -15,9 +17,8 @@ import '../global_nav_key.dart';
 import '../invitations/ui/state/received_init_state.dart';
 
 class FireNotificationService {
-
   static final PublishSubject<RemoteMessage> _onNotificationReceived =
-  PublishSubject();
+      PublishSubject();
 
   Stream get onNotificationStream => _onNotificationReceived.stream;
 
@@ -57,14 +58,19 @@ class FireNotificationService {
         ///gives u the message on which user taps and opened the app when terminated state
         FirebaseMessaging.instance.getInitialMessage().then((message) {
           print(message);
-          if(message!.data["inviteId"] != null){
-          int id = int.parse(message!.data["inviteId"].toString());
-          // Navigator.pushNamed(context, routeName);
-          }
-          else if (message!.data["orderid"] != null ) {
+          if (message?.data["inviteId"] != null) {
+            int id = int.parse(message!.data["inviteId"].toString());
+            Navigator.pushNamed(
+                GlobalVariable.mainScreenScaffold.currentContext!,
+                HomeRoutes.HOME_SCREEN,
+                arguments: MenuItems.invitations);
+          } else if (message?.data["orderid"] != null) {
             int idd = int.parse(message!.data["orderId"].toString());
 
-            // Navigator.pushNamed(context, routeName);
+            Navigator.pushNamed(
+                GlobalVariable.mainScreenScaffold.currentContext!,
+                HomeRoutes.HOME_SCREEN,
+                arguments: MenuItems.myorder);
           }
           // int id = message!.data["patientId"];
           // Navigator.of(context).push(
@@ -73,14 +79,19 @@ class FireNotificationService {
 
         ///forground
         FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-          if(message.data["inviteId"] != null){
+          if (message.data["inviteId"] != null) {
             int id = int.parse(message.data["inviteId"].toString());
-            // Navigator.pushNamed(context, routeName);
-          }
-          else if (message.data["orderid"] != null ) {
+            Navigator.pushNamed(
+                GlobalVariable.mainScreenScaffold.currentContext!,
+                HomeRoutes.HOME_SCREEN,
+                arguments: MenuItems.invitations);
+          } else if (message.data["orderid"] != null) {
             int idd = int.parse(message.data["orderId"].toString());
 
-            // Navigator.pushNamed(context, routeName);
+            Navigator.pushNamed(
+                GlobalVariable.mainScreenScaffold.currentContext!,
+                HomeRoutes.HOME_SCREEN,
+                arguments: MenuItems.myorder);
           }
           // int id = int.parse(message.data["patientId"].toString());
 
@@ -92,17 +103,15 @@ class FireNotificationService {
 
           _onNotificationReceived.add(message);
 
-          // LocalNotificationService.display(message);
+//           LocalNotificationService.display(message);
         });
 
         ///when app is in background but opened and user taps on the notification
         FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-
-          if(message.data["inviteId"] != null){
+          if (message.data["inviteId"] != null) {
             int id = int.parse(message.data["inviteId"].toString());
             // Navigator.pushNamed(context, routeName);
-          }
-          else if (message.data["orderid"] != null ) {
+          } else if (message.data["orderid"] != null) {
             int idd = int.parse(message.data["orderId"].toString());
 
             // Navigator.pushNamed(context, routeName);
@@ -116,7 +125,6 @@ class FireNotificationService {
           //       id: id,
           //
           //     )));
-
 
           // _onNotificationReceived.add(message);
         });

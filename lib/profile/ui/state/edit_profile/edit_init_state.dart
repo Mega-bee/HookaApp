@@ -1,14 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hooka/abstracts/states/state.dart';
-import 'package:hooka/profile/model/item_option_model.dart';
+import 'package:hooka/profile/request/delete_address_request.dart';
 import 'package:hooka/profile/request/delete_education_request.dart';
 import 'package:hooka/profile/request/delete_experience_request.dart';
 import 'package:hooka/profile/response/profile_response.dart';
 import 'package:hooka/profile/ui/screens/edit_profile.dart';
+import 'package:hooka/profile/ui/state/edit_profile/address_edit.dart';
 import 'package:hooka/profile/ui/state/edit_profile/basic_info_edit.dart';
 import 'package:hooka/profile/ui/state/edit_profile/education_edit.dart';
 import 'package:hooka/profile/ui/state/edit_profile/experince_edit.dart';
@@ -25,32 +28,14 @@ class EditInitState extends States {
   EditInitState(this.screenState, this.module) : super(){
     profileImage = module?.imageUrl ?? '';
   }
-  bool plus = false;
-  bool plus2 = false;
-  bool flags = true;
-  var _selectedDateTO;
+
+
   var _selectedDate1;
   var _selectedDate2;
-  var _selectedDate3;
-  var _selectedDate4;
+
   i.File? _pickImage;
   final _formKey = GlobalKey<FormState>();
-  void _presentDatePickerTO() {
-    showDatePicker(
-      context: screenState.context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2022),
-      lastDate: DateTime.now(),
-    ).then((pickedDate) {
-      if (pickedDate == null) {
-        return;
-      }
-      _selectedDateTO = pickedDate;
-      screenState.refresh();
-    });
 
-    print('...');
-  }
 
   void _presentDatePicker1() {
     showDatePicker(
@@ -88,247 +73,25 @@ class EditInitState extends States {
     print('...');
   }
 
-  void _presentDatePicker3() {
-    showDatePicker(
-      context: screenState.context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2022),
-      lastDate: DateTime.now(),
-    ).then((pickedDate) {
-      if (pickedDate == null) {
-        return;
-      }
-      screenState.refresh();
 
-      _selectedDate3 = pickedDate;
-    });
-
-    print('...');
-  }
-
-  void _presentDatePicker4() {
-    showDatePicker(
-      context: screenState.context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2022),
-      lastDate: DateTime.now(),
-    ).then((pickedDate) {
-      if (pickedDate == null) {
-        return;
-      }
-      screenState.refresh();
-
-      _selectedDate4 = pickedDate;
-    });
-
-    print('...');
-  }
-
-  List<Education> EDUCTIONS = [];
-  Future pickImage(ImageSource source) async {
+  Future<i.File?>  pickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
+      if (image == null) return null;
       final imageTemporary = i.File(image.path);
 
-      this._pickImage = imageTemporary;
-
       selectedImage = imageTemporary;
-      screenState.refresh();
+      _multipartFileImage = await MultipartFile.fromFile(selectedImage!.path);
+      return selectedImage;
     } on PlatformException catch (e) {
       print("Failed to pick image $e");
     }
   }
 
-  Widget BuildItem(String text, String subtext1, String subtext2) {
-    num cont = 2;
-    var controller = TextEditingController();
-    return Column(
-      children: [
-        Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                "$text ${cont}",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            )),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: TextFormField(
-              cursorColor: YellowColor,
-              style: const TextStyle(fontSize: 18),
-              controller: controller,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                labelText: "$subtext1",
-                hintText: "$subtext1",
-                enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    borderSide: BorderSide(width: 0, color: Colors.black12)),
-                border: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              keyboardType: TextInputType.text),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: TextFormField(
-              cursorColor: YellowColor,
-              style: const TextStyle(fontSize: 18),
-              controller: controller,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                labelText: "$subtext2",
-                hintText: "$subtext2",
-                enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    borderSide: BorderSide(width: 0, color: Colors.black12)),
-                border: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              keyboardType: TextInputType.text),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text("from :",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border(
-                  right: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                  bottom: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                  top: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                  left: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                ),
-              ),
-              height: 30,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  primary: Colors.black,
-                ),
-                child: _selectedDate1 == null
-                    ? Text(
-                        "From",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    : Text(
-                        _selectedDate1.toString().split(' ').first,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                onPressed: _presentDatePicker1,
-              ),
-            ),
-            Text("To :",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border(
-                  right: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                  bottom: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                  top: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                  left: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                ),
-              ),
-              height: 30,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  primary: Colors.black,
-                ),
-                child: _selectedDate2 == null
-                    ? Text(
-                        "To",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    : Text(
-                        _selectedDate2.toString().split(' ').first,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                onPressed: _presentDatePicker2,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        TextButton(
-            onPressed: () {
-              EDUCTIONS.add(Education(university: controller.text));
-            },
-            child: Text('save'))
-      ],
-    );
-  }
 
   String? profileImage;
   i.File? selectedImage;
-  String location = 'Null, Press Button';
-  String location2 = 'Null, Press Button';
-  String Address = 'search';
+  MultipartFile? _multipartFileImage;
 
 
   Future<Position> _getGeoLocationPosition() async {
@@ -366,15 +129,15 @@ class EditInitState extends States {
         desiredAccuracy: LocationAccuracy.high);
   }
 
-  Future<void> GetAddressFromLatLong(Position position) async {
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-    print(placemarks);
-    Placemark place = placemarks[0];
-    Address =
-        '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
-    screenState.refresh();
-  }
+//  Future<void> GetAddressFromLatLong(Position position) async {
+//    List<Placemark> placemarks =
+//        await placemarkFromCoordinates(position.latitude, position.longitude);
+//    print(placemarks);
+//    Placemark place = placemarks[0];
+//    Address =
+//        '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
+//    screenState.refresh();
+//  }
 
 
 
@@ -385,7 +148,7 @@ class EditInitState extends States {
       children: [
         Center(
           child: Stack(children: [
-            profileImage != null
+            selectedImage == null
                 ?      Padding(
               padding: const EdgeInsets.all(8.0),
               child: CachedNetworkImage(
@@ -419,13 +182,8 @@ class EditInitState extends States {
                 child: CircleAvatar(
                     radius: 95,
                     backgroundColor: Colors.white,
-                    child: Text(
-                      "Edit Photo",
-                      style: TextStyle(color: Primarycolor),
-                    ),
-                    backgroundImage: profileImage == null
-                        ? null
-                        : FileImage(_pickImage!)),
+                    backgroundImage:
+                         FileImage(selectedImage!)),
               ),
             ),
             Positioned(
@@ -446,9 +204,11 @@ class EditInitState extends States {
                               child: ListBody(
                                 children: [
                                   InkWell(
-                                    onTap: () {
-                                      pickImage(ImageSource.camera);
+                                    onTap: ()async {
+                                      Navigator.pop(context);
+                                      selectedImage = await pickImage(ImageSource.camera);
                                       screenState.refresh();
+
                                     },
                                     splashColor: YellowColor,
                                     child: Row(
@@ -471,8 +231,9 @@ class EditInitState extends States {
                                     ),
                                   ),
                                   InkWell(
-                                    onTap: () {
-                                      pickImage(ImageSource.gallery);
+                                    onTap: () async {
+                                      Navigator.pop(context);
+                                      selectedImage = await   pickImage(ImageSource.gallery);
                                       screenState.refresh();
                                     },
                                     splashColor: YellowColor,
@@ -495,31 +256,33 @@ class EditInitState extends States {
                                       ],
                                     ),
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      screenState.refresh();
-                                      _pickImage = null;
-                                    },
-                                    splashColor: YellowColor,
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Icon(
-                                            Icons.delete,
-                                            color: Colors.red,
-                                          ),
-                                        ),
-                                        Text(
-                                          "Delete",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  )
+//                                  InkWell(
+//                                    onTap: () {
+//                                      Navigator.pop(context);
+//                                      _pickImage = null;
+//                                      screenState.refresh();
+//
+//                                    },
+//                                    splashColor: YellowColor,
+//                                    child: Row(
+//                                      children: [
+//                                        Padding(
+//                                          padding: const EdgeInsets.all(8.0),
+//                                          child: Icon(
+//                                            Icons.delete,
+//                                            color: Colors.red,
+//                                          ),
+//                                        ),
+//                                        Text(
+//                                          "Delete",
+//                                          style: TextStyle(
+//                                            color: Colors.white,
+//                                            fontSize: 20,
+//                                          ),
+//                                        )
+//                                      ],
+//                                    ),
+//                                  )
                                 ],
                               ),
                             ),
@@ -569,7 +332,13 @@ class EditInitState extends States {
                     Expanded(
                       child: TabBarView(
                         children:  [
-                          BasicInfoInitState(module,(request) => screenState.UpdateProfileee(request),),
+                          BasicInfoInitState(module,(request) {
+                            if(_multipartFileImage != null){
+                              request.ImageFile = _multipartFileImage;
+                            }
+
+                            screenState.UpdateProfileee(request);
+                          },),
                           EducationEditState(module?.education ?? [] , module?.genderId ,
                               addEducation: (request){
                             screenState.addEducation(request);
@@ -584,9 +353,16 @@ class EditInitState extends States {
                               },removeExp: (id){
                             screenState.deleteExperience(DeleteExperienceRequest(DeleteExperience: id));
                           }),
+                          AddressEditState(module?.addresses ?? []  ,
+                              addAddress: (request){
+                            screenState.addAddress(request);
+
+                              },removeAddress: (id){
+                            screenState.deleteAddresss(DeleteAddressRequest(AddressId: id));
+                          }),
 
 
-                          Center(child: Text('Settings Page'),)
+
                         ],
                       )
                   )

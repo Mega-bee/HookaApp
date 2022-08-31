@@ -8,7 +8,7 @@ import 'package:hooka/home_page/ui/screens/home_screen.dart';
 import 'package:hooka/my_orders/ui/Screen/myorder.dart';
 import 'package:injectable/injectable.dart';
 import '../../../checkout/ui/screen/checkout.dart';
-import '../../../contact_us/ui/contactus.dart';
+import '../../../contact_us/ui/screen/contactus.dart';
 import '../../../invitations/ui/screen/invitations.dart';
 import '../../../notifications/ui/screen/notifications.dart';
 import '../../../settings/ui/screen/settings.dart';
@@ -20,56 +20,68 @@ class DrawerScreen extends StatefulWidget {
 
   const DrawerScreen(this._authService);
 
-
   @override
   State<DrawerScreen> createState() => _DrawerScreenState();
 }
+
 class _DrawerScreenState extends State<DrawerScreen> {
- MenuItemm currentItem = MenuItems.MainScreen;
+  MenuItemm currentItem = MenuItems.MainScreen;
+  bool flags = true;
 
   @override
   Widget build(BuildContext context) {
+    if(flags) {
+      var args = ModalRoute.of(context)?.settings.arguments;
+      if (args != null && args is MenuItemm) {
+        currentItem = args;
+      }
+      flags = false;
+    }
+
+
     return ZoomDrawer(
       style: DrawerStyle.defaultStyle,
       mainScreen: getScreen(),
       menuScreen: Builder(
-        builder:(context)=> Menupage(currentItem:currentItem,name :widget._authService.getName() ?? '',
-            Logout: (){widget._authService.clearToken().then((value) {
-              Navigator.pushNamedAndRemoveUntil(context, AuthRoutes.LOGIN_SCREEN,(route)=>false);
-
-            });} ,
-        onSelectedItem:(item){
-          setState(() {
-            currentItem=item;
-            ZoomDrawer.of(context)!.close();
-          });
-        }
-        ),
+        builder: (context) => Menupage(
+            currentItem: currentItem,
+            name: widget._authService.getName() ?? '',
+            Logout: () {
+              widget._authService.clearToken().then((value) {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, AuthRoutes.LOGIN_SCREEN, (route) => false);
+              });
+            },
+            onSelectedItem: (item) {
+              setState(() {
+                currentItem = item;
+                ZoomDrawer.of(context)!.close();
+              });
+            }),
       ),
       showShadow: true,
-      
       drawerShadowsBackgroundColor: Colors.black,
     );
+  }
 
+  Widget getScreen() {
+    switch (currentItem) {
+      case MenuItems.MainScreen:
+        return getIt<HomeScreen>();
+      case MenuItems.settings:
+        return getIt<Settings>();
+      case MenuItems.Checkout:
+        return getIt<Checkout>();
+      case MenuItems.myorder:
+        return getIt<MyOrder>();
+      case MenuItems.notifications:
+        return getIt<Notifications>();
+      case MenuItems.contactus:
+        return getIt<ScreenContactus>();
+      case MenuItems.invitations:
+        return getIt<Invitations>();
+      default:
+        return getIt<HomeScreen>();
+    }
   }
-Widget   getScreen() {
-  switch  (currentItem) {
-    case MenuItems.MainScreen :
-      return getIt<HomeScreen>();
-    case  MenuItems.settings:
-      return getIt<Settings>();
-    case  MenuItems.Checkout:
-      return getIt<Checkout>();
-    case  MenuItems.myorder:
-      return getIt<MyOrder>();
-    case  MenuItems.notifications:
-      return getIt<Notifications>();
-    case  MenuItems.contactus:
-      return getIt<ScreenContactus>();
-    case  MenuItems.invitations:
-      return Invitations();
-    default :
-      return getIt<HomeScreen>();
-  }
-}
 }

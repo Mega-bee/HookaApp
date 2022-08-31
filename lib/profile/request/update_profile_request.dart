@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
+
 class UpdateProfileRequest {
 
-  String? ImageFile;
+  MultipartFile? ImageFile;
   // String? Image;
   String? AboutMe;
   String? Birthdate;

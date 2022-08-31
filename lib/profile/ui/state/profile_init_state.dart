@@ -406,7 +406,7 @@ class ProfileInitState extends States {
                           itemCount: _profileResponse.addresses!.length,
                           itemBuilder: (context1, index) {
                             final mod = _profileResponse.addresses![index];
-                            return AddressCard(mod);
+                            return AddressCard(mod ,false);
                           },
                           shrinkWrap: true,
                         ),

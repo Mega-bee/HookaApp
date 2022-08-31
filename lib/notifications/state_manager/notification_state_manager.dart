@@ -4,8 +4,6 @@ import 'package:hooka/abstracts/states/loading_state.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/service/auth_service.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../hooka_places/request/filter_places_request.dart';
 import '../repository/notification_repository.dart';
 import '../response/notification_response.dart';
 import '../ui/screen/notifications.dart';

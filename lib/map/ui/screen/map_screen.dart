@@ -21,49 +21,66 @@ class LocationMapState extends State<LocationMap> {
   Completer<GoogleMapController> controllerGoo = Completer();
   CustomInfoWindowController? customInfoWindowController;
   FilterRequest? request;
+  bool flags = true;
   void refresh() {
     if (mounted) {
       setState(() {});
     }
   }
+
   void onMapCreated(GoogleMapController controller) {
-    customInfoWindowController
-        ?.googleMapController = controller;
+    customInfoWindowController?.googleMapController = controller;
     controllerGoo.complete(controller);
   }
+
+  getPlaces (){
+    widget.cubit.getPlacess(this, request!);
+  }
+  getBuddies(){
+    widget.cubit.getBuddies(this);
+  }
+
   @override
   void initState() {
-
     super.initState();
     customInfoWindowController = CustomInfoWindowController();
-    request=FilterRequest(0);
-    widget.cubit.getPlacess(this,request!);
-
+    request = FilterRequest(0);
   }
 
   @override
   Widget build(BuildContext context) {
+    if(flags){
+      var  args = ModalRoute.of(context)?.settings.arguments;
+      if (args != null && args is String) {
+        if(args =='places') {
+          getPlaces();
+        }else{
+          getBuddies();
+        }
+      }
+      flags = false;
+    }
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Hooka Map',style: TextStyle(color: Colors.black),),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back,color: Colors.black,),
+        appBar: AppBar(
+          title: Text(
+            'Hooka Map',
+            style: TextStyle(color: Colors.black),
+          ),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+          ),
+          backgroundColor: Colors.white,
         ),
-        backgroundColor: Colors.white,
-      ),
-      body: BlocBuilder<MapCubit, States>(
-          bloc: widget.cubit,
-          builder: (context, state) {
-            return state.getUI(context);
-          })
-
-
-
-
-
-    );
+        body: BlocBuilder<MapCubit, States>(
+            bloc: widget.cubit,
+            builder: (context, state) {
+              return state.getUI(context);
+            }));
   }
 }

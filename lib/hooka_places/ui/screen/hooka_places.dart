@@ -40,7 +40,7 @@ class HookaPlacesState extends State<HookaPlaces> {
   }
   @override
   Widget build(BuildContext context) {
-    final _textEditingController =TextEditingController();
+//    final _textEditingController =TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar:AppBar(
@@ -54,7 +54,7 @@ class HookaPlacesState extends State<HookaPlaces> {
         ),
         actions: [
           TextButton(onPressed: (){
-            Navigator.pushNamed(context, MapRoutes.MAP_SCREEN);
+            Navigator.pushNamed(context, MapRoutes.MAP_SCREEN ,arguments:'places');
 
           }, child: Text("Map",style: TextStyle(fontSize: 18),))
         ],

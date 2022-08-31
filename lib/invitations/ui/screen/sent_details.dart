@@ -14,41 +14,44 @@ class SentDetails extends StatefulWidget {
   State<SentDetails> createState() => SentDetailsState();
 }
 
-class SentDetailsState extends State<SentDetails> with AutomaticKeepAliveClientMixin {
+class SentDetailsState extends State<SentDetails>
+    with AutomaticKeepAliveClientMixin {
   bool flags = true;
-
 
   @override
   Widget build(BuildContext context) {
-    if(flags){
-      var  args = ModalRoute.of(context)?.settings.arguments;
+    if (flags) {
+      var args = ModalRoute.of(context)?.settings.arguments;
       if (args != null && args is String) {
-        widget.cubit.getDetailsSentInv(this,args);
+        widget.cubit.getDetailsSentInv(this, args);
       }
       flags = false;
     }
-    return
-      Scaffold(
-
+    return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-        elevation: 1,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-        icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
-    onPressed: (){Navigator.of(context).pop();},
-    ),
-    title: Text("Sent Invitation Details ",style: TextStyle(color: Primarycolor),),
-
-
-
-    ),
-    body:
-      BlocBuilder<SentInvitationCubit, States>(
-        bloc: widget.cubit,
-        builder: (context, state) {
-          return state.getUI(context);
-        }));
+          elevation: 1,
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_outlined,
+              color: Primarycolor,
+              size: 35,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          title: Text(
+            "Sent Invitation Details ",
+            style: TextStyle(color: Primarycolor),
+          ),
+        ),
+        body: BlocBuilder<SentInvitationCubit, States>(
+            bloc: widget.cubit,
+            builder: (context, state) {
+              return state.getUI(context);
+            }));
   }
 
   @override

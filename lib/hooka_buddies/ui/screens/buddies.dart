@@ -64,7 +64,7 @@ class BuddiesState extends State<Buddies> {
           actions: [
             TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, MapRoutes.MAP_SCREEN);
+                  Navigator.pushNamed(context, MapRoutes.MAP_SCREEN,arguments: '');
                 },
                 child: Text(
                   "Map",

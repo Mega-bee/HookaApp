@@ -5,6 +5,8 @@ class BuddiesResp {
   bool? isAvailable;
   int? rating;
   String? image;
+  String? longitude;
+  String? latitude;
 
   BuddiesResp(
       {this.id,
@@ -12,7 +14,10 @@ class BuddiesResp {
         this.about,
         this.isAvailable,
         this.rating,
-        this.image});
+        this.image,
+         this.latitude,
+        this.longitude
+      });
 
   BuddiesResp.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -21,17 +26,9 @@ class BuddiesResp {
     isAvailable = json['isAvailable'];
     rating = json['rating'];
     image = json['image'];
+    latitude =json['latitude'] == '' ? '0': json['latitude'] ?? 0;
+    longitude = json['longitude'] == '' ? '0' :json['longitude'] ?? 0;
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['about'] = this.about;
-    data['isAvailable'] = this.isAvailable;
-    data['rating'] = this.rating;
-    data['image'] = this.image;
-    return data;
-  }
 }
 

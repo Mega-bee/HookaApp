@@ -5,9 +5,10 @@ import 'package:hooka/utils/style/colors.dart';
 
 class AddressCard extends StatelessWidget {
   final Addresses mod;
+  final Function? removeItem;
+ final bool isUpdate ;
 
-
-  AddressCard(this.mod);
+  AddressCard(this.mod,this.isUpdate ,{ this.removeItem });
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +45,13 @@ class AddressCard extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            ContainerRow('Appartment : ', mod.appartment ?? ''),
+            isUpdate ?
+            ElevatedButton.icon(onPressed: (){
+              removeItem!();
+            }, icon: Icon(Icons.delete), label: Text('Remove item')) :Container(),
             SizedBox(
-              height: 15,
-            ),
-
+              height: 10
+            )
           ],
         ),
       ),

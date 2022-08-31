@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooka/abstracts/module/rout_module.dart';
 import 'package:hooka/contact_us/contactus_routes.dart';
-import 'package:hooka/contact_us/ui/contactus.dart';
+import 'ui/screen/contactus.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

@@ -46,7 +46,6 @@ class GetEditProfileCubit extends Cubit<States> {
     EditProfileState screenState,
     AddExperienceRequest request,
   ) {
-
     _profileRepository.AddExperience(request).then((value) {
       if (value == null) {
         Fluttertoast.showToast(msg: "Somthing wrong");
@@ -60,17 +59,11 @@ class GetEditProfileCubit extends Cubit<States> {
     EditProfileState screenState,
     AddAddressRequest request,
   ) {
-    _loadingStateSubject.add(AsyncSnapshot.waiting());
     _profileRepository.AddAddressrepo(request).then((value) {
       if (value == null) {
-        emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
+        Fluttertoast.showToast(msg: "Somthing wrong");
       } else if (value.code == 201) {
-        _loadingStateSubject.add(AsyncSnapshot.nothing());
-        Navigator.pop(screenState.context);
         Fluttertoast.showToast(msg: "Address Added Successfully");
-      } else if (value.code == 400) {
-        Fluttertoast.showToast(msg: "Please Fill All Field Of Address");
-        _loadingStateSubject.add(AsyncSnapshot.nothing());
       }
     });
   }
@@ -83,8 +76,6 @@ class GetEditProfileCubit extends Cubit<States> {
       if (value == null) {
         Fluttertoast.showToast(msg: "Somthing wrong");
       } else if (value.code == 201) {
-
-
         Fluttertoast.showToast(msg: "Address Deleted Successfully");
       }
     });

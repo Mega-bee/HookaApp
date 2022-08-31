@@ -11,6 +11,7 @@ import 'package:hooka/auth/HiveSetUp.dart';
 import 'package:hooka/auth/auth_module.dart';
 import 'package:hooka/di/di_config.dart';
 import 'package:hooka/generated/l10n.dart';
+import 'package:hooka/global_nav_key.dart';
 import 'package:hooka/home_page/home_module.dart';
 import 'package:hooka/hooka_buddies/buddies_module.dart';
 import 'package:hooka/localization_service/localizationSservice.dart';
@@ -35,26 +36,23 @@ import 'map/map_module.dart';
 import 'my_orders/order_module.dart';
 import 'notifications/notification_module.dart';
 
-
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
-
+    FlutterLocalNotificationsPlugin();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options:DefaultFirebaseOptions.currentPlatform, );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   await HiveSetUp.init();
-
 
 //  ByteData data = await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');
 //  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
 
   await SystemChrome.setPreferredOrientations([
-
     DeviceOrientation.portraitUp,
   ]).then((_) async {
-
     FlutterError.onError = (FlutterErrorDetails details) async {
       Logger().error('Main', details.toString(), StackTrace.current);
     };
@@ -63,13 +61,11 @@ void main() async {
 
       // Your App Here
       runApp(getIt<MyApp>());
-
     }, (error, stackTrace) {
       Logger().error(
           'Main', error.toString() + stackTrace.toString(), StackTrace.current);
     });
   });
-
 }
 
 @injectable
@@ -94,11 +90,9 @@ class MyApp extends StatefulWidget {
   final NotificationsModule _notificationsModule;
   final MapModule _mapModule;
 
-
-
   MyApp(
 //    this._themeDataService,
-    this._localizationService,
+      this._localizationService,
       this._authModule,
       this._splashModule,
       this._homeModule,
@@ -115,9 +109,7 @@ class MyApp extends StatefulWidget {
       this._checkoutModule,
       this._addressModule,
       this._notificationsModule,
-      this._mapModule
-
-  );
+      this._mapModule);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -125,9 +117,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   LocalNotificationService localNotificationService =
-  LocalNotificationService();
+      LocalNotificationService();
   static FireNotificationService fireNotificationService =
-  FireNotificationService();
+      FireNotificationService();
 
 //  late ThemeData activeThem;
 //  late String lang;
@@ -141,7 +133,6 @@ class _MyAppState extends State<MyApp> {
     Map<String, WidgetBuilder> fullRoutesList,
   ) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
 //      theme: activeThem,
 
@@ -156,25 +147,17 @@ class _MyAppState extends State<MyApp> {
       routes: fullRoutesList,
       theme: ThemeData(
         bottomAppBarColor: Colors.black,
-
-
-
-
         primaryColor: YellowColor,
         accentColor: Colors.black,
         accentColorBrightness: Brightness.light,
         hoverColor: Colors.black,
-
         colorScheme: ColorScheme.light(
           primary: Colors.black,
-
-
         ),
-
-
-
       ),
       initialRoute: SplashRoutes.SPLASH_SCREEN,
+      key: GlobalVariable.mainScreenScaffold,
+
     );
   }
 
@@ -184,14 +167,12 @@ class _MyAppState extends State<MyApp> {
 
     fireNotificationService.init();
 
-
     localNotificationService.init();
 
     localNotificationService.onLocalNotificationStream.listen((event) {
       setState(() {});
     });
     fireNotificationService.onNotificationStream.listen((event) {
-
       localNotificationService.showNotification(event);
     });
 //    activeThem = widget._themeDataService.getActiveTheme();

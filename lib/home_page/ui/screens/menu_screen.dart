@@ -53,6 +53,7 @@ class _MenupageState extends State<Menupage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         backgroundColor: Colors.black,
         // appBar: AppBar(title: Text('Personal Info'),),
         body: SafeArea(

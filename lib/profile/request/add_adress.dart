@@ -1,32 +1,26 @@
 class AddAddressRequest {
-
-  int? id;
-  bool? IsDeleted;
   String? City;
   String? Street;
   String? Building;
-  String? Longitude;
-  String? Latitude;
+  String?  Longitude;
+  String ? Latitude;
   String? Title;
   String? Appartment;
 
   AddAddressRequest({
-    required this.id,
     required this.City,
-    required this.IsDeleted,
-    required this.Appartment,
+    this.Appartment,
     required this.Building,
-    required this.Latitude,
-    required this.Longitude,
+   this.Latitude,
+  this.Longitude,
     required this.Street,
     required this.Title,
-
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'IsDeleted': IsDeleted,
-      'Id': id,
+      'IsDeleted': false,
+      'Id': 0,
       'City': City,
       'Appartment': Appartment,
       'Building': Building,
@@ -36,5 +30,4 @@ class AddAddressRequest {
       'Title': Title,
     };
   }
-
 }

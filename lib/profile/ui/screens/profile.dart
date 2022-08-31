@@ -41,7 +41,6 @@ class ProfileState extends State<Profile> {
         ),
         title: Text("My Account",style: TextStyle(color: Primarycolor),),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.notifications,color: Primarycolor)),
           TextButton(onPressed: (){}, child:TextButton(
               onPressed:(){
                 Navigator.pushNamed(context, ProfileRoutes.Edit,arguments: profileResponse).then((value) => widget.cubit.getProfile(this));

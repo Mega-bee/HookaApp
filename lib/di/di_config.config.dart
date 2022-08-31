@@ -32,7 +32,7 @@ import '../checkout/ui/screen/checkout.dart' as _i85;
 import '../contact_us/contactus_module.dart' as _i87;
 import '../contact_us/repository/contact_us_repository.dart' as _i18;
 import '../contact_us/state_manager/contactus_state_manager.dart' as _i49;
-import '../contact_us/ui/contactus.dart' as _i75;
+import '../contact_us/ui/screen/contactus.dart' as _i75;
 import '../home_page/home_module.dart' as _i8;
 import '../home_page/repository/firebase_token_repository.dart' as _i19;
 import '../home_page/state_manager/firebase_state_manager.dart' as _i20;
@@ -222,8 +222,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i60.InviteBuddies(get<_i47.BuddiesCubit>()));
   gh.factory<_i61.LoginCubit>(() =>
       _i61.LoginCubit(get<_i23.LoginRepository>(), get<_i6.AuthService>()));
-  gh.factory<_i62.MapCubit>(() =>
-      _i62.MapCubit(get<_i29.PlacesRepository>(), get<_i6.AuthService>()));
+  gh.factory<_i62.MapCubit>(() => _i62.MapCubit(get<_i29.PlacesRepository>(),
+      get<_i6.AuthService>(), get<_i16.BuddiesRepository>()));
   gh.factory<_i63.NotificationCubit>(() => _i63.NotificationCubit(
       get<_i24.NotificationRepository>(), get<_i6.AuthService>()));
   gh.factory<_i64.Notifications>(
