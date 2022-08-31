@@ -21,9 +21,9 @@ class MapInitState extends States{
       ));
     });
   }
- 
+
   Set<Marker> _markers = {};
- 
+
   LatLng? _addresPotion;
   LatLng zahahLat = LatLng(33.8463,
       35.9020); //initial currentPosition values cannot assign null values
@@ -34,7 +34,7 @@ class MapInitState extends States{
   @override
   // void initState() {
   //   // TODO: implement initState
-  //  
+  //
   //
   //   defaultLocation().then((value) {
   //     _markers = value!;
@@ -45,7 +45,7 @@ class MapInitState extends States{
   //
   //   // super.initState();
   // }
-  
+
 
 
 
@@ -60,7 +60,7 @@ class MapInitState extends States{
  //   //
  //   // );
  // });}
- 
+
   MapType _currentMapType = MapType.normal;
 
   // LatLng _lastMapPosition = _center;
@@ -132,7 +132,7 @@ class MapInitState extends States{
     } else {
       _addresPotion = zahahLat;
     }
-    customInfoWindowController!.googleMapController!.animateCamera(CameraUpdate.newCameraPosition(
+    screenState.customInfoWindowController!.googleMapController!.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(target: myPos, zoom: 15)));
 
     return   {
@@ -190,7 +190,7 @@ class MapInitState extends States{
           compassEnabled: true,
           mapToolbarEnabled: true,
           myLocationButtonEnabled: false,
-          onMapCreated: screenState.onMapCreated(controller),
+          // onMapCreated: screenState.onMapCreated(controller),
           onCameraMove: (co){
 //              customInfoWindowController.onCameraMove();
           },

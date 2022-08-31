@@ -22,7 +22,7 @@ class ReceivedInitState extends States{
                     itemCount:receivedmod.length ,
                     itemBuilder: (context, index) {
                       return ReceivedCard(
-isDone: receivedmod[index].Done as bool,
+
                         receivedModel: receivedmod[index],Accept: (request){
                           screenstate.StatusInvite(request, receivedmod[index].id.toString());
 

@@ -270,8 +270,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i86.CheckoutModule(get<_i85.Checkout>()));
   gh.factory<_i87.ContactUsSModule>(
       () => _i87.ContactUsSModule(get<_i75.ScreenContactus>()));
-  gh.factory<_i88.DetailsInvModule>(
-      () => _i88.DetailsInvModule(get<_i76.SentDetails>()));
+  gh.factory<_i88.DetailsInvModule>(() =>
+      _i88.DetailsInvModule(get<_i76.SentDetails>(), get<_i9.Invitations>()));
   gh.factory<_i89.DetailsProduct>(
       () => _i89.DetailsProduct(get<_i73.ProdDetailsCubit>()));
   gh.factory<_i90.EditProfile>(

@@ -7,6 +7,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../invitations/details_routes.dart';
+
 
 
 
@@ -73,13 +75,18 @@ class LocalNotificationService {
     if (payload != null) {
       var message = jsonDecode(payload);
       print(message);
-      int id = int.parse(message["patientId"].toString());
+      if(message.data["inviteId"] != null){
+        int id = int.parse(message.data["inviteId"].toString());
+        // Navigator.pushNamed(context, routeName);
+      }
+      else if (message.data["orderid"] != null ) {
+        int idd = int.parse(message.data["orderId"].toString());
 
-      print("Patientt2");
-      print(id.toString());
+        // Navigator.pushNamed(context, routeName);
+      }
       // Navigator.of(GlobalVariable.navState.currentContext!)
       //     .push(MaterialPageRoute(
-      //     builder: (ctx) => PatientPriorityInfo(
+      //     builder: (ctx) => Invit(
       //       id: id,
       //       firstname: firstName,
       //       midleName: middletName,

@@ -11,10 +11,10 @@ import '../screen/received_tab.dart';
 class ReceivedCard extends StatefulWidget {
 final ReceivedInvitationResponse? receivedModel;
 final Function Accept ;
-bool isDone;
+
 
 ReceivedCard({
-  this.receivedModel,required this.Accept,required this.isDone
+  this.receivedModel,required this.Accept,
 });
   @override
   State<ReceivedCard> createState() => _ReceivedCardState();
@@ -100,14 +100,17 @@ class _ReceivedCardState extends State<ReceivedCard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
 
+
+widget.receivedModel!.invitationStatusId==1?
+
                         InkWell(
                           onTap: (){
                             widget.Accept(StatusInvRequest(statusId: "2"),);
-                            widget.isDone=true;
+
 
                           },
                           child:
-                          widget.isDone==false?
+
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
@@ -123,31 +126,51 @@ class _ReceivedCardState extends State<ReceivedCard> {
                                 .size
                                 .width * 0.15,
                             child: Center(child: Text("Accept")),
-                          ):Container(
-    decoration: BoxDecoration(
+                          )
+                        ):
+widget.receivedModel!.invitationStatusId==2?
+Container(
+  decoration: BoxDecoration(
     borderRadius: BorderRadius.circular(30),
     color: YellowColor,
-    ),
+  ),
 
-    height: MediaQuery
-        .of(context)
-        .size
-        .height * 0.03,
-    width: MediaQuery
-        .of(context)
-        .size
-        .width * 0.15,
-    child: Center(child:Text(widget.receivedModel!.invitationStatus.toString())),
-                        ),),
+  height: MediaQuery
+      .of(context)
+      .size
+      .height * 0.03,
+  width: MediaQuery
+      .of(context)
+      .size
+      .width * 0.25,
+  child: Center(child: Text("Accepted")),
+):Container(
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(30),
+    color: Colors.red,
+  ),
+
+  height: MediaQuery
+      .of(context)
+      .size
+      .height * 0.03,
+  width: MediaQuery
+      .of(context)
+      .size
+      .width * 0.25,
+  child: Center(child: Text("Not Accepted")),
+),
                         SizedBox(width: MediaQuery
                             .of(context)
                             .size
                             .width * 0.03,),
-                        widget.isDone==false?
+
+widget.receivedModel!.invitationStatusId ==1?
                         InkWell(
                           onTap: (){
                             widget.Accept(StatusInvRequest(statusId: "3"),);
-                            widget.isDone=true;
+
+
 
                           },
                           child: Container(
@@ -166,11 +189,12 @@ class _ReceivedCardState extends State<ReceivedCard> {
                             child: Center(child: Text("Deny",style: TextStyle(color: Colors.white),)),
                           ),
                         ):Container(),
+
+
                         SizedBox(width: MediaQuery
                             .of(context)
                             .size
-                            .width * 0.03,),
-
+                            .width * 0.02,),
                         InkWell(
                           onTap: () {
                             Navigator.pushNamed(
