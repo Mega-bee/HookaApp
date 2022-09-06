@@ -63,14 +63,7 @@ class PlacesDetailsState extends State<PlacesDetails> {
           style: TextStyle(color: Primarycolor),
         ),
         actions: [
-          IconButton(
-            icon: Icon(
-              Icons.location_on,
-              color: Primarycolor,
-              size: 30,
-            ),
-            onPressed: () {},
-          ),
+
         ],
       ),
       body:  BlocBuilder<DetailsCubit, States>(

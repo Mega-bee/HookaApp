@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooka/utils/style/colors.dart';
 
 class CustomReviewDialog extends StatelessWidget {
@@ -94,7 +95,11 @@ class CustomReviewDialog extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              continueBtn( rateCount, review.text);
+              if(review.text.isNotEmpty){
+              continueBtn( rateCount, review.text);}
+              else{
+                Fluttertoast.showToast(msg: "Please write a review message");
+              }
             },
             child: const Text(
               "Save review",

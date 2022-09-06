@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../abstracts/states/state.dart';
+import '../../../utils/style/colors.dart';
 import '../../response/received_invitation_response.dart';
 import '../screen/received_tab.dart';
 import '../widget/received_card.dart';
@@ -14,6 +15,8 @@ class ReceivedInitState extends States{
  return
       Container(
       child: Column(children: [
+
+        receivedmod.isNotEmpty?
         Expanded(
           flex: 100,
             child: Card(
@@ -30,7 +33,17 @@ class ReceivedInitState extends States{
                       } ,
                       );
 
-                    })))]
+                    }))
+        ):Container(
+            height: 220,
+            child: Center(child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text("No Invitations Yet ...",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+
+              ],
+            ),))
+
+      ]
 
       ),
     );

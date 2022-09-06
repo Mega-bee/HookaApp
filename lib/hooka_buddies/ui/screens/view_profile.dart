@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/style/colors.dart';
+import '../../buddies_routes.dart';
 import '../../state_manager/buddies_profile_state_manager.dart';
 
 @injectable
@@ -33,6 +34,7 @@ class ViewProfileBuddieState extends State<ViewProfileBuddie> {
     return Scaffold(
 
       backgroundColor: Colors.white,
+
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Colors.white,
@@ -51,7 +53,8 @@ class ViewProfileBuddieState extends State<ViewProfileBuddie> {
         builder: (context, state) {
           return state.getUI(context);
         },
-      )
+      ),
+
     );
   }
 }

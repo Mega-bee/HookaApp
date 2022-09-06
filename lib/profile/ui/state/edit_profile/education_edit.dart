@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooka/profile/request/add_adress.dart';
 import 'package:hooka/profile/request/add_education_request.dart';
 import 'package:hooka/profile/response/profile_response.dart';
@@ -174,6 +175,7 @@ class _EducationEditStateState extends State<EducationEditState> {
       actions: [
         TextButton(
             onPressed: () {
+              if (universityConntrollre.text.isNotEmpty&&dagreeConntrollre.text.isNotEmpty){
               Navigator.pop(context);
               widget._education.add(Education(
                   degree: dagreeConntrollre.text,
@@ -183,7 +185,9 @@ class _EducationEditStateState extends State<EducationEditState> {
               widget.addEducation!(AddEducationRequest(Degree: dagreeConntrollre.text,
                   StudiedFrom: _from.toString().split(' ').first, StudiedTo: _to.toString().split(' ').first, University: universityConntrollre.text));
 
-              setState(() {});
+              setState(() {});}else{
+               Fluttertoast.showToast(msg: "Please Fill The University And Degree Field");
+              }
             },
             child: Text('Add'))
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooka/profile/request/add_adress.dart';
 import 'package:hooka/profile/request/add_education_request.dart';
 import 'package:hooka/profile/request/add_experience_request.dart';
@@ -168,6 +169,7 @@ class _AddressEditStateState extends State<AddressEditState> {
       actions: [
         TextButton(
             onPressed: () {
+              if(titleController.text.isNotEmpty&&cityConntrollre.text.isNotEmpty&&streetConntrollre.text.isNotEmpty&&buildingConntrollre.text.isNotEmpty){
               Navigator.pop(context);
               widget._addressList.add(Addresses(
                   title: titleController.text,
@@ -181,7 +183,10 @@ class _AddressEditStateState extends State<AddressEditState> {
                   City: cityConntrollre.text,
                   Street: streetConntrollre.text));
 
-              setState(() {});
+              setState(() {});}else{
+                Fluttertoast.showToast(msg: "Please Fill All The Field");
+              }
+
             },
             child: Text('Add'))
       ],

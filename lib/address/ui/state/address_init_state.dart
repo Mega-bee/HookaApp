@@ -310,6 +310,8 @@ class AddressInitState extends States{
            ),
          ),
          SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+
+         addressResponse.isNotEmpty?
          Padding(
            padding: const EdgeInsets.all(28.0),
            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -326,7 +328,8 @@ class AddressInitState extends States{
 
 
              ],),
-         ),
+         ):Text("no Addresses"),
+         addressResponse.isNotEmpty?
          Padding(
            padding: const EdgeInsets.all(20.0),
            child: ListView.builder(
@@ -365,7 +368,8 @@ class AddressInitState extends States{
 
 
                }),
-         ),
+         ):Text("no Adresses"),
+
          SizedBox(height: MediaQuery.of(context).size.height*0.03,),
          Container(width: 250,height: 50,
            child: CustomButton(bgColor: YellowColor, text: "Confirm Order", textColor: Colors.black,

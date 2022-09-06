@@ -38,7 +38,8 @@ class ProfileInitState extends States {
                   child: CircleAvatar(
                     child: CachedNetworkImage(
                       imageUrl: _profileResponse.imageUrl.toString(),
-                      height: 90,
+                      height: 80,
+                      width: 80,
                       fit: BoxFit.cover,
                       imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
@@ -59,7 +60,7 @@ class ProfileInitState extends States {
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                     radius: 120,
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.white,
                   ),
                   // Text("C",style: TextStyle(fontSize: 50,color: Colors.white),),)
                 )),
@@ -147,7 +148,7 @@ class ProfileInitState extends States {
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Instagram          :   ${_profileResponse.socialMediaLink1}",
+                        "Instagram          :   ${_profileResponse.socialMediaLink2}",
                         style: TextStyle(fontStyle: FontStyle.italic),
                       )),
                 ),
@@ -160,8 +161,49 @@ class ProfileInitState extends States {
                   color: Colors.grey,
                   child: Card(color: Colors.black, elevation: 0),
                 ),
+
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "facebook           :   ${_profileResponse.socialMediaLink1}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "twitter               :   ${_profileResponse.socialMediaLink3}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 22, right: 20),

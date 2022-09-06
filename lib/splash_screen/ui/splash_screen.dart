@@ -6,7 +6,6 @@ import 'package:hooka/home_page/home_routes.dart';
 import 'package:hooka/utils/images/images.dart';
 import 'package:injectable/injectable.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';
-import '../../auth/ui/screens/login_screen.dart';
 
 @injectable
 class SplashScreen extends StatefulWidget {

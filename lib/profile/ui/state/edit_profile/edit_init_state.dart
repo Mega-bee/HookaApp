@@ -322,7 +322,7 @@ class EditInitState extends States {
                       labelColor: Colors.black,
                       unselectedLabelColor: Colors.black,
                       tabs: const  [
-                        Tab(text: 'Personal info',),
+                        Tab(text: 'Personal',),
                         Tab(text: 'Education',),
                         Tab(text: 'Experience',),
                         Tab(text: 'Address',)
