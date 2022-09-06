@@ -9,7 +9,6 @@ import 'package:hooka/auth/ui/screens/login_screen.dart';
 import 'package:hooka/auth/ui/widget/email_field.dart';
 import 'package:hooka/auth/ui/widget/forgot_button.dart';
 import 'package:hooka/auth/ui/widget/password_field.dart';
-import 'package:hooka/generated/l10n.dart';
 import 'package:hooka/utils/style/colors.dart';
 import '../widget/custem_button.dart';
 
@@ -152,7 +151,7 @@ return  SingleChildScrollView(
                                       else Fluttertoast.showToast(msg: "Please fill the Email do you want to forgot");
                                     },
                                     text: "Forgot Password?",
-                                    loading: _screenState.loadingSnapshot.connectionState ==
+                                    loading: _screenState.loadingSnapshotForget.connectionState ==
                                       ConnectionState.waiting,
                                   ),
                                 )
@@ -211,7 +210,7 @@ return  SingleChildScrollView(
                             }
                             _screenState.loginRequest(LogRequest(email.text, password.text));
                           },
-                          loading: _screenState.loadingSnapshot.connectionState ==
+                          loading: _screenState.loadingSnapshotLogin.connectionState ==
                               ConnectionState.waiting,
                           text: 'Login',
                           bgColor: YellowColor,

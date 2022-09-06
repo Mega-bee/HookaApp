@@ -41,9 +41,9 @@ getAddressesssss(AddresScreenState screenState,) {
         r.add(AddressResponse.fromJson(item));
         // BasketResponse det =
         // BasketResponse.fromJson(value.data.insideData);
-        emit(AddressInitState(r,screenState));
-      }
 
+      }
+      emit(AddressInitState(r,screenState));
 
     }
   });
