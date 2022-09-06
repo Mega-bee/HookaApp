@@ -64,6 +64,7 @@ class OtpCubit extends Cubit<States> {
             Navigator.pushNamedAndRemoveUntil(screenState.context, HomeRoutes.HOME_SCREEN, (route) => false);
           }else if (value.code != 200){
             _loadingStateSubject.add(AsyncSnapshot.nothing());
+
             Fluttertoast.showToast(msg: "Otp Is Wrong");
 //        emit(LoginInitState(screenState,value.errorMessage ));
           }
