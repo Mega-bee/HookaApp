@@ -9,7 +9,8 @@ class CustomNetworkImage extends StatelessWidget {
   final List<String>? imageSource;
   final int? indexPage;
   final String thumbnail;
-  CustomNetworkImage({this.imageSource, required this.thumbnail, this.indexPage}) : super() {
+  final String text;
+  CustomNetworkImage({this.imageSource, required this.thumbnail, this.indexPage,required this.text}) : super() {
     dd = PageController(initialPage: indexPage ?? 0);
   }
 
@@ -23,7 +24,7 @@ class CustomNetworkImage extends StatelessWidget {
             builder: (_) {
               return Scaffold(
                 appBar: AppBar(
-                  title: Text("Album",style: TextStyle(color: Colors.black),),
+                  title: Text("$text",style: TextStyle(color: Colors.black),),
                   backgroundColor: Colors.white,
                   elevation: 0,
                   leading: Padding(

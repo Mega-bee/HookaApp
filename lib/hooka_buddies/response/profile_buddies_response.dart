@@ -1,4 +1,5 @@
 class BuddiesProfResponse {
+  num? id;
   String? name;
   String? firstName;
   String? lastName;
@@ -27,6 +28,7 @@ class BuddiesProfResponse {
 
   BuddiesProfResponse(
       {this.name,
+        this.id,
         this.firstName,
         this.lastName,
         this.phoneNumber,
@@ -54,6 +56,7 @@ class BuddiesProfResponse {
 
   BuddiesProfResponse.fromJson(Map<String, dynamic> json) {
     name = json['name'];
+    id = json['id'];
     firstName = json['firstName'];
     lastName = json['lastName'];
     phoneNumber = json['phoneNumber'];

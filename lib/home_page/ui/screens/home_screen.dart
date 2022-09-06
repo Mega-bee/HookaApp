@@ -64,53 +64,53 @@ class HomeScreenState extends State<HomeScreen> {
                   Icons.shopping_cart,
                   color: Colors.black,
                 )),
-            OfflineBuilder(
-              connectivityBuilder: (
-                BuildContext context,
-                ConnectivityResult connectivity,
-                Widget child,
-              ) {
-                final bool connected = connectivity != ConnectivityResult.none;
-                return new Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: Container(
-                        width: 50,
-                        height: 20,
-                        color: Colors.transparent,
-                        child: Center(
-                          child: connected
-                              ? Text(
-                                  'Online',
-                                  style: TextStyle(
-                                      color: YellowColor,
-                                      fontWeight: FontWeight.bold,
-                                      decoration: TextDecoration.underline),
-                                )
-                              : Text('Offline',
-                                  style: TextStyle(
-                                      color: Color(0xFFEE4400),
-                                      fontWeight: FontWeight.bold,
-                                      decoration: TextDecoration.lineThrough)),
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new Text(
-                    'There are no bottons to push :)',
-                  ),
-                  new Text(
-                    'Just turn off your internet.',
-                  ),
-                ],
-              ),
-            ),
+            // OfflineBuilder(
+            //   connectivityBuilder: (
+            //     BuildContext context,
+            //     ConnectivityResult connectivity,
+            //     Widget child,
+            //   ) {
+            //     final bool connected = connectivity != ConnectivityResult.none;
+            //     return new Stack(
+            //       children: [
+            //         Padding(
+            //           padding: const EdgeInsets.all(18.0),
+            //           child: Container(
+            //             width: 50,
+            //             height: 20,
+            //             color: Colors.transparent,
+            //             child: Center(
+            //               child: connected
+            //                   ? Text(
+            //                       'Online',
+            //                       style: TextStyle(
+            //                           color: YellowColor,
+            //                           fontWeight: FontWeight.bold,
+            //                           decoration: TextDecoration.underline),
+            //                     )
+            //                   : Text('Offline',
+            //                       style: TextStyle(
+            //                           color: Color(0xFFEE4400),
+            //                           fontWeight: FontWeight.bold,
+            //                           decoration: TextDecoration.lineThrough)),
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     );
+            //   },
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: <Widget>[
+            //       new Text(
+            //         'There are no bottons to push :)',
+            //       ),
+            //       new Text(
+            //         'Just turn off your internet.',
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ]),
       body: SingleChildScrollView(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [

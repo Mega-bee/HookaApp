@@ -47,6 +47,8 @@ class LocationMapState extends State<LocationMap> {
     request = FilterRequest(0);
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     if(flags){
@@ -62,6 +64,7 @@ class LocationMapState extends State<LocationMap> {
     }
     return Scaffold(
         appBar: AppBar(
+
           title: Text(
             'Hooka Map',
             style: TextStyle(color: Colors.black),

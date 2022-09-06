@@ -15,6 +15,8 @@ class NotificationInitState extends States{
   Widget getUI(BuildContext context) {
     return Container(
       child: Column(children: [
+
+       notificationsResponse.isNotEmpty?
         Expanded(
             flex: 100,
             child: Card(
@@ -26,7 +28,11 @@ class NotificationInitState extends States{
                       return Notificationscard(
                         mod
                       );
-                    })))
+                    }))):Container(
+    height: 220,
+    child: Center(child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+    Text("No notifications Yet ... ",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),])))
       ]
 
       ),

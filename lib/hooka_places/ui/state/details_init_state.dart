@@ -6,6 +6,7 @@ import 'package:hooka/hooka_buddies/buddies_routes.dart';
 import 'package:hooka/hooka_places/request/addreview_request.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/components/CustomVerificationDialog.dart';
 import '../../../utils/components/cutom_network_image.dart';
@@ -21,6 +22,13 @@ class DetailsInitState extends States {
   DetailsInitState(this.placesDetailsState, this.detailsModell);
 
   bool isFavvvv = true;
+  Future<void> launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
   @override
   Widget getUI(BuildContext context) {
     return SingleChildScrollView(
@@ -207,16 +215,30 @@ class DetailsInitState extends States {
             ),
           ),
           Padding(
+            padding: const EdgeInsets.only(left: 35, right: 10),
+            child: Row(children: [
+              Text('Book Now :'),
+              TextButton(onPressed: (){
+                launchUrl("tel://${detailsModell.phoneNumber}");
+              }, child: Text(detailsModell.phoneNumber.toString(),
+                  style: TextStyle(decoration: TextDecoration.underline)
+              ),)
+            ],),
+          ),
+          detailsModell.favorites!.isNotEmpty?
+          Padding(
             padding: const EdgeInsets.only(left: 35, right: 10, top: 30),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text("Favorite To",
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
             ),
-          ),
+          ):Container(),
+          detailsModell.favorites!.isNotEmpty?
           SizedBox(
             height: 10,
-          ),
+          ):Container(),
+          detailsModell.favorites!.isNotEmpty?
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 35),
             child: SizedBox(
@@ -270,7 +292,7 @@ class DetailsInitState extends States {
                     }),
               ),
             ),
-          ),
+          ):Container(),
           Center(
             child: ElevatedButton(
               onPressed: () {
@@ -296,8 +318,108 @@ class DetailsInitState extends States {
             ),
           ),
           SizedBox(
+            height: MediaQuery.of(context).size.height * 0.05,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 35, right: 10),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text("Menu",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+            ),
+          ),
+          SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
+          Container(
+            height: 150,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: detailsModell.menus!.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 240),
+                      child: Row(children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.04,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 130,
+                            width: 130,
+                            child: Center(
+                                child:
+                                CustomNetworkImage(
+                                  text:"Menu",
+                                  thumbnail: detailsModell.menus![index].image.toString(),
+                                  imageSource: [detailsModell.menus![index].image.toString()],
+                                )
+                            ),
+                          ),
+                        ),
+                      ]));
+                }),
+          ),
+
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.04,
+          ),
+
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.05,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 35, right: 10),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text("Albums",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Container(
+            height: 150,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: detailsModell.albums!.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 240),
+                      child: Row(children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.04,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 130,
+                            width: 130,
+                            child: Center(
+                                child:
+                                CustomNetworkImage(
+                                  text:"Albums",
+                                  thumbnail: detailsModell.albums![index].image.toString(),
+                                  imageSource: [detailsModell.albums![index].image.toString()],
+                                )
+                            ),
+                          ),
+                        ),
+                      ]));
+                }),
+          ),
+
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.04,
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.05,
+          ),
+          //reviews start
           Padding(
             padding: const EdgeInsets.only(left: 35, right: 10),
             child: Align(
@@ -347,6 +469,7 @@ class DetailsInitState extends States {
                           detailsModell.reviews![index].description.toString(),
                         ),
                         trailing: Text(
+
                           detailsModell.reviews![index].createdDate!
                               .split("T")
                               .first
@@ -397,50 +520,13 @@ class DetailsInitState extends States {
               ),
             ),
           ),
+          //reviews end
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
+            height: MediaQuery.of(context).size.height * 0.07,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 35, right: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text("Album",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-            ),
-          ),
-          Container(
-            height: 150,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: detailsModell.albums!.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 240),
-                      child: Row(children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.04,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 130,
-                            width: 130,
-                            child: Center(
-                                child:
-                  CustomNetworkImage(
-                  thumbnail: detailsModell.albums![index].image.toString(),
-                  imageSource: [detailsModell.albums![index].image.toString()],
-                  )
-                            ),
-                          ),
-                        ),
-                      ]));
-                }),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.04,
-          ),
+          //Album start
+
+
         ],
       ),
     );

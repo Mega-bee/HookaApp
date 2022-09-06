@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooka/profile/request/add_adress.dart';
 import 'package:hooka/profile/request/add_education_request.dart';
 import 'package:hooka/profile/request/add_experience_request.dart';
@@ -175,6 +176,7 @@ class _ExperinceEditStateState extends State<ExperinceEditState> {
       actions: [
         TextButton(
             onPressed: () {
+              if(placeConntrollre.text.isNotEmpty&&positionConntrollre.text.isNotEmpty){
               Navigator.pop(context);
               widget._education.add(Experience(
                   place: placeConntrollre.text,
@@ -185,7 +187,9 @@ class _ExperinceEditStateState extends State<ExperinceEditState> {
               widget.addExp!(AddExperienceRequest(Place: placeConntrollre.text,
                   WorkedFrom: _from.toString().split(' ').first, WorkedTo: _to.toString().split(' ').first, Position: positionConntrollre.text));
 
-              setState(() {});
+              setState(() {});}else {
+                Fluttertoast.showToast(msg: "Please Fill The Place And Position Field");
+              }
             },
             child: Text('Add'))
       ],

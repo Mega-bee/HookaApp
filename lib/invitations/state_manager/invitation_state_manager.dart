@@ -46,9 +46,18 @@ class RecInvitationCubit extends Cubit<States> {
   StatusInv(
       ReceivedTabState screenState, StatusInvRequest request, String? id) {
     _invitationsRepository.InvitationsStatus(request, id).then((value) {
-      if (value!.code == 201) {
+      if (value == null) {
+        print("${request.statusId}");
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+
+            retry: () {
+              getReceivedInv(screenState);
+            }));}
+      else if (value.code == 201) {
 
         getReceivedInv(screenState);
+
         request.statusId ==2
             ? Fluttertoast.showToast(msg: "Invitation Accepted")
             : Fluttertoast.showToast(msg: "Invitation Rejected");

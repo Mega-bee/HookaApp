@@ -42,7 +42,8 @@ class _BasketCardState extends State<BasketCard> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: CachedNetworkImage(
+                child:
+                CachedNetworkImage(
                   imageUrl: widget._items.productImage.toString(),
                   width: 85,
                   height: 100,

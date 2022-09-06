@@ -87,7 +87,7 @@ class GetEditProfileCubit extends Cubit<States> {
   ) {
     _profileRepository.DeleteEducation(request).then((value) {
       if (value == null) {
-        Fluttertoast.showToast(msg: "Somthing wrong");
+        Fluttertoast.showToast(msg: "Something wrong");
       } else if (value.code == 200) {
         Fluttertoast.showToast(msg: "Education Deleted Successfully");
       }
@@ -100,7 +100,7 @@ class GetEditProfileCubit extends Cubit<States> {
   ) {
     _profileRepository.DeleteEXPERIENCE(request).then((value) {
       if (value == null) {
-        Fluttertoast.showToast(msg: "some thinf wrong");
+        Fluttertoast.showToast(msg: "Something wrong");
       } else if (value.code == 200) {
         Fluttertoast.showToast(msg: "Experience Deleted Successfully");
       }

@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
+import 'package:hooka/utils/style/colors.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../abstracts/states/state.dart';
+import '../../buddies_routes.dart';
 import '../../response/profile_buddies_response.dart';
 import '../screens/view_profile.dart';
 
@@ -32,13 +34,16 @@ class ProfileBuddiesInitState extends States {
                   child: CircleAvatar(
                     child:
                     CachedNetworkImage(
+
                       imageUrl: _profileResponse.imageUrl.toString(),
-                      height: 90,
+                      height: 80,
+                      width: 80 ,
                       fit: BoxFit.cover,
                       imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(80),
+                          borderRadius: BorderRadius.circular(90),
                           image: DecorationImage(
+
                             image: imageProvider,
                             fit: BoxFit.contain,
                           ),
@@ -54,7 +59,7 @@ class ProfileBuddiesInitState extends States {
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                     radius: 120,
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.white,
                   ),
                   // Text("C",style: TextStyle(fontSize: 50,color: Colors.white),),)
                 )),
@@ -65,6 +70,14 @@ class ProfileBuddiesInitState extends States {
               _profileResponse.name.toString(),
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
+Spacer(),
+
+ Container(color: YellowColor,height: 30,
+   child: TextButton(onPressed: (){
+    Navigator.pushNamed(context, BuddiesRoutes.InvitOp , arguments: _profileResponse.id);
+},child: Text("invite",style: TextStyle(color: Colors.black,),),),
+
+ ),SizedBox(width: MediaQuery.of(context).size.width*0.03,),
           ]),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
@@ -143,7 +156,50 @@ class ProfileBuddiesInitState extends States {
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Instagram          :   ${_profileResponse.socialMediaLink1}",
+                        "Facebook          :   ${_profileResponse.socialMediaLink1}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Instagram          :   ${_profileResponse.socialMediaLink2}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Twitter               :   ${_profileResponse.socialMediaLink3}",
                         style: TextStyle(fontStyle: FontStyle.italic),
                       )),
                 ),
@@ -335,93 +391,109 @@ class ProfileBuddiesInitState extends States {
                     borderRadius: BorderRadius.circular(25),
                     elevation: 0,
                     shadowColor: Colors.transparent,
-                    title: Text("Experiences : ",
+                    title: Text("Experiences",
                         style: TextStyle(color: Colors.black)),
                     // subtitle: Text('I expand!'),
                     children: <Widget>[
                       ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           itemCount: _profileResponse.experience!.length,
                           itemBuilder: (context1, index) {
-                            final model = _profileResponse.experience![index];
-                            return Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 200),
-                                  child: RichText(
-                                    text: TextSpan(
-                                        text: "Place        : ",
-                                        children: [
-                                          TextSpan(
-                                              text: "${model.place}",
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12)),
-                                        ],
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 15)),
-                                    textAlign: TextAlign.center,
+                            final m = _profileResponse.experience![index];
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 1.0,
+                                vertical: 2.0,
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets.only(right: 200),
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: "Place        : ",
+                                          children: [
+                                            TextSpan(
+                                                text: "${m.place}",
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold,
+                                                    fontSize: 12)),
+                                          ],
+                                          style: const TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 15)),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 190),
-                                  child: RichText(
-                                    text: TextSpan(
-                                        text: "Position    : ",
-                                        children: [
-                                          TextSpan(
-                                              text: "${model.position}",
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12)),
-                                        ],
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 15)),
-                                    textAlign: TextAlign.center,
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets.only(right: 190),
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: "Position    : ",
+                                          children: [
+                                            TextSpan(
+                                                text: "${m.position}",
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold,
+                                                    fontSize: 12)),
+                                          ],
+                                          style: const TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 15)),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 160),
-                                  child: RichText(
-                                    text: TextSpan(
-                                        text: "WorkedFrom :  ",
-                                        children: [
-                                          TextSpan(
-                                              text: "${model.workedFrom}",
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12)),
-                                        ],
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 15)),
-                                    textAlign: TextAlign.center,
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets.only(right: 160),
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: "From :  ",
+                                          children: [
+                                            TextSpan(
+                                                text: "${m.workedFrom}",
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold,
+                                                    fontSize: 12)),
+                                          ],
+                                          style: const TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 15)),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 160),
-                                  child: RichText(
-                                    text: TextSpan(
-                                        text: "WorkedTo     :  ",
-                                        children: [
-                                          TextSpan(
-                                              text: "${model.workedTo}",
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12)),
-                                        ],
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 15)),
-                                    textAlign: TextAlign.center,
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets.only(right: 160),
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: "To     :  ",
+                                          children: [
+                                            TextSpan(
+                                                text: "${m.workedTo}",
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold,
+                                                    fontSize: 12)),
+                                          ],
+                                          style: const TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 15)),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             );
                           })
                     ],
