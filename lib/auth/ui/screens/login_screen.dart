@@ -20,7 +20,8 @@ class loginScreen extends StatefulWidget {
 }
 
 class loginScreenState extends State<loginScreen> {
-  late AsyncSnapshot loadingSnapshot;
+  late AsyncSnapshot loadingSnapshotLogin;
+  late AsyncSnapshot loadingSnapshotForget;
 
   void loginRequest(LogRequest request){
     widget.cubit.login(request,this);
@@ -32,11 +33,19 @@ class loginScreenState extends State<loginScreen> {
   @override
   void initState() {
     super.initState();
-    loadingSnapshot = AsyncSnapshot.nothing();
+    loadingSnapshotLogin = AsyncSnapshot.nothing();
+    loadingSnapshotForget = AsyncSnapshot.nothing();
     widget.cubit.loadingStream.listen((event) {
       if (this.mounted) {
         setState(() {
-          loadingSnapshot = event;
+          loadingSnapshotLogin = event;
+        });
+      }
+    });
+    widget.cubit.loadingStreamForeget.listen((event) {
+      if (this.mounted) {
+        setState(() {
+          loadingSnapshotForget = event;
         });
       }
     });

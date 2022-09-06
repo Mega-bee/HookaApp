@@ -22,6 +22,8 @@ class LoginCubit extends Cubit<States> {
 
   final _loadingStateSubject = PublishSubject<AsyncSnapshot>();
   Stream<AsyncSnapshot> get loadingStream => _loadingStateSubject.stream;
+  final _loadingStateSubjectForget = PublishSubject<AsyncSnapshot>();
+  Stream<AsyncSnapshot> get loadingStreamForeget => _loadingStateSubjectForget.stream;
 
   login(LogRequest request,loginScreenState screenState) {
     _loadingStateSubject.add(AsyncSnapshot.waiting());
@@ -45,13 +47,13 @@ class LoginCubit extends Cubit<States> {
 
   }
   ForgetPass(GenOtpRequest request, loginScreenState screenState) {
-    _loadingStateSubject.add(AsyncSnapshot.waiting());
+    _loadingStateSubjectForget.add(AsyncSnapshot.waiting());
     _loginRepository.GenerateOtpRequest(request).then((value) {
       if (value == null) {
-        _loadingStateSubject.add(AsyncSnapshot.nothing());
+        _loadingStateSubjectForget.add(AsyncSnapshot.nothing());
         Fluttertoast.showToast(msg: 'Connection error');
       } else if (value.code == 200) {
-        _loadingStateSubject.add(AsyncSnapshot.nothing());
+        _loadingStateSubjectForget.add(AsyncSnapshot.nothing());
         Fluttertoast.showToast(msg: "Your Code Has Been Sent");
         Navigator.pushNamed(
             screenState.context,

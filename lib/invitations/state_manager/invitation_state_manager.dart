@@ -55,12 +55,13 @@ class RecInvitationCubit extends Cubit<States> {
               getReceivedInv(screenState);
             }));}
       else if (value.code == 201) {
-
-        getReceivedInv(screenState);
-
+        print(request.statusId);
         request.statusId ==2
             ? Fluttertoast.showToast(msg: "Invitation Accepted")
             : Fluttertoast.showToast(msg: "Invitation Rejected");
+        getReceivedInv(screenState);
+
+
       }
 
     });

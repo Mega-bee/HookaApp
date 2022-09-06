@@ -32,7 +32,7 @@ class VerificationOtpForgotScreenState extends State<VerificationOtpForgotScreen
 
 
 
-  StreamController<ErrorAnimationType>? errorController;
+
 
   bool hasError = false;
   String currentText = "";
@@ -53,7 +53,7 @@ class VerificationOtpForgotScreenState extends State<VerificationOtpForgotScreen
 
   @override
   void dispose() {
-    errorController!.close();
+
 
     super.dispose();
   }
