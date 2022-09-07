@@ -19,181 +19,418 @@ return SingleChildScrollView(
     height: 900,
     child:   Column(crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+
+
+  
+        SizedBox(height: 5,),
+
         Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Text("Order",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-        ),
-        ListTile(
-          leading: Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(35),
-                color: YellowColor,
-              ),
-              child: Center(child: Text(detailsSentResponse.id.toString()))),
-          title:Text(detailsSentResponse.status.toString()) ,
-          subtitle: Text("Total Price : ${detailsSentResponse.total}",),
-          trailing: Text(detailsSentResponse.date.toString()),
-        ),
-  
-        SizedBox(height: 20,),
-        Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Text("Items",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-        ),
-        Expanded(
-          child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              itemCount:detailsSentResponse.items!.length ,
-  
-              itemBuilder: (context, index) {
-                final mod = detailsSentResponse.items![index];
-  
-                return
-                  Column(
-                    children: [
-                      ListTile(
-                        leading: CachedNetworkImage(
-                          imageUrl:mod.productImage.toString(),
-                          height: 30,width: 30,
-                          fit: BoxFit.cover,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(80),
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.contain,
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: Container(
+            height: 180,
+            child: Center(
+              child: Card(
+                  elevation: 2,
+
+
+                  shape: RoundedRectangleBorder(
+
+                      borderRadius: BorderRadius.circular(15),
+                      side: BorderSide(
+                        width: 1,
+                        color: Colors.black26,)
+                  ),
+                  child:
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ListTile(
+
+                            title:  Column(
+                              children: [
+                                Row(mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Order",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500 ),),
+                                    SizedBox(width: 5,),
+                                    Icon(Icons.insert_drive_file_outlined,size: 12,)
+                                  ],
+                                ),
+                                Divider(height: 20,color: Colors.black26,),
+                                SizedBox(height: 5,),
+                              ],
+                            ),
+
+                            subtitle: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height:30,width: 130,
+                                        child: Card(
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(5),
+                                            side: BorderSide(
+                                              width: 0,
+                                              color: Colors.black26,),),
+                                          child: Center(
+                                            child: Text("Id : ${detailsSentResponse.id}"
+
+                                              ,style: TextStyle(
+                                                  fontSize: 11,fontWeight: FontWeight.w500
+                                              ),),
+                                          ),
+                                        ),
+                                      ),  Container(
+                                        height:30,width: 130,
+                                        child: Card(
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(5),
+                                            side: BorderSide(
+                                              width: 0,
+                                              color: Colors.black26,),),
+                                          child: Center(
+                                            child: Text("Status : ${detailsSentResponse.status}"
+
+                                              ,style: TextStyle(
+                                                  fontSize: 11,fontWeight: FontWeight.w500
+                                              ),),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height:30,width: 130,
+                                        child: Card(
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(5),
+                                            side: BorderSide(
+                                              width: 0,
+                                              color: Colors.black26,),),
+                                          child: Center(
+                                            child: Text("Total Price : ${detailsSentResponse.total} \$"
+
+                                              ,style: TextStyle(
+                                                  fontSize: 11,fontWeight: FontWeight.w500
+                                              ),),
+                                          ),
+                                        ),
+                                      ),  Container(
+                                        height:30,width: 130,
+                                        child: Card(
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(5),
+                                            side: BorderSide(
+                                              width: 0,
+                                              color: Colors.black26,),),
+                                          child: Center(
+                                            child: Text("Date : ${detailsSentResponse.date!.split("T").first}"
+
+                                              ,style: TextStyle(
+                                                  fontSize: 9,fontWeight: FontWeight.w600
+                                              ),),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+SizedBox(height: 25,),
+                                ],
                               ),
                             ),
                           ),
-                          placeholder: (context, url) => const Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: LoadingIndicator(
-                              indicatorType: Indicator.ballBeat,
-                              colors: [Colors.black],
+
+                          // Row(
+                          //   children: [
+                          //     Container(child: Card(child: Icon(Icons.check,color: Colors.yellow,)),),
+                          //     Column(
+                          //       children: [
+                          //         Text("Design Native Task Management ",style: TextStyle(color: Colors.black),),
+                          //         Text("(New feature in Workiom) Similar ",style: TextStyle(color: Colors.black),),
+                          //         Text("to Asana, Clickup                         ",style: TextStyle(color: Colors.black),),
+                          //       ],
+                          //     ),
+                          //   ],
+                          // ),
+
+
+
+                        ],
+                      ),
+                    ),
+                  )
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 1,),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: Container(
+            height: 180,
+            child: Center(
+              child: Card(
+                elevation: 2,
+
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      side: BorderSide(
+                        width: 0,
+                        color: Colors.black26,)
+                  ),
+                  child:
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ListTile(
+
+                            title:  Column(
+                              children: [
+                                Row(mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Address",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500 ),),
+                                    SizedBox(width: 5,),
+                                    Icon(Icons.location_on_outlined,size: 12,)
+                                  ],
+                                ),
+                                Divider(height: 20,color: Colors.black26,),
+                                SizedBox(height: 5,),
+                              ],
+                            ),
+
+                            subtitle: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height:30,width: 130,
+                                        child: Card(
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(5),
+                                            side: BorderSide(
+                                              width:0,
+                                              color: Colors.black26,),),
+                                          child: Center(
+                                            child: Text("Name : ${detailsSentResponse.address!.title}"
+
+                                              ,style: TextStyle(
+                                                  fontSize: 11,fontWeight: FontWeight.w500
+                                              ),),
+                                          ),
+                                        ),
+                                      ),  Container(
+                                        height:30,width: 130,
+                                        child: Card(
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(5),
+                                            side: BorderSide(
+                                              width: 0,
+                                              color: Colors.black26,),),
+                                          child: Center(
+                                            child: Text("City : ${detailsSentResponse.address!.city}"
+
+                                              ,style: TextStyle(
+                                                  fontSize: 11,fontWeight: FontWeight.w500
+                                              ),),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height:30,width: 130,
+                                        child: Card(
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(5),
+                                            side: BorderSide(
+                                              width: 0,
+                                              color: Colors.black26,),),
+                                          child: Center(
+                                            child: Text("Street : ${detailsSentResponse.address!.street}"
+
+                                              ,style: TextStyle(
+                                                  fontSize: 11,fontWeight: FontWeight.w500
+                                              ),),
+                                          ),
+                                        ),
+                                      ),  Container(
+                                        height:30,width: 130,
+                                        child: Card(
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(5),
+                                            side: BorderSide(
+                                              width: 0,
+                                              color: Colors.black26,),),
+                                          child: Center(
+                                            child: Text("Building : ${detailsSentResponse.address!.building}"
+
+                                              ,style: TextStyle(
+                                                  fontSize:11,fontWeight: FontWeight.w500
+                                              ),),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        height:30,width: 130,
+                                        child: Card(
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(5),
+
+                                            side: BorderSide(
+                                              width: 0,
+                                              color: Colors.black26,),),
+                                          child: Center(
+                                            child: Text("Appartment : ${detailsSentResponse.address!.appartment}"
+
+                                              ,style: TextStyle(
+                                                  fontSize: 11,fontWeight: FontWeight.w500
+                                              ),),
+                                          ),
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
-                        ),
-                        title: Text(mod.productName.toString()),
-                        subtitle: Text("Qunatity : ${mod.quantity}"),
-                        trailing: Text("Price : ${mod.productPrice}"),
-  
-  
+
+                          // Row(
+                          //   children: [
+                          //     Container(child: Card(child: Icon(Icons.check,color: Colors.yellow,)),),
+                          //     Column(
+                          //       children: [
+                          //         Text("Design Native Task Management ",style: TextStyle(color: Colors.black),),
+                          //         Text("(New feature in Workiom) Similar ",style: TextStyle(color: Colors.black),),
+                          //         Text("to Asana, Clickup                         ",style: TextStyle(color: Colors.black),),
+                          //       ],
+                          //     ),
+                          //   ],
+                          // ),
+
+
+
+                        ],
                       ),
-                      SizedBox(  height: MediaQuery.of(context).size.height * 0.02,),
-                      Container(
-                          decoration: BoxDecoration(
+                    ),
+                  )
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 15,),
+        Divider(height: 5,color: Colors.black26,indent: 30,endIndent: 30),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Items",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 17),),
+                SizedBox(width: 5,),
+                Icon(Icons.shopping_bag_outlined,size: 12,color: Colors.grey,)
 
-                border: Border.all(
-                width: 1.0,
 
-                color: Colors.black,)
-                          ),height:20,width:170,
-                          child: Center(child: Text("Total Price: ${mod.totalPrice}",style: TextStyle(fontWeight: FontWeight.w600,fontStyle: FontStyle.italic)))),
-  
+          ]),
+        ),
+        Divider(height: 5,color: Colors.black26,indent: 30,endIndent: 30),
+        SizedBox(height: 5,),
+        Expanded(
+          child:
+          ListView.builder(
+
+              physics: NeverScrollableScrollPhysics(),
+              itemCount:detailsSentResponse.items!.length ,
+
+              itemBuilder: (context, index) {
+                final mod = detailsSentResponse.items![index];
+
+                return
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
+                        child: Card(
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                side: BorderSide(
+                width: 1,
+                color: Colors.black26,),),
+                          child: ListTile(
+                            leading: CachedNetworkImage(
+                              imageUrl:mod.productImage.toString(),
+                              height: 40,width: 50,
+                              fit: BoxFit.cover,
+                              imageBuilder: (context, imageProvider) => Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(80),
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                              placeholder: (context, url) => const Padding(
+                                padding: EdgeInsets.all(15.0),
+                                child: LoadingIndicator(
+                                  indicatorType: Indicator.ballBeat,
+                                  colors: [Colors.black],
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => Icon(Icons.error),
+                            ),
+                            title: Row(
+                              children: [
+                                Text("${mod.productName} "),
+                                Text("(${mod.productPrice}\$/Per Item)",style: TextStyle(fontSize: 10,color: Colors.grey),),
+                              ],
+                            ),
+                            subtitle: Text("Qunatity : ${mod.quantity}"),
+                            trailing: Text("Price : ${mod.totalPrice} \$"),
+
+
+                          ),
+                        ),
+                      ),
+
+
+
                     ],);
               }),
+
         ),
+
+
   
-        Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Text("Address",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Name  :",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600,color: Colors.grey)),
-              Text("${detailsSentResponse.address!.title}",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-  
-  
-            ],
-  
-          ),
-        ),
-  
-        SizedBox(    height: MediaQuery.of(context).size.height * 0.01,),
-        Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("City  :",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600,color: Colors.grey)),
-              Text("${detailsSentResponse.address!.city}",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-  
-  
-            ],
-  
-          ),
-        ),
-        SizedBox(    height: MediaQuery.of(context).size.height * 0.01,),
-        Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Street  :",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600,color: Colors.grey)),
-              Container(
-               height: 20,width: 40,
-                child: Center(
-                  child: Text("${detailsSentResponse.address!.street}",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600,color: Colors.black)),
-                ),
-              ),
-  
-  
-            ],
-  
-          ),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.02,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Building  :",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600,color: Colors.grey)),
-              Container(
-                height: 20,width: 40,
-                child: Center(
-                  child: Text("${detailsSentResponse.address!.building}",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600,color: Colors.black)),
-                ),
-              ),
-  
-  
-            ],
-  
-          ),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.02,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Appartment  :",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600,color: Colors.grey)),
-              Container(
-                height: 20,width: 40,
-                child: Center(
-                  child: Text("${detailsSentResponse.address!.appartment}",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600,color: Colors.black)),
-                ),
-              ),
-  
-  
-            ],
-  
-          ),
-        ),
+
+
+
+
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.02,
         ),

@@ -79,9 +79,17 @@ class ProfileInitState extends States {
             padding: const EdgeInsets.only(left: 22, right: 20),
             child: Align(
                 alignment: Alignment.centerLeft,
-                child: const Text(
-                  "About Me",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                child: Column(
+                  children: [
+                     Text(
+                      "About Me",
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                     Text(_profileResponse.aboutMe.toString(),
+
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 )),
           ),
           SizedBox(
@@ -329,7 +337,7 @@ class ProfileInitState extends States {
                   child: Card(color: Colors.black, elevation: 0),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 22, right: 20),
@@ -337,6 +345,48 @@ class ProfileInitState extends States {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Eyes                :   ${_profileResponse.eyes}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Hobbies          :   ${_profileResponse.hobbies}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Interest           :   ${_profileResponse.interests}",
                         style: TextStyle(fontStyle: FontStyle.italic),
                       )),
                 ),

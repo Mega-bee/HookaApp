@@ -5,7 +5,10 @@ class ReceivedInvitationResponse {
   int? buddyRating;
   int? invitationStatusId;
   String? invitationStatus;
+  String? invitationDate;
   String? description;
+  String? restaurantName;
+  String? invitationOption;
   bool? Done=false;
 
   ReceivedInvitationResponse(
@@ -13,6 +16,9 @@ class ReceivedInvitationResponse {
         this.buddyName,
         this.buddyImage,
         this.buddyRating,
+        this.restaurantName,
+        this.invitationDate,
+        this.invitationOption,
         this.invitationStatusId,
         this.invitationStatus,this.Done,
         this.description});
@@ -20,6 +26,9 @@ class ReceivedInvitationResponse {
   ReceivedInvitationResponse.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     buddyName = json['buddyName'];
+    restaurantName = json['restaurantName'];
+    invitationDate = json['invitationDate'];
+    invitationOption = json['invitationOption'];
     buddyImage = json['buddyImage'];
     buddyRating = json['buddyRating'];
     invitationStatusId = json['invitationStatusId'];

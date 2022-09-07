@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../abstracts/states/state.dart';
-import '../../../utils/style/colors.dart';
 import '../../response/received_invitation_response.dart';
 import '../screen/received_tab.dart';
 import '../widget/received_card.dart';

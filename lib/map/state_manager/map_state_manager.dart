@@ -9,7 +9,6 @@ import 'package:hooka/hooka_buddies/request/buddies_filter_request.dart';
 import 'package:hooka/hooka_buddies/response/buddies_response.dart';
 import 'package:hooka/module_deep_links/service/deep_links_service.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../hooka_places/repository/places_repository.dart';
 import '../../hooka_places/request/filter_places_request.dart';
 import '../../hooka_places/response/places_response.dart';

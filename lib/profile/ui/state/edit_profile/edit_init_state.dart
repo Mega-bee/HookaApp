@@ -256,33 +256,7 @@ class EditInitState extends States {
                                       ],
                                     ),
                                   ),
-//                                  InkWell(
-//                                    onTap: () {
-//                                      Navigator.pop(context);
-//                                      _pickImage = null;
-//                                      screenState.refresh();
-//
-//                                    },
-//                                    splashColor: YellowColor,
-//                                    child: Row(
-//                                      children: [
-//                                        Padding(
-//                                          padding: const EdgeInsets.all(8.0),
-//                                          child: Icon(
-//                                            Icons.delete,
-//                                            color: Colors.red,
-//                                          ),
-//                                        ),
-//                                        Text(
-//                                          "Delete",
-//                                          style: TextStyle(
-//                                            color: Colors.white,
-//                                            fontSize: 20,
-//                                          ),
-//                                        )
-//                                      ],
-//                                    ),
-//                                  )
+
                                 ],
                               ),
                             ),

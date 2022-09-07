@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/request/gen_otp_request.dart';
@@ -223,9 +224,11 @@ class SignupInitState extends States{
                                 ),
                               ),
                               validator: MultiValidator([
+
                                 RequiredValidator(
                                     errorText: 'Mobile number Required *'),
                               ]),
+
                               autovalidateMode:
                               AutovalidateMode.onUserInteraction,
                               keyboardType: TextInputType.phone),
@@ -314,10 +317,11 @@ class SignupInitState extends States{
                           child: CustomButton(
                             buttonTab: () {
                               if (newpass.text.isEmpty ||newpass.text ==confirmpass.text ||
-                                  email.text.isEmpty ||
+                                  email.text.isEmpty || Mobile.text.length < 8 ||
                                   newpass.text.length < 6) {
                                 _formKey.currentState!.validate();
-                              }
+
+                              } else
                               screenState.SignupRequest(SignRequest(
                                   email.text,
                                   newpass.text,

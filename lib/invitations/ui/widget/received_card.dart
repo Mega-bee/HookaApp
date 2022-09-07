@@ -226,6 +226,52 @@ widget.receivedModel!.invitationStatusId ==1?
                         .size
                         .height * 0.02,),
 
+
+
+                    
+                    Card(
+                      elevation: 0,
+                      child: Column(
+                        children: [
+
+                          Row(
+                            children: [
+                              Text("Restaurent : ${widget.receivedModel!.restaurantName}           "),
+
+
+                            ],
+                          ),
+
+                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Date : ${widget.receivedModel!.invitationDate!.split("T").first}      "),
+
+                            ],
+                          ),  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Option : ${widget.receivedModel!.invitationOption}"),
+
+                            ],
+                          ),
+                          // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //   children: [
+                          //     Text("Option :"),
+                          //     Text(" ${widget.receivedModel!.invitationOption}"),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Text("Restaurent : "),
+                          //     Text(" ${widget.receivedModel!.restaurantName}"),
+                          //   ],
+                          // ),
+                        ],
+                      ),
+                    ),
+                
+
+
+
                   ]),
 
 

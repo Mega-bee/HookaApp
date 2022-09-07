@@ -57,6 +57,7 @@ class OtpCubit extends Cubit<States> {
             Fluttertoast.showToast(msg: 'Connection error');
 //        emit(ErrorState(errorMessage: 'Connection error', retry: () {}));
           } else if (value.code == 200) {
+
             logInModel TT = logInModel.fromJson(value.data.insideData);
             _authService.setToken(TT.token ??"",);
             _authService.setName(TT.name ??"");
@@ -64,17 +65,17 @@ class OtpCubit extends Cubit<States> {
             Navigator.pushNamedAndRemoveUntil(screenState.context, HomeRoutes.HOME_SCREEN, (route) => false);
           }else if (value.code != 200){
             _loadingStateSubject.add(AsyncSnapshot.nothing());
+            Fluttertoast.showToast(msg:"Otp Is Wrong");
 
-            Fluttertoast.showToast(msg: "Otp Is Wrong");
 //        emit(LoginInitState(screenState,value.errorMessage ));
           }
         });
         // Navigator.pushNamedAndRemoveUntil(screenState.context,  AuthRoutes.LOGIN_SCREEN, (route) => false, );
       }
       else if (value.code != 200){
-
-        _loadingStateSubject.add(AsyncSnapshot.nothing());
         Fluttertoast.showToast(msg:"Otp Is Wrong");
+        _loadingStateSubject.add(AsyncSnapshot.nothing());
+
 //        emit(LoginInitState(screenState,value.errorMessage ));
       }
     });

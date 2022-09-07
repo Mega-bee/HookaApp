@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -16,6 +17,7 @@ class AddressInitState extends States{
   AddressInitState(this.addressResponse,this.screenState);
 
   bool value =false;
+  bool GetLoc =false;
   bool value1 =false;
   bool DontHaveaddress =false;
   final _formKey1 = GlobalKey<FormState>();
@@ -27,6 +29,8 @@ class AddressInitState extends States{
   String location = 'Press Button';
   String location2 = 'Press Button';
   String Address = 'search';
+  DateTime date = DateTime(2016, 10, 26);
+
   Future<Position> _getGeoLocationPosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -71,10 +75,10 @@ class AddressInitState extends States{
     Address =
     '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
     screenState.refresh();
-
   }
   @override
   Widget getUI(BuildContext context) {
+    int? Button=0;
     var mediaQueryHeight = MediaQuery.of(context).size.height;
     var mediaQueryWidth = MediaQuery.of(context).size.width;
    return SingleChildScrollView(
@@ -83,12 +87,7 @@ class AddressInitState extends States{
          Padding(
            padding: const EdgeInsets.all(28.0),
            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
              children: [
-
-
-
-
                Text("Delivery Adress",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
 
                SizedBox(width: MediaQuery.of(context).size.width*0.1,),
@@ -282,20 +281,21 @@ class AddressInitState extends States{
                SizedBox(
                  height: MediaQuery.of(context).size.height * 0.01,
                ),
+               GetLoc==true?
                Row(
                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                  children: [
-                   Text(
-                     "latitude :${location}",
-                   ),
-                   Text("longitude :${location2}"),
+                 Text("Location :"),
+                   Icon(Icons.check)
+
                  ],
-               ),
+               ):Container(),
                SizedBox(
                  height: MediaQuery.of(context).size.height * 0.01,
                ),
                ElevatedButton(
                    onPressed: () async {
+                     GetLoc=true;
                      Position position = await _getGeoLocationPosition();
                      location = '${position.latitude}';
                      location2 = '${position.longitude}';
@@ -344,14 +344,19 @@ class AddressInitState extends States{
                    activeColor: YellowColor,
                    value: mod.isselected,
                    onChanged:(val) {
+
                      addressResponse.forEach((element) {
                        element.isselected = false;
+
                      });
 
                      addressResponse[index].isselected = true;
                    mod.isselected = val!;
+
                   CheckBoxId=mod.id;
-                   print("hhhh ${mod.id} " );
+           value=!value;
+                   print("hhhh ${Button} " );
+
                    screenState.refresh(
 
                    );
@@ -371,11 +376,15 @@ class AddressInitState extends States{
          ):Text("No Adresses yet.."),
 
          SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+value==true&& (DontHaveaddress==false||title1.text.isEmpty || appartment1.text.isEmpty || city1.text.isEmpty ||street1.text.isEmpty || building1.text.isEmpty)?Container():
+
          Container(width: 250,height: 50,
            child: CustomButton(bgColor: YellowColor, text: "Confirm Order", textColor: Colors.black,
                loading:  screenState.loadingSnapshot.connectionState ==
                    ConnectionState.waiting,
                buttonTab: (){
+
+
 
              DontHaveaddress==true?
              screenState.Makeorder(OrderRequest(addressId: 0,Title: title1.text,Street: street1.text,Longitude: location2.toString(),Latitude: location.toString(),

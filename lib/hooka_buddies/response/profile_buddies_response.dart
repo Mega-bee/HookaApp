@@ -136,16 +136,26 @@ class BuddiesProfResponse {
 }
 
 class Addresses {
+  int? id;
   String? longitude;
   String? latitude;
   String? title;
+  String? city;
+  String? appartment;
+  String? street;
+  String? building;
 
-  Addresses({this.longitude, this.latitude, this.title});
+  Addresses({this.id,this.longitude, this.latitude, this.title,this.building,this.appartment,this.street,this.city});
 
   Addresses.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     longitude = json['longitude'];
     latitude = json['latitude'];
     title = json['title'];
+    building = json['building'];
+    appartment = json['appartment'];
+    city = json['city'];
+    building = json['building'];
   }
 
   Map<String, dynamic> toJson() {

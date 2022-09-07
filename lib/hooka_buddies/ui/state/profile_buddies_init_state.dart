@@ -86,9 +86,25 @@ Spacer(),
             padding: const EdgeInsets.only(left: 22, right: 20),
             child: Align(
                 alignment: Alignment.centerLeft,
-                child: const Text(
-                  "About Me",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "About Me",
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+
+                    ),
+                    SizedBox(height: 10,),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(_profileResponse.aboutMe.toString(),
+
+                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  ],
                 )),
           ),
           SizedBox(
@@ -339,7 +355,7 @@ Spacer(),
                   child: Card(color: Colors.black, elevation: 0),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 22, right: 20),
@@ -347,6 +363,48 @@ Spacer(),
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Eyes                :   ${_profileResponse.eyes}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Hobbies          :   ${_profileResponse.hobbies}",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  height: 1,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  color: Colors.grey,
+                  child: Card(color: Colors.black, elevation: 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, right: 20),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Interest           :   ${_profileResponse.interests}",
                         style: TextStyle(fontStyle: FontStyle.italic),
                       )),
                 ),
@@ -409,89 +467,153 @@ Spacer(),
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding:
-                                    const EdgeInsets.only(right: 200),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "Place        : ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${m.place}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
+                                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                                    child: Container(
+                                      height: 180,
+                                      child: Center(
+                                        child: Card(
+                                            elevation: 2,
+
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(15),
+                                                side: BorderSide(
+                                                  width: 0,
+                                                  color: Colors.black26,)
+                                            ),
+                                            child:
+                                            Center(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    ListTile(
+
+                                                      title:  Column(
+                                                        children: [
+                                                          Row(mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: [
+                                                              Text("Experiences ${index+1} ",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500 ),),
+                                                              SizedBox(width: 5,),
+                                                              Icon(Icons.work,size: 12,)
+                                                            ],
+                                                          ),
+                                                          Divider(height: 20,color: Colors.black26,),
+                                                          SizedBox(height: 5,),
+                                                        ],
+                                                      ),
+
+                                                      subtitle: Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Column(
+                                                          children: [
+                                                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              children: [
+                                                                Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width:0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("Place : ${m.place}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize: 11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),  Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width: 0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("Position : ${m.position}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize: 11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              children: [
+                                                                Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width: 0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("From : ${m.workedFrom}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize: 11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),  Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width: 0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("To : ${m.workedTo}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize:11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+
+                                                    // Row(
+                                                    //   children: [
+                                                    //     Container(child: Card(child: Icon(Icons.check,color: Colors.yellow,)),),
+                                                    //     Column(
+                                                    //       children: [
+                                                    //         Text("Design Native Task Management ",style: TextStyle(color: Colors.black),),
+                                                    //         Text("(New feature in Workiom) Similar ",style: TextStyle(color: Colors.black),),
+                                                    //         Text("to Asana, Clickup                         ",style: TextStyle(color: Colors.black),),
+                                                    //       ],
+                                                    //     ),
+                                                    //   ],
+                                                    // ),
+
+
+
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding:
-                                    const EdgeInsets.only(right: 190),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "Position    : ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${m.position}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                    const EdgeInsets.only(right: 160),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "From :  ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${m.workedFrom}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                    const EdgeInsets.only(right: 160),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "To     :  ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${m.workedTo}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
+
                                 ],
                               ),
                             );
@@ -526,89 +648,153 @@ Spacer(),
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.only(right: 200),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "University        : ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${m.university}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
+                                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                                    child: Container(
+                                      height: 180,
+                                      child: Center(
+                                        child: Card(
+                                            elevation: 2,
+
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(15),
+                                                side: BorderSide(
+                                                  width: 0,
+                                                  color: Colors.black26,)
+                                            ),
+                                            child:
+                                            Center(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    ListTile(
+
+                                                      title:  Column(
+                                                        children: [
+                                                          Row(mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: [
+                                                              Text("Education ${index+1}",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500 ),),
+                                                              SizedBox(width: 5,),
+                                                              Icon(Icons.school,size: 12,)
+                                                            ],
+                                                          ),
+                                                          Divider(height: 20,color: Colors.black26,),
+                                                          SizedBox(height: 5,),
+                                                        ],
+                                                      ),
+
+                                                      subtitle: Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Column(
+                                                          children: [
+                                                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              children: [
+                                                                Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width:0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("University : ${m.university}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize: 11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),  Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width: 0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("Degree : ${m.degree}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize: 11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              children: [
+                                                                Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width: 0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("From : ${m.studiedFrom}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize: 11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),  Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width: 0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("To : ${m.studiedTo}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize:11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+
+                                                    // Row(
+                                                    //   children: [
+                                                    //     Container(child: Card(child: Icon(Icons.check,color: Colors.yellow,)),),
+                                                    //     Column(
+                                                    //       children: [
+                                                    //         Text("Design Native Task Management ",style: TextStyle(color: Colors.black),),
+                                                    //         Text("(New feature in Workiom) Similar ",style: TextStyle(color: Colors.black),),
+                                                    //         Text("to Asana, Clickup                         ",style: TextStyle(color: Colors.black),),
+                                                    //       ],
+                                                    //     ),
+                                                    //   ],
+                                                    // ),
+
+
+
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(right: 190),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "Degree    : ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${m.degree}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(right: 160),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "StudiedFrom :  ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${m.studiedFrom}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(right: 160),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: "StudiedTo     :  ",
-                                          children: [
-                                            TextSpan(
-                                                text: "${m.studiedTo}",
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold,
-                                                    fontSize: 12)),
-                                          ],
-                                          style: const TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 15)),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
+
                                 ],
                               ),
                             );
@@ -625,47 +811,175 @@ Spacer(),
                     borderRadius: BorderRadius.circular(25),
                     elevation: 0,
                     shadowColor: Colors.transparent,
-                    title: Text("Addresses: ",
+                    title: Text("Addresses",
                         style: TextStyle(color: Colors.black)),
                     // subtitle: Text('I expand!'),
                     children: <Widget>[
                       ListView.builder(
-                        itemCount: _profileResponse.addresses!.length,
-                        itemBuilder: (context1, index) {
-                          final model = _profileResponse.addresses![index];
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 1.0,
-                              vertical: 2.0,
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 200),
-                                  child: RichText(
-                                    text: TextSpan(
-                                        text: "Place        : ",
-                                        children: [
-                                          TextSpan(
-                                              text: "${model.title}",
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12)),
-                                        ],
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 15)),
-                                    textAlign: TextAlign.center,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: _profileResponse.addresses!.length,
+                          itemBuilder: (context1, index) {
+                            final m = _profileResponse.addresses![index];
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 1.0,
+                                vertical: 2.0,
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                                    child: Container(
+                                      height: 180,
+                                      child: Center(
+                                        child: Card(
+                                            elevation: 2,
+
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(15),
+                                                side: BorderSide(
+                                                  width: 0,
+                                                  color: Colors.black26,)
+                                            ),
+                                            child:
+                                            Center(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    ListTile(
+
+                                                      title:  Column(
+                                                        children: [
+                                                          Row(mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: [
+                                                              Text("Address ${index+1}",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500 ),),
+                                                              SizedBox(width: 5,),
+                                                              Icon(Icons.location_on_outlined,size: 12,)
+                                                            ],
+                                                          ),
+                                                          Divider(height: 20,color: Colors.black26,),
+                                                          SizedBox(height: 5,),
+                                                        ],
+                                                      ),
+
+                                                      subtitle: Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Column(
+                                                          children: [
+                                                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              children: [
+                                                                Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width:0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("Name : ${m.title}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize: 11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),  Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width: 0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("City : ${m.city}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize: 11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              children: [
+                                                                Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width: 0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("Building : ${m.building}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize: 11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),  Container(
+                                                                  height:30,width: 130,
+                                                                  child: Card(
+                                                                    elevation: 0,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      side: BorderSide(
+                                                                        width: 0,
+                                                                        color: Colors.black26,),),
+                                                                    child: Center(
+                                                                      child: Text("Street : ${m.street}"
+
+                                                                        ,style: TextStyle(
+                                                                            fontSize:11,fontWeight: FontWeight.w500
+                                                                        ),),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+
+                                                    // Row(
+                                                    //   children: [
+                                                    //     Container(child: Card(child: Icon(Icons.check,color: Colors.yellow,)),),
+                                                    //     Column(
+                                                    //       children: [
+                                                    //         Text("Design Native Task Management ",style: TextStyle(color: Colors.black),),
+                                                    //         Text("(New feature in Workiom) Similar ",style: TextStyle(color: Colors.black),),
+                                                    //         Text("to Asana, Clickup                         ",style: TextStyle(color: Colors.black),),
+                                                    //       ],
+                                                    //     ),
+                                                    //   ],
+                                                    // ),
+
+
+
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                      )
+
+                                ],
+                              ),
+                            );
+                          })
                     ],
                   ),
                 ),

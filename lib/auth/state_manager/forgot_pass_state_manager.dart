@@ -57,7 +57,7 @@ class ForgotOtpCubit extends Cubit<States> {
             Navigator.pushNamedAndRemoveUntil(screenState.context, AuthRoutes.FORGOT_SCREEN, (route) => false,arguments: request.email.toString());
           }else if (value.code != 200){
             _loadingStateSubject.add(AsyncSnapshot.nothing());
-            Fluttertoast.showToast(msg: value.errorMessage);
+            Fluttertoast.showToast(msg:"Otp Is Wrong");
 //        emit(LoginInitState(screenState,value.errorMessage ));
           }
         });
