@@ -27,138 +27,98 @@ class _PlacesCardState extends State<PlacesCard> {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(children: <Widget>[
+    return      SizedBox(
+height: 400,
 
-      GestureDetector(
-        onTap: () =>
-        {
-        },
-        child: Row(
-            children: [
-              Container(
-                  width: 130,
-                  height: 170,
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Stack(
-                    children:[
+      child:
+      Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: InkWell(
+          onTap:() {
+            Navigator.pushNamed(context, PlacesRoutes.Details,
+                arguments: widget.modelp!.id.toString());
+          },
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            child: IntrinsicWidth(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
 
-                      Center(
-                        child: Card(elevation:10,
-    shadowColor: Colors.red[100],
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.only(
-    bottomRight: Radius.circular(12),)),
+                ClipRRect(
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(30),topLeft: Radius.circular(30)),
 
+                  child: Image.asset("assets/images/restaurant-939435_960_720-768x512.jpeg",fit: BoxFit.contain,
 
-                          child:
-                          CachedNetworkImage(
-                            imageUrl:widget.modelp!.image.toString(),height: 150,fit: BoxFit.cover,
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(80),
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                            ),
-                            placeholder: (context, url) => Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: LoadingIndicator(
-
-                                indicatorType:
-                                Indicator.ballBeat,
+                  ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+                ListTile(title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(widget.modelp!.name.toString()),
 
 
-                                colors: [Colors.black],
-                              ),),
-                            errorWidget: (context, url, error) => Icon(Icons.error),
-                          ),
+                    Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
 
-                            // width: 140, height: 140, fit: BoxFit.cover,
-                          ),
-                        ),
-
-
-                      Padding(
-                        padding: const EdgeInsets.only(left: 50,bottom: 5,top: 130),
-                        child: Container(
-                          height: 200,
-                          width: 200,
-                          color: Colors.transparent,
-                          child: Card(color: Colors.green,child: Center(child:
-
-
-                          Neon(text: widget.modelp!.rating.toString(), color: Colors.green, fontSize: 15,font: NeonFont.Cyberpunk,
-textStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w300),blurRadius: 15,glowingDuration: Duration(seconds: 4),
-                          ),),
-elevation: 2,shadowColor: YellowColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(12),
-                                topRight: Radius.circular(1),
-                                bottomRight:  Radius.circular(10),
-                                bottomLeft: Radius.circular(1),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-
-                  ])),
-
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                    children: [
-
-                      Text(widget.modelp!.name.toString(),
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 38.0),
-                        child: Container(
-                          height: 20,width: 150,color: Colors.red[50],
-                          child: Center(
-                            child: Text(widget.modelp!.cuisine.toString(),
-                                style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,fontStyle: FontStyle.italic)),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        color:
+                        widget.modelp!.rating! <= 2?
+                      Colors.red:
+                        widget.modelp!.rating! <= 4?
+                        Colors.orange:Colors.green[700],),
+                        width: 50,height: 20,
+                        child: Row(mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            Text(widget.modelp!.rating.toString(),style: TextStyle(
 
-                        Icon(FontAwesomeIcons.car),
-                        SizedBox(width: MediaQuery.of(context).size.width*0.08,),
-                        Text(widget.modelp!.location.toString(),
-                            style: TextStyle(fontSize: 14,fontWeight: FontWeight.w300)),
-                      ]),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                                color: Colors.white,fontSize: 15),),
+                            Icon(Icons.star,size: 10,color: Colors.white,)
+                          ],
+                        )),
 
-                      InkWell(
-                        onTap: (){Navigator.pushNamed(context, PlacesRoutes.Details,arguments:widget.modelp!.id.toString() );
+                  ],
+                ),
 
-                        },
-                        child: Container(height: 30,width: 120,
-                          color: YellowColor,
-                          child: Center(
-                            child: Text("View Details",
-                                style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,fontStyle: FontStyle.italic)),
-                          ),
-                        ),
+
+                  subtitle: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Column(children: [
+                      SizedBox(height: 5,),
+                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(widget.modelp!.cuisine.toString()),
+                          Icon(Icons.fastfood_outlined,size: 10,)
+                        ],
                       ),
-                    ]),
+                      SizedBox(height: 5,),
+                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(widget.modelp!.location.toString()),
+                          Icon(Icons.location_on_outlined,size: 10,),
+
+                        ],
+                      ),
+                      SizedBox(height: 5,),
+
+
+                    ],),
+                  ),
+
+                  // width: 140, height: 140, fit: BoxFit.cover,
+                ),
+
+
+
+              ],
               ),
-
-            ]),),
-
-      Divider(color: Colors.grey, thickness: 0),
-
-    ],
+            ),
+          ),
+        ),
+      ),
     );
+
+
   }
 }

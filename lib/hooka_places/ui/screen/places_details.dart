@@ -45,6 +45,7 @@ class PlacesDetailsState extends State<PlacesDetails> {
       flags = false;
     }
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,

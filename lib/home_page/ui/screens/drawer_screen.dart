@@ -40,6 +40,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
 
     return ZoomDrawer(
+      mainScreenTapClose: true,
       style: DrawerStyle.defaultStyle,
       mainScreen: getScreen(),
       menuScreen: Builder(

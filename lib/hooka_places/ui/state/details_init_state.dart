@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooka/hooka_buddies/buddies_routes.dart';
 import 'package:hooka/hooka_places/request/addreview_request.dart';
@@ -32,12 +33,13 @@ class DetailsInitState extends States {
   @override
   Widget getUI(BuildContext context) {
     return SingleChildScrollView(
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PlayAnimation<double>(
               duration: Duration(milliseconds: 1200),
-              tween: Tween(begin: 0.0, end: 250),
+              tween: Tween(begin: 0.0, end: 200),
               builder: (context, child, value) {
                 return Stack(
                     alignment: AlignmentDirectional.bottomEnd,
@@ -47,7 +49,7 @@ class DetailsInitState extends States {
                     child: Center(
                       child: CachedNetworkImage(
                         imageUrl: detailsModell.image.toString(),
-                        height: 600,
+
                         fit: BoxFit.cover,
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
@@ -103,146 +105,155 @@ class DetailsInitState extends States {
             height: MediaQuery.of(context).size.height * 0.01,
           ),
           Padding(
-            padding: const EdgeInsets.all(30.0),
+            padding: const EdgeInsets.only(left: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(detailsModell.name.toString(),
                     style:
-                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-                Container(
-                  height: 30,
-                  width: 70,
-                  color: Colors.transparent,
-                  child: Card(
-                    
-                      color: Colors.green,
-                      child: Center(
-                          child: Text(detailsModell.rating.toString(),
-                              style: TextStyle(
-                                  fontSize: 18, color: Colors.white)))),
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(detailsModell.rating.toString(),
+                      style: TextStyle(fontWeight: FontWeight.w500,
+                          fontSize: 18, color: Colors.green)),
                 ),
               ],
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
+            height: MediaQuery.of(context).size.height * 0.01,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 35, right: 10),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Text(detailsModell.location.toString(),
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+              child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(detailsModell.location.toString(),
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                  Icon(Icons.location_on_outlined,size: 12,)
+                ],
+              ),
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
+            height: MediaQuery.of(context).size.height * 0.01,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 35, right: 10),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Container(
-                child: Card(
-                  color: Colors.red[100],
-                  child: SizedBox(
-                    width: 160,
-                    height: 20,
-                    child: Center(
-                      child: Text(detailsModell.cuisine.toString(),
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              fontStyle: FontStyle.italic)),
-                    ),
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(detailsModell.cuisine.toString(),
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          fontStyle: FontStyle.italic)),
+                  Icon(Icons.fastfood_rounded,size: 12,)
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 35, right: 10),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(detailsModell.description.toString(),
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          fontStyle: FontStyle.italic)),
+                  Icon(Icons.info_outlined,size: 12,)
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 35, right: 10),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap:(){launchUrl("tel://${detailsModell.phoneNumber}");},
+
+                    child: Text(detailsModell.phoneNumber.toString(),
+                        style: TextStyle(
+                            fontSize: 15,decoration: TextDecoration.underline,
+                            fontWeight: FontWeight.w500,
+                            fontStyle: FontStyle.italic)),
                   ),
-                ),
+                  InkWell(
+                      onTap: (){launchUrl("tel://${detailsModell.phoneNumber}");},
+
+                      child: Icon(Icons.call,size: 12,))
+                ],
               ),
             ),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 35, right: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Row(children: [
-                Icon(
-                  FontAwesomeIcons.clock,
-                  color: Colors.grey,
-                  size: 15,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.01,
-                ),
-                Text(
-                    "Opening hours [${detailsModell.openingFrom} - ${detailsModell.openingTo}]",
-                    style:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w300)),
-              ]),
-            ),
+          Align(
+            alignment: Alignment.center,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              Icon(
+                FontAwesomeIcons.clock,
+                color: Colors.grey,
+                size: 15,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.01,
+              ),
+              Text(
+                  "Opening hours [${detailsModell.openingFrom} - ${detailsModell.openingTo}]",
+                  style:
+                      TextStyle(fontSize: 12, fontWeight: FontWeight.w300)),
+            ]),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
-          Padding(
-            padding: EdgeInsets.only(right: 20, left: 20),
-            child: Container(
-              color: Colors.grey,
-              height: 1,
-              width: MediaQuery.of(context).size.width * 0.82,
-            ),
-          ),
+         Divider(
+           height: 1,thickness: 1,color: Colors.grey,indent: 20,endIndent: 20,
+         ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
+            height: MediaQuery.of(context).size.height * 0.01,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 35, right: 10),
-            child: Text("Description",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 35, right: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(detailsModell.description.toString(),
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 35, right: 10),
-            child: Row(children: [
-              Text('Book Now :'),
-              TextButton(onPressed: (){
-                launchUrl("tel://${detailsModell.phoneNumber}");
-              }, child: Text(detailsModell.phoneNumber.toString(),
-                  style: TextStyle(decoration: TextDecoration.underline)
-              ),)
-            ],),
-          ),
+
+
           detailsModell.favorites!.isNotEmpty?
           Padding(
-            padding: const EdgeInsets.only(left: 35, right: 10, top: 30),
+            padding: const EdgeInsets.only(left: 30),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text("Favorite To",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             ),
           ):Container(),
           detailsModell.favorites!.isNotEmpty?
           SizedBox(
-            height: 10,
+            height: MediaQuery.of(context).size.height * 0.01,
           ):Container(),
+
           detailsModell.favorites!.isNotEmpty?
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 35),
             child: SizedBox(
-              height: 120,
+              height: 80,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView.builder(
@@ -259,7 +270,7 @@ class DetailsInitState extends States {
                             color: detailsModell.favorites![index].isAvailable!
                                 ? Colors.green
                                 : Colors.red,
-                            width: 70,
+                            width: 40,
                             child: Padding(
                               padding: const EdgeInsets.all(3.0),
                               child: CachedNetworkImage(
@@ -293,139 +304,252 @@ class DetailsInitState extends States {
               ),
             ),
           ):Container(),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, BuddiesRoutes.Buddies,arguments: detailsModell.id);
-              },
-              child: const Text(
-                'INVITE BUDDY ',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Roboto-Bold'),
+          detailsModell.favorites!.isNotEmpty?
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(""),
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, BuddiesRoutes.Buddies,arguments: detailsModell.id);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.add_circle,size: 12 ,color: YellowColor,),
+                       SizedBox(width: 5,),
+                       Text(
+                        'Invite buddy ',
+                        style: TextStyle(
+                          wordSpacing: 2,
+                            color: Colors.black,
+                            decoration: TextDecoration.underline,
+                            fontSize: 13,
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Roboto-Bold'),
+                      ),
+
+                    ],
+                  ),
+
+                  ),
+                ),
+
+
+            ],
+          ):  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, BuddiesRoutes.Buddies,arguments: detailsModell.id);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.add_circle,size: 12 ,color: YellowColor,),
+                      SizedBox(width: 5,),
+                      Text(
+                        'Invite buddy ',
+                        style: TextStyle(
+                            wordSpacing: 2,
+                            color: Colors.black,
+                            decoration: TextDecoration.underline,
+                            fontSize: 13,
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Roboto-Bold'),
+                      ),
+
+                    ],
+                  ),
+
+                ),
               ),
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.12,
-                    vertical: MediaQuery.of(context).size.height * 0.013),
-                primary: YellowColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+              Text(""),
+
+
+
+            ],
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Divider(
+            height: 1,thickness: 1,color: Colors.grey,indent: 20,endIndent: 20,
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+
+
+          Center(
+            child: Container(
+              width: 400,
+              child: Card(
+                elevation: 2,
+
+                child: Column(
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.01, ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Menu",
+                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.01,
+                    ),
+                    Container(
+                      height: 150,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemCount: detailsModell.menus!.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                                padding: const EdgeInsets.only(left: 10, right: 240),
+                                child: Row(children: [
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width * 0.04,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      height: 130,
+                                      width: 130,
+                                      child: Center(
+                                          child:
+                                          CustomNetworkImage(
+                                            text:"Menu",
+                                            thumbnail: detailsModell.menus![index].image.toString(),
+                                            imageSource: [detailsModell.menus![index].image.toString()],
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ]));
+                          }),
+                    ),
+                  ],
                 ),
               ),
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 35, right: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text("Menu",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
-          ),
-          Container(
-            height: 150,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: detailsModell.menus!.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 240),
-                      child: Row(children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.04,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 130,
-                            width: 130,
-                            child: Center(
-                                child:
-                                CustomNetworkImage(
-                                  text:"Menu",
-                                  thumbnail: detailsModell.menus![index].image.toString(),
-                                  imageSource: [detailsModell.menus![index].image.toString()],
-                                )
-                            ),
-                          ),
-                        ),
-                      ]));
-                }),
-          ),
+
 
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.04,
           ),
 
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 35, right: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text("Albums",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-            ),
-          ),
-          SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
-          Container(
-            height: 150,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: detailsModell.albums!.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 240),
-                      child: Row(children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.04,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 130,
-                            width: 130,
-                            child: Center(
-                                child:
-                                CustomNetworkImage(
-                                  text:"Albums",
-                                  thumbnail: detailsModell.albums![index].image.toString(),
-                                  imageSource: [detailsModell.albums![index].image.toString()],
-                                )
-                            ),
-                          ),
-                        ),
-                      ]));
-                }),
+          Center(
+            child: Container(   width: 400,
+              child: Card(elevation: 2,
+                child: Column(
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.01, ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Albums",
+                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.01,
+                    ),
+                    Container(
+                      height: 150,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemCount: detailsModell.albums!.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                                padding: const EdgeInsets.only(left: 10, right: 240),
+                                child: Row(children: [
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width * 0.04,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      height: 130,
+                                      width: 130,
+                                      child: Center(
+                                          child:
+                                          CustomNetworkImage(
+                                            text:"Albums",
+                                            thumbnail: detailsModell.albums![index].image.toString(),
+                                            imageSource: [detailsModell.albums![index].image.toString()],
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ]));
+                          }),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
+
 
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.04,
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
-          ),
+        
+
           //reviews start
           Padding(
-            padding: const EdgeInsets.only(left: 35, right: 10),
+            padding: const EdgeInsets.only(left: 30),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Text("Reviews",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Reviews",
+                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: InkWell(
+                      onTap: (){  showDialog(
+                          context: context,
+                          builder: (context) =>
+                              CustomReviewDialog(continueBtn: (rate, reviewText) {
+                                Navigator.pop(context);
+
+                                placesDetailsState.AddReviewww(
+                                    AddReviewReq(
+                                        rating: rate, description: reviewText),
+                                    detailsModell.id.toString());
+                              }));},
+                      child: Row(
+                        children: [
+                       Icon(Icons.add_circle,color: YellowColor,size: 12,),
+                          SizedBox(width: 5,),
+                          Text("Add review",style: TextStyle(wordSpacing: 2,
+                              color: Colors.black,
+                              decoration: TextDecoration.underline,
+                              fontSize: 13,
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'Roboto-Bold'),)
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           SizedBox(

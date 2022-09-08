@@ -42,9 +42,10 @@ class HookaPlacesState extends State<HookaPlaces> {
   Widget build(BuildContext context) {
 //    final _textEditingController =TextEditingController();
     return Scaffold(
-      backgroundColor: Colors.white,
+
       appBar:AppBar(
-        elevation: 1,
+
+        elevation: 0,
         backgroundColor: Colors.white,
         title: Text('Places',style: TextStyle(color: Primarycolor),),
         leading: IconButton(

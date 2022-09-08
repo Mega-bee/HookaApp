@@ -39,8 +39,8 @@ class _SearchWidgetState extends State<SearchWidgetBuddies> {
                 .size
                 .height * 0.01),
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.circular(50)),
+            borderSide: const BorderSide(color: Colors.transparent),
+            borderRadius: BorderRadius.circular(0)),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: Theme
@@ -50,24 +50,18 @@ class _SearchWidgetState extends State<SearchWidgetBuddies> {
         fillColor: Colors.white,
         focusColor: const Color.fromRGBO(18, 108, 242, 1),
         hintText: widget.hintText,
-        suffixIcon: widget.text.isNotEmpty
+        suffixIcon:
+        widget.text.isEmpty
             ? GestureDetector(
-          child: Icon(Icons.close, color: style.color),
+          child: Icon(Icons.close,size: 17, color: style.color),
           onTap: () {
             controller.clear();
             widget.onChanged('');
             FocusScope.of(context).requestFocus(FocusNode());
           },
         )
-            :  IconButton(
-            icon: Icon(
-              Icons.filter_alt_rounded,
-              color: YellowColor,
-            ),
-            onPressed: () {
-              widget.onFilterPress();
-            }
-      ),
+            :
+       Text(""),
         prefixIcon: const Icon(
           Icons.search_rounded,
         ),
