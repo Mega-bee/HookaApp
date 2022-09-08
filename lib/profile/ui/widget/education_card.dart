@@ -26,7 +26,7 @@ class EducationCard extends StatelessWidget {
               color: YellowColor,
               width: 500,
               height: 80,
-              child: genderId == 1
+              child: genderId == 0
                   ? Image.asset(
                       "assets/images/istockphoto-910022842-170667a-removebg-preview.png",
                       fit: BoxFit.contain,

@@ -5,16 +5,12 @@ import 'package:hooka/abstracts/states/loading_state.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/repository/login_repository.dart';
 import 'package:hooka/auth/request/confirm_otp_request.dart';
-import 'package:hooka/auth/request/login_request.dart';
-import 'package:hooka/auth/response/login_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import '../auth_routes.dart';
-import '../request/forget_pass_request.dart';
 import '../request/gen_otp_request.dart';
 import '../service/auth_service.dart';
 import '../ui/screens/forgot_otp_screen.dart';
-import '../ui/screens/login_screen.dart';
 
 @injectable
 class ForgotOtpCubit extends Cubit<States> {
