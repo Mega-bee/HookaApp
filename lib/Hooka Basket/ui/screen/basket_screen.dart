@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/style/colors.dart';
@@ -57,7 +58,7 @@ class BasketScreenState extends State<BasketScreen> {
             ),
             title: Text(
               "Hooka Basket",
-              style: TextStyle(color: Colors.black),
+                style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)
             )),
         body: BlocBuilder<BasketCubit, States>(
           bloc: widget.cubit,

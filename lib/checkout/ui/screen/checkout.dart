@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
+import '../../../utils/style/colors.dart';
 import '../../state_manager/checkout_state_manager.dart';
 
 @injectable
@@ -60,7 +62,7 @@ widget.cubit.getCheckout(this,);
         elevation: 1,
         // leading: MenuWidget(),
 
-        title: Text("Checkout",style: TextStyle(color: Colors.black),),
+        title: Text("Checkout",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),
 
       ),
       body:

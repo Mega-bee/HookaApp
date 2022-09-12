@@ -19,19 +19,17 @@ class ProductInitState extends States{
 
          children: [
 
-    Image.asset(ImageAsset.LOGO,height: 250,width: 500,fit: BoxFit.cover,),
-           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-    Text("- - - - - - -     Catergories     - - - - - - - -",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+
     Padding(
       padding: const EdgeInsets.all(18.0),
       child: GridView.builder(
       physics:const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 3,
-      childAspectRatio: (4 / 4.5),
-      crossAxisSpacing: 50,
-      mainAxisSpacing: 20),
+      crossAxisCount: 2,
+      childAspectRatio: (3.5 / 4.5),
+      crossAxisSpacing: 5,
+      mainAxisSpacing: 5),
       itemCount: getallproducts.length,
       itemBuilder: (context, index) {
         final OffersList = getallproducts[index];
@@ -39,7 +37,6 @@ class ProductInitState extends States{
       }),
     ),
            SizedBox(height: MediaQuery.of(context).size.height*0.1,),
-           Text("- - - - - - - - - - - - - - - - - - - - - - - - ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
          ]),
     );
   }

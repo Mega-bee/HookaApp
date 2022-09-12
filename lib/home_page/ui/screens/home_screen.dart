@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/Hooka%20Basket/basket_routes.dart';
 import 'package:hooka/home_page/ui/widget/hooka_card.dart';
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
@@ -45,7 +46,7 @@ class HomeScreenState extends State<HomeScreen> {
           elevation: 1,
           title: Text(
             "Hookapp",
-            style: TextStyle(color: Colors.black),
+              style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)
           ),
           backgroundColor: Colors.white,
           leading: MenuWidget(),

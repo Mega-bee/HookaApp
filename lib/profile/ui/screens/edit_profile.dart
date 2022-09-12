@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/profile/request/add_adress.dart';
 import 'package:hooka/profile/request/delete_address_request.dart';
 import 'package:hooka/profile/request/delete_education_request.dart';
@@ -119,7 +120,7 @@ class EditProfileState extends State<EditProfile> {
           ),
           title: Text(
             "Edit Account",
-            style: TextStyle(color: Primarycolor),
+              style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)
           ),
         ),
         body: BlocBuilder<GetEditProfileCubit, States>(

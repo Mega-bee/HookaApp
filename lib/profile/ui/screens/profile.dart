@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/profile/profile_routes.dart';
 import 'package:hooka/profile/response/profile_response.dart';
 import 'package:injectable/injectable.dart';
@@ -39,7 +40,7 @@ class ProfileState extends State<Profile> {
           icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
           onPressed: (){Navigator.of(context).pop();},
         ),
-        title: Text("My Account",style: TextStyle(color: Primarycolor),),
+        title: Text("My Account",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),
         actions: [
           TextButton(onPressed: (){}, child:TextButton(
               onPressed:(){
@@ -47,7 +48,7 @@ class ProfileState extends State<Profile> {
 
 
               },
-              child: Text("Edit",style: TextStyle(color: Primarycolor),)),)
+              child: Text("Edit",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),)),)
 
         ],
       ),

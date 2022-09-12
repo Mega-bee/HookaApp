@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:injectable/injectable.dart';
 import '../../../Hooka Basket/basket_routes.dart';
 import '../../../abstracts/states/state.dart';
@@ -29,7 +30,7 @@ class HookaProductState extends State<HookaProduct> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Hooka Products",style: TextStyle(color: Colors.black),),
+        title: Text("Hooka Products",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),

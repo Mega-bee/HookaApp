@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
 class ForgotButton extends StatelessWidget {
@@ -46,7 +47,7 @@ class ForgotButton extends StatelessWidget {
                       child: Text(
                         '$text',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: GoogleFonts.alef(
                             fontWeight: FontWeight.w600,
                             color: textColor,
                             fontSize: 10),

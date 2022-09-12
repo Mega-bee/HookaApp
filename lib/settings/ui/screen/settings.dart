@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
-import '../../../utils/style/colors.dart';
+
 import '../../../utils/style/colors.dart';
 import '../../state_manager/setting_state_manager.dart';
-import '../about.dart';
-
-import 'package:rolling_switch/rolling_switch.dart';
-
-import '../../../utils/effect/custom_page_route.dart';
 import '../../../home_page/ui/widget/menu_widget.dart';
 
 @injectable
@@ -48,7 +43,7 @@ class SettingsState extends State<Settings> {
         leading: MenuWidget(),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
-        title: Text("Settings",style: TextStyle(color: Colors.black),),
+        title: Text("Settings",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),
 
       ),
       body:BlocBuilder<SettingCubit, States>(

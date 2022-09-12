@@ -36,39 +36,7 @@ class SettingInitState extends States {
          ),
          SizedBox(height: MediaQuery.of(context).size.height*0.04,),
 
-         Row(
-           mainAxisAlignment: MainAxisAlignment.spaceAround,
-           children: [
 
-             SizedBox(width: MediaQuery.of(context).size.width*0.05,),
-             Icon(Icons.notifications,color: value==false?
-             Colors.grey:YellowColor),
-             SizedBox(width: MediaQuery.of(context).size.width*0.03,),
-
-             Text("Notifications ",style: TextStyle(fontSize: 17),),
-             SizedBox(width: MediaQuery.of(context).size.width*0.40,),
-
-             Container(height: 29,width: 55,
-                 child: Transform.scale(
-                   scale: 0.9,
-                   child: Switch.adaptive(
-                       activeColor: YellowColor,
-                       inactiveTrackColor: Colors.grey,
-                       value: value,
-                       onChanged: (value) {
-
-                         this.value = value;
-                         screenState.refresh();
-
-
-                       }),
-                 )
-             ),
-             SizedBox(width: MediaQuery.of(context).size.width*0.01,),
-
-
-           ],),
-         SizedBox(height: MediaQuery.of(context).size.height*0.03,),
 
          Row(
            mainAxisAlignment: MainAxisAlignment.spaceAround,

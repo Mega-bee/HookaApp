@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -24,7 +25,7 @@ class CustomNetworkImage extends StatelessWidget {
             builder: (_) {
               return Scaffold(
                 appBar: AppBar(
-                  title: Text("$text",style: TextStyle(color: Colors.black),),
+                  title: Text("$text",style: GoogleFonts.comfortaa(color: Colors.black,fontWeight: FontWeight.bold),),
                   backgroundColor: Colors.white,
                   elevation: 0,
                   leading: Padding(

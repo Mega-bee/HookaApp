@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/hooka_buddies/state_manager/Buddies_state_manager.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
@@ -43,13 +44,17 @@ class BuddiesState extends State<Buddies> {
     if(args != null && args is int){
       placeId = args;
     }
-    return Scaffold(
+    return
+
+
+      Scaffold(
+
         appBar: AppBar(
-          elevation: 1,
+          elevation: 0,
           backgroundColor: Colors.white,
           title: Text(
             'Buddies',
-            style: TextStyle(color: Primarycolor),
+            style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)
           ),
           leading: IconButton(
             icon: Icon(
@@ -68,7 +73,7 @@ class BuddiesState extends State<Buddies> {
                 },
                 child: Text(
                   "Map",
-                  style: TextStyle(fontSize: 18,color: Colors.black),
+                  style:GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)
                 ))
           ],
         ),

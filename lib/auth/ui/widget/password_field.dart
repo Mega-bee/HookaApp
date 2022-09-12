@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../utils/style/colors.dart';
 
 class PasswordField extends StatefulWidget {
@@ -36,7 +37,7 @@ class _PasswordFieldState extends State<PasswordField> {
                 color:Colors.black)),
         labelText: "Password",
         hintText: " Password",
-        labelStyle: TextStyle(color: Colors.black),
+        labelStyle: GoogleFonts.alef(color: Colors.black),
         enabledBorder: const OutlineInputBorder(
           borderRadius:
           BorderRadius.all(Radius.circular(10)),

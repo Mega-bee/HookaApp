@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/hooka_buddies/response/buddies_response.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../utils/effect/custom_page_route.dart';
@@ -15,177 +16,174 @@ class BuddiesCard extends StatelessWidget {
   BuddiesCard({required this.buddiesModel,required this.inviteBody});
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Row(children: [
+    return SizedBox(
+      height: 210,
 
-          Flexible(
-            flex: 1,
-            child: Stack(children: [
-              Container(
-                  width: 80,
-                  height: 80,
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Center(
-                    child: Card(
-                      elevation: 10,
-                      shadowColor: YellowColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(60)),
+      child:
+      Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: InkWell(
+          onTap:() {
+            Navigator.pushNamed(
+                context,
+                BuddiesRoutes.PROFBUDDIES,arguments: buddiesModel.id.toString());
+          },
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            child: IntrinsicWidth(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
 
-                      child:
-                      CachedNetworkImage(
-                        imageUrl: buddiesModel.image.toString(),
-                        height: 120,
-                        fit: BoxFit.cover,
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(80),
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.contain,
+                  Stack(
+                      children:[ ClipRRect(
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(15),topLeft: Radius.circular(15),
+                          bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15),
+                        ),
+
+                        child:
+
+                        Container(
+
+                          child: CachedNetworkImage(
+                            imageUrl: buddiesModel.image.toString(),
+                            width: 210,
+                            height: 197,
+                            fit: BoxFit.contain,
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
+                            placeholder: (context, url) => Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: LoadingIndicator(
+                                indicatorType: Indicator.ballBeat,
+                                colors: [Colors.black],
+                              ),
+                            ),
+                            errorWidget: (context, url, error) => Icon(Icons.error),
                           ),
                         ),
-                        placeholder: (context, url) => Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: LoadingIndicator(
-                            indicatorType: Indicator.ballBeat,
-                            colors: [Colors.black],
+                        // Image.asset("assets/images/restaurant-939435_960_720-768x512.jpeg",fit: BoxFit.contain,
+                        //
+                        // ),
+                      ),
+                        Positioned(
+                          bottom: 0,
+
+                          child:
+                          Container(
+width: 199,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(13),
+                                bottomRight: Radius.circular(18),
+
+                              ),   color: Color.fromRGBO(235,235, 235, 0.8),),
+
+                            child:  Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(buddiesModel.name.toString(),style: GoogleFonts.alef(
+                                      fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black
+                                  ),),
+
+
+
+
+                                ],
+                              ),
+                            ),
+
+
+
+
+
+                              // width: 140, height: 140, fit: BoxFit.cover,
+
                           ),
                         ),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                      ),
-                      // CircleAvatar(
-                      //   foregroundImage: AssetImage("${buddiesModel.image}"),
-                      //   radius:120,
-                      //   backgroundColor: Colors.red,
-                      //
-                      // ),
-                    ),
-                  )),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10, top: 60, left: 15),
-                child: SizedBox(
-                  width: 32,
-                  child: Card(
-                    color: YellowColor,
-                    child: Center(
-                        child: Text(
-                      " ${buddiesModel.rating} ",
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                    )),
-                    elevation: 2,
-                    shadowColor: YellowColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-          Flexible(
-            flex: 3,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-              Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
+                        Positioned(
+                          bottom: 1,left: 168,
+                          child: Icon(Icons.star,size: 29,color: Color.fromRGBO(250, 216, 1,0.8),)
 
-                buddiesModel.isAvailable == true
-                    ? Icon(
-                        Icons.circle,
-                        color: Colors.green,
-                        size: 12,
-                      )
-                    : Icon(
-                        Icons.circle,
-                        color: Colors.red,
-                        size: 12,
-                      ),
-                SizedBox(
-                  width: 5,
-                ),
-                buddiesModel.isAvailable == true
-                    ? Text("Available",
-                        style: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold))
-                    : Text("Not Available",
-                        style: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold)),
-              ]),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.only(start: 30),
-                child: Text("${buddiesModel.name}",
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FontStyle.italic)),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  InkWell(
-                    onTap: () {
-                       inviteBody();
-                     // Navigator.pushNamed(
-                     //   context,
-                     //   BuddiesRoutes.InvitOp,
-                     // );
-                    },
-                    child: Container(
-                      color: YellowColor,
-                      height: MediaQuery.of(context).size.height * 0.03,
-                      width: MediaQuery.of(context).size.width * 0.25,
-                      child: Center(child: Text("invite")),
-                    ),
-                  ),
+                        ),
+                        Positioned(
+                          bottom: 10,left: 180,
+                          child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(buddiesModel.rating.toString(),style: GoogleFonts.anekLatin(
 
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        BuddiesRoutes.PROFBUDDIES,arguments: buddiesModel.id.toString()
-                      );
-                    },
-                    child: Container(
-                      color: Primarycolor,
-                      height: MediaQuery.of(context).size.height * 0.03,
-                      width: MediaQuery.of(context).size.width * 0.25,
-                      child: Center(
-                          child: Text(
-                        "View Profile",
-                        style: TextStyle(color: YellowColor),
-                      )),
-                    ),
-                  )
+                                  color: Colors.black54,fontSize: 10,fontWeight: FontWeight.bold),),
+
+                            ],
+                          ),
+                        )
+                        // Positioned(
+                        //   bottom: 0,
+                        //   child:
+                        //   Container(
+                        //     decoration: BoxDecoration(
+                        //         color: Color.fromRGBO(250, 216, 1,0.6),
+                        //         borderRadius: BorderRadius.only(
+                        //           topRight: Radius.circular(35),bottomRight: Radius.circular(5),
+                        //           topLeft: Radius.circular(5),bottomLeft: Radius.circular(35),
+                        //
+                        //         )),
+                        //     width:120,
+                        //     child: Column(children: [
+                        //
+                        //       buddiesModel.isAvailable==true?
+                        //
+                        //       Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //         children: [
+                        //
+                        //           Text("Available",style: GoogleFonts.rubik(color: Colors.white,fontWeight: FontWeight.bold),),
+                        //
+                        //
+                        //
+                        //
+                        //
+                        //         ],
+                        //       ):Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //     children: [
+                        //
+                        //       Text("Not Available",style: GoogleFonts.rubik(color: Colors.white,fontWeight: FontWeight.bold),),
+                        //
+                        //
+                        //
+                        //
+                        //
+                        //         ],
+                        //       )
+                        //
+                        //
+                        //
+                        //
+                        //
+                        //     ],),
+                        //   ),
+                        // ),
+
+                      ]),
+
+
+
+
+
                 ],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
-            ]),
+            ),
           ),
-        ]),
-        Divider(color: Colors.grey, thickness: 0),
-      ],
+        ),
+      ),
     );
   }
 }

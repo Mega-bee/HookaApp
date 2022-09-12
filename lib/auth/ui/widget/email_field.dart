@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utils/style/colors.dart';
 
@@ -33,7 +34,7 @@ class _EmailFieldState extends State<EmailField> {
           fillColor: Colors.white,
           hintText: " Email",
           labelText: "Email",
-          labelStyle: TextStyle(color: Colors.black),
+          labelStyle:GoogleFonts.alef(color: Colors.black),
           enabledBorder: const OutlineInputBorder(
               borderRadius:
               BorderRadius.all(Radius.circular(10)),

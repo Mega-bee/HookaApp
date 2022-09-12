@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:injectable/injectable.dart';
 import '../../../Hooka Basket/basket_routes.dart';
 import '../../../abstracts/states/state.dart';
@@ -34,6 +35,7 @@ class DetailsProductState extends State<DetailsProduct> {
     widget.cubit.AddToCart(this,"$p","$q");
   }
 
+
   @override
   Widget build(BuildContext context) {
     if(flags){
@@ -44,9 +46,10 @@ class DetailsProductState extends State<DetailsProduct> {
       flags = false;
     }
     return Scaffold(
+    backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,
-          title: Text("Details",style: TextStyle(color: Colors.black),),
+          title: Text("Details",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),
           backgroundColor: Colors.white,
           leading: IconButton(
             icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),

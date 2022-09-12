@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/utils/style/colors.dart';
 import '../../../abstracts/states/state.dart';
 import '../../response/detailsprod_response.dart';
@@ -25,24 +26,42 @@ class DetailsProdInitState extends States {
 
   @override
   Widget getUI(BuildContext context) {
+
     return Column(
       children: [
         Container(
           height: MediaQuery.of(context).size.height * 0.77,
+
           child: Scrollbar(
             child: SingleChildScrollView(
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset(
-                      "assets/images/Cool-dad.jpg",
-                      fit: BoxFit.cover,
-                      height: MediaQuery.of(context).size.height * 0.40,
-                      width: double.infinity,
-                    ),
+
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.15,
-                      child: ListView.builder(
+                      color: Colors.white,
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 18.0,bottom: 5,top: 10),
+                        child: Text(
+                          "Choose Your flavor",
+                          style: GoogleFonts.alef(
+                              fontWeight: FontWeight.w600, fontSize: 20),
+                        ),
+                      ),
+                    ),
+
+                    Container(
+
+
+                      height: MediaQuery.of(context).size.height * 0.57,
+                      child: GridView.builder(
+
+                          gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: (2.5 / 2.5),
+                              crossAxisSpacing: 0,
+                              mainAxisSpacing: 0),
                           itemCount: detailsprodresp.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
@@ -51,52 +70,70 @@ class DetailsProdInitState extends States {
                             return DetailsProdCard(PlacesList, () {
                               detailsprodresp.forEach((element) {
                                 element.isselected = false;
+
                               });
 
                               detailsprodresp[index].isselected = true;
                               isselec = PlacesList;
+                              inc=1;
                               detailsProductState.refresh();
                             });
                           }),
                     ),
                     Container(
                       width: double.infinity,
+    decoration: BoxDecoration(
+    border: Border(
+
+    top:  BorderSide(color:
+
+    Colors.black12, width: 0.5,),)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Text(
-                              "Item Price",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Text(
-                              "\$ ${isselec!.customerInitialPrice}",
-                              style:
+                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              Container(
+  width: 150,
+                                height: 60,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 18,top: 35
+                                  ),
+                                  child: Text(
+                                    "${isselec!.title}",
+
+    style: GoogleFonts.alef(
+    fontWeight: FontWeight.w600, fontSize: 25),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  right: 18,top: 35),
+                                child: Text(
+                                  "\$ ${isselec!.customerInitialPrice}",
+                                  style:
                                   TextStyle(color: Colors.black, fontSize: 18),
-                            ),
+                                ),
+                              ),
+                            ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Text(
-                              "Description",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Text(
-                              isselec!.description.toString(),
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 18),
-                            ),
-                          ),
+
                         ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 18,bottom: 8),
+                      child: Text(
+                        isselec!.description.toString(),
+                        style:
+                        TextStyle(color: Colors.black, fontSize: 18),
                       ),
                     ),
                   ]),
@@ -104,8 +141,12 @@ class DetailsProdInitState extends States {
           ),
         ),
         Container(
-          height: 100,
+          height: 80,
           width:800,
+
+          decoration: BoxDecoration(
+         color: YellowColor,
+              borderRadius: BorderRadius.circular(65)),
 
 
           child: Row(
@@ -113,56 +154,73 @@ class DetailsProdInitState extends States {
             children: [
               Spacer(),
               Container(
-                width: 40,
+                width: 50,
                 height: 40,
-                child: InkWell(
-                  onTap: () {
-                    if (inc > 1) {
-                      inc--;
-                      detailsProductState.refresh();
-                    }
-                  },
-                  child: Card(
-                      color: YellowColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
-                      ),
-                      child: Center(
-                          child: Text(
-                            "-",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ))),
+                
+                child: Card(
+color: YellowColor,
+                  shape: RoundedRectangleBorder(
+
+
+                    borderRadius: BorderRadius.circular(55.0),
+
+                    side: BorderSide(
+                      color: Colors.black,
+                    ),
+
+                    ),
+                    child: InkWell(
+                    onTap: () {
+                      if (inc > 1) {
+                        inc--;
+                        detailsProductState.refresh();
+                      }
+                    },
+                    child: Center(
+                        child: Text(
+                          "-",
+                          style: TextStyle(fontWeight: FontWeight.w400,fontSize: 30),
+                        )),
+                  ),
                 ),
               ),
-              Spacer(),
+            SizedBox(width: 20,),
               Text(
                 "${inc}",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40),
               ),
-              Spacer(),
+              SizedBox(width: 20,),
               Container(
-                width: 40,
-                height: 40,
-                child: InkWell(
-                  onTap: () {
-                    inc++;
-                    detailsProductState.refresh();
 
-                    // basketm.increment ++;
-                    //
-                    // widget.basketm.bcp =widget.basketm.increment * widget.basketm.incprice;
-                    // setState(() {
-                    // });
-                    // widget.total();
-                  },
-                  child: Card(
-                      color: YellowColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
-                      ),
-                      child: Center(child: Text("+"))),
+                width: 50,
+                height: 40,
+                child: Card(
+                  color: YellowColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(55.0),
+                    side: BorderSide(
+                      color: Colors.black,
+                    ),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      inc++;
+                      detailsProductState.refresh();
+
+                      // basketm.increment ++;
+                      //
+                      // widget.basketm.bcp =widget.basketm.increment * widget.basketm.incprice;
+                      // setState(() {
+                      // });
+                      // widget.total();
+                    },
+                    child: Center(child: Text("+",  style: TextStyle(fontWeight: FontWeight.w400,fontSize: 30
+    )),
+
+                    )),
                 ),
-              ),
+                ),
+
               Spacer(),
 
 
@@ -178,18 +236,24 @@ class DetailsProdInitState extends States {
                     Fluttertoast.showToast(msg: " Please Add Qunatity ");
                 },
                 child: Card(
-                  color: Colors.black,
-                  elevation: 9,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(55.0),
+
+                  ),
+
+                  elevation: 5,
                   child: Container(
-                    height: 30,
-                    width: 100,
+                    height:40,
+                    width: 120,
+
                     child: Center(
                         child: Text(
                       "Add To Cart",
-                      style: TextStyle(
-                          fontSize: 13,
+                      style: GoogleFonts.alef(
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: YellowColor),
+                          color: Colors.black),
                     )),
                   ),
                 ),

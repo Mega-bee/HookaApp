@@ -5,7 +5,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooka/abstracts/states/error_state.dart';
 import 'package:hooka/abstracts/states/loading_state.dart';
 import 'package:hooka/abstracts/states/state.dart';
-import 'package:hooka/auth/service/auth_service.dart';
 import 'package:hooka/hooka_buddies/request/buddies_filter_request.dart';
 import 'package:hooka/hooka_buddies/request/invite_request.dart';
 import 'package:hooka/hooka_places/repository/places_repository.dart';

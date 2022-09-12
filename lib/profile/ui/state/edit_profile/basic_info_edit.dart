@@ -450,16 +450,23 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                       ),
                     ),
                     child: DropdownButtonFormField<ItemProfileOption>(
+
                       // Initial Value
                       value: hairOption,
 
+
                       // Down Arrow Icon
-                      icon: const Icon(Icons.keyboard_arrow_down),
+                      icon: Padding(
+                        padding: const EdgeInsets.only(right: 20),                        child: const Icon(Icons.keyboard_arrow_down),
+                      ),
+
 
                       // Array list of items
                       items: ItemProfileOption.getHairList()
                           .map((ItemProfileOption items) {
+
                         return DropdownMenuItem(
+
                           value: items,
                           child: Padding(
                             padding: const EdgeInsetsDirectional.only(start: 8),
@@ -472,10 +479,12 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                       onChanged: (ItemProfileOption? newValue) {
                         print(newValue);
                         hairOption = newValue!;
+
                       },
                       isExpanded: true,
+
 //                          underline: Container(),
-                      hint: Text('Select hair'),
+                      hint: Text('  Select hair'),
                     ),
                   ),
                   SizedBox(
@@ -496,7 +505,9 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                       value: eyesOption,
 
                       // Down Arrow Icon
-                      icon: const Icon(Icons.keyboard_arrow_down),
+                      icon: Padding(
+                        padding: const EdgeInsets.only(right: 20),                        child: const Icon(Icons.keyboard_arrow_down),
+                      ),
 
                       // Array list of items
                       items: ItemProfileOption.getEyesList()
@@ -517,7 +528,7 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                       },
                       isExpanded: true,
 //                          underline: Container(),
-                      hint: Text('Select Eyes'),
+                      hint: Text('  Select Eyes'),
                     ),
                   ),
                   SizedBox(
@@ -538,7 +549,10 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                       value: bodyOption,
 
                       // Down Arrow Icon
-                      icon: const Icon(Icons.keyboard_arrow_down),
+                      icon: Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: const Icon(Icons.keyboard_arrow_down),
+                      ),
 
                       // Array list of items
                       items: ItemProfileOption.getBodyTypeList()
@@ -559,7 +573,7 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                       },
                       isExpanded: true,
 //                          underline: Container(),
-                      hint: Text('Select bodyType'),
+                      hint: Text('  Select bodyType'),
                     ),
                   ),
                   SizedBox(
@@ -580,7 +594,10 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                       value: statusOption,
 
                       // Down Arrow Icon
-                      icon: const Icon(Icons.keyboard_arrow_down),
+                      icon: Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: const Icon(Icons.keyboard_arrow_down),
+                      ),
 
                       // Array list of items
                       items: ItemProfileOption.getMaritalStatusList()
@@ -601,7 +618,7 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                       },
                       isExpanded: true,
 //                          underline: Container(),
-                      hint: Text('Select Marital Status'),
+                      hint: Text('  Select Marital Status'),
                     ),
                   ),
                   SizedBox(
@@ -621,8 +638,12 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                       // Initial Value
                       value: genderoption,
 
+
                       // Down Arrow Icon
-                      icon: const Icon(Icons.keyboard_arrow_down),
+                      icon: Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: const Icon(Icons.keyboard_arrow_down),
+                      ),
 
                       // Array list of items
                       items: ItemProfileOption.getGenderList()
@@ -642,8 +663,9 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                         genderoption = newValue!;
                       },
                       isExpanded: true,
+
 //                          underline: Container(),
-                      hint: Text('Gender'),
+                      hint: Text('  Gender'),
                     ),
                   ),
                   SizedBox(

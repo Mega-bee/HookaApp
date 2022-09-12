@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/map/map_routes.dart';
 import 'package:hooka/map/ui/screen/map_screen.dart';
 import 'package:injectable/injectable.dart';
@@ -35,7 +36,7 @@ class HookaPlacesState extends State<HookaPlaces> {
   @override
   void initState() {
     super.initState();
-    request=FilterRequest(1);
+    request=FilterRequest(0);
     widget.cubit.getPlacess(this,request!);
   }
   @override
@@ -47,7 +48,7 @@ class HookaPlacesState extends State<HookaPlaces> {
 
         elevation: 0,
         backgroundColor: Colors.white,
-        title: Text('Places',style: TextStyle(color: Primarycolor),),
+        title: Text('Places',style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
           onPressed: (){Navigator.of(context).pop();},
@@ -57,7 +58,7 @@ class HookaPlacesState extends State<HookaPlaces> {
           TextButton(onPressed: (){
             Navigator.pushNamed(context, MapRoutes.MAP_SCREEN ,arguments:'places');
 
-          }, child: Text("Map",style: TextStyle(fontSize: 18),))
+          }, child: Text("Map",style:  GoogleFonts.comfortaa(fontSize: 15,fontWeight: FontWeight.bold),))
         ],
       ) ,
       body:   BlocBuilder<PlacesCubit, States>(

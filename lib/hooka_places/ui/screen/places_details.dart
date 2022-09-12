@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/hooka_places/request/isfav_request.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
@@ -34,6 +35,16 @@ class PlacesDetailsState extends State<PlacesDetails> {
   AddReviewww(AddReviewReq request,String id){
     widget.cubit.AddReviewstate(this, request,id);
   }
+  late int currentIndex;
+  List<String>   imagesUrl= [];
+@override
+void initState() {
+
+    super.initState();
+    currentIndex = 0;
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +72,7 @@ class PlacesDetailsState extends State<PlacesDetails> {
         ),
         title: Text(
           "Details",
-          style: TextStyle(color: Primarycolor),
+          style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),
         ),
         actions: [
 

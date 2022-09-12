@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/auth_routes.dart';
 import 'package:hooka/auth/request/gen_otp_request.dart';
@@ -29,10 +30,11 @@ class LoginInitState extends States{
     var mediaQueryHeight = MediaQuery.of(context).size.height;
     var mediaQueryWidth = MediaQuery.of(context).size.width;
 return  SingleChildScrollView(
+
   child: Column(children: [
     Container(
       color: Colors.black,
-      height: MediaQuery.of(context).size.height * 0.162,
+      height: MediaQuery.of(context).size.height * 0.16,
       child: Column(
         children: [
           Align(
@@ -41,10 +43,7 @@ return  SingleChildScrollView(
                 padding: const EdgeInsets.only(left: 15),
                 child: Text(
                   "Welcome",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 34,
-                      fontWeight: FontWeight.bold),
+                    style: GoogleFonts.comfortaa(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 35)
                 ),
               )),
           SizedBox(
@@ -57,7 +56,7 @@ return  SingleChildScrollView(
               child: Text(
                   "Please enter your email and password to \n"
                       "login to HookaApp.",
-                  style: TextStyle(color: Colors.white, fontSize: 17)),
+                  style:GoogleFonts.anekLatin(color: Colors.white, fontSize: 18)),
             ),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -80,14 +79,14 @@ return  SingleChildScrollView(
               ),
               elevation: 15,
               child: Column(children: [
-               const Align(
+                Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding:  EdgeInsets.all(20.0),
                     child: Text(
                       "Login",
-                      style: TextStyle(
-                        fontSize: 26,
+                      style:  GoogleFonts.alef(
+                        fontSize: 24,
                         fontWeight: FontWeight.w600,
                       ),
                       textAlign: TextAlign.left,
@@ -224,16 +223,14 @@ return  SingleChildScrollView(
                       errorMessage==null?
                       Container():
                       Text("${errorMessage}",style: TextStyle(color: Colors.red),),
-                      SizedBox(
-                        height: 30,
-                      ),
+
                       SizedBox(
                         height: mediaQueryHeight * 0.03,
                       ),
                       Center(
                         child: Text(
                           "or login with",
-                          style: TextStyle(color: Colors.grey[500]),
+                          style: GoogleFonts.anekLatin(color: Colors.grey[500]),
                         ),
                       ),
                       SizedBox(
@@ -288,14 +285,15 @@ return  SingleChildScrollView(
                           children: [
                             Text(
                               "Don't have an account? ",
-                              style: TextStyle(color: Colors.grey),
+                              style: GoogleFonts.anekLatin(color: Colors.grey),
                             ),
                             TextButton(
                               child: Text(
                                 "SIGN UP",
-                                style: TextStyle(
+                                style: GoogleFonts.anekLatin(
                                     fontWeight: FontWeight.bold,
                                 color: Colors.black,
+                                  fontSize: 17,
                                   decoration: TextDecoration.underline
                                 ),
                               ),

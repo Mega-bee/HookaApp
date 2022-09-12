@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/hooka_buddies/request/invite_request.dart';
 import 'package:hooka/hooka_buddies/ui/state/invite_init_state.dart';
 import 'package:hooka/utils/style/colors.dart';
@@ -67,7 +68,7 @@ class InviteBuddiesState extends State<InviteBuddies> {
         backgroundColor: Colors.white,
         title: Text(
           'invite',
-          style: TextStyle(color: Primarycolor),
+            style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)
         ),
         leading: IconButton(
           icon: Icon(

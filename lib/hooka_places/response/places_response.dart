@@ -4,13 +4,17 @@ class PlacesResp {
   String? location;
   String? cuisine;
   num? rating;
+  bool? isInFavorite;
   String? name;
   String? longitude;
   String? latitude;
 
+
   PlacesResp(
       {this.id,
+        this.isInFavorite,
         this.image,
+
         this.location,
         this.cuisine,
         this.rating,
@@ -20,6 +24,8 @@ class PlacesResp {
 
   PlacesResp.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    isInFavorite = json['isInFavorite'];
+
     image = json['image'];
     location = json['location'];
     cuisine = json['cuisine'];
