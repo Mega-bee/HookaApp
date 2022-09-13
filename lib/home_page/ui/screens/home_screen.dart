@@ -40,127 +40,144 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-          elevation: 1,
-          title: Text(
-            "Hookapp",
-              style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)
-          ),
-          backgroundColor: Colors.white,
-          leading: MenuWidget(),
-          actions: [
-            // IconButton(
-            //     onPressed: () {},
-            //     icon: Icon(
-            //       Icons.notifications,
-            //       color: Colors.black,
-            //     )),
-            IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, BasketRoutes.BasketS);
-                },
-                icon: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.black,
-                )),
-            // OfflineBuilder(
-            //   connectivityBuilder: (
-            //     BuildContext context,
-            //     ConnectivityResult connectivity,
-            //     Widget child,
-            //   ) {
-            //     final bool connected = connectivity != ConnectivityResult.none;
-            //     return new Stack(
-            //       children: [
-            //         Padding(
-            //           padding: const EdgeInsets.all(18.0),
-            //           child: Container(
-            //             width: 50,
-            //             height: 20,
-            //             color: Colors.transparent,
-            //             child: Center(
-            //               child: connected
-            //                   ? Text(
-            //                       'Online',
-            //                       style: TextStyle(
-            //                           color: YellowColor,
-            //                           fontWeight: FontWeight.bold,
-            //                           decoration: TextDecoration.underline),
-            //                     )
-            //                   : Text('Offline',
-            //                       style: TextStyle(
-            //                           color: Color(0xFFEE4400),
-            //                           fontWeight: FontWeight.bold,
-            //                           decoration: TextDecoration.lineThrough)),
-            //             ),
-            //           ),
-            //         ),
-            //       ],
-            //     );
-            //   },
-            //   child: Column(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: <Widget>[
-            //       new Text(
-            //         'There are no bottons to push :)',
-            //       ),
-            //       new Text(
-            //         'Just turn off your internet.',
-            //       ),
-            //     ],
-            //   ),
-            // ),
-          ]),
-      body: SingleChildScrollView(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+    return Container(
+      height: 1000,
+      decoration: BoxDecoration(
 
-          Image.asset(
-            ImageAsset.HOMEIMAGE,
-            height: 200,
-            width: 500,
-            fit: BoxFit.cover,
-          ),
-          Image.asset(
-            ImageAsset.LOGO,
-            height: 200,
-            width: 500,
-            fit: BoxFit.cover,
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            HookaCard(
-                image: ImageAsset.PLACES,
-                onCardTap: () {
-                  Navigator.pushNamed(context, PlacesRoutes.Places);
-                },
-                text: "HOOKA PLACES"),
-            HookaCard(
-                image: ImageAsset.BUDDIES,
-                onCardTap: () {
-                  Navigator.pushNamed(context, BuddiesRoutes.Buddies);
-                },
-                text: "HOOKA BUDDIES"),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            HookaCard(
-                image: ImageAsset.OFFER,
-                onCardTap: () {
-                  Navigator.pushNamed(context, OffersRoutes.Offers);
-                },
-                text: "OFFERS"),
-            HookaCard(
-                image: ImageAsset.PRODUCT,
-                onCardTap: () {
-                  Navigator.pushNamed(context, ProductsRoutes.Product);
-                },
-                text: "Hooka product"),
-          ]),
-          SizedBox(
+        gradient: LinearGradient(
+          colors: [
+            Colors.white,
+            Color.fromRGBO(211,211,211, 0.9),
+          ],
+          begin:  FractionalOffset(0.0, 0.0),
+          end:  FractionalOffset(0.0, 1.0),
+          stops: [0.4, 1.0],
+          tileMode: TileMode.repeated,
 
-            height: MediaQuery.of(context).size.height * 0.2,
-          ),
-        ]),
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+            elevation: 0,
+            title: Text(
+              "Hookapp",
+                style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)
+            ),
+            backgroundColor: Colors.white,
+            leading: MenuWidget(),
+            actions: [
+              // IconButton(
+              //     onPressed: () {},
+              //     icon: Icon(
+              //       Icons.notifications,
+              //       color: Colors.black,
+              //     )),
+              IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, BasketRoutes.BasketS);
+                  },
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.black,
+                  )),
+              // OfflineBuilder(
+              //   connectivityBuilder: (
+              //     BuildContext context,
+              //     ConnectivityResult connectivity,
+              //     Widget child,
+              //   ) {
+              //     final bool connected = connectivity != ConnectivityResult.none;
+              //     return new Stack(
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.all(18.0),
+              //           child: Container(
+              //             width: 50,
+              //             height: 20,
+              //             color: Colors.transparent,
+              //             child: Center(
+              //               child: connected
+              //                   ? Text(
+              //                       'Online',
+              //                       style: TextStyle(
+              //                           color: YellowColor,
+              //                           fontWeight: FontWeight.bold,
+              //                           decoration: TextDecoration.underline),
+              //                     )
+              //                   : Text('Offline',
+              //                       style: TextStyle(
+              //                           color: Color(0xFFEE4400),
+              //                           fontWeight: FontWeight.bold,
+              //                           decoration: TextDecoration.lineThrough)),
+              //             ),
+              //           ),
+              //         ),
+              //       ],
+              //     );
+              //   },
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: <Widget>[
+              //       new Text(
+              //         'There are no bottons to push :)',
+              //       ),
+              //       new Text(
+              //         'Just turn off your internet.',
+              //       ),
+              //     ],
+              //   ),
+              // ),
+            ]),
+        body: SingleChildScrollView(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+
+            Image.asset(
+              ImageAsset.HOMEIMAGE,
+              height: 200,
+              width: 500,
+              fit: BoxFit.cover,
+            ),
+            Image.asset(
+              ImageAsset.LOGO,
+              height: 200,
+              width: 500,
+              fit: BoxFit.cover,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              HookaCard(
+                  image: ImageAsset.PLACES,
+                  onCardTap: () {
+                    Navigator.pushNamed(context, PlacesRoutes.Places);
+                  },
+                  text: "HOOKA PLACES"),
+              HookaCard(
+                  image: ImageAsset.BUDDIES,
+                  onCardTap: () {
+                    Navigator.pushNamed(context, BuddiesRoutes.Buddies);
+                  },
+                  text: "HOOKA BUDDIES"),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              HookaCard(
+                  image: ImageAsset.OFFER,
+                  onCardTap: () {
+                    Navigator.pushNamed(context, OffersRoutes.Offers);
+                  },
+                  text: "OFFERS"),
+              HookaCard(
+                  image: ImageAsset.PRODUCT,
+                  onCardTap: () {
+                    Navigator.pushNamed(context, ProductsRoutes.Product);
+                  },
+                  text: "Hooka product"),
+            ]),
+            SizedBox(
+
+              height: MediaQuery.of(context).size.height * 0.2,
+            ),
+          ]),
+        ),
       ),
     );
   }

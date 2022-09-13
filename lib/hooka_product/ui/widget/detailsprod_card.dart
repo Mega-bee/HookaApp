@@ -8,7 +8,9 @@ import '../../response/detailsprod_response.dart';
 class DetailsProdCard extends StatefulWidget {
   final  DetailsProductResponse detailsProductResponse;
   final Function ontap;
-  DetailsProdCard(this.detailsProductResponse,this.ontap);
+  int count;
+  int index;
+  DetailsProdCard(this.detailsProductResponse,this.ontap,this.count,this.index);
 
   @override
   State<DetailsProdCard> createState() => _DetailsProdCardState();
@@ -17,9 +19,11 @@ class DetailsProdCard extends StatefulWidget {
 class _DetailsProdCardState extends State<DetailsProdCard> {
   bool _value = false;
   late bool valu;
+  int selectedCard = -1;
 
   @override
   Widget build(BuildContext context) {
+
     return InkWell(
 
 
@@ -28,7 +32,7 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
       highlightColor: Colors.white,
 
       onTap: (){
-
+// selectedCard=widget.index;
         widget.detailsProductResponse.isselected = !widget.detailsProductResponse.isselected!;
 
         setState(() {
@@ -37,100 +41,98 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
         widget.ontap();
       },
       child:
-      SizedBox(
-        height: 190,
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
 
-        child:
-        Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: Card(
+          Center(
+            child: ClipRRect(
 
-           elevation: 0,
-            child: IntrinsicWidth(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
+              borderRadius: BorderRadius.only(topRight: Radius.circular(15),topLeft: Radius.circular(15)),
 
-                  Stack(
-                      children:[ ClipRRect(
+              child:
 
-                        borderRadius: BorderRadius.only(topRight: Radius.circular(15),topLeft: Radius.circular(15)),
+              CachedNetworkImage(
+                imageUrl: widget.detailsProductResponse.image.toString(),
+                fit: BoxFit.cover,
+                height: 300,width: 250,
 
-                        child:
+                imageBuilder: (context, imageProvider) => Container(
 
-                        CachedNetworkImage(
-                          imageUrl: widget.detailsProductResponse.image.toString(),
-                          fit: BoxFit.cover,
-                          height: 180,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
+                  decoration: BoxDecoration(
 
-                                bottomRight: Radius.circular(40),
-                              ),
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          placeholder: (context, url) => const Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: LoadingIndicator(
-                              indicatorType: Indicator.ballBeat,
-                              colors: [Colors.black],
-                            ),
-                          ),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
-                        ),
-                      ),
+                    borderRadius: BorderRadius.only(
 
-                      ]),
-                  SizedBox(height: 21,),
-                  Container(
-                      decoration: BoxDecoration(
-
-                          color:
-                              widget.detailsProductResponse.isselected==true?
-                          Colors.grey[200]:Colors.transparent,
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(35),bottomRight: Radius.circular(5),
-
-                          )),
-
-
-                      height: 50,
-                      child: Center(child: Text(widget.detailsProductResponse.title.toString(),style: GoogleFonts.rubik(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15),))),
-
-
-
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //       color: Color.fromRGBO(250, 216, 1,0.6),
-                  //       borderRadius: BorderRadius.only(
-                  //         topRight: Radius.circular(5),bottomRight: Radius.circular(65),
-                  //         bottomLeft: Radius.circular(35),topLeft: Radius.circular(5),
-                  //
-                  //       )),
-                  //   width:50,
-                  //   child:
-                  //
-                  // ),
-
-
-
-
-
-
-
-
-
-
-                ],
+                      bottomRight: Radius.circular(40),
+                    ),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                placeholder: (context, url) => const Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: LoadingIndicator(
+                    indicatorType: Indicator.ballBeat,
+                    colors: [Colors.black],
+                  ),
+                ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
           ),
-        ),
+
+          Container(
+              decoration: BoxDecoration(
+
+                  color:
+                      widget.detailsProductResponse.isselected==true?
+                  Colors.grey[200]:Colors.transparent,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(35),bottomRight: Radius.circular(5),
+
+                  )),
+
+
+              height: 50,
+              child: Center(child: Text(widget.detailsProductResponse.title.toString(),style: GoogleFonts.rubik(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15),))),
+          SizedBox(height: 10,),
+          Container(
+              width: 300,height: 60,
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Spacer(),
+                  Text("${widget.index} / ${widget.count}"),
+                  Icon(Icons.arrow_forward_rounded,color: Colors.grey,)
+                ],
+              ))
+
+
+
+          // Container(
+          //   decoration: BoxDecoration(
+          //       color: Color.fromRGBO(250, 216, 1,0.6),
+          //       borderRadius: BorderRadius.only(
+          //         topRight: Radius.circular(5),bottomRight: Radius.circular(65),
+          //         bottomLeft: Radius.circular(35),topLeft: Radius.circular(5),
+          //
+          //       )),
+          //   width:50,
+          //   child:
+          //
+          // ),
+
+
+
+
+
+
+
+
+
+
+        ],
       ),
     );
   }

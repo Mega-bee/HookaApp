@@ -34,6 +34,12 @@ class DetailsProductState extends State<DetailsProduct> {
   AddToCarttttt(String p,String q){
     widget.cubit.AddToCart(this,"$p","$q");
   }
+   ScrollController scrollController = new ScrollController();
+  int? count;
+
+
+
+
 
 
   @override

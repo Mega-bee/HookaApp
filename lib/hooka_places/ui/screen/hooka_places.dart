@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/map/map_routes.dart';
-import 'package:hooka/map/ui/screen/map_screen.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../abstracts/states/state.dart';
-import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
 import '../../request/filter_places_request.dart';
 import '../../state_manager/places_state_manager.dart';

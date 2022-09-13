@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../hooka_buddies/buddies_routes.dart';
@@ -28,8 +29,11 @@ class _ReceivedCardState extends State<ReceivedCard> {
     return Column(children: <Widget>[
 
       GestureDetector(
-        onTap: () =>
-        {
+        onTap: () {
+          Navigator.pushNamed(
+              context,
+              BuddiesRoutes.PROFBUDDIES,arguments: widget.receivedModel!.id.toString()
+          );
         },
         child: Row(
             children: [
@@ -131,34 +135,21 @@ widget.receivedModel!.invitationStatusId==1?
 widget.receivedModel!.invitationStatusId==2?
 Container(
   decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(30),
+    borderRadius: BorderRadius.circular(50),
     color: YellowColor,
   ),
+height: 30,width: 30,
 
-  height: MediaQuery
-      .of(context)
-      .size
-      .height * 0.03,
-  width: MediaQuery
-      .of(context)
-      .size
-      .width * 0.25,
-  child: Center(child: Text("Accepted")),
+
+  child: Center(child: Icon(CupertinoIcons.check_mark,color: Colors.white,size: 12,)),
 ):Container(
   decoration: BoxDecoration(
     borderRadius: BorderRadius.circular(30),
     color: Colors.red,
   ),
 
-  height: MediaQuery
-      .of(context)
-      .size
-      .height * 0.03,
-  width: MediaQuery
-      .of(context)
-      .size
-      .width * 0.25,
-  child: Center(child: Text("Not Accepted")),
+  height: 30,width: 30,
+  child: Center(child:  Icon(CupertinoIcons.xmark,color: Colors.white,size: 12,)),
 ),
                         SizedBox(width: MediaQuery
                             .of(context)
@@ -195,30 +186,7 @@ widget.receivedModel!.invitationStatusId ==1?
                             .of(context)
                             .size
                             .width * 0.02,),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context,
-                                BuddiesRoutes.PROFBUDDIES,arguments: widget.receivedModel!.id.toString()
-                            );
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Primarycolor,
-                            ),
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.03,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.2,
-                            child: Center(child: Text("View Profile",
-                              style: TextStyle(color: YellowColor),)),
-                          ),
-                        )
+
                       ],
                     ),
                     SizedBox(height: MediaQuery
@@ -229,45 +197,7 @@ widget.receivedModel!.invitationStatusId ==1?
 
 
                     
-                    Card(
-                      elevation: 0,
-                      child: Column(
-                        children: [
 
-                          Row(
-                            children: [
-                              Text("Restaurent : ${widget.receivedModel!.restaurantName}           "),
-
-
-                            ],
-                          ),
-
-                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Date : ${widget.receivedModel!.invitationDate!.split("T").first}      "),
-
-                            ],
-                          ),  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Option : ${widget.receivedModel!.invitationOption}"),
-
-                            ],
-                          ),
-                          // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //   children: [
-                          //     Text("Option :"),
-                          //     Text(" ${widget.receivedModel!.invitationOption}"),
-                          //   ],
-                          // ),
-                          // Row(
-                          //   children: [
-                          //     Text("Restaurent : "),
-                          //     Text(" ${widget.receivedModel!.restaurantName}"),
-                          //   ],
-                          // ),
-                        ],
-                      ),
-                    ),
                 
 
 
@@ -276,7 +206,45 @@ widget.receivedModel!.invitationStatusId ==1?
 
 
             ]),),
+      Card(
+        elevation: 0,
+        child: Column(
+          children: [
 
+            Row(
+              children: [
+                Text("Restaurent : ${widget.receivedModel!.restaurantName}           "),
+
+
+              ],
+            ),
+
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Date : ${widget.receivedModel!.invitationDate!.split("T").first}      "),
+
+              ],
+            ),  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Option : ${widget.receivedModel!.invitationOption}"),
+
+              ],
+            ),
+            // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Text("Option :"),
+            //     Text(" ${widget.receivedModel!.invitationOption}"),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Text("Restaurent : "),
+            //     Text(" ${widget.receivedModel!.restaurantName}"),
+            //   ],
+            // ),
+          ],
+        ),
+      ),
       Divider(color: Colors.grey, thickness: 0),
 
     ],

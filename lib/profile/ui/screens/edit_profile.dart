@@ -106,7 +106,7 @@ class EditProfileState extends State<EditProfile> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          elevation: 1,
+          elevation: 0,
           backgroundColor: Colors.white,
           leading: IconButton(
             icon: Icon(

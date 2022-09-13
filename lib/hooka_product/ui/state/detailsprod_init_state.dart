@@ -23,6 +23,10 @@ class DetailsProdInitState extends States {
   num inc = 1;
 
   DetailsProductResponse? isselec;
+  int? count;
+
+
+
 
   @override
   Widget getUI(BuildContext context) {
@@ -50,24 +54,33 @@ class DetailsProdInitState extends States {
                         ),
                       ),
                     ),
+                    SizedBox(height: 10,),
 
                     Container(
 
+                      height: MediaQuery.of(context).size.height * 0.462,
+                      width: double.infinity,
 
-                      height: MediaQuery.of(context).size.height * 0.57,
+
                       child: GridView.builder(
-
+                          physics: PageScrollPhysics(parent: BouncingScrollPhysics()),
+                          shrinkWrap: true,
                           gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: (2.5 / 2.5),
+                              crossAxisCount: 1,
+childAspectRatio: 1,
+
                               crossAxisSpacing: 0,
                               mainAxisSpacing: 0),
                           itemCount: detailsprodresp.length,
+
                           scrollDirection: Axis.horizontal,
+
                           itemBuilder: (context, index) {
                             final PlacesList = detailsprodresp[index];
-
-                            return DetailsProdCard(PlacesList, () {
+int count=detailsprodresp.length;
+                            return DetailsProdCard(
+                                PlacesList,
+                                    () {
                               detailsprodresp.forEach((element) {
                                 element.isselected = false;
 
@@ -77,9 +90,12 @@ class DetailsProdInitState extends States {
                               isselec = PlacesList;
                               inc=1;
                               detailsProductState.refresh();
-                            });
+                            },
+                            count,index+1
+                            );
                           }),
                     ),
+
                     Container(
                       width: double.infinity,
     decoration: BoxDecoration(
@@ -95,7 +111,7 @@ class DetailsProdInitState extends States {
                             children: [
 
                               Container(
-  width: 150,
+
                                 height: 60,
                                 child: Padding(
                                   padding: const EdgeInsets.only(
@@ -228,6 +244,8 @@ color: YellowColor,
                 onTap: () {
                   if (inc > 0) {
                     Fluttertoast.showToast(
+
+
                         msg: "${inc} ${isselec!.title} Added To Cart");
 
                     detailsProductState.AddToCarttttt(

@@ -9,9 +9,9 @@ class LoadingState extends States {
   @override
   Widget getUI(BuildContext context) {
     return Center(
-      child: LoadingAnimationWidget.flickr(
-          rightDotColor: Colors.black,
-          leftDotColor: YellowColor, size: 150)
+      child: LoadingAnimationWidget.hexagonDots(color: Colors.black,
+
+           size: 25)
     );
     // child: LoadingAnimationWidget.hexagonDots(
     //    color:Colors.black, size: 120)

@@ -21,7 +21,7 @@ class _InvitationsState extends State<Invitations>
 
     return Scaffold(
         appBar: AppBar(
-          elevation: 1,
+          elevation: 0,
           leading: MenuWidget(),
           backgroundColor: Colors.white,
           title: Text(

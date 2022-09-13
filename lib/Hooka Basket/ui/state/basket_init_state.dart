@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/Hooka%20Basket/request/update_basket_request.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../checkout/checkout_routes.dart';
@@ -24,9 +26,7 @@ class BasketInitState extends States {
   Widget getUI(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: 5,
-        ),
+
         Expanded(
           child: ListView.builder(
               itemCount: _basketResponse.items!.length,
@@ -75,18 +75,8 @@ class BasketInitState extends States {
               ),
             ),
           ),
-          Spacer(
-            flex: 2,
-          ),
-          Container(
-            child: Center(
-                child: Image.asset(
-              "assets/images/92-924113_shopping-cart-icon-e-commerce-removebg-preview.png",
-              fit: BoxFit.contain,
-              height: 40,
-              width: 50,
-            )),
-          ),
+
+
         ]),
         SizedBox(
           height: 30,
@@ -125,6 +115,7 @@ class BasketInitState extends States {
 //              ),
               InkWell(
                 onTap: () {
+                  if(_basketResponse.items!.isNotEmpty){
                   List<UpdateCartRequest> itemsUpdated = [];
                   _basketResponse.items?.forEach((element) {
                     itemsUpdated.add(UpdateCartRequest(
@@ -133,14 +124,18 @@ class BasketInitState extends States {
                   });
 
                   screenState.updateCartAndCheckOut(
-                      UpdateListCartRequest(items: itemsUpdated));
+                      UpdateListCartRequest(items: itemsUpdated));}else{
+                    Fluttertoast.showToast(msg: "Your Cart Is Empty ",timeInSecForIosWeb: 4,
+                    gravity: ToastGravity.CENTER,
+                    );
+                  }
                 },
                 child: Container(
                     width: 200,
                     height: 50,
                     child: Card(
                         color: Colors.black87,
-                        elevation: 8,
+                        elevation: 5,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40.0),
                         ),
@@ -148,10 +143,10 @@ class BasketInitState extends States {
                             padding: const EdgeInsets.all(8.0),
                             child: Center(
                                 child: Text(
-                              "Checkout",
-                              style: TextStyle(
+                              "Proceed To Checkout",
+                              style: GoogleFonts.anekLatin(
                                   color: YellowColor,
-                                  fontSize: 12,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold),
                             ))))),
               ),

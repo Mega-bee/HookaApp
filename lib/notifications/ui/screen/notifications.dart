@@ -26,7 +26,7 @@ class NotificationsState extends State<Notifications> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 1,
+        elevation: 0,
         leading: MenuWidget(),
         backgroundColor: Colors.white,
         title: Text("Notifications",style: TextStyle(color: Colors.black),),

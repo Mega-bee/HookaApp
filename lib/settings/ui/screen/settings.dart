@@ -39,7 +39,7 @@ class SettingsState extends State<Settings> {
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 1,
+        elevation: 0,
         leading: MenuWidget(),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),

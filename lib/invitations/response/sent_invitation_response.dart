@@ -2,8 +2,8 @@ class SentInvitationResponse {
   int? placeId;
   String? placeName;
   String? image;
-  int? rating;
-  int? buddiesCount;
+  num? rating;
+  num? buddiesCount;
 
   SentInvitationResponse(
       {this.placeId,

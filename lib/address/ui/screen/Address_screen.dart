@@ -18,32 +18,7 @@ class AddresScreen extends StatefulWidget {
 
 class AddresScreenState extends State<AddresScreen> {
   late AsyncSnapshot loadingSnapshot;
-  int _selectedValue = 0;
-  void _showPicker(BuildContext ctx) {
-    showCupertinoModalPopup(
-        context: ctx,
-        builder: (_) => Container(
-          width: 300,
-          height: 250,
-          child: CupertinoPicker(
-            backgroundColor: Colors.white,
-            itemExtent: 30,
-            scrollController: FixedExtentScrollController(initialItem: 1),
-            children: [
-            ListView(
-              children: [
 
-              ],
-            )
-            ],
-            onSelectedItemChanged: (value) {
-              setState(() {
-                _selectedValue = value;
-              });
-            },
-          ),
-        ));
-  }
   void refresh() {
     if (mounted) {
       setState(() {});
@@ -71,7 +46,7 @@ widget.cubit.getAddressesssss(this,);
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 1,
+        elevation: 0,
         backgroundColor:Colors.white ,
           leading: IconButton(
             icon: Icon(Icons.arrow_back_outlined,color: Colors.black,size: 35,),
@@ -79,7 +54,7 @@ widget.cubit.getAddressesssss(this,);
 
           ),
 
-        title: Text("Address",style: TextStyle(color: Colors.black),)
+        title: Text("Delivery Address",style: TextStyle(color: Colors.black),)
 
         ),
       body: BlocBuilder<AddressCubit, States>(

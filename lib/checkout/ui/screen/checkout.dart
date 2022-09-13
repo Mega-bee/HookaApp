@@ -43,7 +43,7 @@ widget.cubit.getCheckout(this,);
       flags = false;
     }
     return Scaffold(
-      backgroundColor: Colors.white,
+
       appBar: AppBar(
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(
@@ -59,7 +59,7 @@ widget.cubit.getCheckout(this,);
         ,
 
 
-        elevation: 1,
+        elevation: 0,
         // leading: MenuWidget(),
 
         title: Text("Checkout",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),

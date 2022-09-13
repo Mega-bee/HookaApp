@@ -42,9 +42,9 @@ class BasketScreenState extends State<BasketScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+
         appBar: AppBar(
-            elevation: 1,
+            elevation: 0,
             backgroundColor: Colors.white,
             leading: IconButton(
               icon: Icon(

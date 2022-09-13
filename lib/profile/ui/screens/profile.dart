@@ -34,7 +34,7 @@ class ProfileState extends State<Profile> {
 
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 1,
+        elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),

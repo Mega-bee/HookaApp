@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/address/request/address_request.dart';
 import 'package:hooka/auth/ui/widget/custem_button.dart';
 import '../../../abstracts/states/state.dart';
@@ -29,7 +30,32 @@ class AddressInitState extends States{
   String location = 'Press Button';
   String location2 = 'Press Button';
   String Address = 'search';
+  int? CuppertinoId;
+  String? CuppertinoName;
+
   DateTime date = DateTime(2016, 10, 26);
+  int _selectedFruit = 0;
+  double _kItemExtent = 32.0;
+  void _showDialog(Widget child) {
+    showCupertinoModalPopup<void>(
+        context: screenState.context,
+        builder: (BuildContext context) => Container(
+          height: 260,
+          padding: const EdgeInsets.only(top: 6.0),
+          // The Bottom margin is provided to align the popup above the system navigation bar.
+          margin: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.top,
+          ),
+          // Provide a background color for the popup.
+          color: CupertinoColors.systemBackground.resolveFrom(context),
+          // Use a SafeArea widget to avoid system overlaps.
+          child: SafeArea(
+
+            top: true,
+            child: child,
+          ),
+        ));
+  }
 
   Future<Position> _getGeoLocationPosition() async {
     bool serviceEnabled;
@@ -85,10 +111,74 @@ class AddressInitState extends States{
      child: Column(
        children: [
          Padding(
-           padding: const EdgeInsets.all(28.0),
+           padding: const EdgeInsets.all(12.0),
            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
-               Text("Delivery Adress",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+               addressResponse.isNotEmpty?
+               Row(children: [
+                  Text('Your Addresses :  ',style: GoogleFonts.anekLatin(
+                   fontSize: 17
+                 ),),
+                 CupertinoButton(
+                   color: Colors.grey[300],
+
+                   padding: EdgeInsets.all(10),
+                   minSize: 10,
+
+                   // Display a CupertinoPicker with list of fruits.
+                   onPressed: () => _showDialog(
+
+                     CupertinoPicker(
+
+                       diameterRatio: 1,
+
+
+                       magnification: 1.22,
+                       squeeze: 1.2,
+                       useMagnifier: true,
+                       itemExtent: _kItemExtent,
+                       // This is called when selected item is changed.
+                       onSelectedItemChanged: (int indexx,) {
+                         addressResponse.forEach((element) {
+                           element.isselected = false;
+
+                         });
+
+
+
+
+                         CuppertinoId=addressResponse[indexx].id;
+                         CuppertinoName=addressResponse[indexx].title;
+                         value=!value;
+                         print("hhhh ${Button} " );
+
+                         screenState.refresh(
+
+                         );
+                         print("your idddd iss  ${CuppertinoId}");
+
+                       },
+                       children:
+                       List<Widget>.generate(addressResponse.length, (int index) {
+                         return Center(
+                           child: Text(
+                             addressResponse[index].title.toString(),
+                           ),
+                         );
+                       }),
+                     ),
+                   ),
+                   // This displays the selected fruit name.
+                   child: Text(
+                     CuppertinoName ?? "Address",
+                     style: GoogleFonts.anekLatin(
+                       fontSize: 18.0,color: Colors.black,fontWeight: FontWeight.w600
+                     ),
+                   ),
+                 ),
+               ],):Text("No Adresses yet..", style: GoogleFonts.alef(
+                   fontSize: 18.0,color: Colors.black
+               ),),
 
                SizedBox(width: MediaQuery.of(context).size.width*0.1,),
                Padding(
@@ -96,7 +186,7 @@ class AddressInitState extends States{
                    child:
                    DontHaveaddress==true? Container():
                    TextButton(
-                     child: Text("New Address",style: TextStyle(decoration: TextDecoration.underline),),
+                     child: Text("Add New",style: GoogleFonts.alef(decoration: TextDecoration.underline,fontWeight: FontWeight.bold),),
                      onPressed: (){
                        DontHaveaddress=true;
                        screenState.refresh();
@@ -125,7 +215,7 @@ class AddressInitState extends States{
                        padding: const EdgeInsets.all(20.0),
                        child: Text(
                          "Address",
-                         style: TextStyle(
+                         style: GoogleFonts.alef(
                            fontSize: 20,
                            fontWeight: FontWeight.w600,
                          ),
@@ -151,13 +241,15 @@ class AddressInitState extends States{
                  EdgeInsets.symmetric(horizontal: mediaQueryWidth * 0.05),
                  child: TextFormField(
                      cursorColor: YellowColor,
-                     style: const TextStyle(fontSize: 18),
+                     style:  GoogleFonts.alef(fontSize: 18),
                      controller: title1,
                      decoration: InputDecoration(
                        filled: true,
                        fillColor: Colors.white,
                        labelText: "Title",
                        hintText: "Title",
+                       hintStyle: GoogleFonts.alef(fontSize: 18),
+                       labelStyle: GoogleFonts.alef(fontSize: 15),
                        enabledBorder: const OutlineInputBorder(
                            borderRadius: BorderRadius.all(Radius.circular(10)),
                            borderSide:
@@ -178,13 +270,15 @@ class AddressInitState extends States{
                  EdgeInsets.symmetric(horizontal: mediaQueryWidth * 0.05),
                  child: TextFormField(
                      cursorColor: YellowColor,
-                     style: const TextStyle(fontSize: 18),
+                     style:   GoogleFonts.alef(fontSize: 18),
                      controller: city1,
                      decoration: InputDecoration(
                        filled: true,
                        fillColor: Colors.white,
                        labelText: "City",
                        hintText: "City",
+                       hintStyle: GoogleFonts.alef(fontSize: 18),
+                       labelStyle: GoogleFonts.alef(fontSize: 15),
                        enabledBorder: const OutlineInputBorder(
                            borderRadius: BorderRadius.all(Radius.circular(10)),
                            borderSide:
@@ -205,13 +299,16 @@ class AddressInitState extends States{
                  EdgeInsets.symmetric(horizontal: mediaQueryWidth * 0.05),
                  child: TextFormField(
                      cursorColor: YellowColor,
-                     style: const TextStyle(fontSize: 18),
+                     style: GoogleFonts.alef(fontSize: 18),
                      controller: street1,
                      decoration: InputDecoration(
                        filled: true,
                        fillColor: Colors.white,
                        labelText: "Street",
                        hintText: "Street",
+                       hintStyle: GoogleFonts.alef(fontSize: 18),
+                       labelStyle: GoogleFonts.alef(fontSize: 15),
+
                        enabledBorder: const OutlineInputBorder(
                            borderRadius: BorderRadius.all(Radius.circular(10)),
                            borderSide:
@@ -232,13 +329,15 @@ class AddressInitState extends States{
                  EdgeInsets.symmetric(horizontal: mediaQueryWidth * 0.05),
                  child: TextFormField(
                      cursorColor: YellowColor,
-                     style: const TextStyle(fontSize: 18),
+                     style:GoogleFonts.alef(fontSize: 18),
                      controller: building1,
                      decoration: InputDecoration(
                        filled: true,
                        fillColor: Colors.white,
                        labelText: "Building",
                        hintText: "Building",
+                       hintStyle: GoogleFonts.alef(fontSize: 18),
+                       labelStyle: GoogleFonts.alef(fontSize: 15),
                        enabledBorder: const OutlineInputBorder(
                            borderRadius: BorderRadius.all(Radius.circular(10)),
                            borderSide:
@@ -259,13 +358,15 @@ class AddressInitState extends States{
                  EdgeInsets.symmetric(horizontal: mediaQueryWidth * 0.05),
                  child: TextFormField(
                      cursorColor: YellowColor,
-                     style: const TextStyle(fontSize: 18),
+                     style:GoogleFonts.alef(fontSize: 18),
                      controller: appartment1,
                      decoration: InputDecoration(
                        filled: true,
                        fillColor: Colors.white,
                        labelText: "Appartment",
                        hintText: "Appartment",
+                       hintStyle: GoogleFonts.alef(fontSize: 18),
+                       labelStyle: GoogleFonts.alef(fontSize: 15),
                        enabledBorder: const OutlineInputBorder(
                            borderRadius: BorderRadius.all(Radius.circular(10)),
                            borderSide:
@@ -285,7 +386,8 @@ class AddressInitState extends States{
                Row(
                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                  children: [
-                 Text("Location :"),
+                 Text("Location :",style:  GoogleFonts.alef(fontSize: 18),
+             ),
                    Icon(Icons.check)
 
                  ],
@@ -302,7 +404,7 @@ class AddressInitState extends States{
 
                      GetAddressFromLatLong(position);
                    },
-                   child: Text('Get Location')),
+                   child: Text('Get Location',style: GoogleFonts.alef(),)),
                SizedBox(
                  height: MediaQuery.of(context).size.height * 0.03,
                ),
@@ -312,71 +414,13 @@ class AddressInitState extends States{
          SizedBox(height: MediaQuery.of(context).size.height*0.03,),
 
 
-         Padding(
-           padding: const EdgeInsets.all(28.0),
-           child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-             children: [
 
 
 
 
-               Text("Your Addresses",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-
-               SizedBox(width: MediaQuery.of(context).size.width*0.1,),
-
-
-
-             ],),
-         ),
-         addressResponse.isNotEmpty?
-         Padding(
-           padding: const EdgeInsets.all(20.0),
-           child: ListView.builder(
-               physics: NeverScrollableScrollPhysics(),
-               shrinkWrap: true,
-               itemCount:addressResponse.length,
-               itemBuilder: (context, index) {
-                final mod=addressResponse[index];
-                int? iddd=addressResponse[index].id;
-                 return CheckboxListTile(
-
-                   activeColor: YellowColor,
-                   value: mod.isselected,
-                   onChanged:(val) {
-
-                     addressResponse.forEach((element) {
-                       element.isselected = false;
-
-                     });
-
-                     addressResponse[index].isselected = true;
-                   mod.isselected = val!;
-
-                  CheckBoxId=mod.id;
-           value=!value;
-                   print("hhhh ${Button} " );
-
-                   screenState.refresh(
-
-                   );
-                   print("your idddd iss  ${CheckBoxId}");
-
-
-                },
-                 title:Text( mod.title.toString(),),
-                   subtitle: Text( mod.city.toString(),),
-
-
-                 );
-
-
-
-               }),
-         ):Text("No Adresses yet.."),
 
          SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-value==true&& (DontHaveaddress==false||title1.text.isEmpty || appartment1.text.isEmpty || city1.text.isEmpty ||street1.text.isEmpty || building1.text.isEmpty)?Container():
+CuppertinoId==null&& (DontHaveaddress==false||title1.text.isEmpty || appartment1.text.isEmpty || city1.text.isEmpty ||street1.text.isEmpty || building1.text.isEmpty)?Container():
 
          Container(width: 250,height: 50,
            child: CustomButton(bgColor: YellowColor, text: "Confirm Order", textColor: Colors.black,
@@ -391,7 +435,7 @@ value==true&& (DontHaveaddress==false||title1.text.isEmpty || appartment1.text.i
                  City: city1.text,Building: building1.text,Appartment: appartment1.text
              )
 
-             ):  screenState.Makeorder(OrderRequest(addressId:CheckBoxId,Appartment: "empty",Building: "empty",City: "empty",
+             ):  screenState.Makeorder(OrderRequest(addressId:CuppertinoId,Appartment: "empty",Building: "empty",City: "empty",
              Latitude: "",Longitude: "",Street: "empty",Title: "empty",
              ));
              print(OrderRequest);
@@ -399,9 +443,17 @@ value==true&& (DontHaveaddress==false||title1.text.isEmpty || appartment1.text.i
                }),
          ),
          SizedBox(height: MediaQuery.of(context).size.height*0.1,),
-       ],
-     ),
-   );
+
+
+
+
+
+
+    ],
+    ),
+    );
+
+
   }
 
 
