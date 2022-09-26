@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/request/gen_otp_request.dart';
 import 'package:hooka/auth/request/signup_request.dart';
@@ -38,29 +39,36 @@ class SignupInitState extends States{
     var mediaQueryHeight = MediaQuery.of(context).size.height;
     var mediaQueryWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
+
       child: Column(children: [
         Container(
           color: Colors.black,
           height: MediaQuery.of(context).size.height * 0.18,
           child: Column(
             children: [
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Let's Get Started",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 37,
-                        fontWeight: FontWeight.bold),
-                  )),
+              Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Let's Get Started",
+                      style: GoogleFonts.comfortaa(
+                          color: Colors.white,
+                          fontSize: 37,
+                          fontWeight: FontWeight.bold),
+                    )),
+              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                    "Please enter your email and password to signup for HookaApp.",
-                    style: TextStyle(color: Colors.white, fontSize: 20)),
+              Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                      "Please enter your email and password to signup for HookaApp.",
+                      style: GoogleFonts.alef(color: Colors.white, fontSize: 20)),
+                ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             ],
@@ -90,7 +98,7 @@ class SignupInitState extends States{
                           padding: const EdgeInsets.all(20.0),
                           child: Text(
                             "Sign up",
-                            style: TextStyle(
+                            style: GoogleFonts.alef(
                               fontSize: 26,
                               fontWeight: FontWeight.w600,
                             ),
@@ -124,10 +132,12 @@ class SignupInitState extends States{
                                     borderSide: BorderSide(
                                         color:Colors.black)),
                                 labelText: "First Name",
-                                labelStyle: TextStyle(color: Colors.black),
+
                                 filled: true,
                                 fillColor: Colors.white,
                                 hintText: " First name",
+                                labelStyle: GoogleFonts.alef(color: Colors.black),
+                                hintStyle: GoogleFonts.alef(),
                                 enabledBorder: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10)),
@@ -165,7 +175,8 @@ class SignupInitState extends States{
                                 filled: true,
                                 fillColor: Colors.white,
                                 hintText: " Last name",
-                                labelStyle: TextStyle(color: Colors.black),
+                                labelStyle: GoogleFonts.alef(color: Colors.black),
+                                hintStyle: GoogleFonts.alef(),
                                 enabledBorder: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10)),
@@ -211,7 +222,8 @@ class SignupInitState extends States{
                                 filled: true,
                                 fillColor: Colors.white,
                                 hintText: " Mobile",
-                                labelStyle: TextStyle(color: Colors.black),
+                                labelStyle: GoogleFonts.alef(color: Colors.black),
+                                hintStyle: GoogleFonts.alef(),
                                 enabledBorder: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10)),
@@ -250,7 +262,8 @@ class SignupInitState extends States{
                                       color:Colors.black)),
                               hintText: " Password",
                               labelText: "Password",
-                              labelStyle: TextStyle(color: Colors.black),
+                              labelStyle: GoogleFonts.alef(color: Colors.black),
+                              hintStyle: GoogleFonts.alef(),
                               enabledBorder: const OutlineInputBorder(
                                 borderRadius:
                                 BorderRadius.all(Radius.circular(10)),
@@ -386,12 +399,13 @@ class SignupInitState extends States{
                           children: [
                             Text(
                               "Already have an account? ",
-                              style: TextStyle(color: Colors.grey),
+                              style:  GoogleFonts.anekLatin(color: Colors.grey,fontSize: 15),
                             ),
                             TextButton(
                               child: Text("SIGN IN",
-                                  style: TextStyle(
+                                  style:  GoogleFonts.anekLatin(
                                       color: Colors.black,
+                                      fontSize: 17,
                                       decoration: TextDecoration.underline,
 
                                       fontWeight: FontWeight.bold)),
@@ -399,7 +413,7 @@ class SignupInitState extends States{
                             ),
                           ]),
                       SizedBox(
-                        height: 150,
+                        height: 40,
                       ),
                     ],
                   ),
@@ -408,6 +422,9 @@ class SignupInitState extends States{
             ),
           )
         ]),
+        SizedBox(
+          height: 100,
+        ),
       ]),
     );
   }

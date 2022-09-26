@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:custom_info_window/custom_info_window.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -44,7 +45,7 @@ class LocationMapState extends State<LocationMap> {
   void initState() {
     super.initState();
     customInfoWindowController = CustomInfoWindowController();
-    request = FilterRequest(0);
+    request = FilterRequest(0,0,"","",[]);
   }
 
 
@@ -74,7 +75,7 @@ class LocationMapState extends State<LocationMap> {
               Navigator.pop(context);
             },
             icon: Icon(
-              Icons.arrow_back,
+              CupertinoIcons.back,size: 25,
               color: Colors.black,
             ),
           ),

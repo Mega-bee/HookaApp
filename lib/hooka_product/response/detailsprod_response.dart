@@ -1,16 +1,18 @@
 class DetailsProductResponse {
-  num? id;
+  int? id;
   String? category;
   String? title;
   String? description;
   String? image;
   num? customerInitialPrice;
   bool? isselected =false;
+  int? quantityInCart;
 
   DetailsProductResponse(
       {this.id,
         required this.isselected,
         this.category,
+        this.quantityInCart,
         this.title,
         this.description,
         this.image,
@@ -18,6 +20,7 @@ class DetailsProductResponse {
 
   DetailsProductResponse.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    quantityInCart = json['quantityInCart'];
     category = json['category'];
     title = json['title'];
     description = json['description'];

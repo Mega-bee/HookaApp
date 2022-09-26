@@ -2,6 +2,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';
 import '../../../abstracts/states/state.dart';
@@ -28,294 +29,280 @@ class OffersDetailsInitState extends States{
   @override
   Widget getUI(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-
-        child: Column(
-          children: [
-            PlayAnimation<double>(
-                duration:const Duration(milliseconds: 1200),
-                // delay: Duration(milliseconds: 400),
-                tween: Tween(begin: 0.0, end: 250),
-                builder: (context, child, value) {
-                  return Container(
-                    height: value,
-                    child: Center(
-                        child:
-                        CachedNetworkImage(
-                          imageUrl:detailsResponse.image.toString(),height: 600,fit: BoxFit.cover,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(80),
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.contain,
-                              ),
+      child: Column(
+        children: [
+          PlayAnimation<double>(
+              duration:const Duration(milliseconds: 1200),
+              // delay: Duration(milliseconds: 400),
+              tween: Tween(begin: 0.0, end: 250),
+              builder: (context, child, value) {
+                return Container(
+                  height: value,
+                  child: Center(
+                      child:
+                      CachedNetworkImage(
+                        imageUrl:detailsResponse.image.toString(),height: 600,fit: BoxFit.cover,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(80),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.contain,
                             ),
                           ),
-                          placeholder: (context, url) =>
-
-                              const Padding(
-                            padding:  EdgeInsets.all(15.0),
-                            child: LoadingIndicator(
-
-                              indicatorType:
-                              Indicator.ballBeat,
-
-
-                              colors: [Colors.black],
-                            ),),
-                          errorWidget: (context, url, error) =>const Icon(Icons.error),
                         ),
-                    ),
-                  );
-                }),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.01,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(detailsResponse.restaurantName.toString(),
-                      style:
-                      const   TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-                  Container(
-                    height: 30,
-                    width: 70,
-                    color: Colors.transparent,
-                    child: Card(
-                        color: Colors.green,
-                        child: Center(
-                            child: Text(detailsResponse.rating.toString(),
-                                style:const TextStyle(
-                                    fontSize:18, color: Colors.white)))),
+                        placeholder: (context, url) =>
+
+                            const Padding(
+                          padding:  EdgeInsets.all(15.0),
+                          child: LoadingIndicator(
+
+                            indicatorType:
+                            Indicator.ballBeat,
+
+
+                            colors: [Colors.black],
+                          ),),
+                        errorWidget: (context, url, error) =>const Icon(Icons.error),
+                      ),
                   ),
+                );
+              }),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Padding(
+            padding:  EdgeInsets.only(left: 30.0,right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(detailsResponse.restaurantName.toString(),
+                    style:
+                       GoogleFonts.alef(fontSize: 25, fontWeight: FontWeight.bold)),
+                Container(
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
+
+                      color:
+                      detailsResponse.rating! <= 2?
+                      Colors.red:
+                      detailsResponse.rating! <= 4?
+                      Colors.orange:Colors.green[700],),
+                    width: 50,height: 20,
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(detailsResponse.rating.toString(),style:  GoogleFonts.anekLatin(
+
+                            color: Colors.white,fontSize: 15),),
+                        Icon(Icons.star,size: 10,color: Colors.white,)
+                      ],
+                    )),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 30, right: 20),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(detailsResponse.cuisine.toString(),
+                      style:
+                      GoogleFonts.anekLatin(fontSize: 15, fontWeight: FontWeight.w500)),
+                  Icon(Icons.fastfood_rounded,size: 12,)
                 ],
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 35, right: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(detailsResponse.location.toString(),
-                    style:
-                    TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 35, right: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-
-                  child: Card(
-                    color: Colors.deepOrange[200],
-                    child: SizedBox(
-                      width: 160,
-                      height: 20,
-                      child: Center(
-                        child: Text(
-                            detailsResponse.cuisine.toString(),
-
-                            style:
-                            const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                fontStyle: FontStyle.italic)),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 35, right: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Row(children: [
-                 const Icon(
-                    FontAwesomeIcons.clock,
-                    color: Colors.grey,
-                    size: 15,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.01,
-                  ),
-                  Text("Opening hours [${detailsResponse.openningFrom} -${detailsResponse.openningTo}]",
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 30, right: 20),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(detailsResponse.restaurantDescription.toString(),
                       style:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.w300)),
-                ]),
+                      GoogleFonts.anekLatin(fontSize: 14, fontWeight: FontWeight.w400)),
+                  Icon(Icons.info_outlined,size: 12,)
+                ],
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            Padding(
-              padding:
-              const EdgeInsets.only(right: 20, left: 20),
-              child: Container(
-                color: Colors.grey,
-                height: 1,
-                width: MediaQuery.of(context).size.width * 0.82,
+          ),
+
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 30, right: 20),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(detailsResponse.location.toString(),
+                      style:
+                      GoogleFonts.anekLatin(fontSize: 13, fontWeight: FontWeight.w500)),
+                  Icon(Icons.location_on_outlined,size: 12,)
+                ],
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            const Padding(
-              padding:  EdgeInsets.only(left: 35, right: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text("Description",
-                    style:
-                    TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 30, right: 20),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap:(){launchUrl("tel://${detailsResponse.phonNumber}");},
+
+                    child: Text(detailsResponse.phonNumber.toString(),style: GoogleFonts.anekLatin(
+                        fontStyle: FontStyle.italic,color: Colors.black,decoration: TextDecoration.underline
+                    ),
+                    ),),
+                  InkWell(
+                      onTap: (){launchUrl("tel://${detailsResponse.phonNumber}");},
+
+                      child: Icon(Icons.call,size: 12,))
+                ],
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 35, right: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(detailsResponse.restaurantDescription.toString(),
-                    style:
-                    TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            const Padding(
-              padding: const EdgeInsets.only(left: 35, right: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text("Offer",
-                    style:
-                    TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(start: 30 ,end: 30),
-              child: Card(
-                elevation: 4,
-                shadowColor: Colors.red[100],
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [  Column(children: [
-                      const Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("type"),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.01,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(detailsResponse.type.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
-                      ),
-                    ],),
-                      Padding(
-                        padding:const EdgeInsets.only(right: 2, left: 24),
-                        child: Container(
-                          color: Colors.black,
-                          height: 50,
-                          width: 1,
-                        ),
-                      ),
-
-                      Column(children: [
-                        const Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Discount"),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.01,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("${detailsResponse.discount} %",style: TextStyle(fontWeight: FontWeight.bold),),
-                        ),
-                      ],),
-                      Padding(
-                        padding: EdgeInsets.only(right: 2, left: 24),
-                        child: Container(
-                          color: Colors.black,
-                          height: 50,
-                          width: 1,
-                        ),
-                      ),
-                      Column(children: [
-                        const Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Expiry Date"),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.01,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(detailsResponse.expiryDate!.split("T").first.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
-                        ),
-                      ],),
-                    ]),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.04,
-            ),
-            ElevatedButton(
-
-              onPressed: () {
-
-                launchUrl("tel://${detailsResponse.phonNumber}");
-
-
-
-
-
-              },
-//
-
-              child: const Text(
-                'BOOK ',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Roboto-Bold'),
-              ),
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.15,
-                    vertical: MediaQuery.of(context).size.height * 0.018),
-                primary: YellowColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 35, right: 10),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Row(children: [
+               const Icon(
+                  FontAwesomeIcons.clock,
+                  color: Colors.grey,
+                  size: 15,
                 ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.01,
+                ),
+                Text("Opening hours [${detailsResponse.openningFrom} -${detailsResponse.openningTo}]",
+                    style:
+                    TextStyle(fontSize: 14, fontWeight: FontWeight.w300)),
+              ]),
+            ),
+          ),
+
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
+          Padding(
+            padding:
+            const EdgeInsets.only(right: 20, left: 20),
+            child: Container(
+              color: Colors.grey,
+              height: 1,
+              width: MediaQuery.of(context).size.width * 0.82,
+            ),
+          ),
+
+
+
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
+           Padding(
+            padding:  EdgeInsets.only(left: 35, right: 20),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text("Offer",
+                  style:
+                  GoogleFonts.alef(fontSize: 22, fontWeight: FontWeight.w600)),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
+          Padding(padding: EdgeInsets.only(left: 35,right: 20,),child: Align(
+            alignment: Alignment.centerLeft,
+            child: Container(color: Colors.black,
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(detailsResponse.offerDescription.toString(),style: GoogleFonts.anekLatin(
+                    color: YellowColor,fontSize: 15,fontWeight: FontWeight.bold
+                ),),
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
+          ),),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 35,right: 20),
+            child: Container(
+
+
+              padding: EdgeInsets.only(top: 5.0),
+              child: Table(
+
+                border: TableBorder.all(color: Colors.black),
+                children: [
+                  TableRow(children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Title",style: GoogleFonts.comfortaa(fontWeight: FontWeight.w400),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Type",style:  GoogleFonts.comfortaa(fontWeight: FontWeight.w400),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Discount",style:  GoogleFonts.comfortaa(fontWeight: FontWeight.w400),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Expiry Date",style:  GoogleFonts.comfortaa(fontWeight: FontWeight.w400),),
+                    ),
+                  ]),
+                  TableRow(children: [
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(detailsResponse.offerTitle.toString(),style: GoogleFonts.anekLatin(fontWeight: FontWeight.bold),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(detailsResponse.type.toString(),style:  GoogleFonts.anekLatin(fontWeight: FontWeight.bold,),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(detailsResponse.discount.toString(),style: GoogleFonts.anekLatin(fontWeight: FontWeight.bold,),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(detailsResponse.expiryDate!.split("T").first.toString(),style:  GoogleFonts.anekLatin(fontWeight: FontWeight.bold,),),
+                    ),
+                  ])
+                ],
+              ),
             ),
+          ),
+
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.04,
+          ),
 
 
 
-          ],
-        ),
+
+
+        ],
       ),
     );
   }

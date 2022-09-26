@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 import 'package:hooka/invitations/ui/screen/received_tab.dart';
 import 'package:hooka/invitations/ui/screen/sent_tab.dart';
@@ -26,7 +27,7 @@ class _InvitationsState extends State<Invitations>
           backgroundColor: Colors.white,
           title: Text(
             "Invitations",
-            style: TextStyle(color: Colors.black),
+            style:  GoogleFonts.comfortaa(color: Colors.black),
           ),
         ),
         body: Column(children: [
@@ -53,7 +54,7 @@ class _InvitationsState extends State<Invitations>
                     child: TabBar(
                       controller: _tabController,
                       isScrollable: true,
-                      indicatorColor: YellowColor,
+                      indicatorColor: Colors.black,
                       indicatorWeight: 3,
                       indicatorSize: TabBarIndicatorSize.label,
                       labelColor: Colors.black,
@@ -66,17 +67,17 @@ class _InvitationsState extends State<Invitations>
                           child: Center(
                               child: Text(
                             'Received',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                            style:  GoogleFonts.anekLatin(
+                                fontSize: 18, fontWeight: FontWeight.w500),
                           )),
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Center(
                               child: Text('Sent',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold))),
+                                  style:  GoogleFonts.anekLatin(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500))),
                         ),
                       ],
                     ),
@@ -87,6 +88,8 @@ class _InvitationsState extends State<Invitations>
           ),
           Flexible(
             child: Container(
+              color: Colors.grey[100],
+
               height: MediaQuery.of(context).size.height * 0.8,
               child: SizedBox(
                   height: (MediaQuery.of(context).size.height -

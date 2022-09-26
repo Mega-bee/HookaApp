@@ -2,7 +2,7 @@ class OffersResponse {
   int? id;
   String? title;
   String? image;
-  int? rating;
+  num? rating;
   String? restaurantTitle;
 
   OffersResponse(

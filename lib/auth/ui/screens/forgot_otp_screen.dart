@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../abstracts/states/state.dart';
@@ -80,17 +82,17 @@ class VerificationOtpForgotScreenState extends State<VerificationOtpForgotScreen
       flags = false;
     }
     return Scaffold(
-        backgroundColor: Colors.white,
+
         appBar: AppBar(
-          elevation: 1,
+          elevation: 0,
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
-          leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
+          leading: IconButton(icon: Icon(CupertinoIcons.back,size: 25,),onPressed: (){
             Navigator.pop(context);
           }),
           title: Text(
             "Otp Verification",
-            style: TextStyle(color: Colors.black),
+            style: GoogleFonts.comfortaa(color: Colors.black),
           ),
         ),
         body: BlocBuilder<ForgotOtpCubit, States>(

@@ -13,26 +13,26 @@ class ReceivedInitState extends States{
   Widget getUI(BuildContext context) {
  return
       Container(
+        color: Colors.grey[100],
       child: Column(children: [
 
         receivedmod.isNotEmpty?
         Expanded(
-          flex: 100,
-            child: Card(
+          flex: 120,
 
-                child: ListView.builder(
-                    itemCount:receivedmod.length ,
-                    itemBuilder: (context, index) {
-                      return ReceivedCard(
+            child: ListView.builder(
+                itemCount:receivedmod.length ,
+                itemBuilder: (context, index) {
+                  return ReceivedCard(
 
-                        receivedModel: receivedmod[index],Accept: (request){
-                          screenstate.StatusInvite(request, receivedmod[index].id.toString());
+                    receivedModel: receivedmod[index],Accept: (request){
+                      screenstate.StatusInvite(request, receivedmod[index].id.toString());
 
 
-                      } ,
-                      );
+                  } ,
+                  );
 
-                    }))
+                })
         ):Container(
             height: 220,
             child: Center(child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,

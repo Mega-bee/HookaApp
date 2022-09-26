@@ -116,9 +116,11 @@ class AddressInitState extends States{
              children: [
                addressResponse.isNotEmpty?
                Row(children: [
+                 if(DontHaveaddress==false)
                   Text('Your Addresses :  ',style: GoogleFonts.anekLatin(
                    fontSize: 17
                  ),),
+                 if(DontHaveaddress==false)
                  CupertinoButton(
                    color: Colors.grey[300],
 
@@ -169,7 +171,9 @@ class AddressInitState extends States{
                      ),
                    ),
                    // This displays the selected fruit name.
-                   child: Text(
+                   child:
+
+                   Text(
                      CuppertinoName ?? "Address",
                      style: GoogleFonts.anekLatin(
                        fontSize: 18.0,color: Colors.black,fontWeight: FontWeight.w600

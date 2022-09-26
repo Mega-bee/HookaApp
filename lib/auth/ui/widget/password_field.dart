@@ -38,6 +38,7 @@ class _PasswordFieldState extends State<PasswordField> {
         labelText: "Password",
         hintText: " Password",
         labelStyle: GoogleFonts.alef(color: Colors.black),
+        hintStyle: GoogleFonts.alef(),
         enabledBorder: const OutlineInputBorder(
           borderRadius:
           BorderRadius.all(Radius.circular(10)),
@@ -48,6 +49,7 @@ class _PasswordFieldState extends State<PasswordField> {
           ),
         ),
         suffixIcon: IconButton(
+          splashColor: Colors.white,
           icon: Icon(
             _isObscure
                 ? Icons.visibility

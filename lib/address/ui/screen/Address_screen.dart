@@ -49,7 +49,7 @@ widget.cubit.getAddressesssss(this,);
         elevation: 0,
         backgroundColor:Colors.white ,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_outlined,color: Colors.black,size: 35,),
+            icon: Icon(CupertinoIcons.back,color: Colors.black,size: 25,),
             onPressed: (){Navigator.of(context).pop();},
 
           ),

@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../hooka_buddies/buddies_routes.dart';
 import '../../../utils/style/colors.dart';
@@ -26,228 +29,191 @@ class _ReceivedCardState extends State<ReceivedCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
+    return Padding(
+      padding: const EdgeInsets.only(left: 4,right: 4),
+      child: SizedBox(
+        height: 100,
+        child: Card(
+          child: Column(children: <Widget>[
 
-      GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(
-              context,
-              BuddiesRoutes.PROFBUDDIES,arguments: widget.receivedModel!.id.toString()
-          );
-        },
-        child: Row(
-            children: [
-              Container(
-                  width: 80,
-                  height: 80,
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Center(
-                    child: Card(elevation: 10,
-                      shadowColor: YellowColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(60)),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(
+                    context,
+                    BuddiesRoutes.PROFBUDDIES,arguments: widget.receivedModel!.id.toString()
+                );
+              },
+              child:
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  leading: Container(
+                      width: 50,
+                      height: 50,
 
-                      child:
-                      CachedNetworkImage(
-                        imageUrl: (widget.receivedModel!.buddyImage.toString()),height: 600,fit: BoxFit.cover,
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(80),
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.contain,
+
+                      child: Center(
+                        child: CachedNetworkImage(
+                          imageUrl: (widget.receivedModel!.buddyImage.toString()),fit: BoxFit.cover,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(80),
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
+                          placeholder: (context, url) => Padding(
+                            padding: const EdgeInsets.all(95.0),
+                            child: LoadingIndicator(
+
+                              indicatorType:
+                              Indicator.ballBeat,
+
+
+                              colors: [Colors.black],
+                            ),),
+                          errorWidget: (context, url, error) => Icon(Icons.error),
                         ),
-                        placeholder: (context, url) => Padding(
-                          padding: const EdgeInsets.all(95.0),
-                          child: LoadingIndicator(
 
-                            indicatorType:
-                            Indicator.ballBeat,
+                      )),
+                  title:
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(widget.receivedModel!.buddyName.toString(),
+                          style: GoogleFonts.alef(fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              )),
+                      Spacer(),
+                      Row(
 
-
-                            colors: [Colors.black],
-                          ),),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                      ),
-                    ),
-
-                  )),
-
-              Column(
-
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 200, right: 20),
-
-                    ),
-                    SizedBox(height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.02,),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 100),
-                      child: Text(widget.receivedModel!.buddyName.toString(),
-                          style: TextStyle(fontSize: 17,
-                              fontWeight: FontWeight.w500,
-                              fontStyle: FontStyle.italic)),
-                    ),
+                        children: [
 
 
-                    SizedBox(height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.02,),
+                          widget.receivedModel!.invitationStatusId==1?
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                          InkWell(
+                              onTap: (){
+                                widget.Accept(StatusInvRequest(statusId: "2"),);
 
 
-widget.receivedModel!.invitationStatusId==1?
+                              },
+                              child:
 
-                        InkWell(
-                          onTap: (){
-                            widget.Accept(StatusInvRequest(statusId: "2"),);
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: YellowColor,
+                                ),
+
+                                height:25,
+                                width: 40,
+                                child: Center(child:  Icon(FontAwesomeIcons.check,color: Colors.black,size: 14,)),
+                              )
+                          ):
+                          widget.receivedModel!.invitationStatusId==2?
+                          InkWell(
+                            onTap:  (){
+      Fluttertoast.showToast(msg: "Accepted");
+      },
+                            child: Container(width: 40,
+                              child: Center(child: Icon(
 
 
-                          },
-                          child:
-
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: YellowColor,
+                               FontAwesomeIcons.check,color:Colors.black,size: 17,)),
                             ),
-
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.03,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.15,
-                            child: Center(child: Text("Accept")),
-                          )
-                        ):
-widget.receivedModel!.invitationStatusId==2?
-Container(
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(50),
-    color: YellowColor,
-  ),
-height: 30,width: 30,
+                          ):
+                          InkWell(
+                            onTap:  (){
+                              Fluttertoast.showToast(msg: "Not Accepted");
+                            },
+                            child: Container(width: 40,
+                              child: Center(child: Icon(
 
 
-  child: Center(child: Icon(CupertinoIcons.check_mark,color: Colors.white,size: 12,)),
-):Container(
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(30),
-    color: Colors.red,
-  ),
-
-  height: 30,width: 30,
-  child: Center(child:  Icon(CupertinoIcons.xmark,color: Colors.white,size: 12,)),
-),
-                        SizedBox(width: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.03,),
-
-widget.receivedModel!.invitationStatusId ==1?
-                        InkWell(
-                          onTap: (){
-                            widget.Accept(StatusInvRequest(statusId: "3"),);
-
-
-
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.red,
+                                FontAwesomeIcons.close,color:Colors.black,size: 17,)),
                             ),
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.03,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.15,
-                            child: Center(child: Text("Deny",style: TextStyle(color: Colors.white),)),
                           ),
-                        ):Container(),
+                          SizedBox(width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * 0.07,),
 
-
-                        SizedBox(width: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.02,),
-
-                      ],
-                    ),
-                    SizedBox(height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.02,),
+                          widget.receivedModel!.invitationStatusId ==1?
+                          InkWell(
+                            onTap: (){
+                              widget.Accept(StatusInvRequest(statusId: "3"),);
 
 
 
-                    
-
-                
-
-
-
-                  ]),
-
-
-            ]),),
-      Card(
-        elevation: 0,
-        child: Column(
-          children: [
-
-            Row(
-              children: [
-                Text("Restaurent : ${widget.receivedModel!.restaurantName}           "),
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.red[200],
+                              ),
+                              height: 25,
+                              width: 25,
+                              child: Center(child:  Icon(FontAwesomeIcons.close,color: Colors.black,size: 14,)),
+                            ),
+                          ):Container(),
 
 
-              ],
-            ),
+                          SizedBox(width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * 0.02,),
 
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Date : ${widget.receivedModel!.invitationDate!.split("T").first}      "),
+                        ],
+                      ),
+                    ],
+                  ),
+                  subtitle:  Column(
+                    children: [
 
-              ],
-            ),  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Option : ${widget.receivedModel!.invitationOption}"),
+                      Row(
+                        children: [
+                          Text("${widget.receivedModel!.restaurantName}",style: GoogleFonts.anekLatin(fontSize: 12),),
 
-              ],
-            ),
-            // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Text("Option :"),
-            //     Text(" ${widget.receivedModel!.invitationOption}"),
-            //   ],
-            // ),
-            // Row(
-            //   children: [
-            //     Text("Restaurent : "),
-            //     Text(" ${widget.receivedModel!.restaurantName}"),
-            //   ],
-            // ),
+
+                        ],
+                      ),
+
+                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("${widget.receivedModel!.invitationDate!.split("T").first}",style: GoogleFonts.anekLatin(fontSize: 12),),
+
+                        ],
+                      ),  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("${widget.receivedModel!.invitationOption}",style: GoogleFonts.anekLatin(fontSize: 12),),
+
+                        ],
+                      ),
+                      // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     Text("Option :"),
+                      //     Text(" ${widget.receivedModel!.invitationOption}"),
+                      //   ],
+                      // ),
+                      // Row(
+                      //   children: [
+                      //     Text("Restaurent : "),
+                      //     Text(" ${widget.receivedModel!.restaurantName}"),
+                      //   ],
+                      // ),
+                    ],
+                  ),
+                ),
+              ),),
+
+
+
           ],
+          ),
         ),
       ),
-      Divider(color: Colors.grey, thickness: 0),
-
-    ],
     );
   }
 }

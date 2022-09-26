@@ -31,6 +31,17 @@ class PlacesRepository {
     if (response == null) return null;
     return response;
   }
+  Future<WebServiceResponse?> getCuisines() async {
+    var token = _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.get(
+      Urls.GET_CUISINES,
+
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
   Future<WebServiceResponse?> getDetails(String? id) async {
     var token = _authService.getToken();
 

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../hooka_buddies/buddies_routes.dart';
 import '../../../utils/style/colors.dart';
@@ -20,7 +21,7 @@ class _DetailsSentCardState extends State<DetailsSentCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 20,right: 20,top: 8),
       child: Card(
 
         child: Column(children: <Widget>[
@@ -36,8 +37,8 @@ class _DetailsSentCardState extends State<DetailsSentCard> {
                       height: 80,
                       margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
                       child: Center(
-                        child: Card(elevation: 10,
-                          shadowColor: YellowColor,
+                        child: Card(
+                      elevation: 0,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(60)),
 
@@ -69,7 +70,7 @@ class _DetailsSentCardState extends State<DetailsSentCard> {
 
                       )),
 
-                  Column(
+                  Column(crossAxisAlignment: CrossAxisAlignment.start,
 
                       children: [
 
@@ -77,25 +78,25 @@ class _DetailsSentCardState extends State<DetailsSentCard> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10, right: 100),
                           child: Text(widget.sentinvModel.buddyName.toString(),
-                              style: TextStyle(fontSize: 17,
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FontStyle.italic)),
+                              style: GoogleFonts.alef(fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  )),
                         ),
 
 
                         SizedBox(height: MediaQuery
                             .of(context)
                             .size
-                            .height * 0.02,),
+                            .height * 0.01,),
 
 
                          Padding(
                             padding: const EdgeInsets.only(left: 10, right: 100),
                             child: Text(widget.sentinvModel.invitationStatus.toString(),
-                                style: TextStyle(fontSize: 17,
+                                style: GoogleFonts.alef(fontSize: 12,
                                     fontWeight: FontWeight.w500,
-                                    color: YellowColor,
-                                    fontStyle: FontStyle.italic)),
+                                    color: Colors.black,
+                                    )),
                           ),
 
 

@@ -1,6 +1,7 @@
 import 'package:hooka/abstracts/WebUrl.dart';
 import 'package:hooka/abstracts/model/WebServiceResponse.dart';
 import 'package:hooka/auth/service/auth_service.dart';
+import 'package:hooka/hooka_product/request/add_to_cart_request.dart';
 import 'package:hooka/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
 
@@ -34,11 +35,11 @@ class ProductsRepository {
     if (response == null) return null;
     return response;
   }
-  Future<WebServiceResponse?> addToCart(String? Prodid,String? quantity) async {
+  Future<WebServiceResponse?> addToCart(AddToCartRequest request) async {
     var token = _authService.getToken();
 
     WebServiceResponse? response = await _apiClient.put(
-      Urls.ADD_TO_CART +"$Prodid"+"/$quantity",{},
+      Urls.ADD_TO_CART ,request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;

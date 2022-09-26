@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hooka/auth/request/gen_otp_request.dart';
@@ -87,7 +88,7 @@ bool flags = true;
         elevation: 1,
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
-        leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
+        leading: IconButton(icon: Icon(CupertinoIcons.back,size: 25,),onPressed: (){
           Navigator.pop(context);
         }),
         title: Text(

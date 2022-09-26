@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -39,7 +40,7 @@ class OrderDetailsState extends State<OrderDetails> with AutomaticKeepAliveClien
         elevation: 1,
         backgroundColor: Colors.white,
         leading: IconButton(
-        icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
+        icon: Icon(CupertinoIcons.back,color: Primarycolor,size: 25,),
     onPressed: (){Navigator.of(context).pop();},
     ),
     title: Text("Order Details ",style: TextStyle(color: Primarycolor),),

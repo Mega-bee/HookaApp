@@ -1,6 +1,6 @@
 class DeleteItemCarttRequest {
 
-  String? productId;
+  int? productId;
 
 
   DeleteItemCarttRequest({required this.productId,});

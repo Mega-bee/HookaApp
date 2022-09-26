@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/effect/custom_page_route.dart';
@@ -30,7 +31,7 @@ class SettingInitState extends States {
            child: Padding(
              padding: const EdgeInsets.all(8.0),
              child: Text("   Preferences",
-               style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),
+               style: GoogleFonts.alef(fontSize: 22,fontWeight: FontWeight.bold),
              ),
            ),
          ),
@@ -49,7 +50,7 @@ class SettingInitState extends States {
                  Colors.grey:YellowColor),
              SizedBox(width: MediaQuery.of(context).size.width*0.03,),
 
-             Text("Available     ",style: TextStyle(fontSize: 17),),
+             Text("Available     ",style: GoogleFonts.anekLatin(fontSize: 17,fontWeight: FontWeight.w500),),
              SizedBox(width: MediaQuery.of(context).size.width*0.42,),
 
              Container(height: 29,width: 55,
@@ -81,7 +82,7 @@ class SettingInitState extends States {
            child: Padding(
              padding: const EdgeInsets.all(8.0),
              child: Text("   Support",
-               style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),
+               style: GoogleFonts.alef(fontSize: 22,fontWeight: FontWeight.bold),
              ),
            ),
          ),
@@ -96,21 +97,21 @@ class SettingInitState extends States {
 
              Icon(Icons.info,color: Colors.grey,),
              SizedBox(width: MediaQuery.of(context).size.width*0.05,),
-             Text("About",style: TextStyle(fontSize: 17),),]),
+             Text("About",style: GoogleFonts.anekLatin(fontSize: 17,fontWeight: FontWeight.w500),),]),
          ),     SizedBox(height: MediaQuery.of(context).size.height*0.03,),
          Row(children: [
            SizedBox(width: MediaQuery.of(context).size.width*0.05,),
 
            Icon(Icons.star,color: Colors.grey,),
            SizedBox(width: MediaQuery.of(context).size.width*0.05,),
-           Text("Rate Us",style: TextStyle(fontSize: 17),),]),
+           Text("Rate Us",style: GoogleFonts.anekLatin(fontSize: 17,fontWeight: FontWeight.w500),),]),
          SizedBox(height: MediaQuery.of(context).size.height*0.03,),
          Row(children: [
            SizedBox(width: MediaQuery.of(context).size.width*0.05,),
 
            Icon(Icons.privacy_tip,color: Colors.grey,),
            SizedBox(width: MediaQuery.of(context).size.width*0.05,),
-           Text("Legal",style: TextStyle(fontSize: 17),),]),
+           Text("Legal",style: GoogleFonts.anekLatin(fontSize: 17,fontWeight: FontWeight.w500),),]),
 
 
          SizedBox(height: MediaQuery.of(context).size.height*0.04,),
@@ -118,7 +119,7 @@ class SettingInitState extends States {
            child: Padding(
              padding: const EdgeInsets.all(8.0),
              child: Text("   Share",
-               style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),
+               style: GoogleFonts.alef(fontSize: 22,fontWeight: FontWeight.bold),
              ),
            ),
          ),

@@ -1,12 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooka/map/map_routes.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../abstracts/states/state.dart';
+import '../../../module_deep_links/service/deep_links_service.dart';
 import '../../../utils/style/colors.dart';
 import '../../request/filter_places_request.dart';
+import '../../request/isfav_request.dart';
 import '../../state_manager/places_state_manager.dart';
 @injectable
 class HookaPlaces extends StatefulWidget {
@@ -20,6 +24,15 @@ class HookaPlaces extends StatefulWidget {
 
 class HookaPlacesState extends State<HookaPlaces> {
    FilterRequest? request;
+   bool Selected = false;
+   bool Selected2 = false;
+   bool Selected3 = false;
+   String? lon ;
+   String? lat ;
+
+
+
+
   void refresh() {
     if (mounted) {
       setState(() {});
@@ -27,15 +40,28 @@ class HookaPlacesState extends State<HookaPlaces> {
   }
   String query = '';
 
-  getPlacesss(){
-    widget.cubit.getPlacess(this, request!);
+  getPlacesss(FilterRequest request){
+    widget.cubit.getPlacess(this, request);
   }
+
+
+
+   isFav(IsFavorite request,String id){
+     widget.cubit.IsFavo(this, request,id);
+   }
+
 
   @override
   void initState() {
+
     super.initState();
-    request=FilterRequest(0);
+
+request=FilterRequest(0, 0, "", "",[]);
+
+
+
     widget.cubit.getPlacess(this,request!);
+
   }
   @override
   Widget build(BuildContext context) {
@@ -48,7 +74,7 @@ class HookaPlacesState extends State<HookaPlaces> {
         backgroundColor: Colors.white,
         title: Text('Places',style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
+          icon: Icon(CupertinoIcons.back,color: Primarycolor,size: 25,),
           onPressed: (){Navigator.of(context).pop();},
 
         ),

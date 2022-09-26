@@ -3,6 +3,7 @@ import 'package:hooka/abstracts/states/error_state.dart';
 import 'package:hooka/abstracts/states/loading_state.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/service/auth_service.dart';
+import 'package:hooka/hooka_product/request/add_to_cart_request.dart';
 import 'package:injectable/injectable.dart';
 import '../repository/product_repository.dart';
 import '../response/detailsprod_response.dart';
@@ -38,15 +39,15 @@ class ProdDetailsCubit extends Cubit<States> {
       }
     }});
   }
-  AddToCart(DetailsProductState screenState,String Prodid,String quantity) {
+  AddToCart(DetailsProductState screenState,AddToCartRequest request) {
 
 
-    _productsRepository.addToCart(Prodid, quantity).then((value) {
+    _productsRepository.addToCart(request).then((value) {
       if (value == null) {
         emit(ErrorState(
             errorMessage: 'Connection error',
             retry: () {
-              AddToCart(screenState,"","");
+              AddToCart(screenState,request);
             }));
       } else if (value.code == 200) {
 

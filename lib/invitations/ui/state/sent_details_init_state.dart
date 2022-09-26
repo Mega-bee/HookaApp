@@ -1,6 +1,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../abstracts/states/state.dart';
 import '../../response/sent_details_response.dart';
@@ -16,7 +17,8 @@ class DetailsSentInitState extends States {
 return SingleChildScrollView(
 
   child:   Container(
-height: 1000,
+    color: Colors.grey[100],
+height: 900,
     child: Column(
       children: [
         SizedBox(height: 20,),
@@ -47,67 +49,49 @@ height: 1000,
           padding: const EdgeInsets.all(28.0),
           child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Place Name :",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600,color: Colors.grey)),
               Text("${detailsSentResponse.placeName}",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-
-
-            ],
-
-          ),
-        ),
-
-        SizedBox(height: 1,),
-        Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Place Location :",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600,color: Colors.grey)),
-              Text("${detailsSentResponse.placeLocation}",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-
-
-            ],
-
-          ),
-        ),
-        SizedBox(height: 1,),
-        Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Place Rating :",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600,color: Colors.grey)),
+                  style: GoogleFonts.anekLatin(fontSize: 18, fontWeight: FontWeight.w600)),
               Container(
-                color: Colors.green,height: 20,width: 40,
-                child: Center(
-                  child: Text("${detailsSentResponse.placeRating}",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600,color: Colors.white)),
+                color: Colors.green[700],height: 20,width: 40,
+                child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("${detailsSentResponse.placeRating}",
+                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600,color: Colors.white)),
+                    Icon(Icons.star,size: 10,color: Colors.white,)
+                  ],
                 ),
               ),
 
 
+
             ],
 
           ),
         ),
+
+
+
+
+
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.02,
         ),
 
-        SizedBox(height: 20,),
+       Padding(
+         padding: const EdgeInsets.only(left: 28.0,bottom: 8),
+         child: Align(
+             alignment: Alignment.centerLeft,
+             child: Text("See Who are going",style: GoogleFonts.anekLatin(fontSize: 18, fontWeight: FontWeight.w600,color: Colors.black),)),
+       ),
 
         Expanded(
-          child: Container(
-            child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+          child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount:detailsSentResponse.buddies!.length,
           itemBuilder: (context, index) {
           return DetailsSentCard(sentinvModel: detailsSentResponse.buddies![index],);
-          })),
+          }),
         ),
 
       ],

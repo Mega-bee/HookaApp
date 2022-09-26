@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:injectable/injectable.dart';
 import 'package:simple_animations/stateless_animation/play_animation.dart';
 
@@ -39,9 +41,9 @@ class OffersDetailsScreenState extends State<OffersDetailsScreen> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back_outlined,
+            CupertinoIcons.back,
             color: Primarycolor,
-            size: 35,
+            size: 25,
           ),
           onPressed: () {
             Navigator.of(context).pop();
@@ -49,7 +51,7 @@ class OffersDetailsScreenState extends State<OffersDetailsScreen> {
         ),
         title: Text(
           "Offers",
-          style: TextStyle(color: Primarycolor),
+          style: GoogleFonts.comfortaa(color: Primarycolor),
         ),
 
       ),

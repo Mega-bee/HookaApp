@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/home_page/home_routes.dart';
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 
@@ -44,7 +45,7 @@ iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           title: Text(
             "My Order",
-            style: TextStyle(color: Colors.black),
+            style: GoogleFonts.comfortaa(color: Colors.black),
           ),
         ),
         body: Column(children: [
@@ -71,7 +72,7 @@ iconTheme: IconThemeData(color: Colors.black),
                     child: TabBar(
                       controller: _tabController,
                       isScrollable: true,
-                      indicatorColor: YellowColor,
+                      indicatorColor: Colors.black,
                       indicatorWeight: 3,
                       indicatorSize: TabBarIndicatorSize.label,
                       labelColor: Colors.black,
@@ -84,16 +85,16 @@ iconTheme: IconThemeData(color: Colors.black),
                           child: Center(
                               child: Text(
                             'Current',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                            style: GoogleFonts.anekLatin(
+                                fontSize: 18, ),
                           )),
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Center(
                               child: Text('All',
-                                  style: TextStyle(
-                                      fontSize: 16,
+                                  style: GoogleFonts.anekLatin(
+                                      fontSize: 18,
                                       fontWeight: FontWeight.bold))),
                         ),
                       ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/abstracts/states/state.dart';
 import 'package:hooka/auth/ui/widget/custem_button.dart';
 import 'package:hooka/contact_us/request/contactus_request.dart';
@@ -25,65 +26,68 @@ class ContactUsInitState extends States {
     var mediaQueryWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+
         children: [
-          SizedBox(
-            height: mediaQueryHeight * 0.02,
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Card(
-                elevation: 0,
-                borderOnForeground: true,
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.white70, width: 3),
-                  borderRadius: BorderRadius.circular(150),
-                ),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        ImageAsset.LOGO,
-                        height: 170,
-                        width: 170,
-                        fit: BoxFit.fill,
-                      )
-                    ])),
-          ),
-          SizedBox(
-            height: mediaQueryHeight * 0.02,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 105.0),
-            child: Text(
-              "We are committed to your Experience ",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+
+          Container(color: Colors.white,
+            child: Align(
+              alignment: Alignment.center,
+              child: Card(
+                color: Colors.white,
+                  elevation: 0,
+                  borderOnForeground: true,
+                  // shape: RoundedRectangleBorder(
+                  //   side: BorderSide(color: Colors.white70, width: 3),
+                  //   borderRadius: BorderRadius.circular(150),
+                  // ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          ImageAsset.LOGO,
+                          height: 220,
+                          width: 300,
+                          fit: BoxFit.cover,
+                        )
+                      ])),
             ),
           ),
           SizedBox(
             height: mediaQueryHeight * 0.02,
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 20.0),
+            padding: const EdgeInsets.only(left: 25.0),
             child: Text(
-              'Recognizing the value of memorable\n'
-              'experiences, we are deeply committed\n'
-              'to delivering consistent and reliable \n'
-              'service across our business to guarantee\n'
-              'the highest level of satisfaction. Our\n'
-              'talented team understands the needs and\n'
-              'expectations of hosts and customers, and\n'
-              'we take immense pride in the quality of the\n'
-              'products we use.\n'
+              "We are committed to your Experience ",
+              style: GoogleFonts.anekLatin(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(
+            height: mediaQueryHeight * 0.02,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 25.0),
+            child: Text(
+              'Recognizing the value of memorable experiences, \n'
+              'we are deeply committed to delivering  consistent \n'
+
+              'and reliable service across our business to guarantee\n'
+              'the highest level of satisfaction. Our talented team\n'
+              'understands the needs and expectations of hosts  and \n'
+
+              'customers, and we take immense pride in the quality of \n'
+              'the products we use.\n'
               '\n'
-              'Whether you are interested in becoming\n'
-              'a host or learning more about the\n'
-              'experience, we’d love to hear from you.\n'
+              'Whether you are interested in becoming a host\n'
+              'or learning more about the experience,\n'
+              'we’d love to hear from you. \n'
               '\n'
+
               'Please send an email to info@hookatimes.com \n'
               'for further information about our brand.\n',
-              style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+              style: GoogleFonts.alef(fontSize: 17, color: Colors.grey[600]),
             ),
           ),
           SizedBox(
@@ -105,6 +109,8 @@ class ContactUsInitState extends States {
                         fillColor: Colors.white,
                         labelText: "Name",
                         hintText: " Name",
+                        hintStyle: GoogleFonts.anekLatin(),
+                        labelStyle: GoogleFonts.anekLatin(),
                         enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             borderSide:
@@ -132,6 +138,8 @@ class ContactUsInitState extends States {
                         fillColor: Colors.white,
                         labelText: "Mobile",
                         hintText: " Mobile",
+                        hintStyle: GoogleFonts.anekLatin(),
+                        labelStyle: GoogleFonts.anekLatin(),
                         enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             borderSide:
@@ -159,6 +167,8 @@ class ContactUsInitState extends States {
                         fillColor: Colors.white,
                         labelText: " Email",
                         hintText: " Email",
+                        hintStyle: GoogleFonts.anekLatin(),
+                        labelStyle: GoogleFonts.anekLatin(),
                         enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             borderSide:
@@ -186,6 +196,8 @@ class ContactUsInitState extends States {
                         fillColor: Colors.white,
                         labelText: "Your Message...",
                         hintText: " Name",
+                        hintStyle: GoogleFonts.anekLatin(),
+                        labelStyle: GoogleFonts.anekLatin(),
                         enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             borderSide:
@@ -206,7 +218,7 @@ class ContactUsInitState extends States {
           ),
 
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(28.0),
             child: CustomButton(
               buttonTab: () {
                 _screenContactusState.ContactUssss(ContactUsRequest(

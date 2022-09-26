@@ -71,81 +71,14 @@ class BuddiesInitState extends States {
         ),
 
         Container(color: Colors.white,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
+          child:
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0),
             child: Row(mainAxisAlignment: MainAxisAlignment.start,
               children: [
 
-                SizedBox(width: 10,),
-                FilterChip(
-                  elevation: 1,
-                  onSelected: (bool value){
-
-                  },
-
-                  label:Row(
-                    children: [
 
 
-                      Text("Experience",style: GoogleFonts.anekLatin(fontWeight: FontWeight.w600)),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                      Icon(Icons.arrow_drop_down_outlined,size: 12,),
-                    ],
-                  ),
-                  backgroundColor: Colors.white,
-
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color:Colors.black12 ),
-                    borderRadius: BorderRadius.circular(5.0,),
-
-                  ),),
-                SizedBox(width: 10,),
-                FilterChip(
-                  elevation: 1,
-                  onSelected: (bool value){
-
-                  },
-
-                  label:Row(
-                    children: [
-
-
-                      Text("Educations",style: GoogleFonts.anekLatin(fontWeight: FontWeight.w600)),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                      Icon(Icons.arrow_drop_down_outlined,size: 12,),
-                    ],
-                  ),
-                  backgroundColor: Colors.white,
-
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color:Colors.black12 ),
-                    borderRadius: BorderRadius.circular(5.0,),
-
-                  ),),
-                SizedBox(width: 10,),
-                FilterChip(
-                  elevation: 1,
-                  onSelected: (bool value){
-
-                  },
-
-                  label:Row(
-                    children: [
-
-
-                      Text("Address",style: GoogleFonts.anekLatin(fontWeight: FontWeight.w600)),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                      Icon(Icons.arrow_drop_down_outlined,size: 12,),
-                    ],
-                  ),
-                  backgroundColor: Colors.white,
-
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color:Colors.black12 ),
-                    borderRadius: BorderRadius.circular(5.0,),
-
-                  ),),
-                SizedBox(width: 10,),
                 FilterChip(
                   elevation: 1,
                   onSelected: (bool value){
@@ -174,34 +107,7 @@ class BuddiesInitState extends States {
 
                   ),),
                 SizedBox(width: 10,),
-                FilterChip(
-                  elevation: 1,
-                  onSelected: (bool value){
-                    Selected3=!Selected3;
-                    buddiesState.refresh();
-                  },
 
-                  label:Row(
-                    children: [
-
-                      Selected3==true?Row(
-                        children: [
-                          Icon(Icons.check,size: 10,), SizedBox(width: 3,),
-                        ],
-                      ):Container(),
-
-                      Text("Hair",style: GoogleFonts.anekLatin(fontWeight: FontWeight.w600)),
-
-                    ],
-                  ),
-                  backgroundColor: Colors.white,
-
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color:Colors.black12 ),
-                    borderRadius: BorderRadius.circular(5.0,),
-
-                  ),),
-                SizedBox(width: 10,),
                 FilterChip(
                   elevation: 1,
                   onSelected: (bool value){

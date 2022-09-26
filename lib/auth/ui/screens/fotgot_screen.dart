@@ -1,7 +1,10 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/auth/ui/widget/custem_button.dart';
 import 'package:injectable/injectable.dart';
 
@@ -56,6 +59,7 @@ class ForgotScreenState extends State<ForgotScreen> {
     }
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         leading: IconButton(
@@ -65,9 +69,9 @@ class ForgotScreenState extends State<ForgotScreen> {
 
           },
 
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(CupertinoIcons.back,size: 25,),
         ),
-        title: Text("Forgot Password",style: TextStyle(color: Colors.black),
+        title: Text("Forgot Password",style: GoogleFonts.comfortaa(color: Colors.black),
 
         ),
       ),
@@ -76,10 +80,15 @@ class ForgotScreenState extends State<ForgotScreen> {
         child: Container(
           child: Form(
             key: _formKey4,
-            child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 20,),
                   // Text("Your email is ${email}"),
-                Text("Enter Your New Password",style: TextStyle(fontSize: 22),),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25.0),
+                  child: Text("Enter Your New Password",style: GoogleFonts.alef(fontSize: 22),),
+                ),
+                  SizedBox(height: 60,),
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: mediaQueryWidth * 0.05),
@@ -89,13 +98,15 @@ class ForgotScreenState extends State<ForgotScreen> {
                         controller: Newpass,
                         decoration: InputDecoration(
                           labelText: "New Password",
+
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                   color:Colors.black)),
                           filled: true,
                           fillColor: Colors.white,
                           hintText:  "New Password",
-                          labelStyle: TextStyle(color: Colors.black),
+                          hintStyle: GoogleFonts.alef(),
+                          labelStyle: GoogleFonts.alef(color: Colors.black),
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                   Radius.circular(10)),
@@ -115,6 +126,7 @@ class ForgotScreenState extends State<ForgotScreen> {
                         AutovalidateMode.onUserInteraction,
                         keyboardType: TextInputType.text),
                   ),
+                  SizedBox(height: 20,),
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: mediaQueryWidth * 0.05),
@@ -130,7 +142,8 @@ class ForgotScreenState extends State<ForgotScreen> {
                           filled: true,
                           fillColor: Colors.white,
                           hintText: " Confirm Password",
-                          labelStyle: TextStyle(color: Colors.black),
+                          hintStyle: GoogleFonts.alef(),
+                          labelStyle: GoogleFonts.alef(color: Colors.black),
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                   Radius.circular(10)),
@@ -150,14 +163,21 @@ class ForgotScreenState extends State<ForgotScreen> {
                         AutovalidateMode.onUserInteraction,
                         keyboardType: TextInputType.text),
                   ),
+                  SizedBox(height: 60,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25.0,right: 25),
+                    child: CustomButton(bgColor: YellowColor, text: "Save Password", textColor: Colors.black,
 
-                  CustomButton(bgColor: YellowColor, text: "Save Password", textColor: Colors.black,
-
-                      loading: loadingSnapshot.connectionState ==
-                          ConnectionState.waiting, buttonTab: (){
-
-                        Forget(ForgotRequest(email, Confpass.text, "empty", "empty"));
-                      })
+                        loading: loadingSnapshot.connectionState ==
+                            ConnectionState.waiting, buttonTab: (){
+if(Confpass.text==Newpass.text) {
+  Forget(ForgotRequest(email, Confpass.text,));
+}
+                    else {
+                      Fluttertoast.showToast(msg: "Passwords Don\'t Match");
+}
+                    }),
+                  )
     ],
     ),
           ),

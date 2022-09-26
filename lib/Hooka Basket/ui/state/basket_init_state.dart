@@ -3,7 +3,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/Hooka%20Basket/request/update_basket_request.dart';
 import '../../../abstracts/states/state.dart';
-import '../../../checkout/checkout_routes.dart';
 import '../../../utils/style/colors.dart';
 import '../../request/item_delete_request.dart';
 import '../../response/basket_response.dart';
@@ -40,15 +39,16 @@ class BasketInitState extends States {
                   });
                   screenState.refresh();
                 }, OnDelete: () {
+
+                  screenState.DeleteItemFromCart(DeleteItemCarttRequest(
+                      productId:
+                          _basketResponse.items![index].itemId));
                   _basketResponse.items!.removeAt(index);
                   totalPriceAllItem = 0;
                   _basketResponse.items?.forEach((element) {
                     totalPriceAllItem =
                         totalPriceAllItem + element.totalLocalPrice;
                   });
-                  screenState.DeleteItemFromCart(DeleteItemCarttRequest(
-                      productId:
-                          _basketResponse.items![index].itemId.toString()));
                   screenState.refresh();
                 });
               }),

@@ -143,7 +143,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i19.FireBaseRepository(get<_i14.ApiClient>(), get<_i6.AuthService>()));
   gh.factory<_i20.FirebaseCubit>(() => _i20.FirebaseCubit(
       get<_i19.FireBaseRepository>(), get<_i6.AuthService>()));
-  gh.factory<_i21.HomeScreen>(() => _i21.HomeScreen(get<_i20.FirebaseCubit>()));
+  gh.factory<_i21.HomeScreen>(
+      () => _i21.HomeScreen(get<_i20.FirebaseCubit>(), get<_i6.AuthService>()));
   gh.factory<_i22.InvitationsRepository>(() => _i22.InvitationsRepository(
       get<_i14.ApiClient>(), get<_i6.AuthService>()));
   gh.factory<_i23.LoginRepository>(() =>

@@ -3,7 +3,7 @@ class OffDetailsResponse {
   String? offerTitle;
   String? restaurantName;
   String? location;
-  String? rating;
+  double? rating;
   String? offerDescription;
   String? restaurantDescription;
   String? cuisine;

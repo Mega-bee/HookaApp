@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 
 import '../../../utils/style/colors.dart';
+import '../../places_routes.dart';
 import '../../request/addreview_request.dart';
 import '../../state_manager/details_state_manager.dart';
 @injectable
@@ -23,11 +24,13 @@ class PlacesDetails extends StatefulWidget {
 
 class PlacesDetailsState extends State<PlacesDetails> {
   bool flags = true;
+
   void refresh() {
     if (mounted) {
       setState(() {});
     }
   }
+
 
   isFav(IsFavorite request,String id){
     widget.cubit.IsFavo(this, request,id);
@@ -36,22 +39,27 @@ class PlacesDetailsState extends State<PlacesDetails> {
     widget.cubit.AddReviewstate(this, request,id);
   }
   late int currentIndex;
+
   List<String>   imagesUrl= [];
+  List<String>   imagesUrl1= [];
 @override
 void initState() {
 
     super.initState();
     currentIndex = 0;
+
   }
 
 
 
   @override
   Widget build(BuildContext context) {
+  String? f;
     if(flags){
       var  args = ModalRoute.of(context)?.settings.arguments;
       if (args != null && args is String) {
         widget.cubit.getDetails(this,args);
+         f=args;
       }
       flags = false;
     }
@@ -62,12 +70,14 @@ void initState() {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back_outlined,
+            CupertinoIcons.back,
             color: Primarycolor,
-            size: 35,
+            size: 25,
           ),
           onPressed: () {
-            Navigator.of(context).pop();
+        Navigator.pop(context);
+
+
           },
         ),
         title: Text(

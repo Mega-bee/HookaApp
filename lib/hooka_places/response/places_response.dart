@@ -8,13 +8,17 @@ class PlacesResp {
   String? name;
   String? longitude;
   String? latitude;
+  num? distance;
+  bool? Nearest=false;
+
 
 
   PlacesResp(
       {this.id,
         this.isInFavorite,
         this.image,
-
+this.Nearest,
+this.distance,
         this.location,
         this.cuisine,
         this.rating,
@@ -33,6 +37,7 @@ class PlacesResp {
     name = json['name'];
     latitude = json['latitude'];
     longitude = json['longitude'];
+    distance = json['distance'];
   }
 
 

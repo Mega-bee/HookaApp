@@ -26,15 +26,15 @@ class ForgotScreenCubit extends Cubit<States> {
 
 
   ForgotPassScreen(ForgotRequest request,ForgotScreenState screenState) {
-
+    _loadingStateSubject.add(AsyncSnapshot.waiting());
     _loginRepository.ForgetPasswordRequest(request).then((value) {
-      _loadingStateSubject.add(AsyncSnapshot.waiting());
+
 
       if (value == null) {
         _loadingStateSubject.add(AsyncSnapshot.nothing());
         Fluttertoast.showToast(msg: 'Connection error');
       } else if (value.code == 200) {
-        _loadingStateSubject.add(AsyncSnapshot.waiting());
+        _loadingStateSubject.add(AsyncSnapshot.nothing());
         Navigator.pushNamed(screenState.context, AuthRoutes.LOGIN_SCREEN);
       }
     } );}}

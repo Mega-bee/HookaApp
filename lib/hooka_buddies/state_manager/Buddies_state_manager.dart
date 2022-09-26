@@ -74,7 +74,7 @@ class BuddiesCubit extends Cubit<States> {
         for (var item in value.data.insideData) {
           options.add(InvitationOptionsResponse.fromJson(item));
         }
-        _placesRepository.getPlaces(FilterRequest(1)).then((value) {
+        _placesRepository.getPlaces(FilterRequest(1,0,"","",[])).then((value) {
           if (value == null) {
           } else if (value.code == 200) {
             List<PlacesResp> places = [];

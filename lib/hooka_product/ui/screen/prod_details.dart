@@ -1,11 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooka/hooka_product/request/add_to_cart_request.dart';
 import 'package:injectable/injectable.dart';
 import '../../../Hooka Basket/basket_routes.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../hooka_places/state_manager/details_state_manager.dart';
 import '../../../utils/style/colors.dart';
+import '../../product_routes.dart';
 import '../../state_manager/detailsprod_state_manager.dart';
 import '../../state_manager/getproduct_state_manager.dart';
 
@@ -22,8 +25,7 @@ class DetailsProduct extends StatefulWidget {
 }
 
 class DetailsProductState extends State<DetailsProduct> {
-   int? productId;
-  int? Qunatity;
+
   void refresh() {
     if (mounted) {
       setState(() {});
@@ -31,11 +33,14 @@ class DetailsProductState extends State<DetailsProduct> {
   }
   bool flags = true;
 
-  AddToCarttttt(String p,String q){
-    widget.cubit.AddToCart(this,"$p","$q");
+  AddToCarttttt(AddToCartRequest request){
+    widget.cubit.AddToCart(this,request);
   }
    ScrollController scrollController = new ScrollController();
   int? count;
+
+
+
 
 
 
@@ -48,6 +53,7 @@ class DetailsProductState extends State<DetailsProduct> {
       var  args = ModalRoute.of(context)?.settings.arguments;
       if (args != null && args is String) {
         widget.cubit.getDetailsProd(this,args);
+
       }
       flags = false;
     }
@@ -58,14 +64,36 @@ class DetailsProductState extends State<DetailsProduct> {
           title: Text("Details",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),
           backgroundColor: Colors.white,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
-            onPressed: (){Navigator.of(context).pop();},
+            icon: Icon(CupertinoIcons.back,color: Primarycolor,size: 25,),
+            onPressed: (){
+              Navigator.pop(context);
+
+
+
+              },
           ),
           actions: [
 
-            IconButton(onPressed: (){
-              Navigator.pushNamed(context, BasketRoutes.BasketS);
-            }, icon: Icon(Icons.shopping_cart,color: Colors.black,)),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 28.0,top: 10,bottom: 10),
+              child: Container(
+
+             width: 70,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
+color: Colors.black87,
+
+                  border: Border.all(color: YellowColor)
+
+
+
+                ),
+                child: IconButton(onPressed: (){
+                  Navigator.pushNamed(context, BasketRoutes.BasketS);
+
+                }, icon: Icon(Icons.shopping_cart,color: YellowColor,size: 25,)),
+              ),
+            ),
           ],
         ),
         body: BlocBuilder<ProdDetailsCubit, States>(

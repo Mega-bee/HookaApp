@@ -128,12 +128,19 @@ horizontalTitleGap: 10,
                               side: BorderSide(color: YellowColor),
                               borderRadius: BorderRadius.circular(30.0),
                             ),
-                            child: Text(
+                            child:
+                            widget._items.quantity!=1?
+                            Text(
                               "-",
                               style: TextStyle(
                                   fontSize: 27,
                                   color: Colors.black),textAlign: TextAlign.center,
-                            )),
+                            ):
+                            IconButton(icon:Icon( CupertinoIcons.delete,size: 15,),onPressed: (){
+                              widget.OnDelete();
+                            },)
+
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -142,7 +149,7 @@ horizontalTitleGap: 10,
                     Text(
                       widget._items.quantity.toString(),
                       // "${widget.basketm.increment }",
-                      style: GoogleFonts.anekLatin(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.black),
+                      style: GoogleFonts.anekLatin(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.black),
                     ),
                     SizedBox(
                       width: 5,

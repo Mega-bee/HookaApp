@@ -3,7 +3,7 @@ class DetailsSentResponse {
   String? placeName;
   String? placeLocation;
   String? placeImage;
-  int? placeRating;
+  num? placeRating;
   List<Buddies>? buddies;
 
   DetailsSentResponse(

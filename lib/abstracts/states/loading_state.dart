@@ -11,7 +11,7 @@ class LoadingState extends States {
     return Center(
       child: LoadingAnimationWidget.hexagonDots(color: Colors.black,
 
-           size: 25)
+           size: 20)
     );
     // child: LoadingAnimationWidget.hexagonDots(
     //    color:Colors.black, size: 120)

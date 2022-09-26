@@ -68,7 +68,9 @@ class BasketCubit extends Cubit<States> {
       if (value == null) {
         Fluttertoast.showToast(msg: "some thing wrong");
       } else if (value.code == 200) {
-        Fluttertoast.showToast(msg: "Item Deleted Successfully");
+
+
+
       }
     });
   }

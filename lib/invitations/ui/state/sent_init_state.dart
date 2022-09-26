@@ -13,18 +13,17 @@ class SentInitState extends States{
   @override
   Widget getUI(BuildContext context) {
     return  Container(
+      color: Colors.grey[100],
       child: Column(children: [
 
        sentdmod.isNotEmpty?
         Expanded(
             flex: 100,
-            child: Card(
-
-                child: ListView.builder(
-                    itemCount:sentdmod.length,
-                    itemBuilder: (context, index) {
-                      return SentCard(senttttModel: sentdmod[index],);
-                    }))):Container(
+            child: ListView.builder(
+                itemCount:sentdmod.length,
+                itemBuilder: (context, index) {
+                  return SentCard(senttttModel: sentdmod[index],);
+                })):Container(
     height: 220,
     child: Center(child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [

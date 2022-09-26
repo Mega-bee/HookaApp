@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/auth/request/confirm_otp_request.dart';
 import 'package:hooka/auth/request/gen_otp_request.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -56,17 +57,7 @@ class OtpInitState extends States{
                  ),
                ),
                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-               const Padding(
-                 padding: EdgeInsets.symmetric(vertical: 8.0),
-                 child: Text(
-                   'Phone Number Verification',
-                   style: TextStyle(
-                       color: Colors.white,
-                       fontWeight: FontWeight.bold,
-                       fontSize: 22),
-                   textAlign: TextAlign.center,
-                 ),
-               ),
+
                Padding(
                  padding:
                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),
@@ -77,13 +68,13 @@ class OtpInitState extends States{
                        children: [
                          TextSpan(
                              text: "${email}",
-                             style: const TextStyle(
-                                 color: Colors.red,
+                             style:  GoogleFonts.alef(
+                                 color: Colors.blue[600],
                                  fontWeight: FontWeight.bold,
                                  fontSize: 12)),
                        ],
                        style:
-                       const TextStyle(color: Colors.black54, fontSize: 15)),
+                       GoogleFonts.alef(color: Colors.black54, fontSize: 15)),
                    textAlign: TextAlign.center,
                  ),
                ),
@@ -173,9 +164,9 @@ class OtpInitState extends States{
                Row(
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: [
-                   const Text(
+                    Text(
                      "Didn't receive the code? ",
-                     style: TextStyle(color: Colors.black54, fontSize: 15),
+                     style: GoogleFonts.anekLatin(color: Colors.black54, fontSize: 17),
                    ),
                    Container(
                        child: TextButton(
@@ -184,10 +175,10 @@ class OtpInitState extends States{
                          },
                          child: Text(
                            "RESEND",
-                           style: TextStyle(
+                           style: GoogleFonts.alef(
                                color: YellowColor,
                                fontWeight: FontWeight.bold,
-                               fontSize: 16),
+                               fontSize: 17),
                          ),
                        )),
                  ],

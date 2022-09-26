@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_offline/flutter_offline.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/Hooka%20Basket/basket_routes.dart';
 import 'package:hooka/home_page/ui/widget/hooka_card.dart';
@@ -13,30 +12,41 @@ import 'package:hooka/utils/images/images.dart';
 import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../auth/service/auth_service.dart';
 import '../../request/firebase_request.dart';
 import '../../state_manager/firebase_state_manager.dart';
 
 @injectable
 class HomeScreen extends StatefulWidget {
   final FirebaseCubit cubit;
-  HomeScreen(this.cubit);
+  final AuthService _authService;
+  HomeScreen(this.cubit,this._authService);
   @override
   HomeScreenState createState() => HomeScreenState();
 }
 
 class HomeScreenState extends State<HomeScreen> {
+  
   static FireNotificationService fireNotificationService =FireNotificationService();
+
   @override
   void initState() {
 
     super.initState();
+
+
+
     String FirebaseToken = '';
       fireNotificationService.GetFireBaseToken().then((tokenFire) {
         FirebaseToken = tokenFire ?? '';
 
         widget.cubit.FireBasee(this, FireRequest(token: FirebaseToken));
       });
+
   }
+  
+
+  
 
   @override
   Widget build(BuildContext context) {

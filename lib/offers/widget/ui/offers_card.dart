@@ -90,7 +90,7 @@ class _OffersCardState extends State<OffersCard> {
                             width: 30,height: 18,
                             child: Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(widget.offersResp.rating.toString(),style: GoogleFonts.anekLatin(
+                                Text(widget.offersResp.rating!.toStringAsFixed(1),style: GoogleFonts.anekLatin(
 
                                     color: Colors.white,fontSize: 12),),
                                 Icon(Icons.star,size: 9,color: Colors.white,)

@@ -56,7 +56,7 @@ return  SingleChildScrollView(
               child: Text(
                   "Please enter your email and password to \n"
                       "login to HookaApp.",
-                  style:GoogleFonts.anekLatin(color: Colors.white, fontSize: 18)),
+                  style:GoogleFonts.alef(color: Colors.white, fontSize: 18)),
             ),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -198,9 +198,10 @@ return  SingleChildScrollView(
 //                          ),
 //                        ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(left: 24.0,right: 24.0),
                         child:
                         CustomButton(
+
                           buttonTab: () {
                             if (password.text.isEmpty ||
                                 email.text.isEmpty ||
@@ -288,15 +289,23 @@ return  SingleChildScrollView(
                               style: GoogleFonts.anekLatin(color: Colors.grey),
                             ),
                             TextButton(
+
+                              style: ButtonStyle(
+
+                              ),
+
+
                               child: Text(
                                 "SIGN UP",
                                 style: GoogleFonts.anekLatin(
                                     fontWeight: FontWeight.bold,
                                 color: Colors.black,
+
                                   fontSize: 17,
                                   decoration: TextDecoration.underline
                                 ),
                               ),
+
                               onPressed: () {
                                 Navigator.pushNamed(context, AuthRoutes.SIGNUP_SCREEN);
 //                                  Navigator.push(

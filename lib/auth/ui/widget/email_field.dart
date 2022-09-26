@@ -35,6 +35,8 @@ class _EmailFieldState extends State<EmailField> {
           hintText: " Email",
           labelText: "Email",
           labelStyle:GoogleFonts.alef(color: Colors.black),
+
+          hintStyle: GoogleFonts.alef(),
           enabledBorder: const OutlineInputBorder(
               borderRadius:
               BorderRadius.all(Radius.circular(10)),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -28,15 +29,15 @@ class SentDetailsState extends State<SentDetails>
       flags = false;
     }
     return Scaffold(
-        backgroundColor: Colors.white,
+
         appBar: AppBar(
-          elevation: 1,
+          elevation: 0,
           backgroundColor: Colors.white,
           leading: IconButton(
             icon: Icon(
-              Icons.arrow_back_outlined,
+              CupertinoIcons.back,
               color: Primarycolor,
-              size: 35,
+              size: 25,
             ),
             onPressed: () {
               Navigator.of(context).pop();

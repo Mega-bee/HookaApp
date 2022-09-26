@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -42,8 +43,9 @@ class CustomNetworkImage extends StatelessWidget {
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Icon(
-                            Icons.arrow_back,
+                            CupertinoIcons.back,
                             color: Colors.black,
+                            size: 25,
                           ),
                         ),
                       ),
@@ -87,21 +89,24 @@ class CustomNetworkImage extends StatelessWidget {
         imageUrl: thumbnail,
         imageBuilder: (context, imageProvider) => Center(
           child: Container(
+
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(0),
               image: DecorationImage(
                 image: imageProvider,
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.cover,
+
               ),
             ),
           ),
         ),
         placeholder: (context, url) => Container(
+
             alignment: Alignment.topCenter,
             margin: const EdgeInsets.only(top: 20),
             child: Center(
                 child: LoadingAnimationWidget.staggeredDotsWave(
-                    color: Colors.white, size: 30))),
+                    color: Colors.black, size: 30))),
         errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );

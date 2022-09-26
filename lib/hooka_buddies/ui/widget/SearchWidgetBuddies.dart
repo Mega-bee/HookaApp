@@ -53,7 +53,7 @@ class _SearchWidgetState extends State<SearchWidgetBuddies> {
         focusColor: const Color.fromRGBO(18, 108, 242, 1),
         hintText: widget.hintText,
         suffixIcon:
-        widget.text.isEmpty
+        controller.text.isNotEmpty
             ? GestureDetector(
           child: Icon(CupertinoIcons.xmark,size: 15, color: style.color),
           onTap: () {

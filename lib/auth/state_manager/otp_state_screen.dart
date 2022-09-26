@@ -11,10 +11,8 @@ import 'package:hooka/home_page/home_routes.dart';
 
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
-import '../auth_routes.dart';
 import '../request/gen_otp_request.dart';
 import '../service/auth_service.dart';
-import '../ui/screens/forgot_otp_screen.dart';
 import '../ui/screens/otp_screen.dart';
 
 @injectable

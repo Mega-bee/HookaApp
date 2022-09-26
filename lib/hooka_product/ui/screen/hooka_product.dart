@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,12 +34,15 @@ class HookaProductState extends State<HookaProduct> {
         title: Text("Hooka Products",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
+          icon: Icon(CupertinoIcons.back,color: Primarycolor,size: 25,),
           onPressed: (){Navigator.of(context).pop();},
         ),
         actions: [
           IconButton(onPressed: (){
-            Navigator.pushNamed(context, BasketRoutes.BasketS);
+            Navigator.pushNamed(context, BasketRoutes.BasketS).then((value) {
+              setState(() {
+              });
+            });
           }, icon: Icon(Icons.shopping_cart,color: Colors.black,)),
         ],
       ),

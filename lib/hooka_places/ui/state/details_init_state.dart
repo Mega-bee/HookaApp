@@ -21,9 +21,26 @@ class DetailsInitState extends States {
   final PlacesDetailsState placesDetailsState;
   final DetailsRep detailsModell;
 
-  DetailsInitState(this.placesDetailsState, this.detailsModell);
+
+  DetailsInitState(this.placesDetailsState, this.detailsModell,);
 
   bool isFavvvv = true;
+asyncOne() async {
+    print("asyncOne start");
+    await Future.forEach(detailsModell.albums!, (Albums e)   {
+      placesDetailsState.imagesUrl.add(e.image ?? '');
+    });
+
+  }
+  asyncTwo() async {
+    print("asyncOne start");
+    await Future.forEach(detailsModell.menus!, (Menus e)   {
+      placesDetailsState.imagesUrl1.add(e.image ?? '');
+    });
+
+  }
+
+
 
   Future<void> launchUrl(String url) async {
     if (await canLaunch(url)) {
@@ -32,9 +49,11 @@ class DetailsInitState extends States {
       throw 'Could not launch $url';
     }
   }
+
   var format = DateFormat("HH:mm");
   @override
   Widget getUI(BuildContext context) {
+
     return SingleChildScrollView(
 
       child: Column(
@@ -138,9 +157,11 @@ class DetailsInitState extends States {
               alignment: Alignment.centerLeft,
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(detailsModell.description.toString(),
+                  Expanded(
+                    child: Text(detailsModell.description.toString(),overflow: TextOverflow.ellipsis,maxLines: 2,
     style: GoogleFonts.anekLatin(
     fontStyle: FontStyle.italic,color: Colors.black),),
+                  ),
                   Icon(Icons.info_outlined,size: 12,)
                 ],
               ),
@@ -213,7 +234,7 @@ class DetailsInitState extends States {
                     padding: const EdgeInsets.only(left: 30),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Photos",
+                      child: Text("Album",
     style:
     GoogleFonts.alef(fontSize: 20, fontWeight: FontWeight.bold)),
                     ),
@@ -228,6 +249,7 @@ class DetailsInitState extends States {
                     child: Column(
                       children: [
                         CarouselSlider.builder(
+
                           options: CarouselOptions(
                               height: 200,
                               enlargeStrategy: CenterPageEnlargeStrategy.scale,
@@ -253,7 +275,7 @@ class DetailsInitState extends States {
                             detailsModell.albums![itemIndex].image.toString() ,
 
                             imageSource: placesDetailsState.imagesUrl,
-                            indexPage: itemIndex, text: 'Photos',
+                            indexPage: itemIndex, text: 'Album',
                           )
 
 
@@ -313,82 +335,71 @@ class DetailsInitState extends States {
 
           detailsModell.favorites!.isNotEmpty?
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 35),
+            padding: const EdgeInsetsDirectional.only(start: 5),
             child: SizedBox(
-              height: 180,
+              height: 130,width: 400,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GridView.builder( gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: (2/5),
+                    crossAxisCount: 1,
+                    childAspectRatio: (6/7),
 
-                    crossAxisSpacing: 1,
-                    mainAxisSpacing: 1),
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0),
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
                     itemCount: detailsModell.favorites!.length,
                     itemBuilder: (context, index) {
                       return
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child:
+                        Column(
+                          children: [
 
-                          Card(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(color: Colors.black12),
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: Row(
-                              children: [
+                            Container(
 
-                                Container(
-
-                                  decoration: BoxDecoration(
+                              decoration: BoxDecoration(
 
 
 
-                                    borderRadius:
-                                    BorderRadius.only(
-                                      bottomLeft:Radius.circular(5),
-                                      topLeft: Radius.circular(5)
-                                  ),),
-width: 60,height: 60,
+                                borderRadius:
+                                BorderRadius.only(
+                                  bottomLeft:Radius.circular(5),
+                                  topLeft: Radius.circular(5)
+                              ),),
 
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(3.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.only(topLeft: Radius.circular(5),bottomLeft: Radius.circular(5)),
 
-                                      child: CachedNetworkImage(
-                                        imageUrl: detailsModell.favorites![index].image
-                                            .toString(),
-                                        imageBuilder: (context, imageProvider) =>
-                                            Container(
-                                          height: 10,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: imageProvider,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(5),bottomLeft: Radius.circular(5)),
+
+                                  child: CachedNetworkImage(
+                                    imageUrl: detailsModell.favorites![index].image
+                                        .toString(),
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      height: 90,width:80,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
                                         ),
-                                        placeholder: (context, url) => Padding(
-                                          padding: const EdgeInsets.all(15.0),
-                                          child: LoadingIndicator(
-                                            indicatorType: Indicator.ballBeat,
-                                            colors: [Colors.black],
-                                          ),
-                                        ),
-                                        errorWidget: (context, url, error) =>
-                                            Icon(Icons.error),
                                       ),
                                     ),
+                                    placeholder: (context, url) => Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: LoadingIndicator(
+                                        indicatorType: Indicator.ballBeat,
+                                        colors: [Colors.black],
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
                                   ),
                                 ),
-                                Text("Christian Zakhour",style: GoogleFonts.comfortaa(fontSize: 12,fontWeight: FontWeight.bold),)
-                              ],
+                              ),
                             ),
-                          ),
+
+                          ],
                         );
                     }),
               ),
@@ -406,18 +417,18 @@ width: 60,height: 60,
                   },
                   child: Row(
                     children: [
-                      Icon(Icons.add_circle,size: 12 ,color: YellowColor,),
+                      Icon(Icons.add_circle,size: 25 ,color: YellowColor,),
                        SizedBox(width: 5,),
                        Text(
                         'Invite buddy ',
-                        style: TextStyle(
+                        style: GoogleFonts.anekLatin(
                           wordSpacing: 2,
                             color: Colors.black,
                             decoration: TextDecoration.underline,
                             fontSize: 13,
-                            fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Roboto-Bold'),
+
+                            fontWeight: FontWeight.bold,
+                           ),
                       ),
 
                     ],
@@ -439,18 +450,18 @@ width: 60,height: 60,
                   },
                   child: Row(
                     children: [
-                      Icon(Icons.add_circle,size: 12 ,color: YellowColor,),
+                      Icon(Icons.add_circle,size: 25 ,color: YellowColor,),
                       SizedBox(width: 5,),
                       Text(
                         'Invite buddy ',
-                        style: TextStyle(
+                        style: GoogleFonts.anekLatin(
                             wordSpacing: 2,
                             color: Colors.black,
                             decoration: TextDecoration.underline,
                             fontSize: 13,
-                            fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Roboto-Bold'),
+
+                            fontWeight: FontWeight.bold,
+                           ),
                       ),
 
                     ],
@@ -476,58 +487,82 @@ width: 60,height: 60,
 
 
           Center(
-            child: Container(
-              width: 400,
-              child: Card(
-                elevation: 2,
+            child: Container(   width: 400,
+              child: Column(
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01, ),
 
-                child: Column(
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.01, ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text("Menu",
-                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Menus",
+                          style:
+                          GoogleFonts.alef(fontSize: 20, fontWeight: FontWeight.bold)),
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+
+                  SizedBox(
+                    height: 230,
+                    width: 500,
+                    child: Column(
+                      children: [
+                        CarouselSlider.builder(
+                            options: CarouselOptions(
+                                height: 200,
+                                enlargeStrategy: CenterPageEnlargeStrategy.scale,
+                                padEnds: true,
+                                pauseAutoPlayOnTouch: true,
+                                pageSnapping: true,
+                                autoPlay: false,
+                                enlargeCenterPage: true,
+                                reverse: false,
+                                disableCenter: true,
+                                enableInfiniteScroll: false,
+                                onPageChanged: (index, reason) {
+                                  placesDetailsState.currentIndex = index;
+                                  print(placesDetailsState.currentIndex);
+                                  placesDetailsState.refresh();
+                                }),
+                            itemCount: detailsModell.menus!.length,
+                            itemBuilder: (BuildContext context, int itemIndex,
+                                int pageViewIndex) =>
+
+                                CustomNetworkImage(
+                                  thumbnail:
+                                  detailsModell.menus![itemIndex].image.toString() ,
+
+                                  imageSource: placesDetailsState.imagesUrl1,
+                                  indexPage: itemIndex, text: 'Menus',
+                                )
+
+
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: detailsModell.menus!
+                                .map((e) => Container(
+                              width: 5.0,
+                              height: 5.0,
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 2.0),
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: placesDetailsState.currentIndex ==
+                                      detailsModell.menus!.indexOf(e)
+                                      ? Colors.black
+                                      : Colors.grey),
+                            ))
+                                .toList() //
+                        )
+                      ],
                     ),
-                    Container(
-                      height: 150,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemCount: detailsModell.menus!.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                                padding: const EdgeInsets.only(left: 10, right: 240),
-                                child: Row(children: [
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width * 0.04,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      height: 130,
-                                      width: 130,
-                                      child: Center(
-                                          child:
-                                          CustomNetworkImage(
-                                            text:"Menu",
-                                            thumbnail: detailsModell.menus![index].image.toString(),
-                                            imageSource: [detailsModell.menus![index].image.toString()],
-                                          )
-                                      ),
-                                    ),
-                                  ),
-                                ]));
-                          }),
-                    ),
-                  ],
-                ),
+                  ),
+
+                ],
               ),
             ),
           ),
@@ -551,7 +586,7 @@ width: 60,height: 60,
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Reviews",
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+                      style:    GoogleFonts.alef(fontSize: 20, fontWeight: FontWeight.bold)),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
@@ -568,15 +603,15 @@ width: 60,height: 60,
                               }));},
                       child: Row(
                         children: [
-                       Icon(Icons.add_circle,color: YellowColor,size: 12,),
+                       Icon(Icons.add_circle,color: YellowColor,size: 25,),
                           SizedBox(width: 5,),
-                          Text("Add review",style: TextStyle(wordSpacing: 2,
+                          Text("Add review",style: GoogleFonts.anekLatin(wordSpacing: 2,
                               color: Colors.black,
                               decoration: TextDecoration.underline,
                               fontSize: 13,
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Roboto-Bold'),)
+
+                              fontWeight: FontWeight.bold,
+                              ),)
                         ],
                       ),
                     ),
@@ -620,7 +655,7 @@ width: 60,height: 60,
                           ],
                         ),
                         title: Text(
-                          detailsModell.reviews![index].name.toString(),
+                          detailsModell.reviews![index].name.toString(),style: GoogleFonts.anekLatin(fontWeight: FontWeight.w500),
                         ),
                         subtitle: Text(
                           detailsModell.reviews![index].description.toString(),
@@ -641,42 +676,7 @@ width: 60,height: 60,
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) =>
-                        CustomReviewDialog(continueBtn: (rate, reviewText) {
-                          Navigator.pop(context);
 
-                          placesDetailsState.AddReviewww(
-                              AddReviewReq(
-                                  rating: rate, description: reviewText),
-                              detailsModell.id.toString());
-                        }));
-              },
-//
-
-              child: const Text(
-                'Add Review ',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Roboto-Bold'),
-              ),
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.12,
-                    vertical: MediaQuery.of(context).size.height * 0.013),
-                primary: YellowColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-            ),
-          ),
           //reviews end
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.07,
@@ -688,4 +688,5 @@ width: 60,height: 60,
       ),
     );
   }
+
 }

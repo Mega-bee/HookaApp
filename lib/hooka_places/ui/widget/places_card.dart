@@ -15,7 +15,9 @@ import '../screen/places_details.dart';
 
 class PlacesCard extends StatefulWidget {
   final PlacesResp ? modelp;
-  PlacesCard({this.modelp});
+
+  final Function?  isFavFunc ;
+  PlacesCard({this.modelp,this.isFavFunc});
 
 
 
@@ -25,9 +27,10 @@ class PlacesCard extends StatefulWidget {
 }
 
 class _PlacesCardState extends State<PlacesCard> {
-
+   bool  isFavv=false;
   @override
   Widget build(BuildContext context) {
+  final distance= widget.modelp!.distance!/1000;
     return
       SizedBox(
 height: 390,
@@ -61,16 +64,27 @@ height: 390,
 
                       ),
                     ),
-
+                      widget.modelp!.distance==0?Container():
                       Positioned(
-                          right: 20,top: 12,
-                          child: Container(
-height: 30,width: 30,
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(45),    color: Colors.white,),
-                              child:
-                              widget.modelp!.isInFavorite==true?
-                              Icon(Icons.favorite,color: Colors.yellow[600],size: 20,):
-                              Icon(Icons.favorite_border,color: Colors.yellow[600],size: 20,)))
+                        left: 320,
+                        bottom: 13,
+                        child: Container(
+                          height: 28,
+                          color: Colors.transparent,
+                          
+                          child: Card(
+                            color: Color.fromRGBO(230, 230, 230, 0.5),
+
+                            child: Center(
+                              child: Text(" ${distance.toStringAsFixed(1)} km ",style: TextStyle(
+fontWeight: FontWeight.bold
+                              ),
+                        ),
+                            ),
+                          ),
+                      ))
+
+
                   ]),
                   SizedBox(height: MediaQuery.of(context).size.height*0.01,),
                   ListTile(title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,16 +117,39 @@ height: 30,width: 30,
                     subtitle: Align(
                       alignment: Alignment.centerLeft,
                       child: Column(children: [
-                        SizedBox(height: 5,),
+                        SizedBox(height: 3,),
                         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(widget.modelp!.cuisine.toString(),style: GoogleFonts.anekLatin(
                               color: Colors.black
                             ),),
 
+
+                            Padding(
+                              padding: const EdgeInsets.only(right: 12.0),
+                              child:
+
+                              InkWell(
+                                onTap: (){  widget.isFavFunc!(isFavv);
+                                  isFavv =!isFavv;
+                                  setState(() {
+
+                            });},
+                                child:
+                              isFavv !=widget.modelp!.isInFavorite?
+                              Icon(Icons.favorite,size: 27,color: Colors.yellow[600] ,): Icon(Icons.favorite_border,size: 27,color: Colors.yellow[600] ,),
+
+
+
+                              ),
+                            ),
+
+
+
+
                           ],
                         ),
-                        SizedBox(height: 5,),
+
                         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(widget.modelp!.location.toString(),
@@ -120,6 +157,8 @@ height: 30,width: 30,
                                     fontStyle: FontStyle.italic,fontSize: 12
                                 )
                             ),
+
+
 
 
                           ],

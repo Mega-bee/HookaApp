@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,7 +38,7 @@ class ProfileState extends State<Profile> {
         elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
+          icon: Icon(CupertinoIcons.back,color: Primarycolor,size: 25,),
           onPressed: (){Navigator.of(context).pop();},
         ),
         title: Text("My Account",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),

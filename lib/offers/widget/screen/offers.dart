@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,27 +33,25 @@ class OffersState extends State<Offers> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
 
-      child: Scaffold(
-          backgroundColor: Colors.white,
 
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_outlined,color: Primarycolor,size: 35,),
-            onPressed: (){Navigator.of(context).pop();},
-          ),
-          title: Text("Offers",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)),
-          elevation: 1,
-backgroundColor: Colors.white,
+      appBar: AppBar(
+
+        leading: IconButton(
+          icon: Icon(CupertinoIcons.back,color: Primarycolor,size: 25,),
+          onPressed: (){Navigator.of(context).pop();},
         ),
-        body:BlocBuilder<OffersCubit, States>(
-          bloc: widget.cubit,
-          builder: (context, state) {
-            return state.getUI(context);
-          },
-        )
+        title: Text("Offers",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)),
+        elevation: 0,
+backgroundColor: Colors.white,
       ),
+      body:BlocBuilder<OffersCubit, States>(
+        bloc: widget.cubit,
+        builder: (context, state) {
+          return state.getUI(context);
+        },
+      )
     );
      
 

@@ -17,6 +17,7 @@ class Urls {
   static const String BASE_ORDERS = DOMAIN +'/webapi/api/Orders/';
   static const String BASE_SETTING = DOMAIN +'/webapi/api/Settings/';
   static const String BASE_NOTIFICATIONS = DOMAIN +'/webapi/api/Notifications/';
+  static const String BASE_CUISINES = DOMAIN +'/webapi/api/Cuisines/';
 
 
 
@@ -48,6 +49,8 @@ class Urls {
   static const OFFERS = BASE_Offers +'GetAllOffers';
   static const OFFERS_DETAILS = BASE_Offers +'GetOfferById/';
 
+  //  /*--------CUISINES-------------------*/
+  static const GET_CUISINES = BASE_CUISINES +'GetCuisines';
 //  /*--------INVITATIONS-------------------*/
   static const RECEIVED_INVITATIONS = BASE_Invitations +'GetRecievedInvitations';
   static const SENT_INVITATIONS = BASE_Invitations +'GetSentInvitations';
@@ -77,7 +80,7 @@ class Urls {
 
   //  /*--------BASKET-------------------*/
   static const BASKET = BASE_Basket +'GetCartSummary';
-  static const ADD_TO_CART = BASE_Basket +'AddToCart/';
+  static const ADD_TO_CART = BASE_Basket +'UpdateCartItemQuantity';
   static const UPDATE_CART = BASE_Basket +'UpdateCart';
   static const DELETE_ITEM_CART = BASE_Basket +'RemoveItemFromCart';
 
