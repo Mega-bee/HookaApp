@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../utils/style/colors.dart';
+import '../../product_routes.dart';
 import '../../response/detailsprod_response.dart';
 
 class DetailsProdCard extends StatefulWidget {
@@ -12,9 +13,17 @@ class DetailsProdCard extends StatefulWidget {
   final Function ontap;
   final Function onselect;
   final Function addtocart;
+  final Function delete;
+  final Function get;
+
 
   DetailsProdCard(
-      {required this.detailsProductResponse, required this.ontap,  required this.onselect,required this.addtocart});
+      {
+        required this.detailsProductResponse,
+        required this.get,
+
+
+        required this.ontap,  required this.onselect,required this.addtocart,required this.delete});
 
   @override
   State<DetailsProdCard> createState() => _DetailsProdCardState();
@@ -180,11 +189,19 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(left: 8.0),
-                                    child:  widget.detailsProductResponse.quantityInCart == 0
+                                    child:  widget.detailsProductResponse.quantityInCart == 1
                                         ? InkWell(
                                             onTap: () {
                                               _value = false;
                                               selected = false;
+                                              widget.delete(
+                                                widget.detailsProductResponse.id
+                                              );
+                                              Navigator.pop(context);
+
+
+
+
 
                                               setState(() {});
                                             },

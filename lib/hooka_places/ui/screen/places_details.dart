@@ -1,3 +1,4 @@
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +25,7 @@ class PlacesDetails extends StatefulWidget {
 
 class PlacesDetailsState extends State<PlacesDetails> {
   bool flags = true;
-
+  ScrollController? controller1;
   void refresh() {
     if (mounted) {
       setState(() {});
@@ -63,37 +64,51 @@ void initState() {
       }
       flags = false;
     }
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
+    return  ColorfulSafeArea(
+      color: Colors.white,
+
+      bottom: false,
+      left: false,
+      right: false,
+      child: Scaffold(
         backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            CupertinoIcons.back,
-            color: Primarycolor,
-            size: 25,
+        body:NestedScrollView(
+      floatHeaderSlivers: true,
+      controller: controller1,
+      headerSliverBuilder: (context,innerBoxIsScrolled){
+    return [
+
+
+        SliverAppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(
+              CupertinoIcons.back,
+              color: Primarycolor,
+              size: 25,
+            ),
+            onPressed: () {
+          Navigator.pop(context);
+
+
+            },
           ),
-          onPressed: () {
-        Navigator.pop(context);
+          title: Text(
+            "Details",
+            style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),
+          ),
+          actions: [
 
+          ],)];},
 
+        body:  BlocBuilder<DetailsCubit, States>(
+          bloc: widget.cubit,
+          builder: (context, state) {
+            return state.getUI(context);
           },
-        ),
-        title: Text(
-          "Details",
-          style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),
-        ),
-        actions: [
-
-        ],
+        )
       ),
-      body:  BlocBuilder<DetailsCubit, States>(
-        bloc: widget.cubit,
-        builder: (context, state) {
-          return state.getUI(context);
-        },
-      )
-    );
+    ));
   }
 }

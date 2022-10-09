@@ -26,11 +26,15 @@ class BasketInitState extends States {
     return Column(
       children: [
 
+
         Expanded(
-          child: ListView.builder(
+          child:
+          ListView.builder(
               itemCount: _basketResponse.items!.length,
               itemBuilder: (context, index) {
-                return BasketCard(_basketResponse.items![index],
+                return
+
+                  BasketCard(_basketResponse.items![index],
                     onQuantityChange: () {
                   totalPriceAllItem = 0;
                   _basketResponse.items?.forEach((element) {
@@ -51,8 +55,13 @@ class BasketInitState extends States {
                   });
                   screenState.refresh();
                 });
+
               }),
         ),
+       if( _basketResponse.items!.isEmpty)
+        Center(child: Text("Your Cart Is Empty",style: TextStyle(color: Colors.black,fontSize: 15),),),
+        if( _basketResponse.items!.isEmpty)
+        SizedBox(height: 10,),
         Container(
           height: 2,
           width: 400,

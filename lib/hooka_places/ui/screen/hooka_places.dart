@@ -1,3 +1,4 @@
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -63,13 +64,26 @@ request=FilterRequest(0, 0, "", "",[]);
     widget.cubit.getPlacess(this,request!);
 
   }
+  ScrollController? controller;
   @override
   Widget build(BuildContext context) {
 //    final _textEditingController =TextEditingController();
-    return Scaffold(
+    return ColorfulSafeArea(
+      color: Colors.white,
 
-      appBar:AppBar(
+      bottom: false,
+      left: false,
+      right: false,
 
+      child: Scaffold(
+
+        body:NestedScrollView(
+floatHeaderSlivers: true,
+        controller: controller,
+        headerSliverBuilder: (context,innerBoxIsScrolled){
+  return [
+      SliverAppBar(
+        floating: true,
         elevation: 0,
         backgroundColor: Colors.white,
         title: Text('Places',style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),
@@ -84,13 +98,18 @@ request=FilterRequest(0, 0, "", "",[]);
 
           }, child: Text("Map",style:  GoogleFonts.comfortaa(fontSize: 15,fontWeight: FontWeight.bold),))
         ],
-      ) ,
-      body:   BlocBuilder<PlacesCubit, States>(
-        bloc: widget.cubit,
-        builder: (context, state) {
-          return state.getUI(context);
-        },
       )
+
+  ];
+      },
+
+        body:   BlocBuilder<PlacesCubit, States>(
+          bloc: widget.cubit,
+          builder: (context, state) {
+            return state.getUI(context);
+          },
+        )
+      )),
     );
   }
 

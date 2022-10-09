@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/hooka_product/request/add_to_cart_request.dart';
 import 'package:hooka/utils/style/colors.dart';
 import '../../../Hooka Basket/basket_routes.dart';
+import '../../../Hooka Basket/request/item_delete_request.dart';
 import '../../../abstracts/states/state.dart';
 import '../../response/detailsprod_response.dart';
 import '../screen/prod_details.dart';
@@ -83,6 +84,15 @@ class DetailsProdInitState extends States {
                             final PlacesList = detailsprodresp[index];
 
                             return DetailsProdCard(
+get: (){
+  detailsProductState.refresh();
+
+},
+                              delete: (int x){
+                                detailsProductState.DeleteItem(DeleteItemCarttRequest(productId: x
+
+                                ));
+                              },
 detailsProductResponse: PlacesList, ontap: () {
                               detailsprodresp.forEach((element) {
                                 element.isselected= false ;

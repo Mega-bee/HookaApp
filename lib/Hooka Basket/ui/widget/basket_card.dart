@@ -79,17 +79,7 @@ class _BasketCardState extends State<BasketCard> {
                     widget._items.productName.toString(),
                     style: GoogleFonts.alef(fontSize: 22,fontWeight: FontWeight.bold),
                   ),
-                  IconButton(
 
-                      onPressed: () {
-                        widget.OnDelete();
-                      },
-                      icon: Icon(
-
-                        CupertinoIcons.xmark,
-                        size: 11,
-
-                      )),
                 ],
               ),
 horizontalTitleGap: 10,
@@ -105,8 +95,9 @@ horizontalTitleGap: 10,
                       width: 40,
                     ),
                     Container(
-                      width: 40,
-                      height: 40,
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(border: Border.all(color: YellowColor,),borderRadius: BorderRadius.circular(30)),
                       child: InkWell(
                         splashColor: Colors.white,
                         focusColor: Colors.white,
@@ -121,26 +112,16 @@ horizontalTitleGap: 10,
                           }
 
                         },
-                        child: Card(
-                            color: Colors.transparent,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(color: YellowColor),
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            child:
-                            widget._items.quantity!=1?
-                            Text(
-                              "-",
-                              style: TextStyle(
-                                  fontSize: 27,
-                                  color: Colors.black),textAlign: TextAlign.center,
-                            ):
-                            IconButton(icon:Icon( CupertinoIcons.delete,size: 15,),onPressed: (){
-                              widget.OnDelete();
-                            },)
-
-                        ),
+                        child: widget._items.quantity!=1?
+                        Text(
+                          "-",
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.black),textAlign: TextAlign.center,
+                        ):
+                        IconButton(icon:Icon( CupertinoIcons.delete,size: 15,),onPressed: (){
+                          widget.OnDelete();
+                        },),
                       ),
                     ),
                     SizedBox(
@@ -156,9 +137,10 @@ horizontalTitleGap: 10,
                     ),
                     Container(
 
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-                      width: 40,
-                      height: 40,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),   color: YellowColor,),
+                      width: 30,
+                      height: 30,
+
                       child: InkWell(
                         splashColor: Colors.white,
                         focusColor: Colors.white,
@@ -169,17 +151,10 @@ horizontalTitleGap: 10,
                           widget.onQuantityChange();
                           setState(() {});
                         },
-                        child: Card(
-
-                            color: YellowColor,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            child: Text(
-                              "+",
-                              style: TextStyle(color: Colors.black,fontSize: 27,),textAlign: TextAlign.center,
-                            )),
+                        child: Text(
+                          "+",
+                          style: TextStyle(color: Colors.black,fontSize: 25,),textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                     SizedBox(

@@ -246,7 +246,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i72.PlacesDetails>(
       () => _i72.PlacesDetails(get<_i52.DetailsCubit>()));
   gh.factory<_i73.ProdDetailsCubit>(() => _i73.ProdDetailsCubit(
-      get<_i30.ProductsRepository>(), get<_i6.AuthService>()));
+      get<_i30.ProductsRepository>(),
+      get<_i6.AuthService>(),
+      get<_i15.BasketRepository>()));
   gh.factory<_i74.Profile>(() => _i74.Profile(get<_i58.GetProfileCubit>()));
   gh.factory<_i75.ScreenContactus>(
       () => _i75.ScreenContactus(get<_i49.ContactUsCubit>()));

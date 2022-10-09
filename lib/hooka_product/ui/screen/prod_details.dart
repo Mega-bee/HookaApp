@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooka/hooka_product/request/add_to_cart_request.dart';
 import 'package:injectable/injectable.dart';
 import '../../../Hooka Basket/basket_routes.dart';
+import '../../../Hooka Basket/request/item_delete_request.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../hooka_places/state_manager/details_state_manager.dart';
 import '../../../utils/style/colors.dart';
@@ -36,6 +37,12 @@ class DetailsProductState extends State<DetailsProduct> {
   AddToCarttttt(AddToCartRequest request){
     widget.cubit.AddToCart(this,request);
   }
+  DeleteItem(DeleteItemCarttRequest request){
+    widget.cubit.DeleteItemCart(this,request);
+  }
+
+
+
    ScrollController scrollController = new ScrollController();
   int? count;
 
@@ -49,6 +56,7 @@ class DetailsProductState extends State<DetailsProduct> {
 
   @override
   Widget build(BuildContext context) {
+
     if(flags){
       var  args = ModalRoute.of(context)?.settings.arguments;
       if (args != null && args is String) {
@@ -57,6 +65,7 @@ class DetailsProductState extends State<DetailsProduct> {
       }
       flags = false;
     }
+
     return Scaffold(
     backgroundColor: Colors.white,
         appBar: AppBar(
@@ -76,22 +85,29 @@ class DetailsProductState extends State<DetailsProduct> {
 
 
             Padding(
-              padding: const EdgeInsets.only(left: 28.0,top: 10,bottom: 10),
+              padding: const EdgeInsets.only(left: 28.0,top: 10,bottom: 10,right: 10),
               child: Container(
 
-             width: 70,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
-color: Colors.black87,
+             width: 50,
+                decoration: BoxDecoration(borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10)
 
-                  border: Border.all(color: YellowColor)
+                ),
+color: Colors.black,
+
+                  border: Border.all(color: Colors.black)
 
 
 
                 ),
-                child: IconButton(onPressed: (){
+                child: IconButton(
+                    onPressed: (){
                   Navigator.pushNamed(context, BasketRoutes.BasketS);
 
-                }, icon: Icon(Icons.shopping_cart,color: YellowColor,size: 25,)),
+                }, icon: Icon(Icons.shopping_cart,color: YellowColor,size: 26,)),
               ),
             ),
           ],
