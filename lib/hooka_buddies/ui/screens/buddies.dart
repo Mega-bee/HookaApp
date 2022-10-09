@@ -25,6 +25,7 @@ class Buddies extends StatefulWidget {
 class BuddiesState extends State<Buddies> {
   int? placeId;
 
+    
   void refresh() {
     if (mounted) {
       setState(() {});

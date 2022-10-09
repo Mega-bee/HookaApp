@@ -39,7 +39,7 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
 
   @override
   Widget build(BuildContext context) {
-    _value = widget.detailsProductResponse.isselected!;
+
 
 
     return InkWell(
@@ -50,16 +50,14 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
 
 
 
-        if(widget.detailsProductResponse.quantityInCart==0){
-          null;
-        }else{
+
           _value = false;
           selected = true;
           widget.detailsProductResponse.isselected =
           !widget.detailsProductResponse.isselected!;
         widget.ontap();
-        widget.addtocart(widget.detailsProductResponse.id,  widget.detailsProductResponse.quantityInCart);
-        widget.onselect();}
+        widget.addtocart(widget.detailsProductResponse.id,  inc);
+        widget.onselect();
 
         // Future.delayed(Duration(seconds: 3),(){
         //    selected=false;
@@ -124,11 +122,8 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                                 borderRadius: BorderRadius.circular(40)),
                             child: Card(
                               elevation: 3,
-                              color: selected == false &&
-                                      widget.detailsProductResponse
-                                              .quantityInCart ==
-                                          0
-                                  ? Colors.white
+                              color: selected == false
+                                  ?  Colors.white
                                   : YellowColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
@@ -138,36 +133,28 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                                   widget.ontap();
 
                                   _value = true;
-                                  widget.detailsProductResponse.quantityInCart=widget.detailsProductResponse.quantityInCart! +1;
+                                  // widget.detailsProductResponse.quantityInCart=widget.detailsProductResponse.quantityInCart! +1;
 
                                   setState(() {});
                                 },
                                 child: selected == false
-                                    ? widget.detailsProductResponse
-                                                .quantityInCart ==
-                                            0
-                                        ? Icon(
+                                    ?
+                                         Icon(
                                             CupertinoIcons.add,
                                             color: YellowColor,
                                             size: 25,
                                           )
-                                        : Center(
+                                        :
+                                Center(
                                             child: Text(
-                                       "${widget.detailsProductResponse.quantityInCart!} "
+                                       "${inc} "
                                                 ,
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold),
                                           ))
-                                    : Center(
-                                        child: Text(
-                                          widget.detailsProductResponse.quantityInCart.toString(),
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold),
-                                      )),
+
                               ),
                             ),
                           )
@@ -189,15 +176,15 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(left: 8.0),
-                                    child:  widget.detailsProductResponse.quantityInCart == 1
-                                        ? InkWell(
+                                    child:
+    inc==1?
+    InkWell(
                                             onTap: () {
                                               _value = false;
                                               selected = false;
-                                              widget.delete(
-                                                widget.detailsProductResponse.id
-                                              );
-                                              Navigator.pop(context);
+
+                                              widget.detailsProductResponse.isselected =
+                                              !widget.detailsProductResponse.isselected!;
 
 
 
@@ -212,8 +199,8 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                                             ))
                                         : InkWell(
                                             onTap: () {
-                                              if ( widget.detailsProductResponse.quantityInCart! > 1) {
-                                                widget.detailsProductResponse.quantityInCart = widget.detailsProductResponse.quantityInCart! -1;
+                                              if ( inc > 1) {
+                                              inc--;
                                                 setState(() {});
                                               }
                                               ;
@@ -231,11 +218,11 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
 
                                         widget.addtocart(
                                             widget.detailsProductResponse.id,
-                                            widget.detailsProductResponse.quantityInCart!);
+                                            inc);
                                         widget.onselect();
                                       },
                                       child: Text(
-                                        "${widget.detailsProductResponse.quantityInCart!} ",
+                                        "${inc} ",
                                         style: GoogleFonts.anekLatin(
                                             fontSize: 22,
                                             fontWeight: FontWeight.bold),
@@ -244,7 +231,8 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                                     padding: const EdgeInsets.only(right: 8.0),
                                     child: InkWell(
                                         onTap: () {
-                                          widget.detailsProductResponse.quantityInCart= widget.detailsProductResponse.quantityInCart!+1;
+                                          inc++;
+                                          // widget.detailsProductResponse.quantityInCart= widget.detailsProductResponse.quantityInCart!+1;
                                           setState(() {
                                             widget.ontap();
                                           });
