@@ -57,13 +57,38 @@ height: 390,
 
                   Stack(
                     children:[ 
-                      ClipRRect(
-                      borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
-
-                      child: Image.asset("assets/images/restaurant-939435_960_720-768x512.jpeg",fit: BoxFit.contain,
-
+                    //   ClipRRect(
+                    //   borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
+                    //
+                    //   child: Image.asset(widget.modelp!.image.toString(),fit: BoxFit.contain,
+                    //
+                    //   ),
+                    // ),
+                      CachedNetworkImage(
+                        imageUrl: widget.modelp!.image.toString(),
+                        fit: BoxFit.contain,
+                        height: 180,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                        placeholder: (context, url) => const Padding(
+                          padding: EdgeInsets.all(15.0),
+                          child: Center(
+                            child: LoadingIndicator(
+                              indicatorType: Indicator.ballBeat,
+                              colors: [Colors.black],
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
                       ),
-                    ),
+
                       widget.modelp!.distance==0?Container():
                       Positioned(
                         left: 320,

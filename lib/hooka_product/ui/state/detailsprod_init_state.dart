@@ -14,6 +14,7 @@ class DetailsProdInitState extends States {
   final List<DetailsProductResponse> detailsprodresp;
 
   final DetailsProductState detailsProductState;
+
   DetailsProdInitState(
     this.detailsprodresp,
     this.detailsProductState,
@@ -24,33 +25,26 @@ class DetailsProdInitState extends States {
 
   num Total1 = 0;
 
-
   DetailsProductResponse? isselec;
 
   String? desc;
 
-
-
-
   @override
   Widget getUI(BuildContext context) {
-
     return Column(
       children: [
         Container(
-
-
           child: Scrollbar(
             child: SingleChildScrollView(
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     Container(
                       color: Colors.white,
                       width: double.infinity,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 18.0,bottom: 5,top: 10),
+                        padding: const EdgeInsets.only(
+                            left: 18.0, bottom: 5, top: 10),
                         child: Text(
                           "Choose Your flavor",
                           style: GoogleFonts.alef(
@@ -58,97 +52,69 @@ class DetailsProdInitState extends States {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
-
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
-
                       height: MediaQuery.of(context).size.height * 0.82,
                       width: 400,
-
-
                       child: GridView.builder(
-
                           shrinkWrap: true,
-                          gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: (4.5 / 4.5),
-
-
-                              crossAxisSpacing: 0,
-                              mainAxisSpacing: 0),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: (4.5 / 4.5),
+                                  crossAxisSpacing: 0,
+                                  mainAxisSpacing: 0),
                           itemCount: detailsprodresp.length,
-
                           scrollDirection: Axis.vertical,
-
                           itemBuilder: (context, index) {
                             final PlacesList = detailsprodresp[index];
 
                             return DetailsProdCard(
-get: (){
-  detailsProductState.refresh();
-
-},
-                              delete: (int x){
-                                detailsProductState.DeleteItem(DeleteItemCarttRequest(productId: x
-
-                                ));
-                              },
-detailsProductResponse: PlacesList, ontap: () {
-                              detailsprodresp.forEach((element) {
-                                element.isselected= false ;
-
-
-
-
-                              });
-
-
-
-                              detailsprodresp[index].isselected = true;
-                              isselec = PlacesList;
-                              PlacesList.description==desc;
-                              detailsProductState.refresh();
-                            },
-                                 onselect:    (){
+                                get: () {
+                                  detailsProductState.refresh();
+                                },
+                                delete: (int x) {
+                                  detailsProductState.DeleteItem(
+                                      DeleteItemCarttRequest(productId: x));
+                                },
+                                detailsProductResponse: PlacesList,
+                                ontap: () {
                                   detailsprodresp.forEach((element) {
-                                    element.isselected= false ;
-
-
-
-
+                                    element.isselected = false;
                                   });
 
-
-
+                                  detailsprodresp[index].isselected = true;
+                                  isselec = PlacesList;
+                                  PlacesList.description == desc;
+                                  detailsProductState.refresh();
+                                },
+                                onselect: () {
+                                  detailsprodresp.forEach((element) {
+                                    element.isselected = false;
+                                  });
 
                                   detailsprodresp[index].isselected = false;
                                   isselec = PlacesList;
-                                  PlacesList.description==desc;
+                                  PlacesList.description == desc;
                                   detailsProductState.refresh();
-                                  },
-                                addtocart:
-                                (int id,int num){
-
-                                  detailsProductState.AddToCarttttt(AddToCartRequest(itemId: id, quantity: num)
-                                     );
+                                },
+                                addtocart: (int id, int num) {
+                                  detailsProductState.AddToCarttttt(
+                                      AddToCartRequest(
+                                          itemId: id, quantity: num));
                                   print('newwwwwwwwwwwwwww');
                                   print(id);
                                   print(num);
                                   print('newwwwwwwwwwwwwww');
-
-
-                                }
-                            );
+                                });
                           }),
                     ),
-
-
                   ]),
             ),
           ),
         ),
-
-
       ],
     );
   }
