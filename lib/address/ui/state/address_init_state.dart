@@ -174,7 +174,7 @@ class AddressInitState extends States{
                    child:
 
                    Text(
-                     CuppertinoName ?? "Address",
+                     CuppertinoName ?? addressResponse[0].title.toString(),
                      style: GoogleFonts.anekLatin(
                        fontSize: 18.0,color: Colors.black,fontWeight: FontWeight.w600
                      ),
@@ -424,24 +424,36 @@ class AddressInitState extends States{
 
 
          SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-CuppertinoId==null&& (DontHaveaddress==false||title1.text.isEmpty || appartment1.text.isEmpty || city1.text.isEmpty ||street1.text.isEmpty || building1.text.isEmpty)?Container():
-
+         addressResponse.isEmpty&& (DontHaveaddress==false||title1.text.isEmpty || appartment1.text.isEmpty || city1.text.isEmpty ||street1.text.isEmpty || building1.text.isEmpty)?Container():
          Container(width: 250,height: 50,
            child: CustomButton(bgColor: YellowColor, text: "Confirm Order", textColor: Colors.black,
                loading:  screenState.loadingSnapshot.connectionState ==
                    ConnectionState.waiting,
                buttonTab: (){
+             if (DontHaveaddress==true){
+               screenState.Makeorder(OrderRequest(addressId: 0,Title: title1.text,Street: street1.text,Longitude: location2.toString(),Latitude: location.toString(),
+                   City: city1.text,Building: building1.text,Appartment: appartment1.text
+               ));
+             }else if (
+             CuppertinoId ==null
+               ){
+                 screenState.Makeorder(OrderRequest(addressId:addressResponse[0].id,Title:addressResponse[0].title,Street: addressResponse[0].street,Longitude: addressResponse[0].longitude.toString(),Latitude: addressResponse[0].latitude.toString(),
+                     City: addressResponse[0].city,Building: addressResponse[0].building,Appartment: addressResponse[0].appartment
+                 ));
+               }else {screenState.Makeorder(OrderRequest(addressId:CuppertinoId,Appartment: "empty",Building: "empty",City: "empty",
+                 Latitude: "",Longitude: "",Street: "empty",Title: "empty",
+                 ));}
 
 
 
-             DontHaveaddress==true?
-             screenState.Makeorder(OrderRequest(addressId: 0,Title: title1.text,Street: street1.text,Longitude: location2.toString(),Latitude: location.toString(),
-                 City: city1.text,Building: building1.text,Appartment: appartment1.text
-             )
-
-             ):  screenState.Makeorder(OrderRequest(addressId:CuppertinoId,Appartment: "empty",Building: "empty",City: "empty",
-             Latitude: "",Longitude: "",Street: "empty",Title: "empty",
-             ));
+             // DontHaveaddress==true?
+             // screenState.Makeorder(OrderRequest(addressId: 0,Title: title1.text,Street: street1.text,Longitude: location2.toString(),Latitude: location.toString(),
+             //     City: city1.text,Building: building1.text,Appartment: appartment1.text
+             // )
+             //
+             // ):  screenState.Makeorder(OrderRequest(addressId:CuppertinoId,Appartment: "empty",Building: "empty",City: "empty",
+             // Latitude: "",Longitude: "",Street: "empty",Title: "empty",
+             // ));
              print(OrderRequest);
 
                }),

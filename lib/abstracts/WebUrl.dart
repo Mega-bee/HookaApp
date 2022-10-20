@@ -31,20 +31,15 @@ class Urls {
    static const AVAILABLE = BASE_ACCOUNTS + 'IsAvailableToggle';
    static const GET_ADDRESS = BASE_ACCOUNTS + 'GetAdderesses';
    static const FIRE_TOKEN = BASE_ACCOUNTS + 'RefreshFcmToken';
-
-
-
 //  /*--------Places-------------------*/
   static const GETALLPLACES = BASE_Places + 'GetAllPlaces';
   static const Details = BASE_Places + 'GetPlace/';
   static const FAVORITE = BASE_Places + 'ToggleFavorite/';
   static const ADD_REVIEW = BASE_Places + 'AddReview/';
-
   //  /*--------BUDDIES-------------------*/
   static const BUDDIES = BASE_Buddies +'GetAllBuddies';
   static const BUDDIES_PROFILE = BASE_Buddies +'GetBuddyProfile/';
   static const INVITE_BUDDY = BASE_Buddies +'InviteBuddy';
-
   //  /*--------OFFERS-------------------*/
   static const OFFERS = BASE_Offers +'GetAllOffers';
   static const OFFERS_DETAILS = BASE_Offers +'GetOfferById/';

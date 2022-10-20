@@ -12,6 +12,7 @@ import '../widget/basket_card.dart';
 class BasketInitState extends States {
   final BasketResponse _basketResponse;
   final BasketScreenState screenState;
+
   BasketInitState(
     this._basketResponse,
     this.screenState,
@@ -25,16 +26,11 @@ class BasketInitState extends States {
   Widget getUI(BuildContext context) {
     return Column(
       children: [
-
-
         Expanded(
-          child:
-          ListView.builder(
+          child: ListView.builder(
               itemCount: _basketResponse.items!.length,
               itemBuilder: (context, index) {
-                return
-
-                  BasketCard(_basketResponse.items![index],
+                return BasketCard(_basketResponse.items![index],
                     onQuantityChange: () {
                   totalPriceAllItem = 0;
                   _basketResponse.items?.forEach((element) {
@@ -43,10 +39,8 @@ class BasketInitState extends States {
                   });
                   screenState.refresh();
                 }, OnDelete: () {
-
                   screenState.DeleteItemFromCart(DeleteItemCarttRequest(
-                      productId:
-                          _basketResponse.items![index].itemId));
+                      productId: _basketResponse.items![index].itemId));
                   _basketResponse.items!.removeAt(index);
                   totalPriceAllItem = 0;
                   _basketResponse.items?.forEach((element) {
@@ -55,13 +49,19 @@ class BasketInitState extends States {
                   });
                   screenState.refresh();
                 });
-
               }),
         ),
-       if( _basketResponse.items!.isEmpty)
-        Center(child: Text("Your Cart Is Empty",style: TextStyle(color: Colors.black,fontSize: 15),),),
-        if( _basketResponse.items!.isEmpty)
-        SizedBox(height: 10,),
+        if (_basketResponse.items!.isEmpty)
+          Center(
+            child: Text(
+              "Your Cart Is Empty",
+              style: TextStyle(color: Colors.black, fontSize: 15),
+            ),
+          ),
+        if (_basketResponse.items!.isEmpty)
+          SizedBox(
+            height: 10,
+          ),
         Container(
           height: 2,
           width: 400,
@@ -84,8 +84,6 @@ class BasketInitState extends States {
               ),
             ),
           ),
-
-
         ]),
         SizedBox(
           height: 30,
@@ -123,42 +121,61 @@ class BasketInitState extends States {
 //                            ))))),
 //              ),
               InkWell(
-                onTap: () {
-                  if(_basketResponse.items!.isNotEmpty){
-                  List<UpdateCartRequest> itemsUpdated = [];
-                  _basketResponse.items?.forEach((element) {
-                    itemsUpdated.add(UpdateCartRequest(
-                        id: element.itemId ?? -1,
-                        quantity: element.quantity ?? 0));
-                  });
+                  onTap: () {
+                    if (_basketResponse.items!.isNotEmpty) {
+                      List<UpdateCartRequest> itemsUpdated = [];
+                      _basketResponse.items?.forEach((element) {
+                        itemsUpdated.add(UpdateCartRequest(
+                            id: element.itemId ?? -1,
+                            quantity: element.quantity ?? 0));
+                      });
 
-                  screenState.updateCartAndCheckOut(
-                      UpdateListCartRequest(items: itemsUpdated));}else{
-                    Fluttertoast.showToast(msg: "Your Cart Is Empty ",timeInSecForIosWeb: 4,
-                    gravity: ToastGravity.CENTER,
-                    );
-                  }
-                },
-                child: Container(
-                    width: 200,
-                    height: 50,
-                    child: Card(
-                        color: Colors.black87,
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40.0),
+                      screenState.updateCartAndCheckOut(
+                          UpdateListCartRequest(items: itemsUpdated));
+                    } else {
+                      Fluttertoast.showToast(
+                        msg: "Your Cart Is Empty ",
+                        timeInSecForIosWeb: 4,
+                        gravity: ToastGravity.CENTER,
+                      );
+                    }
+                  },
+                  child: Container(
+                    color: YellowColor,
+                    height: MediaQuery.of(context).size.height * 0.08,
+                    width: MediaQuery.of(context).size.width * 1,
+                    // width: double.infinity,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Proceed to checkout",
+                          style: GoogleFonts.alef(
+                              fontWeight: FontWeight.w600, fontSize: 20),
                         ),
-                        child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Center(
-                                child: Text(
-                              "Proceed To Checkout",
-                              style: GoogleFonts.anekLatin(
-                                  color: YellowColor,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ))))),
-              ),
+                      ),
+                    ),
+                  ))
+
+              // Container(
+              //                 width: 200,
+              //                 height: 50,
+              //                 child: Card(
+              //                     color: Colors.black87,
+              //                     elevation: 5,
+              //                     shape: RoundedRectangleBorder(
+              //                       borderRadius: BorderRadius.circular(40.0),
+              //                     ),
+              //                     child: Padding(
+              //                         padding: const EdgeInsets.all(8.0),
+              //                         child: Center(
+              //                             child: Text(
+              //                           "Proceed To Checkout",
+              //                           style: GoogleFonts.anekLatin(
+              //                               color: YellowColor,
+              //                               fontSize: 18,
+              //                               fontWeight: FontWeight.bold),
+              //                         ))))),¬
             ],
           ),
         )

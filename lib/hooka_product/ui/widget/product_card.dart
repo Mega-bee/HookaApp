@@ -8,8 +8,10 @@ import 'package:loading_indicator/loading_indicator.dart';
 import '../../response/getproduct_response.dart';
 
 class ProductCard extends StatefulWidget {
- final  GetAllProductResponse getAllProductResponse;
- ProductCard(this.getAllProductResponse);
+  final GetAllProductResponse getAllProductResponse;
+
+  ProductCard(this.getAllProductResponse);
+
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
@@ -17,35 +19,27 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
-    return
-
-      InkWell(
-        onTap: (){Navigator.pushNamed(context, ProductsRoutes.ProductDetails,arguments:widget.getAllProductResponse.id.toString() );
-
-        },
-        child:
-        Padding(
-          padding: const EdgeInsets.all(2.0),
-          child:
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-
-              Container(
-decoration: BoxDecoration( border: Border.all(width: 0.8,color: Colors.black
-),),
-              child:
-
-              CachedNetworkImage(
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, ProductsRoutes.ProductDetails,
+            arguments: widget.getAllProductResponse.id.toString());
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 0.8, color: Colors.black),
+              ),
+              child: CachedNetworkImage(
                 imageUrl: widget.getAllProductResponse.image.toString(),
                 fit: BoxFit.contain,
-                height: 180,
+                height: MediaQuery.of(context).size.height * 0.18,
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-0
-
-                    ),
+                    borderRadius: BorderRadius.circular(0),
                     image: DecorationImage(
                       image: imageProvider,
                       fit: BoxFit.contain,
@@ -61,40 +55,35 @@ decoration: BoxDecoration( border: Border.all(width: 0.8,color: Colors.black
                 ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
-                  ),
-              SizedBox(height: 5,),
+            ),
+            SizedBox(
+              height: 5,
+            ),
 
-              Center(child: Text(widget.getAllProductResponse.title.toString(),style: GoogleFonts.anekLatin(color: Colors.black,fontWeight: FontWeight.w600,fontSize: 18),)),
+            Center(
+                child: Text(
+              widget.getAllProductResponse.title.toString(),
+              style: GoogleFonts.anekLatin(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18),
+            )),
 
-
-
-
-
-              // Container(
-              //   decoration: BoxDecoration(
-              //       color: Color.fromRGBO(250, 216, 1,0.6),
-              //       borderRadius: BorderRadius.only(
-              //         topRight: Radius.circular(5),bottomRight: Radius.circular(65),
-              //         bottomLeft: Radius.circular(35),topLeft: Radius.circular(5),
-              //
-              //       )),
-              //   width:50,
-              //   child:
-              //
-              // ),
-
-
-
-
-
-
-
-
-
-
-            ],
-          ),
+            // Container(
+            //   decoration: BoxDecoration(
+            //       color: Color.fromRGBO(250, 216, 1,0.6),
+            //       borderRadius: BorderRadius.only(
+            //         topRight: Radius.circular(5),bottomRight: Radius.circular(65),
+            //         bottomLeft: Radius.circular(35),topLeft: Radius.circular(5),
+            //
+            //       )),
+            //   width:50,
+            //   child:
+            //
+            // ),
+          ],
         ),
-      );
+      ),
+    );
   }
 }

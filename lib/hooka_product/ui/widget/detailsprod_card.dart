@@ -16,14 +16,13 @@ class DetailsProdCard extends StatefulWidget {
   final Function delete;
   final Function get;
 
-
   DetailsProdCard(
-      {
-        required this.detailsProductResponse,
-        required this.get,
-
-
-        required this.ontap,  required this.onselect,required this.addtocart,required this.delete});
+      {required this.detailsProductResponse,
+      required this.get,
+      required this.ontap,
+      required this.onselect,
+      required this.addtocart,
+      required this.delete});
 
   @override
   State<DetailsProdCard> createState() => _DetailsProdCardState();
@@ -36,27 +35,20 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
   int selectedCard = -1;
   int inc = 1;
 
-
   @override
   Widget build(BuildContext context) {
-
-
-
     return InkWell(
       splashColor: Colors.white,
       highlightColor: Colors.white,
       onTap: () {
 // selectedCard=widget.index;
 
-
-
-
-          _value = false;
-          selected = true;
-          widget.detailsProductResponse.isselected =
-          !widget.detailsProductResponse.isselected!;
+        _value = false;
+        selected = true;
+        widget.detailsProductResponse.isselected =
+            !widget.detailsProductResponse.isselected!;
         widget.ontap();
-        widget.addtocart(widget.detailsProductResponse.id,  inc);
+        widget.addtocart(widget.detailsProductResponse.id, inc);
         widget.onselect();
 
         // Future.delayed(Duration(seconds: 3),(){
@@ -123,39 +115,42 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                             child: Card(
                               elevation: 3,
                               color: selected == false
-                                  ?  Colors.white
+                                  ? Colors.white
                                   : YellowColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               child: InkWell(
-                                onTap: () {
-                                  widget.ontap();
-
-                                  _value = true;
-                                  // widget.detailsProductResponse.quantityInCart=widget.detailsProductResponse.quantityInCart! +1;
-
-                                  setState(() {});
-                                },
-                                child: selected == false
-                                    ?
-                                         Icon(
-                                            CupertinoIcons.add,
-                                            color: YellowColor,
-                                            size: 25,
-                                          )
-                                        :
-                                Center(
-                                            child: Text(
-                                       "${inc} "
-                                                ,
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold),
-                                          ))
-
-                              ),
+                                  onTap: () {
+                                    widget.ontap();
+                                    _value = true;
+                                    // widget.detailsProductResponse.quantityInCart=widget.detailsProductResponse.quantityInCart! +1;
+                                    // widget.addtocart(
+                                    //     widget.detailsProductResponse.id,
+                                    //     inc);
+                                    widget.onselect();
+                                    // widget.detailsProductResponse.isselected =
+                                    // !widget.detailsProductResponse.isselected!;
+                                    // widget.detailsProductResponse.quantityInCart= widget.detailsProductResponse.quantityInCart!+1;
+                                    // setState(() {
+                                    //   widget.ontap();
+                                    // });
+                                    setState(() {});
+                                  },
+                                  child: selected == false
+                                      ? Icon(
+                                          CupertinoIcons.add,
+                                          color: YellowColor,
+                                          size: 25,
+                                        )
+                                      : Center(
+                                          child: Text(
+                                          "${inc} ",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ))),
                             ),
                           )
                         : Container(
@@ -176,19 +171,18 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(left: 8.0),
-                                    child:
-    inc==1?
-    InkWell(
+                                    child: inc == 1
+                                        ? InkWell(
                                             onTap: () {
                                               _value = false;
                                               selected = false;
-
-                                              widget.detailsProductResponse.isselected =
-                                              !widget.detailsProductResponse.isselected!;
-
-
-
-
+                                              widget.delete(widget
+                                                  .detailsProductResponse
+                                                  .id);
+                                              widget.detailsProductResponse
+                                                      .isselected =
+                                                  !widget.detailsProductResponse
+                                                      .isselected!;
 
                                               setState(() {});
                                             },
@@ -199,11 +193,24 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                                             ))
                                         : InkWell(
                                             onTap: () {
-                                              if ( inc > 1) {
-                                              inc--;
-                                                setState(() {});
+                                              if (inc > 1) {
+                                                inc--;
+                                                // _value = false;
+                                                // selected = true;
+                                                // widget.ontap();
+                                                widget.addtocart(
+                                                    widget
+                                                        .detailsProductResponse
+                                                        .id,
+                                                    inc);
+                                                // widget.onselect();
+                                                // widget.detailsProductResponse.isselected =
+                                                // !widget.detailsProductResponse.isselected!;
+                                                // widget.detailsProductResponse.quantityInCart= widget.detailsProductResponse.quantityInCart!+1;
+                                                setState(() {
+                                                  widget.ontap();
+                                                });
                                               }
-                                              ;
                                             },
                                             child: Icon(
                                               CupertinoIcons.minus,
@@ -216,9 +223,9 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                                         _value = false;
                                         selected = true;
 
-                                        widget.addtocart(
-                                            widget.detailsProductResponse.id,
-                                            inc);
+                                        // widget.addtocart(
+                                        //     widget.detailsProductResponse.id,
+                                        //     inc);
                                         widget.onselect();
                                       },
                                       child: Text(
@@ -232,6 +239,15 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                                     child: InkWell(
                                         onTap: () {
                                           inc++;
+                                          // _value = false;
+                                          // selected = true;
+                                          // widget.ontap();
+                                          widget.addtocart(
+                                              widget.detailsProductResponse.id,
+                                              inc);
+                                          // widget.onselect();
+                                          // widget.detailsProductResponse.isselected =
+                                          // !widget.detailsProductResponse.isselected!;
                                           // widget.detailsProductResponse.quantityInCart= widget.detailsProductResponse.quantityInCart!+1;
                                           setState(() {
                                             widget.ontap();
@@ -266,6 +282,8 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                   ),
                   Text(
                     "${widget.detailsProductResponse.title.toString()}",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                     style: GoogleFonts.comfortaa(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,

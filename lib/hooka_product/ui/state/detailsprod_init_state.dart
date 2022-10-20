@@ -14,7 +14,6 @@ class DetailsProdInitState extends States {
   final List<DetailsProductResponse> detailsprodresp;
 
   final DetailsProductState detailsProductState;
-
   DetailsProdInitState(
     this.detailsprodresp,
     this.detailsProductState,
@@ -31,91 +30,100 @@ class DetailsProdInitState extends States {
 
   @override
   Widget getUI(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          child: Scrollbar(
-            child: SingleChildScrollView(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      color: Colors.white,
-                      width: double.infinity,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 18.0, bottom: 5, top: 10),
-                        child: Text(
-                          "Choose Your flavor",
-                          style: GoogleFonts.alef(
-                              fontWeight: FontWeight.w600, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.82,
-                      width: 400,
-                      child: GridView.builder(
-                          shrinkWrap: true,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: (4.5 / 4.5),
-                                  crossAxisSpacing: 0,
-                                  mainAxisSpacing: 0),
-                          itemCount: detailsprodresp.length,
-                          scrollDirection: Axis.vertical,
-                          itemBuilder: (context, index) {
-                            final PlacesList = detailsprodresp[index];
-
-                            return DetailsProdCard(
-                                get: () {
-                                  detailsProductState.refresh();
-                                },
-                                delete: (int x) {
-                                  detailsProductState.DeleteItem(
-                                      DeleteItemCarttRequest(productId: x));
-                                },
-                                detailsProductResponse: PlacesList,
-                                ontap: () {
-                                  detailsprodresp.forEach((element) {
-                                    element.isselected = false;
-                                  });
-
-                                  detailsprodresp[index].isselected = true;
-                                  isselec = PlacesList;
-                                  PlacesList.description == desc;
-                                  detailsProductState.refresh();
-                                },
-                                onselect: () {
-                                  detailsprodresp.forEach((element) {
-                                    element.isselected = false;
-                                  });
-
-                                  detailsprodresp[index].isselected = false;
-                                  isselec = PlacesList;
-                                  PlacesList.description == desc;
-                                  detailsProductState.refresh();
-                                },
-                                addtocart: (int id, int num) {
-                                  detailsProductState.AddToCarttttt(
-                                      AddToCartRequest(
-                                          itemId: id, quantity: num));
-                                  print('newwwwwwwwwwwwwww');
-                                  print(id);
-                                  print(num);
-                                  print('newwwwwwwwwwwwwww');
-                                });
-                          }),
-                    ),
-                  ]),
+    return Scrollbar(
+      child: SingleChildScrollView(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Container(
+            color: Colors.white,
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 18.0, bottom: 5, top: 10),
+              child: Text(
+                "Choose Your flavor",
+                style:
+                    GoogleFonts.alef(fontWeight: FontWeight.w600, fontSize: 20),
+              ),
             ),
           ),
-        ),
-      ],
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.72,
+            width: 400,
+            child: GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: (4.5 / 4.5),
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0),
+                itemCount: detailsprodresp.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index) {
+                  final PlacesList = detailsprodresp[index];
+
+                  return DetailsProdCard(
+                      get: () {
+                        detailsProductState.refresh();
+                      },
+                      delete: (int id) {
+                        print(id);
+                        print("sex");
+                        detailsProductState.DeleteItem(
+                            DeleteItemCarttRequest(productId:id ));
+                        print(id);
+                        detailsprodresp[index].quantityInCart=0;
+                      },
+                      detailsProductResponse: PlacesList,
+                      ontap: () {
+                        detailsprodresp.forEach((element) {
+                          element.isselected = false;
+                        });
+
+                        detailsprodresp[index].isselected = true;
+                        isselec = PlacesList;
+                        PlacesList.description == desc;
+                        detailsProductState.refresh();
+                      },
+                      onselect: () {
+                        detailsprodresp.forEach((element) {
+                          element.isselected = false;
+                        });
+
+                        detailsprodresp[index].isselected = false;
+                        isselec = PlacesList;
+                        PlacesList.description == desc;
+                        detailsProductState.refresh();
+                      },
+                      addtocart: (int id, int num) {
+                        detailsProductState.AddToCarttttt(
+                            AddToCartRequest(itemId: id, quantity: num));
+                        print('newwwwwwwwwwwwwww');
+                        print(id);
+                        print(num);
+                        print('newwwwwwwwwwwwwww');
+                      });
+                }),
+          ),
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, BasketRoutes.BasketS);
+            },
+              child: Container(
+            color: YellowColor,
+            height: MediaQuery.of(context).size.height*0.08,
+                width: double.infinity,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Go to Cart",                style:
+                    GoogleFonts.alef(fontWeight: FontWeight.w600, fontSize: 20),),
+                  ),
+                ),
+          ))
+        ]),
+      ),
     );
   }
 }

@@ -32,141 +32,158 @@ class _BasketCardState extends State<BasketCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8,right: 8),
+      padding: const EdgeInsets.only(left: 8, right: 8),
       child: Container(
-
- height: 120,
-
-
+        height: 120,
         child: Card(
-
-            elevation: 2,
-            // color:  Color.fromRGBO(172, 187, 212,1),
-            shadowColor: Color.fromRGBO(172, 187, 212,0.4),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+          elevation: 2,
+          // color:  Color.fromRGBO(172, 187, 212,1),
+          shadowColor: Color.fromRGBO(172, 187, 212, 0.4),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: ListTile(
+            leading: CachedNetworkImage(
+              imageUrl: widget._items.productImage.toString(),
+              width: 90,
+              height: 100,
+              fit: BoxFit.contain,
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+              placeholder: (context, url) => Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: LoadingIndicator(
+                  indicatorType: Indicator.ballBeat,
+                  colors: [Colors.black],
+                ),
+              ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
-            child:
-
-
-            ListTile(
-              leading:  CachedNetworkImage(
-                imageUrl: widget._items.productImage.toString(),
-                width: 90,
-                height: 100,
-                fit: BoxFit.contain,
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-                placeholder: (context, url) => Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: LoadingIndicator(
-                    indicatorType: Indicator.ballBeat,
-                    colors: [Colors.black],
-                  ),
-                ),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
-
-              title:  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Flexible(
+                  child: Text(
                     widget._items.productName.toString(),
-                    style: GoogleFonts.alef(fontSize: 22,fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: GoogleFonts.alef(
+                        fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-
-                ],
-              ),
-horizontalTitleGap: 10,
-              isThreeLine: true,
-              iconColor: Colors.black,
-
-
-              subtitle: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,crossAxisAlignment: CrossAxisAlignment.center,
-                  children:[
-                    Text("\$ ${widget._items.productPrice} ",
-                        style:  GoogleFonts.anekLatin(fontWeight: FontWeight.w500,fontSize: 20,color: Colors.black)),
-                    SizedBox(
-                      width: 40,
-                    ),
-                    Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(border: Border.all(color: YellowColor,),borderRadius: BorderRadius.circular(30)),
-                      child: InkWell(
-                        splashColor: Colors.white,
-                        focusColor: Colors.white,
-                        hoverColor: Colors.white,
-                        onTap: () {
-                          if (widget._items.quantity! > 1) {
-
-                            widget._items.quantity   = widget._items.quantity! - 1;
-                            widget._items.totalLocalPrice = widget._items.quantity! * widget._items.productPrice!;
-                            widget.onQuantityChange();
-                            setState(() {});
-                          }
-
-                        },
-                        child: widget._items.quantity!=1?
-                        Text(
-                          "-",
-                          style: TextStyle(
-                              fontSize: 25,
-                              color: Colors.black),textAlign: TextAlign.center,
-                        ):
-                        IconButton(icon:Icon( CupertinoIcons.delete,size: 15,),onPressed: (){
-                          widget.OnDelete();
-                        },),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      widget._items.quantity.toString(),
-                      // "${widget.basketm.increment }",
-                      style: GoogleFonts.anekLatin(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.black),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),   color: YellowColor,),
-                      width: 30,
-                      height: 30,
-
-                      child: InkWell(
-                        splashColor: Colors.white,
-                        focusColor: Colors.white,
-                        hoverColor: Colors.white,
-                        onTap: () {
-                          widget._items.quantity = widget._items.quantity! + 1;
-                          widget._items.totalLocalPrice = widget._items.quantity! * widget._items.productPrice!;
+                ),
+              ],
+            ),
+            horizontalTitleGap: 10,
+            isThreeLine: true,
+            iconColor: Colors.black,
+            subtitle: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("\$ ${widget._items.productPrice} ",
+                      style: GoogleFonts.anekLatin(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          color: Colors.black)),
+                  SizedBox(
+                    width: 40,
+                  ),
+                  Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: YellowColor,
+                        ),
+                        borderRadius: BorderRadius.circular(30)),
+                    child: InkWell(
+                      splashColor: Colors.white,
+                      focusColor: Colors.white,
+                      hoverColor: Colors.white,
+                      onTap: () {
+                        if (widget._items.quantity! > 1) {
+                          widget._items.quantity = widget._items.quantity! - 1;
+                          widget._items.totalLocalPrice =
+                              widget._items.quantity! *
+                                  widget._items.productPrice!;
                           widget.onQuantityChange();
                           setState(() {});
-                        },
-                        child: Text(
-                          "+",
-                          style: TextStyle(color: Colors.black,fontSize: 25,),textAlign: TextAlign.center,
+                        }
+                      },
+                      child: widget._items.quantity != 1
+                          ? Text(
+                              "-",
+                              style:
+                                  TextStyle(fontSize: 25, color: Colors.black),
+                              textAlign: TextAlign.center,
+                            )
+                          : IconButton(
+                              icon: Icon(
+                                CupertinoIcons.delete,
+                                size: 15,
+                              ),
+                              onPressed: () {
+                                widget.OnDelete();
+                              },
+                            ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    widget._items.quantity.toString(),
+                    // "${widget.basketm.increment }",
+                    style: GoogleFonts.anekLatin(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: YellowColor,
+                    ),
+                    width: 30,
+                    height: 30,
+                    child: InkWell(
+                      splashColor: Colors.white,
+                      focusColor: Colors.white,
+                      hoverColor: Colors.white,
+                      onTap: () {
+                        widget._items.quantity = widget._items.quantity! + 1;
+                        widget._items.totalLocalPrice =
+                            widget._items.quantity! *
+                                widget._items.productPrice!;
+                        widget.onQuantityChange();
+                        setState(() {});
+                      },
+                      child: Text(
+                        "+",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 25,
                         ),
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(
-                      width: 30,
-                    ),
-
-                  ]) ,
-            ),
-
-
-
-            ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                ]),
+          ),
+        ),
       ),
     );
   }

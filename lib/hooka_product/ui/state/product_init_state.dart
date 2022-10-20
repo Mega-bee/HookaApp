@@ -27,8 +27,8 @@ class ProductInitState extends States{
       gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
       childAspectRatio: (4 / 4.5),
-      crossAxisSpacing: 5,
-      mainAxisSpacing: 10),
+      crossAxisSpacing: 20,
+      mainAxisSpacing: 20),
       itemCount: getallproducts.length,
       itemBuilder: (context, index) {
         final OffersList = getallproducts[index];

@@ -66,14 +66,14 @@ height: 390,
                     // ),
                       CachedNetworkImage(
                         imageUrl: widget.modelp!.image.toString(),
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                         height: 180,
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
                             image: DecorationImage(
                               image: imageProvider,
-                              fit: BoxFit.contain,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),

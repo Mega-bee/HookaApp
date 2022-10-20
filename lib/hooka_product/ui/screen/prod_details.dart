@@ -39,21 +39,11 @@ class DetailsProductState extends State<DetailsProduct> {
   }
   DeleteItem(DeleteItemCarttRequest request){
     widget.cubit.DeleteItemCart(this,request);
+    print(request);
   }
-
-
 
    ScrollController scrollController = new ScrollController();
   int? count;
-
-
-
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -81,36 +71,36 @@ class DetailsProductState extends State<DetailsProduct> {
 
               },
           ),
-          actions: [
-
-
-            Padding(
-              padding: const EdgeInsets.only(left: 28.0,top: 10,bottom: 10,right: 10),
-              child: Container(
-
-             width: 50,
-                decoration: BoxDecoration(borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10)
-
-                ),
-color: Colors.black,
-
-                  border: Border.all(color: Colors.black)
-
-
-
-                ),
-                child: IconButton(
-                    onPressed: (){
-                  Navigator.pushNamed(context, BasketRoutes.BasketS);
-
-                }, icon: Icon(Icons.shopping_cart,color: YellowColor,size: 26,)),
-              ),
-            ),
-          ],
+//           actions: [
+//
+//
+//             Padding(
+//               padding: const EdgeInsets.only(left: 28.0,top: 10,bottom: 10,right: 10),
+//               child: Container(
+//
+//              width: 50,
+//                 decoration: BoxDecoration(borderRadius: BorderRadius.only(
+//                   bottomRight: Radius.circular(20),
+//                   topRight: Radius.circular(20),
+//                   topLeft: Radius.circular(10),
+//                   bottomLeft: Radius.circular(10)
+//
+//                 ),
+// color: Colors.black,
+//
+//                   border: Border.all(color: Colors.black)
+//
+//
+//
+//                 ),
+//                 child: IconButton(
+//                     onPressed: (){
+//                   Navigator.pushNamed(context, BasketRoutes.BasketS);
+//
+//                 }, icon: Icon(Icons.shopping_cart,color: YellowColor,size: 26,)),
+//               ),
+//             ),
+//           ],
         ),
         body: BlocBuilder<ProdDetailsCubit, States>(
           bloc: widget.cubit,

@@ -66,14 +66,6 @@ class ProdDetailsCubit extends Cubit<States> {
       if (value == null) {
         Fluttertoast.showToast(msg: "some thing wrong");
       } else if (value.code == 200) {
-
-
-
-
-
-
-
-
       }
     });
   }
