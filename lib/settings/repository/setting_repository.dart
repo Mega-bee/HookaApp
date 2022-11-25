@@ -18,7 +18,7 @@ class SettingRepository {
   Future<WebServiceResponse?> Availble() async {
     var token = _authService.getToken();
 
-    WebServiceResponse? response = await _apiClient.put(
+    WebServiceResponse? response = await _apiClient.post(
       Urls.AVAILABLE,{},
       headers: {'Authorization': 'Bearer ' '$token'},
     );

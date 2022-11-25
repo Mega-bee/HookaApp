@@ -23,7 +23,7 @@ class PlaceInitState extends States {
   String? lat;
 
   PlaceInitState(this.hookaPlacesState, this.lon, this.lat,
-      {required this.placesModell,required this.items})
+      {required this.placesModell, required this.items})
       : super() {
     searchList = placesModell;
   }
@@ -35,15 +35,12 @@ class PlaceInitState extends States {
   bool? fav;
   bool? f;
   int? Id;
-  List ids=[];
-
+  List ids = [];
 
   List<PlacesResp>? searchList;
 
-
   @override
   Widget getUI(BuildContext context) {
-
     final _textEditingController = TextEditingController();
     return Container(
       height: 900,
@@ -67,7 +64,7 @@ class PlaceInitState extends States {
             child: SearchWidgetBuddies(
               onFilterPress: () {
                 hookaPlacesState.request!.sortby = 0;
-                hookaPlacesState.getPlacesss(FilterRequest(0, 0, lon, lat,[]));
+                hookaPlacesState.getPlacesss(FilterRequest(0, 0, lon, lat, []));
               },
               hintText: "Restaurant name...",
               text: query,
@@ -98,114 +95,70 @@ class PlaceInitState extends States {
               Container(
                 height: 42,
                 width: 140,
-
                 child: Card(
                   elevation: 1,
-
-                  shape:
-               BeveledRectangleBorder(
-
-                 side: BorderSide(
-                   color: Colors.grey,
-                   width: 0.4,
-                 ),
+                  shape: BeveledRectangleBorder(
+                    side: BorderSide(
+                      color: Colors.grey,
+                      width: 0.4,
+                    ),
                     borderRadius: BorderRadius.circular(2.0),
-
-              ),
-
+                  ),
                   child: DropdownButton(
                     hint: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(dropdownvalue),
                     ),
-
-
-
-
-
                     style: TextStyle(color: Colors.black),
                     borderRadius: BorderRadius.circular(12),
                     dropdownColor: Colors.grey.shade100,
                     underline: Container(),
                     icon: const Icon(Icons.keyboard_arrow_down),
                     isExpanded: true,
-
-
                     items: items?.map((e) {
+                      return DropdownMenuItem(
+                        onTap: () {
+                          e.selected = !e.selected!;
+                          print("hhhh");
+                          print(e.selected);
 
+                          f = e.selected;
+                          hookaPlacesState.refresh();
 
-
-                      return
-                        DropdownMenuItem(
-onTap: (){
-
-  e.selected=!e.selected!;
-  print("hhhh");
-  print(e.selected);
-
-  f=e.selected;
-  hookaPlacesState.refresh();
-
-
-  print(f);
-
-
-
-
-
-
-
-
-},
+                          print(f);
+                        },
                         value: e.id,
-
                         child: Padding(
                           padding: const EdgeInsets.all(0.0),
-                          child:
-                          f==false?
-                          Wrap(
-                              children:[ Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(e.title.toString()),
-
-                                  Icon(CupertinoIcons.check_mark,size: 10,)
-                                ],
-                              ),
-                              ]):
-                          Text(e.title.toString())
-
-                          ,
-
+                          child: f == false
+                              ? Wrap(children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(e.title.toString()),
+                                      Icon(
+                                        CupertinoIcons.check_mark,
+                                        size: 10,
+                                      )
+                                    ],
+                                  ),
+                                ])
+                              : Text(e.title.toString()),
                         ),
                       );
                     }).toList(),
                     onChanged: (int? newId) {
                       print(f);
 
-                      f==true?
-                      ids.add(newId):
-                      ids.remove(newId);
+                      f == true ? ids.add(newId) : ids.remove(newId);
 
-                      hookaPlacesState.getPlacesss(FilterRequest(0, 0, lon, lat,ids));
+                      hookaPlacesState
+                          .getPlacesss(FilterRequest(0, 0, lon, lat, ids));
 
-
-
-
-
-
-                      Id=newId;
+                      Id = newId;
                       print(Id);
                       print(ids);
-
-
-
-
-
-
-
-
-
-
                     },
                   ),
                 ),
@@ -227,28 +180,34 @@ onTap: (){
                   if (value == true &&
                       hookaPlacesState.Selected2 == true &&
                       hookaPlacesState.Selected3 == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(2, 1, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(2, 1, lon, lat, []));
                   } else if (value == true &&
                       hookaPlacesState.Selected2 == false &&
                       hookaPlacesState.Selected3 == true) {
                     hookaPlacesState.Selected3 = false;
-                    hookaPlacesState.getPlacesss(FilterRequest(2, 0, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(2, 0, lon, lat, []));
                   } else if (value == true &&
                       hookaPlacesState.Selected3 == false &&
                       hookaPlacesState.Selected2 == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(2, 0, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(2, 0, lon, lat, []));
                   } else if (value == false &&
                       hookaPlacesState.Selected3 == true &&
                       hookaPlacesState.Selected2 == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(1, 0, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(1, 0, lon, lat, []));
                   } else if (value == false &&
                       hookaPlacesState.Selected3 == false &&
                       hookaPlacesState.Selected2 == true) {
-                    hookaPlacesState.getPlacesss(FilterRequest(0, 1, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(0, 1, lon, lat, []));
                   } else if (value == false &&
                       hookaPlacesState.Selected3 == false &&
                       hookaPlacesState.Selected2 == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(0, 0, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(0, 0, lon, lat, []));
                   }
                   hookaPlacesState.refresh();
                 },
@@ -297,27 +256,33 @@ onTap: (){
                   if (value == true &&
                       hookaPlacesState.Selected == true &&
                       hookaPlacesState.Selected3 == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(2, 1, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(2, 1, lon, lat, []));
                   } else if (value == true &&
                       hookaPlacesState.Selected == false &&
                       hookaPlacesState.Selected3 == true) {
-                    hookaPlacesState.getPlacesss(FilterRequest(1, 1, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(1, 1, lon, lat, []));
                   } else if (value == true &&
                       hookaPlacesState.Selected3 == false &&
                       hookaPlacesState.Selected == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(0, 1, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(0, 1, lon, lat, []));
                   } else if (value == false &&
                       hookaPlacesState.Selected3 == true &&
                       hookaPlacesState.Selected == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(1, 0, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(1, 0, lon, lat, []));
                   } else if (value == false &&
                       hookaPlacesState.Selected3 == false &&
                       hookaPlacesState.Selected == true) {
-                    hookaPlacesState.getPlacesss(FilterRequest(2, 0, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(2, 0, lon, lat, []));
                   } else if (value == false &&
                       hookaPlacesState.Selected3 == false &&
                       hookaPlacesState.Selected == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(0, 0, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(0, 0, lon, lat, []));
                   }
 
                   hookaPlacesState.refresh();
@@ -367,28 +332,34 @@ onTap: (){
                   if (value == true &&
                       hookaPlacesState.Selected2 == true &&
                       hookaPlacesState.Selected == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(1, 1, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(1, 1, lon, lat, []));
                   } else if (value == true &&
                       hookaPlacesState.Selected2 == false &&
                       hookaPlacesState.Selected == true) {
                     hookaPlacesState.Selected = false;
-                    hookaPlacesState.getPlacesss(FilterRequest(1, 0, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(1, 0, lon, lat, []));
                   } else if (value == true &&
                       hookaPlacesState.Selected == false &&
                       hookaPlacesState.Selected2 == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(1, 0, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(1, 0, lon, lat, []));
                   } else if (value == false &&
                       hookaPlacesState.Selected == true &&
                       hookaPlacesState.Selected2 == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(2, 0, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(2, 0, lon, lat, []));
                   } else if (value == false &&
                       hookaPlacesState.Selected == false &&
                       hookaPlacesState.Selected2 == true) {
-                    hookaPlacesState.getPlacesss(FilterRequest(0, 1, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(0, 1, lon, lat, []));
                   } else if (value == false &&
                       hookaPlacesState.Selected == false &&
                       hookaPlacesState.Selected2 == false) {
-                    hookaPlacesState.getPlacesss(FilterRequest(0, 0, lon, lat,[]));
+                    hookaPlacesState
+                        .getPlacesss(FilterRequest(0, 0, lon, lat, []));
                   }
                   hookaPlacesState.refresh();
                 },

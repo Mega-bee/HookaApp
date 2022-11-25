@@ -2,22 +2,22 @@
 class Urls {
   /*--------DOMAIN-------------------*/
 
-  static const String DOMAIN = 'https://hookatimes.azurewebsites.net';
+  static const String DOMAIN = 'http://api.hookatimes.com/';
 
   /*--------BASE-------------------*/
-  static const String BASE_ACCOUNTS = DOMAIN +'/webapi/api/Accounts/';
-  static const String BASE_Places = DOMAIN +'/webapi/api/Places/';
-  static const String BASE_Buddies = DOMAIN +'/webapi/api/Buddies/';
-  static const String BASE_Offers = DOMAIN +'/webapi/api/Offers/';
-  static const String BASE_Invitations = DOMAIN +'/webapi/api/Invitations/';
-  static const String BASE_Product = DOMAIN +'/webapi/api/Products/';
-  static const String BASE_Profile = DOMAIN +'/webapi/api/Accounts/';
-  static const String BASE_Basket = DOMAIN +'/webapi/api/Cart/';
-  static const String BASE_CONTACTUS = DOMAIN +'/webapi/api/ContactUs/';
-  static const String BASE_ORDERS = DOMAIN +'/webapi/api/Orders/';
-  static const String BASE_SETTING = DOMAIN +'/webapi/api/Settings/';
-  static const String BASE_NOTIFICATIONS = DOMAIN +'/webapi/api/Notifications/';
-  static const String BASE_CUISINES = DOMAIN +'/webapi/api/Cuisines/';
+  static const String BASE_ACCOUNTS = DOMAIN +'api/Accounts/';
+  static const String BASE_Places = DOMAIN +'api/Places/';
+  static const String BASE_Buddies = DOMAIN +'api/Buddies/';
+  static const String BASE_Offers = DOMAIN +'api/Offers/';
+  static const String BASE_Invitations = DOMAIN +'api/Invitations/';
+  static const String BASE_Product = DOMAIN +'api/Products/';
+  static const String BASE_Profile = DOMAIN +'api/Accounts/';
+  static const String BASE_Basket = DOMAIN +'api/Cart/';
+  static const String BASE_CONTACTUS = DOMAIN +'api/ContactUs/';
+  static const String BASE_ORDERS = DOMAIN +'api/Orders/';
+  static const String BASE_SETTING = DOMAIN +'api/Settings/';
+  static const String BASE_NOTIFICATIONS = DOMAIN +'api/Notifications/';
+  static const String BASE_CUISINES = DOMAIN +'api/Cuisines/';
 
 
 

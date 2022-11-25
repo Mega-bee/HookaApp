@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:simple_animations/stateless_animation/play_animation.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/style/colors.dart';
 import '../../response/offers_details_response.dart';
@@ -31,43 +30,37 @@ class OffersDetailsInitState extends States{
     return SingleChildScrollView(
       child: Column(
         children: [
-          PlayAnimation<double>(
-              duration:const Duration(milliseconds: 1200),
-              // delay: Duration(milliseconds: 400),
-              tween: Tween(begin: 0.0, end: 250),
-              builder: (context, child, value) {
-                return Container(
-                  height: value,
-                  child: Center(
-                      child:
-                      CachedNetworkImage(
-                        imageUrl:detailsResponse.image.toString(),height: 600,fit: BoxFit.cover,
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(80),
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                        placeholder: (context, url) =>
+        Container(
+        // height: value,
+        child: Center(
+          child:
+          CachedNetworkImage(
+            imageUrl:detailsResponse.image.toString(),height: 600,fit: BoxFit.cover,
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(80),
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+            placeholder: (context, url) =>
 
-                            const Padding(
-                          padding:  EdgeInsets.all(15.0),
-                          child: LoadingIndicator(
+            const Padding(
+              padding:  EdgeInsets.all(15.0),
+              child: LoadingIndicator(
 
-                            indicatorType:
-                            Indicator.ballBeat,
+                indicatorType:
+                Indicator.ballBeat,
 
 
-                            colors: [Colors.black],
-                          ),),
-                        errorWidget: (context, url, error) =>const Icon(Icons.error),
-                      ),
-                  ),
-                );
-              }),
+                colors: [Colors.black],
+              ),),
+            errorWidget: (context, url, error) =>const Icon(Icons.error),
+          ),
+        ),
+      ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),

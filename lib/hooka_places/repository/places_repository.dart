@@ -55,7 +55,7 @@ class PlacesRepository {
   Future<WebServiceResponse?> IsFav(String? id,IsFavorite request) async {
     var token =   _authService.getToken();
 
-    WebServiceResponse? response = await _apiClient.put(
+    WebServiceResponse? response = await _apiClient.post(
       Urls.FAVORITE + "$id",
       request.toJson()
       ,

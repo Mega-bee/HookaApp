@@ -30,7 +30,7 @@ class BasketRepository {
 
   Future<WebServiceResponse?> updateCart(UpdateListCartRequest request) async {
     var token = _authService.getToken();
-    WebServiceResponse? response = await _apiClient.put(
+    WebServiceResponse? response = await _apiClient.post(
       Urls.UPDATE_CART,request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
     );

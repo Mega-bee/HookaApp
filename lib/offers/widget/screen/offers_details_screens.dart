@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:injectable/injectable.dart';
-import 'package:simple_animations/stateless_animation/play_animation.dart';
 
 import '../../../abstracts/states/state.dart';
 import '../../../utils/images/images.dart';

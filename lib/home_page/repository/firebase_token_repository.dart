@@ -17,7 +17,7 @@ class FireBaseRepository {
   Future<WebServiceResponse?> FireBaseNotification(FireRequest request) async {
     var token = _authService.getToken();
 
-    WebServiceResponse? response = await _apiClient.put(
+    WebServiceResponse? response = await _apiClient.post(
       Urls.FIRE_TOKEN,request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
     );

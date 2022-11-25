@@ -65,7 +65,7 @@ class ProfileRepository {
   Future<WebServiceResponse?> UpdateProfile(UpdateProfileRequest request) async {
     var token = _authService.getToken();
 
-    WebServiceResponse? response = await _apiClient.put(
+    WebServiceResponse? response = await _apiClient.post(
       Urls.UPDATE_PROFILE,request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
     );
@@ -75,7 +75,7 @@ class ProfileRepository {
   Future<WebServiceResponse?> DeleteAddress(DeleteAddressRequest request) async {
     var token = _authService.getToken();
 
-    WebServiceResponse? response = await _apiClient.put(
+    WebServiceResponse? response = await _apiClient.post(
       Urls.DELETE_ADDRESSS,request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
     );

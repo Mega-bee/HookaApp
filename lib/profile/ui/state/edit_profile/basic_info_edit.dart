@@ -11,10 +11,10 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io' as i;
 import '../../../../utils/style/colors.dart';
 
-
 class BasicInfoInitState extends StatefulWidget {
   final ProfileResponse? module;
   final Function(UpdateProfileRequest) updateBasicInfo;
+
   BasicInfoInitState(this.module, this.updateBasicInfo);
 
   @override
@@ -24,6 +24,7 @@ class BasicInfoInitState extends StatefulWidget {
 class BasicInfoInitScreenState extends State<BasicInfoInitState> {
   i.File? _pickImage;
   final _formKey = GlobalKey<FormState>();
+
 //  Future pickImage(ImageSource source) async {
 //    try {
 //      final image = await ImagePicker().pickImage(source: source);
@@ -227,13 +228,11 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
   final lastname = TextEditingController();
   final Dob = TextEditingController();
 
-
   final Mobilenum = TextEditingController();
 
   final bio = TextEditingController();
   final weight = TextEditingController();
   final height = TextEditingController();
-
 
   final profession = TextEditingController();
   final interest = TextEditingController();
@@ -244,17 +243,15 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
   final hobbies = TextEditingController();
   bool loading = false;
   var _selectedBDate;
+
 //  String? profileImage;
 //  i.File? selectedImage;
-
 
   ItemProfileOption? hairOption;
   ItemProfileOption? statusOption;
   ItemProfileOption? eyesOption;
   ItemProfileOption? bodyOption;
   ItemProfileOption? genderoption;
-
-
 
   String validatePass(value) {
     if (value.isEmpty) {
@@ -279,21 +276,26 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
       weight.text = widget.module?.weight.toString() ?? "";
       height.text = widget.module?.height.toString() ?? "";
 
-      if(widget.module?.hairId != null) {
-        hairOption  =ItemProfileOption(widget.module?.hairId ?? -1, widget.module?.hair ?? '');
+      if (widget.module?.hairId != null) {
+        hairOption = ItemProfileOption(
+            widget.module?.hairId ?? -1, widget.module?.hair ?? '');
       }
-      if(widget.module?.eyesId != null) {
-        eyesOption  =ItemProfileOption(widget.module?.eyesId ?? -1, widget.module?.eyes ?? '');
+      if (widget.module?.eyesId != null) {
+        eyesOption = ItemProfileOption(
+            widget.module?.eyesId ?? -1, widget.module?.eyes ?? '');
       }
-      if(widget.module?.bodyTypeId != null) {
-        bodyOption  =ItemProfileOption(widget.module?.bodyTypeId ?? -1, widget.module?.bodyType ?? '');
+      if (widget.module?.bodyTypeId != null) {
+        bodyOption = ItemProfileOption(
+            widget.module?.bodyTypeId ?? -1, widget.module?.bodyType ?? '');
       }
-      if(widget.module?.maritalStatusId != null) {
-        statusOption  =ItemProfileOption(widget.module?.maritalStatusId ?? -1, widget.module?.maritalStatus ?? '');
+      if (widget.module?.maritalStatusId != null) {
+        statusOption = ItemProfileOption(widget.module?.maritalStatusId ?? -1,
+            widget.module?.maritalStatus ?? '');
       }
 
-      if(widget.module?.genderId != null) {
-        genderoption  =ItemProfileOption(widget.module?.genderId ?? -1, widget.module?.gender ?? '');
+      if (widget.module?.genderId != null) {
+        genderoption = ItemProfileOption(
+            widget.module?.genderId ?? -1, widget.module?.gender ?? '');
       }
 
       interest.text = widget.module?.profession ?? "";
@@ -450,23 +452,19 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                       ),
                     ),
                     child: DropdownButtonFormField<ItemProfileOption>(
-
                       // Initial Value
                       value: hairOption,
 
-
                       // Down Arrow Icon
                       icon: Padding(
-                        padding: const EdgeInsets.only(right: 20),                        child: const Icon(Icons.keyboard_arrow_down),
+                        padding: const EdgeInsets.only(right: 20),
+                        child: const Icon(Icons.keyboard_arrow_down),
                       ),
-
 
                       // Array list of items
                       items: ItemProfileOption.getHairList()
                           .map((ItemProfileOption items) {
-
                         return DropdownMenuItem(
-
                           value: items,
                           child: Padding(
                             padding: const EdgeInsetsDirectional.only(start: 8),
@@ -479,7 +477,6 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                       onChanged: (ItemProfileOption? newValue) {
                         print(newValue);
                         hairOption = newValue!;
-
                       },
                       isExpanded: true,
 
@@ -506,7 +503,8 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
 
                       // Down Arrow Icon
                       icon: Padding(
-                        padding: const EdgeInsets.only(right: 20),                        child: const Icon(Icons.keyboard_arrow_down),
+                        padding: const EdgeInsets.only(right: 20),
+                        child: const Icon(Icons.keyboard_arrow_down),
                       ),
 
                       // Array list of items
@@ -637,7 +635,6 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
                     child: DropdownButtonFormField<ItemProfileOption>(
                       // Initial Value
                       value: genderoption,
-
 
                       // Down Arrow Icon
                       icon: Padding(
@@ -895,34 +892,31 @@ class BasicInfoInitScreenState extends State<BasicInfoInitState> {
 //                )  {
 //                  Fluttertoast.showToast(msg: 'select the item in list');
 //                }else{
-                  loading = true;
-                  setState(() {
-
-                  });
-                  widget.updateBasicInfo(UpdateProfileRequest(
+                loading = true;
+                setState(() {});
+                widget.updateBasicInfo(
+                  UpdateProfileRequest(
                     // Image: Image,
-                      AboutMe: bio.text,
-
-
-                      ImageFile: null,
-                      Birthdate: Dob.text,
-                      GenderId: genderoption?.id ,
-                      MaterialStatus: statusOption?.id,
-                      Height: double.parse("${height.text}"),
-                      Weight: double.parse("${weight.text}"),
-                      BodyType: bodyOption?.id,
-                      LastName: lastname.text,
-                      Eyes: eyesOption?.id,
-                      FirstName: name.text,
-                      Hair: hairOption?.id,
-                      Hobbies: hobbies.text,
-                      Interests: interest.text,
-                      Profession: profession.text,
-                      SocialMediaLink1: fburl.text,
-                      SocialMediaLink2: instaurl.text,
-                      SocialMediaLink3: twitterurl.text));
-//                }
-
+                    AboutMe: bio.text,
+                    ImageFile: null,
+                    Birthdate: Dob.text,
+                    GenderId: genderoption?.id,
+                    MaterialStatus: statusOption?.id,
+                    Height: double.parse("${height.text}"),
+                    Weight: double.parse("${weight.text}"),
+                    BodyType: bodyOption?.id,
+                    LastName: lastname.text,
+                    Eyes: eyesOption?.id,
+                    FirstName: name.text,
+                    Hair: hairOption?.id,
+                    Hobbies: hobbies.text,
+                    Interests: interest.text,
+                    Profession: profession.text,
+                    SocialMediaLink1: fburl.text,
+                    SocialMediaLink2: instaurl.text,
+                    SocialMediaLink3: twitterurl.text,
+                  ),
+                );
               },
               loading: loading,
               text: 'Save',

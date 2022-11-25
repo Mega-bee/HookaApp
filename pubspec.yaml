@@ -78,7 +78,7 @@ dependencies:
   photo_view:
   firebase_core:
   firebase_messaging:
-  flutter_local_notifications:
+  flutter_local_notifications: 9.6.0
   path_provider:
   google_maps_flutter:
   location:

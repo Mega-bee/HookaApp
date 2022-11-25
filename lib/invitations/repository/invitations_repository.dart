@@ -48,7 +48,7 @@ class InvitationsRepository {
   Future<WebServiceResponse?> InvitationsStatus(StatusInvRequest request,String? id) async {
     var token = _authService.getToken();
 
-    WebServiceResponse? response = await _apiClient.put(
+    WebServiceResponse? response = await _apiClient.post(
       Urls.INVITATION_STATUS +"$id",
       request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
