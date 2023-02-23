@@ -32,7 +32,7 @@ class _ReceivedCardState extends State<ReceivedCard> {
     return Padding(
       padding: const EdgeInsets.only(left: 4,right: 4),
       child: SizedBox(
-        height: 100,
+        height: 120,
         child: Card(
           child: Column(children: <Widget>[
 

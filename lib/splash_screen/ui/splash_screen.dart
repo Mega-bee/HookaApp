@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen>
               context, HomeRoutes.HOME_SCREEN, (route) => false);
         } else
           Navigator.pushNamedAndRemoveUntil(
-              context, AuthRoutes.LOGIN_SCREEN, (route) => false);
+              context, HomeRoutes.HOME_SCREEN, (route) => false);
       });
     });
   }

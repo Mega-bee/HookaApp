@@ -12,6 +12,7 @@ import 'package:hooka/utils/images/images.dart';
 import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../abstracts/states/log_in.dart';
 import '../../../auth/service/auth_service.dart';
 import '../../request/firebase_request.dart';
 import '../../state_manager/firebase_state_manager.dart';
@@ -20,60 +21,52 @@ import '../../state_manager/firebase_state_manager.dart';
 class HomeScreen extends StatefulWidget {
   final FirebaseCubit cubit;
   final AuthService _authService;
-  HomeScreen(this.cubit,this._authService);
+
+  HomeScreen(this.cubit, this._authService);
+
   @override
   HomeScreenState createState() => HomeScreenState();
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  
-  static FireNotificationService fireNotificationService =FireNotificationService();
+  static FireNotificationService fireNotificationService =
+      FireNotificationService();
 
   @override
   void initState() {
-
     super.initState();
 
-
-
     String FirebaseToken = '';
-      fireNotificationService.GetFireBaseToken().then((tokenFire) {
-        FirebaseToken = tokenFire ?? '';
+    fireNotificationService.GetFireBaseToken().then((tokenFire) {
+      FirebaseToken = tokenFire ?? '';
 
-        widget.cubit.FireBasee(this, FireRequest(token: FirebaseToken));
-      });
-
+      widget.cubit.FireBasee(this, FireRequest(token: FirebaseToken));
+    });
   }
-  
-
-  
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 1000,
       decoration: BoxDecoration(
-
         gradient: LinearGradient(
           colors: [
             Colors.white,
-            Color.fromRGBO(211,211,211, 0.9),
+            Color.fromRGBO(211, 211, 211, 0.9),
           ],
-          begin:  FractionalOffset(0.0, 0.0),
-          end:  FractionalOffset(0.0, 1.0),
+          begin: FractionalOffset(0.0, 0.0),
+          end: FractionalOffset(0.0, 1.0),
           stops: [0.4, 1.0],
           tileMode: TileMode.repeated,
-
         ),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
             elevation: 0,
-            title: Text(
-              "Hookapp",
-                style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)
-            ),
+            title: Text("Hookapp",
+                style: GoogleFonts.comfortaa(
+                    color: Primarycolor, fontWeight: FontWeight.bold)),
             backgroundColor: Colors.white,
             leading: MenuWidget(),
             actions: [
@@ -85,8 +78,13 @@ class HomeScreenState extends State<HomeScreen> {
               //     )),
               IconButton(
                   onPressed: () {
+                    if(widget._authService.isLoggedIn){
                     Navigator.pushNamed(context, BasketRoutes.BasketS);
-                  },
+                  }else{
+                      showDialog(context: context, builder: (context) =>
+                          CustomDialogBox(title: 'Please log in first'),);
+                    }
+      },
                   icon: Icon(
                     Icons.shopping_cart,
                     color: Colors.black,
@@ -141,7 +139,6 @@ class HomeScreenState extends State<HomeScreen> {
             ]),
         body: SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-
             Image.asset(
               ImageAsset.HOMEIMAGE,
               height: 200,
@@ -158,13 +155,29 @@ class HomeScreenState extends State<HomeScreen> {
               HookaCard(
                   image: ImageAsset.PLACES,
                   onCardTap: () {
-                    Navigator.pushNamed(context, PlacesRoutes.Places);
+                    if (widget._authService.isLoggedIn) {
+                      Navigator.pushNamed(context, PlacesRoutes.Places);
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            CustomDialogBox(title: 'Please log in first'),
+                      );
+                    }
                   },
                   text: "HOOKA PLACES"),
               HookaCard(
                   image: ImageAsset.BUDDIES,
                   onCardTap: () {
-                    Navigator.pushNamed(context, BuddiesRoutes.Buddies);
+                    if (widget._authService.isLoggedIn) {
+                      Navigator.pushNamed(context, BuddiesRoutes.Buddies);
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            CustomDialogBox(title: 'Please log in first'),
+                      );
+                    }
                   },
                   text: "HOOKA BUDDIES"),
             ]),
@@ -172,7 +185,15 @@ class HomeScreenState extends State<HomeScreen> {
               HookaCard(
                   image: ImageAsset.OFFER,
                   onCardTap: () {
-                    Navigator.pushNamed(context, OffersRoutes.Offers);
+                    if (widget._authService.isLoggedIn) {
+                      Navigator.pushNamed(context, OffersRoutes.Offers);
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            CustomDialogBox(title: 'Please log in first'),
+                      );
+                    }
                   },
                   text: "OFFERS"),
               HookaCard(
@@ -183,7 +204,6 @@ class HomeScreenState extends State<HomeScreen> {
                   text: "Hooka product"),
             ]),
             SizedBox(
-
               height: MediaQuery.of(context).size.height * 0.2,
             ),
           ]),

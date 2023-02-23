@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import '../../../abstracts/states/log_in.dart';
+import '../../../abstracts/states/not_logged_in.dart';
 import '../../../utils/style/colors.dart';
 import '../../product_routes.dart';
 import '../../response/detailsprod_response.dart';
@@ -15,6 +17,8 @@ class DetailsProdCard extends StatefulWidget {
   final Function addtocart;
   final Function delete;
   final Function get;
+  final bool isLoginUser;
+
 
   DetailsProdCard(
       {required this.detailsProductResponse,
@@ -22,7 +26,8 @@ class DetailsProdCard extends StatefulWidget {
       required this.ontap,
       required this.onselect,
       required this.addtocart,
-      required this.delete});
+      required this.delete,
+      required this.isLoginUser});
 
   @override
   State<DetailsProdCard> createState() => _DetailsProdCardState();
@@ -122,20 +127,27 @@ class _DetailsProdCardState extends State<DetailsProdCard> {
                               ),
                               child: InkWell(
                                   onTap: () {
-                                    widget.ontap();
-                                    _value = true;
-                                    // widget.detailsProductResponse.quantityInCart=widget.detailsProductResponse.quantityInCart! +1;
-                                    // widget.addtocart(
-                                    //     widget.detailsProductResponse.id,
-                                    //     inc);
-                                    widget.onselect();
-                                    // widget.detailsProductResponse.isselected =
-                                    // !widget.detailsProductResponse.isselected!;
-                                    // widget.detailsProductResponse.quantityInCart= widget.detailsProductResponse.quantityInCart!+1;
-                                    // setState(() {
-                                    //   widget.ontap();
-                                    // });
-                                    setState(() {});
+                                    if(!widget.isLoginUser){
+                                      showDialog(context: context, builder: (context) =>
+                                          CustomDialogBox(title: 'You should login to add to your cart'),);
+
+
+                                    }else {
+                                      widget.ontap();
+                                      _value = true;
+                                      // widget.detailsProductResponse.quantityInCart=widget.detailsProductResponse.quantityInCart! +1;
+                                      // widget.addtocart(
+                                      //     widget.detailsProductResponse.id,
+                                      //     inc);
+                                      widget.onselect();
+                                      // widget.detailsProductResponse.isselected =
+                                      // !widget.detailsProductResponse.isselected!;
+                                      // widget.detailsProductResponse.quantityInCart= widget.detailsProductResponse.quantityInCart!+1;
+                                      // setState(() {
+                                      //   widget.ontap();
+                                      // });
+                                      setState(() {});
+                                    }
                                   },
                                   child: selected == false
                                       ? Icon(

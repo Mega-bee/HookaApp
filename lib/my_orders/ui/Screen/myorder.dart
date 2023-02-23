@@ -6,6 +6,8 @@ import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../auth/HiveSetUp.dart';
+import '../../../auth/auth_routes.dart';
 import '../../../di/di_config.dart';
 import 'allorder_tab.dart';
 import 'current_tab.dart';
@@ -16,16 +18,16 @@ class MyOrder extends StatefulWidget {
   State<MyOrder> createState() => MyOrderState();
 }
 
-class MyOrderState extends State<MyOrder>
-    with TickerProviderStateMixin  {
-  bool MyOrder =false;
-  bool flags =true;
+class MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
+  bool MyOrder = false;
+  bool flags = true;
+
   @override
   Widget build(BuildContext context) {
-    if(flags){
-      var  args = ModalRoute.of(context)?.settings.arguments;
+    if (flags) {
+      var args = ModalRoute.of(context)?.settings.arguments;
       if (args != null && args is bool) {
-        MyOrder=args;
+        MyOrder = args;
       }
       flags = false;
     }
@@ -34,21 +36,26 @@ class MyOrderState extends State<MyOrder>
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
-iconTheme: IconThemeData(color: Colors.black),
-          leading:
-
-          MyOrder?IconButton(icon: Icon(Icons.home),onPressed: (){
-           Navigator.pushNamedAndRemoveUntil(context, HomeRoutes.HOME_SCREEN,(route) => false,);
-          },):
-          MenuWidget()
-          ,
+          iconTheme: IconThemeData(color: Colors.black),
+          leading: MyOrder
+              ? IconButton(
+                  icon: Icon(Icons.home),
+                  onPressed: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomeRoutes.HOME_SCREEN,
+                      (route) => false,
+                    );
+                  },
+                )
+              : MenuWidget(),
           backgroundColor: Colors.white,
           title: Text(
             "My Order",
             style: GoogleFonts.comfortaa(color: Colors.black),
           ),
         ),
-        body: Column(children: [
+        body: getIt<AuthPrefsHelper>().isSignedIn()?Column(children: [
           Padding(
             padding: const EdgeInsets.only(
               left: 0,
@@ -86,7 +93,8 @@ iconTheme: IconThemeData(color: Colors.black),
                               child: Text(
                             'Current',
                             style: GoogleFonts.anekLatin(
-                                fontSize: 18, ),
+                              fontSize: 18,
+                            ),
                           )),
                         ),
                         Container(
@@ -118,11 +126,28 @@ iconTheme: IconThemeData(color: Colors.black),
                   ])),
             ),
           )
-        ]));
+        ]):InkWell(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              AuthRoutes.LOGIN_SCREEN,
+            );
+          },
+          child: Center(
+            child: Text(
+              "Please log in",
+              style: GoogleFonts.comfortaa(
+                color: Primarycolor,
+                fontWeight: FontWeight.bold,
+                fontSize: 19,
+              ),
+            ),
+          ),
+        ),
+    );
   }
 
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
-
 }

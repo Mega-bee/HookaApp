@@ -5,18 +5,25 @@ import 'package:hooka/hooka_product/request/add_to_cart_request.dart';
 import 'package:hooka/utils/style/colors.dart';
 import '../../../Hooka Basket/basket_routes.dart';
 import '../../../Hooka Basket/request/item_delete_request.dart';
+import '../../../abstracts/states/log_in.dart';
 import '../../../abstracts/states/state.dart';
+import '../../../auth/service/auth_service.dart';
 import '../../response/detailsprod_response.dart';
 import '../screen/prod_details.dart';
 import '../widget/detailsprod_card.dart';
 
 class DetailsProdInitState extends States {
   final List<DetailsProductResponse> detailsprodresp;
+  final bool isLoginUser;
+  // final AuthService _authService;
+
 
   final DetailsProductState detailsProductState;
   DetailsProdInitState(
     this.detailsprodresp,
     this.detailsProductState,
+      this.isLoginUser,
+      // this._authService
   ) : super() {
     // detailsprodresp.first.isselected = true;
     // isselec = detailsprodresp.first;
@@ -64,6 +71,7 @@ class DetailsProdInitState extends States {
                   final PlacesList = detailsprodresp[index];
 
                   return DetailsProdCard(
+                    isLoginUser: isLoginUser,
                       get: () {
                         detailsProductState.refresh();
                       },
@@ -108,7 +116,13 @@ class DetailsProdInitState extends States {
           ),
           InkWell(
             onTap: (){
-              Navigator.pushNamed(context, BasketRoutes.BasketS);
+              if(!isLoginUser){
+                showDialog(context: context, builder: (context) =>
+                    CustomDialogBox(title: 'You should login to see your cart'),);
+              }else{
+                Navigator.pushNamed(context, BasketRoutes.BasketS);
+              //
+              }
             },
               child: Container(
             color: YellowColor,

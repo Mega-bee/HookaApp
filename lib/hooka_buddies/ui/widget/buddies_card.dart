@@ -72,7 +72,7 @@ class BuddiesCard extends StatelessWidget {
                         child: CachedNetworkImage(
                           imageUrl: buddiesModel.image.toString(),
                           width: 210,
-                          height: 197,
+                          height: 188,
                           fit: BoxFit.contain,
                           imageBuilder: (context, imageProvider) => Container(
                             decoration: BoxDecoration(

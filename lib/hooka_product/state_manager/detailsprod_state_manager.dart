@@ -16,59 +16,55 @@ import '../response/detailsprod_response.dart';
 import '../ui/screen/prod_details.dart';
 import '../ui/state/detailsprod_init_state.dart';
 
-
-
 @injectable
 class ProdDetailsCubit extends Cubit<States> {
   final ProductsRepository _productsRepository;
   final BasketRepository _basketRepository;
   final AuthService _authService;
 
-  ProdDetailsCubit(this._productsRepository, this._authService,this._basketRepository) : super(LoadingState());
+  ProdDetailsCubit(
+      this._productsRepository, this._authService, this._basketRepository)
+      : super(LoadingState());
 
-
-  getDetailsProd(DetailsProductState screenState,String id) {
-
+  getDetailsProd(DetailsProductState screenState, String id) {
     emit(LoadingState());
     _productsRepository.getDetailsProd(id).then((value) {
       if (value == null) {
         emit(ErrorState(
             errorMessage: 'Connection error',
             retry: () {
-              getDetailsProd(screenState,"");
+              getDetailsProd(screenState, "");
             }));
       } else if (value.code == 200) {
         List<DetailsProductResponse> detailsss = [];
         for (var item in value.data.insideData) {
           detailsss.add(DetailsProductResponse.fromJson(item));
 
-        emit(DetailsProdInitState(detailsss,screenState,));
+          emit(DetailsProdInitState(
+              detailsss, screenState, _authService.isLoggedIn, ));
+        }
       }
-    }});
+    });
   }
-  AddToCart(DetailsProductState screenState,AddToCartRequest request) {
 
-
+  AddToCart(DetailsProductState screenState, AddToCartRequest request) {
     _productsRepository.addToCart(request).then((value) {
       if (value == null) {
         emit(ErrorState(
             errorMessage: 'Connection error',
             retry: () {
-              AddToCart(screenState,request);
+              AddToCart(screenState, request);
             }));
-      } else if (value.code == 200) {
-
-      }});
+      } else if (value.code == 200) {}
+    });
   }
+
   DeleteItemCart(
       DetailsProductState screenState, DeleteItemCarttRequest request) {
     _basketRepository.DeleteItem(request).then((value) {
       if (value == null) {
         Fluttertoast.showToast(msg: "some thing wrong");
-      } else if (value.code == 200) {
-      }
+      } else if (value.code == 200) {}
     });
   }
-
 }
-

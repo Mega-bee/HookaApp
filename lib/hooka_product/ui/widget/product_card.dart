@@ -25,7 +25,7 @@ class _ProductCardState extends State<ProductCard> {
             arguments: widget.getAllProductResponse.id.toString());
       },
       child: Padding(
-        padding: const EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(0.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[

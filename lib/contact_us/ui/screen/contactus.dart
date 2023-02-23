@@ -8,6 +8,9 @@ import 'package:hooka/contact_us/ui/state/contactus_init_state.dart';
 import 'package:injectable/injectable.dart';
 import 'package:hooka/home_page/ui/widget/menu_widget.dart';
 
+import '../../../auth/HiveSetUp.dart';
+import '../../../auth/auth_routes.dart';
+import '../../../di/di_config.dart';
 import '../../../utils/style/colors.dart';
 
 @injectable
@@ -55,11 +58,29 @@ class ScreenContactusState extends State<ScreenContactus> {
               style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold)
           ),
         ),
-        body: BlocBuilder<ContactUsCubit, States>(
+        body: getIt<AuthPrefsHelper>().isSignedIn()?BlocBuilder<ContactUsCubit, States>(
           bloc: widget.cubit,
           builder: (context, state) {
             return state.getUI(context);
           },
-        ));
+        ):InkWell(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              AuthRoutes.LOGIN_SCREEN,
+            );
+          },
+          child: Center(
+            child: Text(
+              "Please log in",
+              style: GoogleFonts.comfortaa(
+                color: Primarycolor,
+                fontWeight: FontWeight.bold,
+                fontSize: 19,
+              ),
+            ),
+          ),
+        ),
+    );
   }
 }

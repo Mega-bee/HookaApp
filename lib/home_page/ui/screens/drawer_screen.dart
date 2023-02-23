@@ -12,6 +12,7 @@ import '../../../contact_us/ui/screen/contactus.dart';
 import '../../../invitations/ui/screen/invitations.dart';
 import '../../../notifications/ui/screen/notifications.dart';
 import '../../../settings/ui/screen/settings.dart';
+import '../../home_routes.dart';
 import 'menu_screen.dart';
 
 @injectable
@@ -45,12 +46,13 @@ class _DrawerScreenState extends State<DrawerScreen> {
       mainScreen: getScreen(),
       menuScreen: Builder(
         builder: (context) => Menupage(
+          isLoginUser: widget._authService.isLoggedIn,
             currentItem: currentItem,
             name: widget._authService.getName() ?? '',
             Logout: () {
               widget._authService.clearToken().then((value) {
                 Navigator.pushNamedAndRemoveUntil(
-                    context, AuthRoutes.LOGIN_SCREEN, (route) => false);
+                    context, HomeRoutes.HOME_SCREEN, (route) => false);
               });
             },
             onSelectedItem: (item) {

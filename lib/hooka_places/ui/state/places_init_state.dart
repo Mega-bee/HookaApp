@@ -87,10 +87,11 @@ class PlaceInitState extends States {
         Container(
           color: Colors.white,
           child: Row(
+
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                width: 10,
+                width: 3,
               ),
               Container(
                 height: 42,

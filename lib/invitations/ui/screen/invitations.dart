@@ -6,6 +6,8 @@ import 'package:hooka/invitations/ui/screen/sent_tab.dart';
 import 'package:hooka/utils/style/colors.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../auth/HiveSetUp.dart';
+import '../../../auth/auth_routes.dart';
 import '../../../di/di_config.dart';
 
 @injectable
@@ -30,7 +32,7 @@ class _InvitationsState extends State<Invitations>
             style:  GoogleFonts.comfortaa(color: Colors.black),
           ),
         ),
-        body: Column(children: [
+        body:getIt<AuthPrefsHelper>().isSignedIn()? Column(children: [
           Padding(
             padding: const EdgeInsets.only(
               left: 0,
@@ -102,7 +104,25 @@ class _InvitationsState extends State<Invitations>
                   ])),
             ),
           )
-        ]));
+        ]):InkWell(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              AuthRoutes.LOGIN_SCREEN,
+            );
+          },
+          child: Center(
+            child: Text(
+              "Please log in",
+              style: GoogleFonts.comfortaa(
+                color: Primarycolor,
+                fontWeight: FontWeight.bold,
+                fontSize: 19,
+              ),
+            ),
+          ),
+        ),
+    );
   }
 
 

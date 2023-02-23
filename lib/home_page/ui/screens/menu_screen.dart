@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:hooka/profile/profile_routes.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../abstracts/states/log_in.dart';
+import '../../../auth/HiveSetUp.dart';
+import '../../../auth/auth_routes.dart';
+import '../../../di/di_config.dart';
 import '../../../utils/effect/custom_page_route.dart';
 import '../../../utils/style/colors.dart';
 import '../../../utils/components/custom_alert.dart';
 import '../../../profile/ui/screens/profile.dart';
 
-
 class MenuItemm {
   final String title;
   final IconData icon;
+
   const MenuItemm(this.icon, this.title);
 }
 
@@ -35,25 +39,28 @@ class MenuItems {
 }
 
 class Menupage extends StatefulWidget {
-  final  String name;
+  final String name;
   final MenuItemm currentItem;
   final Function Logout;
+  final bool isLoginUser;
+
   final ValueChanged<MenuItemm> onSelectedItem;
-  const Menupage({
-    required this.currentItem,required this.Logout,
-    required this.onSelectedItem, required this.name,
-  });
+
+  const Menupage(
+      {required this.currentItem,
+      required this.Logout,
+      required this.onSelectedItem,
+      required this.name,
+      required this.isLoginUser});
 
   @override
   State<Menupage> createState() => _MenupageState();
 }
 
 class _MenupageState extends State<Menupage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         backgroundColor: Colors.black,
         // appBar: AppBar(title: Text('Personal Info'),),
         body: SafeArea(
@@ -63,7 +70,16 @@ class _MenupageState extends State<Menupage> {
               Spacer(),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, ProfileRoutes.Profile,);
+                  widget.isLoginUser
+                      ? Navigator.pushNamed(
+                          context,
+                          ProfileRoutes.Profile,
+                        )
+                      : showDialog(
+                          context: context,
+                          builder: (context) =>
+                              CustomDialogBox(title: 'Please log in first'),
+                        );
                 },
                 child: Row(children: [
                   CircleAvatar(
@@ -75,8 +91,8 @@ class _MenupageState extends State<Menupage> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.02,
                   ),
-                  Text(widget.name
-                    ,
+                  Text(
+                    widget.name,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 15,
@@ -93,19 +109,24 @@ class _MenupageState extends State<Menupage> {
               ),
               GestureDetector(
                 onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => CustomLogOutDialog(
-                      title: "Are You Sure Do You Want To logout",
-                      content: "",
-                      yesBtn: () {
-                        widget.Logout();
-                      },
-                      noBtn: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  );
+                  widget.isLoginUser
+                      ? showDialog(
+                          context: context,
+                          builder: (context) => CustomLogOutDialog(
+                            title: "Are You Sure Do You Want To logout",
+                            content: "",
+                            yesBtn: () {
+                              widget.Logout();
+                            },
+                            noBtn: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        )
+                      : Navigator.pushNamed(
+                          context,
+                          AuthRoutes.LOGIN_SCREEN,
+                        );
                 },
                 child: Row(children: [
                   SizedBox(
@@ -120,13 +141,21 @@ class _MenupageState extends State<Menupage> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.02,
                   ),
-                  Text(
-                    "Logout",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
-                  )
+                  getIt<AuthPrefsHelper>().isSignedIn()
+                      ? Text(
+                          "Logout",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        )
+                      : Text(
+                          "Log in",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        )
                 ]),
               ),
               Spacer(
@@ -143,7 +172,6 @@ class _MenupageState extends State<Menupage> {
         textColor: Colors.white,
         iconColor: YellowColor,
         minLeadingWidth: 20,
-
         selectedColor: Colors.black,
         leading: Icon(item.icon),
         title: Text(item.title),

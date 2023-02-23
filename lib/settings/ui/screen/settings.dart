@@ -5,6 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 
+import '../../../auth/HiveSetUp.dart';
+import '../../../auth/auth_routes.dart';
+import '../../../di/di_config.dart';
 import '../../../utils/style/colors.dart';
 import '../../state_manager/setting_state_manager.dart';
 import '../../../home_page/ui/widget/menu_widget.dart';
@@ -46,11 +49,28 @@ class SettingsState extends State<Settings> {
         title: Text("Settings",style: GoogleFonts.comfortaa(color: Primarycolor,fontWeight: FontWeight.bold),),
 
       ),
-      body:BlocBuilder<SettingCubit, States>(
+      body:getIt<AuthPrefsHelper>().isSignedIn()?BlocBuilder<SettingCubit, States>(
           bloc: widget.cubit,
           builder: (context, state) {
             return state.getUI(context);
-          })
+          }):InkWell(
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            AuthRoutes.LOGIN_SCREEN,
+          );
+        },
+        child: Center(
+          child: Text(
+            "Please log in",
+            style: GoogleFonts.comfortaa(
+              color: Primarycolor,
+              fontWeight: FontWeight.bold,
+              fontSize: 19,
+            ),
+          ),
+        ),
+      ),
 
 
 
