@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:323108388957:android:b6a88197748998ea964db4",
         "android_client_info": {
-          "package_name": "com.example.hooka.hooka"
+          "package_name": "com.hooka.hookatimes"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "323108388957-s95cqtqp1olatr18bk53kpepaa17jivr.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.hooka.hooka",
+                "bundle_id": "com.hooka.hookatimes",
                 "app_store_id": "01051996"
               }
             }

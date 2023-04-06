@@ -61,7 +61,7 @@ class DefaultFirebaseOptions {
     projectId: 'hooka-times-c69ed',
     storageBucket: 'hooka-times-c69ed.appspot.com',
     iosClientId: '323108388957-s95cqtqp1olatr18bk53kpepaa17jivr.apps.googleusercontent.com',
-    iosBundleId: 'com.example.hooka.hooka',
+    iosBundleId: 'com.hooka.hookatimes',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -71,6 +71,6 @@ class DefaultFirebaseOptions {
     projectId: 'hooka-times-c69ed',
     storageBucket: 'hooka-times-c69ed.appspot.com',
     iosClientId: '323108388957-s95cqtqp1olatr18bk53kpepaa17jivr.apps.googleusercontent.com',
-    iosBundleId: 'com.example.hooka.hooka',
+    iosBundleId: 'com.hooka.hookatimes',
   );
 }
