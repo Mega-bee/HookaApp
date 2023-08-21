@@ -8,7 +8,6 @@ import 'package:hooka/auth/request/confirm_otp_request.dart';
 import 'package:hooka/auth/request/login_request.dart';
 import 'package:hooka/auth/response/login_response.dart';
 import 'package:hooka/home_page/home_routes.dart';
-
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import '../request/gen_otp_request.dart';

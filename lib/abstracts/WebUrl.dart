@@ -31,6 +31,8 @@ class Urls {
    static const AVAILABLE = BASE_ACCOUNTS + 'IsAvailableToggle';
    static const GET_ADDRESS = BASE_ACCOUNTS + 'GetAdderesses';
    static const FIRE_TOKEN = BASE_ACCOUNTS + 'RefreshFcmToken';
+  static const String DELETE_ACCOUNT = BASE_ACCOUNTS + 'DeleteAccount';
+
 //  /*--------Places-------------------*/
   static const GETALLPLACES = BASE_Places + 'GetAllPlaces';
   static const Details = BASE_Places + 'GetPlace/';

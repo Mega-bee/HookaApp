@@ -22,12 +22,21 @@ Profile(this.cubit);
 class ProfileState extends State<Profile> {
    ProfileResponse? profileResponse;
   // Function goEditprof;
-  @override
+
+
+   @override
   void initState() {
     super.initState();
+
     widget.cubit.getProfile(this);
 
   }
+
+   deleteAccount(String id) {
+     widget.cubit.deleteAccount(
+       id: id,
+     );
+   }
 
   @override
   Widget build(BuildContext context) {

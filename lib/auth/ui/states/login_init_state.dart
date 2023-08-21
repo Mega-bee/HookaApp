@@ -226,61 +226,61 @@ return  SingleChildScrollView(
                       Text("${errorMessage}",style: TextStyle(color: Colors.red),),
 
                       SizedBox(
-                        height: mediaQueryHeight * 0.03,
+                        height: mediaQueryHeight * 0.01,
                       ),
-                      Center(
-                        child: Text(
-                          "or login with",
-                          style: GoogleFonts.anekLatin(color: Colors.grey[500]),
-                        ),
-                      ),
-                      SizedBox(
-                        height: mediaQueryHeight * 0.02,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 60,
-                            width: 60,
-                            child: Card(
-                              elevation: 7,
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(30.0),
-                              ),
-                              child: Center(
-                                  child: Image.asset(
-                                    "assets/images/1534129544.png",
-                                    width: 25,
-                                  )),
-                            ),
-                          ),
-                          SizedBox(
-                            width: mediaQueryWidth * 0.03,
-                          ),
-                          Container(
-                            height: 60,
-                            width: 60,
-                            child: Card(
-                              elevation: 7,
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(30.0),
-                              ),
-                              child: Center(
-                                  child: Icon(
-                                    FontAwesomeIcons.facebookF,
-                                    size: 25,
-                                    color: Colors.blue[900],
-                                  )),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: mediaQueryHeight * 0.02,
-                      ),
+                      // Center(
+                      //   child: Text(
+                      //     "or login with",
+                      //     style: GoogleFonts.anekLatin(color: Colors.grey[500]),
+                      //   ),
+                      // ),
+                      // SizedBox(
+                      //   height: mediaQueryHeight * 0.02,
+                      // ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [
+                      //     Container(
+                      //       height: 60,
+                      //       width: 60,
+                      //       child: Card(
+                      //         elevation: 7,
+                      //         shape: RoundedRectangleBorder(
+                      //           borderRadius:
+                      //           BorderRadius.circular(30.0),
+                      //         ),
+                      //         child: Center(
+                      //             child: Image.asset(
+                      //               "assets/images/1534129544.png",
+                      //               width: 25,
+                      //             )),
+                      //       ),
+                      //     ),
+                      //     SizedBox(
+                      //       width: mediaQueryWidth * 0.03,
+                      //     ),
+                      //     Container(
+                      //       height: 60,
+                      //       width: 60,
+                      //       child: Card(
+                      //         elevation: 7,
+                      //         shape: RoundedRectangleBorder(
+                      //           borderRadius:
+                      //           BorderRadius.circular(30.0),
+                      //         ),
+                      //         child: Center(
+                      //             child: Icon(
+                      //               FontAwesomeIcons.facebookF,
+                      //               size: 25,
+                      //               color: Colors.blue[900],
+                      //             )),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      // SizedBox(
+                      //   height: mediaQueryHeight * 0.02,
+                      // ),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

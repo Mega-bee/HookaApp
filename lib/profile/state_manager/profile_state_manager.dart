@@ -49,7 +49,20 @@ class GetProfileCubit extends Cubit<States> {
         // for (var item in value.data.insideData) {
         //   det.add(ProfileResponse.fromJson(item));
         // }
-        emit(ProfileInitState(det,screenState));
+        emit(ProfileInitState(det,screenState,_authService));
+      }
+    });
+  }
+
+  deleteAccount({required String id}
+      ) {
+    _profileRepository.DeletetAccount(id).then((value) {
+      if (value == null) {
+        Fluttertoast.showToast(
+            msg: 'something went wrong', backgroundColor: Colors.red);
+      } else if (value.code == 200) {
+        // Navigator.pop(screenState.context);
+        Fluttertoast.showToast(msg: 'Account deleted', backgroundColor: Colors.red);
       }
     });
   }
